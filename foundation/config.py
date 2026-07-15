@@ -48,7 +48,9 @@ class Config:
     # Authentication
     SECRET_KEY: Optional[str] = os.getenv("SECRET_KEY")
     ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(
+        os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
+    )
 
     # Market Data
     MARKET_DATA_PROVIDER: str = os.getenv("MARKET_DATA_PROVIDER", "alpha_vantage")

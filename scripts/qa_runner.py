@@ -5,30 +5,25 @@ NAQAP QA Runner for Nexus AI Terminal
 
 import subprocess
 import sys
-
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 
 
-def run_qa():
+def run_qa() -> bool:
     """Run all QA checks."""
     print("=" * 60)
     print("RUNNING QA CHECKS")
     print("=" * 60)
 
     checks = [
-        # Ruff check - Linting and import sorting
         (["ruff", "check", str(ROOT)], "Ruff Linting & Imports"),
-        # Ruff format - Code formatting
         (["ruff", "format", "--check", str(ROOT)], "Ruff Formatting"),
-        # mypy - Type checking
         (["mypy", "--ignore-missing-imports", str(ROOT)], "Type Checking"),
-        # pytest - Unit tests
         (["pytest", "--tb=short", "--collect-only"], "Test Collection"),
     ]
 
-    all_passed = True
+    all_passed: bool = True
 
     for cmd, name in checks:
         print(f"\nRunning: {name}")

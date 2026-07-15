@@ -92,4 +92,14 @@ MINOR_CURRENCIES = ["HKD", "SGD", "SEK", "NOK", "DKK", "MXN", "KRW", "ZAR"]
 COMMODITIES = ["XAU", "XAG", "WTI", "BRENT", "NG", "COPPER"]
 
 # Supported indices
-INDICES = ["US30", "US500", "US100", "GER40", "UK100", "FRA40", "JP225", "HK50", "AU200"]
+INDICES = [
+    "US30",
+    "US500",
+    "US100",
+    "GER40",
+    "UK100",
+    "FRA40",
+    "JP225",
+    "HK50",
+    "AU200",
+]

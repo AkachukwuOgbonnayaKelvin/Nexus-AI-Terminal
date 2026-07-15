@@ -19,7 +19,9 @@ def setup_logging() -> None:
         format=log_format,
         handlers=[
             logging.StreamHandler(sys.stdout),
-            logging.FileHandler(config.LOGS_DIR / "platform.log") if settings.log_to_file else logging.NullHandler(),
+            logging.FileHandler(config.LOGS_DIR / "platform.log")
+            if settings.log_to_file
+            else logging.NullHandler(),
         ],
     )
 
