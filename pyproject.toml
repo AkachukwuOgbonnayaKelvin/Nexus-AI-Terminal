@@ -55,3 +55,9 @@ testpaths = ["foundation/tests", "ndip/tests", "engines/tests", "workspaces/test
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
+
+[tool.mypy]
+exclude = [
+    "tools/qa/tests/",
+    "tools/qa/.*",
+]

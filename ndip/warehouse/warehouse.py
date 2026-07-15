@@ -1,13 +1,13 @@
 """NDIP Warehouse implementation."""
 
-from collections import defaultdict
 from typing import Any, Dict, List
+from collections import defaultdict
 
 
 class Warehouse:
     """Data warehouse."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._data: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
         self._indices: Dict[str, Dict[str, int]] = defaultdict(dict)
 

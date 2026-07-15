@@ -6,8 +6,8 @@ from typing import Any, Dict
 class Classifier:
     """Data classifier."""
 
-    def __init__(self):
-        self._asset_classes = {
+    def __init__(self) -> None:
+        self._asset_classes: Dict[str, list[str]] = {
             "forex": ["USD", "EUR", "JPY", "GBP", "CHF", "CAD", "AUD", "NZD"],
             "commodity": ["XAU", "XAG", "WTI", "BRENT", "NG", "COPPER"],
             "index": ["US30", "US500", "US100", "GER40", "UK100"],

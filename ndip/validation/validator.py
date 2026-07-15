@@ -1,14 +1,14 @@
 """NDIP Validator implementation."""
 
-from datetime import datetime
 from typing import Any, Dict
+from datetime import datetime
 
 
 class Validator:
     """Data validator."""
 
-    def __init__(self):
-        self._required_fields = ["timestamp", "asset", "value"]
+    def __init__(self) -> None:
+        self._required_fields: list[str] = ["timestamp", "asset", "value"]
 
     def validate(self, data: Any) -> Dict[str, Any]:
         """Validate incoming data."""

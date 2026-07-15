@@ -6,8 +6,8 @@ from typing import Any, Dict
 class Normalizer:
     """Data normalizer."""
 
-    def __init__(self):
-        self._standard_fields = {
+    def __init__(self) -> None:
+        self._standard_fields: Dict[str, str] = {
             "timestamp": "timestamp",
             "asset": "symbol",
             "value": "price",
@@ -27,7 +27,7 @@ class Normalizer:
 
     def _normalize_record(self, record: Dict[str, Any]) -> Dict[str, Any]:
         """Normalize a single record."""
-        normalized = {}
+        normalized: Dict[str, Any] = {}
 
         # Map fields to standard names
         for field, value in record.items():
