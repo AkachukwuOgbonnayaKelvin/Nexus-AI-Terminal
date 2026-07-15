@@ -9,7 +9,7 @@ from foundation.settings import settings
 class CacheManager:
     """Simple in-memory cache with TTL."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._cache: Dict[str, Dict[str, Any]] = {}
         self._ttl = settings.cache_ttl_seconds
 

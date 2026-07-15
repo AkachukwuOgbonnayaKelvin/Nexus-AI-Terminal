@@ -4,7 +4,7 @@ from foundation.config import config
 from foundation.settings import settings
 
 
-def main():
+def main() -> None:
     """Test foundation layer."""
     print("=" * 60)
     print("NEXUS AI TERMINAL - FOUNDATION LAYER")

@@ -3,8 +3,8 @@
 This module provides runtime settings that can be modified during execution.
 """
 
+from typing import Dict, Any
 from dataclasses import dataclass, field
-from typing import Any, Dict
 
 
 @dataclass
@@ -36,16 +36,14 @@ class Settings:
     max_workers: int = 4
 
     # Feature flags
-    features: Dict[str, bool] = field(
-        default_factory=lambda: {
-            "experimental_ai": False,
-            "live_trading": False,
-            "backtesting": True,
-            "sentiment_analysis": True,
-        }
-    )
+    features: Dict[str, bool] = field(default_factory=lambda: {
+        "experimental_ai": False,
+        "live_trading": False,
+        "backtesting": True,
+        "sentiment_analysis": True,
+    })
 
-    def update(self, **kwargs) -> None:
+    def update(self, **kwargs: Any) -> None:
         """Update settings with keyword arguments."""
         for key, value in kwargs.items():
             if hasattr(self, key):
