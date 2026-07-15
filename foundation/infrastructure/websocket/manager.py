@@ -6,7 +6,7 @@ from typing import Set
 class WebSocketManager:
     """WebSocket connection manager."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._connections: Set[str] = set()
 
     def connect(self, client_id: str) -> None:

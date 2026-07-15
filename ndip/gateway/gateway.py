@@ -12,7 +12,7 @@ from ndip.warehouse import Warehouse
 class DataGateway:
     """Data Gateway - Entry point for all external data."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.validator = Validator()
         self.normalizer = Normalizer()
         self.classifier = Classifier()
