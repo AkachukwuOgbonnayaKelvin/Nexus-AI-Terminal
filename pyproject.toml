@@ -1,18 +1,57 @@
-[tool.ruff]
-line-length = 120
-target-version = "py311"
+[build-system]
+requires = ["setuptools>=45.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nexus-ai-terminal"
+version = "0.1.0"
+description = "Institutional-Grade AI Market Intelligence Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Akachukwu Ogbonnaya Kelvin"}
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+[project.urls]
+Homepage = "https://github.com/AkachukwuOgbonnayaKelvin/Nexus-AI-Terminal"
+Repository = "https://github.com/AkachukwuOgbonnayaKelvin/Nexus-AI-Terminal.git"
 
 [tool.black]
 line-length = 120
+target-version = ['py311']
 
 [tool.isort]
 profile = "black"
 line_length = 120
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+known_first_party = ["foundation", "ndip", "engines", "workspaces", "orchestrator", "dashboard", "qa"]
+known_third_party = ["pytest", "fastapi", "sqlalchemy", "redis", "celery"]
 
 [tool.mypy]
 python_version = "3.11"
-ignore_missing_imports = true
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_no_return = true
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "--cov-report=html --cov-report=term"
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --cov=foundation --cov=ndip --cov=engines --cov=workspaces --cov=orchestrator --cov=dashboard --cov-report=term-missing --cov-report=html:qa/reports/latest/coverage"
+testpaths = ["foundation/tests", "ndip/tests", "engines/tests", "workspaces/tests", "orchestrator/tests", "dashboard/tests", "qa/tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
