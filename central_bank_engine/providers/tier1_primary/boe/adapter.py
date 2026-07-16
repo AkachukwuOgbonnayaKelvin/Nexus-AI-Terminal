@@ -17,7 +17,7 @@ class BOEAdapter:
             rate_change = rate - old_rate
 
         return UniversalCentralBankEvent(
-            event_id=raw.get("event_id", f"boe_" + release_time.isoformat()),
+            event_id=raw.get("event_id", "boe_" + release_time.isoformat()),
             provider=provider_name,
             bank=raw.get("bank", "Bank of England"),
             country=raw.get("country", "UK"),

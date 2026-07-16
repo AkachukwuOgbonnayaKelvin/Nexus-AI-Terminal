@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Generate central bank provider files for the remaining 7 banks."""
 
-import os
 
 from pathlib import Path
 

@@ -7,9 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class BaseLoader:
-    def __init__(
-        self, registry_manager: RegistryManager, table: str, unique_field: str
-    ):
+    def __init__(self, registry_manager: RegistryManager, table: str, unique_field: str):
         self.registry = registry_manager
         self.table = table
         self.unique_field = unique_field

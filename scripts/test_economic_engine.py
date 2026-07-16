@@ -9,10 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from economic_events_engine.acquisition import EconomicCollector
-from economic_events_engine.providers.tier2_secondary.fred import (
-    FredAdapter,
-    FredConnector,
-)
+from economic_events_engine.providers.tier2_secondary.fred import FredAdapter, FredConnector
 from economic_events_engine.warehouse import EconomicWarehouse
 from ndip.utils.db_connector import close_pool
 from providers.provider_manager import ProviderManager

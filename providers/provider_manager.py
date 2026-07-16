@@ -54,9 +54,7 @@ class ProviderManager:
     def get_providers(self, capability: str) -> List[str]:
         return [name for name, caps in self._capabilities.items() if capability in caps]
 
-    def get_price(
-        self, symbol: str, asset_class: Optional[str] = None
-    ) -> Optional[UniversalTransport]:
+    def get_price(self, symbol: str, asset_class: Optional[str] = None) -> Optional[UniversalTransport]:
         priority_order = self.health.get_priority_order(asset_class)
 
         for provider_name in priority_order:

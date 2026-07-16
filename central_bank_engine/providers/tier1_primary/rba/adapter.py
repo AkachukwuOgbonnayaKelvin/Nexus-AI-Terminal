@@ -17,7 +17,7 @@ class RBAAdapter:
             rate_change = rate - old_rate
 
         return UniversalCentralBankEvent(
-            event_id=raw.get("event_id", f"rba_" + release_time.isoformat()),
+            event_id=raw.get("event_id", "rba_" + release_time.isoformat()),
             provider=provider_name,
             bank=raw.get("bank", "Reserve Bank of Australia"),
             country=raw.get("country", "AU"),

@@ -21,13 +21,9 @@ class AlphaVantageAdapter(BaseAdapter):
             source=source,
             provider="alpha_vantage",
             symbol_provider=symbol,
-            asset_class="forex"
-            if (len(symbol) == 6 and symbol.isalpha())
-            else "equity",
+            asset_class="forex" if (len(symbol) == 6 and symbol.isalpha()) else "equity",
             raw_data=raw_data,
         )
 
-    def adapt_batch(
-        self, raw_data: List[Dict[str, Any]], source: str
-    ) -> List[UniversalTransport]:
+    def adapt_batch(self, raw_data: List[Dict[str, Any]], source: str) -> List[UniversalTransport]:
         return [self.adapt(item, source) for item in raw_data if item]

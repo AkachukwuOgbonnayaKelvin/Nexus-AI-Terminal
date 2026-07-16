@@ -49,7 +49,5 @@ class ErrorResponse(BaseResponse):
     """Error response schema."""
 
     error_code: str = Field(..., description="Error code")
-    error_details: Optional[Dict[str, Any]] = Field(
-        default=None, description="Error details"
-    )
+    error_details: Optional[Dict[str, Any]] = Field(default=None, description="Error details")
     traceback: Optional[str] = Field(default=None, description="Error traceback")

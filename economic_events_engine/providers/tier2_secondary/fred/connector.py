@@ -3,9 +3,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas_datareader.data as web
 
-from economic_events_engine.providers.interfaces.base_economic_provider import (
-    BaseEconomicProvider,
-)
+from economic_events_engine.providers.interfaces.base_economic_provider import BaseEconomicProvider
 
 
 class FredConnector(BaseEconomicProvider):
@@ -63,9 +61,7 @@ class FredConnector(BaseEconomicProvider):
         except Exception:
             return None
 
-    def get_historical_series(
-        self, series_id: str, start: date, end: date
-    ) -> List[Dict[str, Any]]:
+    def get_historical_series(self, series_id: str, start: date, end: date) -> List[Dict[str, Any]]:
         try:
             data = web.DataReader(series_id, "fred", start=start, end=end)
             if data.empty:

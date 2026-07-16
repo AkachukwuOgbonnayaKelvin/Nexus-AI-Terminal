@@ -5,6 +5,7 @@ NAQAP QA Runner for Nexus AI Terminal
 
 import subprocess
 import sys
+
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent

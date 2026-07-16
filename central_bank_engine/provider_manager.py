@@ -1,8 +1,7 @@
 """Provider Manager – orchestrates collectors for all central banks."""
 
-import asyncio
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from central_bank_engine.collectors import BaseCollector
 from central_bank_engine.registry import get_all_banks

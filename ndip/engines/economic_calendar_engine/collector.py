@@ -1,7 +1,7 @@
 """Economic Calendar Collector implementation."""
 
-from typing import Any, Dict
 from datetime import datetime
+from typing import Any, Dict
 
 from ndip.gateway import DataGateway
 

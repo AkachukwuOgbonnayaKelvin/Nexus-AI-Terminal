@@ -99,7 +99,5 @@ class ConsensusWarehouse:
         return [dict(row) for row in rows]
 
     async def get_event(self, event_id: str) -> Optional[dict]:
-        row = await fetchrow(
-            f"SELECT * FROM {self.table} WHERE event_id = $1", event_id
-        )
+        row = await fetchrow(f"SELECT * FROM {self.table} WHERE event_id = $1", event_id)
         return dict(row) if row else None

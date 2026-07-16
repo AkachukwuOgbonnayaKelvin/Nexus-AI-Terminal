@@ -40,9 +40,7 @@ class YahooAdapter(BaseAdapter):
             metadata={},
         )
 
-    def adapt_batch(
-        self, raw_data: List[Dict[str, Any]], source: str
-    ) -> List[UniversalTransport]:
+    def adapt_batch(self, raw_data: List[Dict[str, Any]], source: str) -> List[UniversalTransport]:
         return [self.adapt(item, source) for item in raw_data if item]
 
     def _classify(self, symbol: str) -> str:

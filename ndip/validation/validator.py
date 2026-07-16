@@ -1,7 +1,7 @@
 """NDIP Validator implementation."""
 
-from typing import Any, Dict
 from datetime import datetime
+from typing import Any, Dict
 
 
 class Validator:

@@ -14,13 +14,9 @@ class ConfidenceScore(BaseModel):
 
     model_config = ConfigDict(extra="ignore")
 
-    score: float = Field(
-        ..., ge=0, le=1, description="Confidence score between 0 and 1"
-    )
+    score: float = Field(..., ge=0, le=1, description="Confidence score between 0 and 1")
     calibration: Optional[float] = Field(None, description="Calibration metric")
-    factors: List[str] = Field(
-        default_factory=list, description="Factors influencing confidence"
-    )
+    factors: List[str] = Field(default_factory=list, description="Factors influencing confidence")
 
 
 class EvidenceItem(BaseModel):
@@ -45,9 +41,7 @@ class RiskAssessment(BaseModel):
 
     level: str = Field(..., description="Risk level: 'Low', 'Medium', 'High'")
     factors: List[str] = Field(default_factory=list, description="Risk factors")
-    mitigation: List[str] = Field(
-        default_factory=list, description="Mitigation strategies"
-    )
+    mitigation: List[str] = Field(default_factory=list, description="Mitigation strategies")
 
 
 class Recommendation(BaseModel):
@@ -57,9 +51,7 @@ class Recommendation(BaseModel):
 
     action: str = Field(..., description="Recommended action")
     rationale: str = Field(..., description="Rationale for recommendation")
-    confidence: float = Field(
-        ..., ge=0, le=1, description="Confidence in recommendation"
-    )
+    confidence: float = Field(..., ge=0, le=1, description="Confidence in recommendation")
 
 
 class IntelligenceMetadata(BaseModel):
@@ -71,9 +63,7 @@ class IntelligenceMetadata(BaseModel):
     timestamp: datetime = Field(default_factory=datetime.now)
     version: str = Field(..., description="Version of the engine")
     sources: List[str] = Field(default_factory=list, description="Data sources used")
-    processing_time_ms: Optional[float] = Field(
-        None, description="Processing time in milliseconds"
-    )
+    processing_time_ms: Optional[float] = Field(None, description="Processing time in milliseconds")
 
 
 class IntelligenceHealth(BaseModel):
@@ -81,9 +71,7 @@ class IntelligenceHealth(BaseModel):
 
     model_config = ConfigDict(extra="ignore")
 
-    status: str = Field(
-        ..., description="Health status: 'Healthy', 'Degraded', 'Unhealthy'"
-    )
+    status: str = Field(..., description="Health status: 'Healthy', 'Degraded', 'Unhealthy'")
     last_run: datetime = Field(default_factory=datetime.now)
     data_freshness: float = Field(..., description="Age of data in seconds")
     errors: List[str] = Field(default_factory=list, description="Recent errors")

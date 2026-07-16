@@ -1,5 +1,4 @@
-import re
-from typing import Any, Dict
+from typing import Dict
 
 
 class NewsClassifier:

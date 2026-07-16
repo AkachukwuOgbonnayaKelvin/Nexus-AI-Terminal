@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 import feedparser
 import requests
@@ -218,7 +218,7 @@ class RBNZCalendarCollector(CalendarCollector):
         if not events:
             events.append(
                 {
-                    "event_id": f"rbnz_calendar_placeholder",
+                    "event_id": "rbnz_calendar_placeholder",
                     "bank": "Reserve Bank of New Zealand",
                     "country": "NZ",
                     "currency": "NZD",

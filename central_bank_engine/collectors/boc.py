@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 import feedparser
 import requests
@@ -218,7 +218,7 @@ class BOCCalendarCollector(CalendarCollector):
         if not events:
             events.append(
                 {
-                    "event_id": f"boc_calendar_placeholder",
+                    "event_id": "boc_calendar_placeholder",
                     "bank": "Bank of Canada",
                     "country": "CA",
                     "currency": "CAD",

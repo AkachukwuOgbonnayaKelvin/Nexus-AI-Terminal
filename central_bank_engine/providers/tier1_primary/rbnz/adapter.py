@@ -17,7 +17,7 @@ class RBNZAdapter:
             rate_change = rate - old_rate
 
         return UniversalCentralBankEvent(
-            event_id=raw.get("event_id", f"rbnz_" + release_time.isoformat()),
+            event_id=raw.get("event_id", "rbnz_" + release_time.isoformat()),
             provider=provider_name,
             bank=raw.get("bank", "Reserve Bank of New Zealand"),
             country=raw.get("country", "NZ"),

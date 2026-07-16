@@ -16,9 +16,7 @@ class ClientRequest(BaseModel):
 
     client_id: str = Field(..., description="Client identifier")
     request_type: str = Field(..., description="Request type")
-    parameters: Dict[str, Any] = Field(
-        default_factory=dict, description="Request parameters"
-    )
+    parameters: Dict[str, Any] = Field(default_factory=dict, description="Request parameters")
     timestamp: datetime = Field(default_factory=datetime.now)
 
 

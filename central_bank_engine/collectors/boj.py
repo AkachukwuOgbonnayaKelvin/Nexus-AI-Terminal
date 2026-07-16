@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 import feedparser
 import requests
@@ -218,7 +218,7 @@ class BOJCalendarCollector(CalendarCollector):
         if not events:
             events.append(
                 {
-                    "event_id": f"boj_calendar_placeholder",
+                    "event_id": "boj_calendar_placeholder",
                     "bank": "Bank of Japan",
                     "country": "JP",
                     "currency": "JPY",

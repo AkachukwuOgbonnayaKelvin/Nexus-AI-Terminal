@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 import feedparser
 import requests
@@ -218,7 +218,7 @@ class ECBCalendarCollector(CalendarCollector):
         if not events:
             events.append(
                 {
-                    "event_id": f"ecb_calendar_placeholder",
+                    "event_id": "ecb_calendar_placeholder",
                     "bank": "European Central Bank",
                     "country": "EU",
                     "currency": "EUR",

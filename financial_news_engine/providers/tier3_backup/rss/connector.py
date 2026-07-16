@@ -65,9 +65,7 @@ class RSSConnector(BaseProvider):
                             "link": entry.get("link"),
                             "published": entry.get("published"),
                             "author": entry.get("author"),
-                            "source": feed_url.split("/")[2]
-                            if "/" in feed_url
-                            else "unknown",
+                            "source": feed_url.split("/")[2] if "/" in feed_url else "unknown",
                             "raw": entry,
                         }
                     )

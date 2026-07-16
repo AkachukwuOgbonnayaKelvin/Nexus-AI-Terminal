@@ -15,8 +15,6 @@ class BaseAdapter(ABC):
         pass
 
     @abstractmethod
-    def adapt_batch(
-        self, raw_data: List[Dict[str, Any]], source: str
-    ) -> List[UniversalTransport]:
+    def adapt_batch(self, raw_data: List[Dict[str, Any]], source: str) -> List[UniversalTransport]:
         """Convert a batch of raw records."""
         pass

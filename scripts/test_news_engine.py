@@ -11,10 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from financial_news_engine.acquisition import NewsCollector
 from financial_news_engine.classification import NewsClassifier
 from financial_news_engine.entities import EntityExtractor
-from financial_news_engine.providers.tier3_backup.newsapi import (
-    NewsAPIAdapter,
-    NewsAPIConnector,
-)
+from financial_news_engine.providers.tier3_backup.newsapi import NewsAPIAdapter, NewsAPIConnector
 from financial_news_engine.providers.tier3_backup.rss import RSSAdapter, RSSConnector
 from financial_news_engine.warehouse import NewsWarehouse
 from ndip.utils.db_connector import close_pool
@@ -61,9 +58,7 @@ async def main():
         result = await warehouse.store(article)
         if result:
             stored += 1
-            print(
-                f"  ✅ {article.headline[:50]}... ({article.category}) [{article.importance}]"
-            )
+            print(f"  ✅ {article.headline[:50]}... ({article.category}) [{article.importance}]")
 
     print(f"\nStored {stored} articles")
 

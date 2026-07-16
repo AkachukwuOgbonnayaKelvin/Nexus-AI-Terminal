@@ -50,9 +50,7 @@ class MarketPriceCollector:
         result = self.gateway.ingest(source, data)
         return result
 
-    def collect_batch(
-        self, symbols: List[str], source: str = "yahoo"
-    ) -> List[Dict[str, Any]]:
+    def collect_batch(self, symbols: List[str], source: str = "yahoo") -> List[Dict[str, Any]]:
         """Collect real price data for multiple symbols."""
         results = []
         for symbol in symbols:

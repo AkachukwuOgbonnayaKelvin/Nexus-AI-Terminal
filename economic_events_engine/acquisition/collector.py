@@ -2,9 +2,7 @@ import logging
 from typing import List
 
 from economic_events_engine.dtos import UniversalEconomicEvent
-from economic_events_engine.providers.interfaces.base_economic_provider import (
-    BaseEconomicProvider,
-)
+from economic_events_engine.providers.interfaces.base_economic_provider import BaseEconomicProvider
 from providers.provider_manager import ProviderManager
 
 logger = logging.getLogger(__name__)

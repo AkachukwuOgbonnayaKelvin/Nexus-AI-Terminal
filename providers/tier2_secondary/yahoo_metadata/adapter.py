@@ -9,7 +9,5 @@ class YahooMetadataAdapter(BaseAdapter):
         # Not used for metadata; we store directly in MetadataWarehouse
         return None
 
-    def adapt_batch(
-        self, raw_data: List[Dict[str, Any]], source: str
-    ) -> List[UniversalTransport]:
+    def adapt_batch(self, raw_data: List[Dict[str, Any]], source: str) -> List[UniversalTransport]:
         return []

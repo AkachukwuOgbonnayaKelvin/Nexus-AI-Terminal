@@ -48,9 +48,7 @@ class NewsAPIConnector(BaseProvider):
     def supports_symbol(self, symbol: str) -> bool:
         return True
 
-    def get_top_headlines(
-        self, country: str = "us", category: str = None, page_size: int = 20
-    ) -> List[Dict[str, Any]]:
+    def get_top_headlines(self, country: str = "us", category: str = None, page_size: int = 20) -> List[Dict[str, Any]]:
         if not self.api_key:
             return []
         url = f"{self.base_url}/top-headlines"

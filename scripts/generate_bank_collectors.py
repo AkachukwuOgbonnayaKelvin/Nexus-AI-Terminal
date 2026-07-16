@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Generate collector files for all central banks."""
 
-import os
 
 from pathlib import Path
 

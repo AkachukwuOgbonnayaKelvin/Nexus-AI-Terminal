@@ -17,7 +17,7 @@ class BOJAdapter:
             rate_change = rate - old_rate
 
         return UniversalCentralBankEvent(
-            event_id=raw.get("event_id", f"boj_" + release_time.isoformat()),
+            event_id=raw.get("event_id", "boj_" + release_time.isoformat()),
             provider=provider_name,
             bank=raw.get("bank", "Bank of Japan"),
             country=raw.get("country", "JP"),

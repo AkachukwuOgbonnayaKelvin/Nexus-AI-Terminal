@@ -38,8 +38,6 @@ class HubHealth(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     healthy: bool = Field(..., description="Whether the hub is healthy")
-    engine_health: Dict[str, bool] = Field(
-        default_factory=dict, description="Health status of individual engines"
-    )
+    engine_health: Dict[str, bool] = Field(default_factory=dict, description="Health status of individual engines")
     data_freshness: float = Field(..., description="Age of data in seconds")
     errors: List[str] = Field(default_factory=list, description="Recent errors")

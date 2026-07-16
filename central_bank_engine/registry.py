@@ -1,7 +1,7 @@
 """Central Bank Registry – defines all 8 major central banks."""
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 
 @dataclass

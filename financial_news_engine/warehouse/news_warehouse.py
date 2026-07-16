@@ -66,7 +66,9 @@ class NewsWarehouse:
         return [dict(row) for row in rows]
 
     async def get_high_impact(self, limit: int = 20) -> List[dict]:
-        query = f"SELECT * FROM {self.table} WHERE importance IN ('Critical', 'High') ORDER BY published_at DESC LIMIT $1"
+        query = (
+            f"SELECT * FROM {self.table} WHERE importance IN ('Critical', 'High') ORDER BY published_at DESC LIMIT $1"
+        )
         rows = await fetch(query, limit)
         return [dict(row) for row in rows]
 

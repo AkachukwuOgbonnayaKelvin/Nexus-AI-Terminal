@@ -3,8 +3,6 @@
 import logging
 from typing import Any, Dict, List
 
-from central_bank_engine.dtos import UniversalCentralBankEvent
-
 logger = logging.getLogger(__name__)
 
 

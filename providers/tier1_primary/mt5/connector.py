@@ -28,9 +28,7 @@ class MT5Connector(BaseProvider):
         try:
             import MetaTrader5 as mt5
         except ImportError:
-            print(
-                "MetaTrader5 module not installed. Install with: pip install MetaTrader5"
-            )
+            print("MetaTrader5 module not installed. Install with: pip install MetaTrader5")
             return False
         if not mt5.initialize(self.terminal_path):
             print("MT5 initialize failed")

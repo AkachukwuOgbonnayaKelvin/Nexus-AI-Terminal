@@ -14,7 +14,6 @@ from central_bank_engine.aggregator import (
     KnowledgeLinker,
     Normalizer,
     PolicyCycleBuilder,
-    Publisher,
     Validator,
     VersionManager,
 )
@@ -70,7 +69,6 @@ async def main():
     linker = KnowledgeLinker()
     versioner = VersionManager()
     conf_engine = ConfidenceEngine()
-    publisher = Publisher()
 
     print(f"\nStarting with {len(mock_events)} mock events")
     routed = router.route(mock_events)

@@ -15,7 +15,5 @@ class BaseEconomicProvider(BaseProvider):
         pass
 
     @abstractmethod
-    def get_historical_series(
-        self, series_id: str, start: date, end: date
-    ) -> List[Dict[str, Any]]:
+    def get_historical_series(self, series_id: str, start: date, end: date) -> List[Dict[str, Any]]:
         pass

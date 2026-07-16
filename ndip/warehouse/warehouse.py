@@ -1,7 +1,7 @@
 """NDIP Warehouse implementation."""
 
-from typing import Any, Dict, List
 from collections import defaultdict
+from typing import Any, Dict, List
 
 
 class Warehouse:

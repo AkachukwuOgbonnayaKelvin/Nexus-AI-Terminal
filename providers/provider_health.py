@@ -21,9 +21,7 @@ class ProviderHealth:
         if name not in self._priority_map.get("default", []):
             self._priority_map.setdefault("default", []).append(name)
         # Sort by priority (higher first)
-        self._priority_map["default"].sort(
-            key=lambda p: getattr(self._providers.get(p), "priority", 0), reverse=True
-        )
+        self._priority_map["default"].sort(key=lambda p: getattr(self._providers.get(p), "priority", 0), reverse=True)
 
     def is_healthy(self, name: str) -> bool:
         if name not in self._providers:

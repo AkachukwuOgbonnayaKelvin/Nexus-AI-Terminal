@@ -17,7 +17,7 @@ class BOCAdapter:
             rate_change = rate - old_rate
 
         return UniversalCentralBankEvent(
-            event_id=raw.get("event_id", f"boc_" + release_time.isoformat()),
+            event_id=raw.get("event_id", "boc_" + release_time.isoformat()),
             provider=provider_name,
             bank=raw.get("bank", "Bank of Canada"),
             country=raw.get("country", "CA"),

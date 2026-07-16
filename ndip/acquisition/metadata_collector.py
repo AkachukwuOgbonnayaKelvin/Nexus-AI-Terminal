@@ -21,9 +21,7 @@ class MetadataAcquisitionCollector:
         results = {}
         for symbol in symbols:
             found = False
-            for provider_name in self.provider_manager.health.get_priority_order(
-                asset_class=None
-            ):
+            for provider_name in self.provider_manager.health.get_priority_order(asset_class=None):
                 provider = self.provider_manager.providers.get(provider_name)
                 if not provider or not hasattr(provider, "get_metadata"):
                     continue
@@ -32,9 +30,7 @@ class MetadataAcquisitionCollector:
                 try:
                     raw = provider.get_metadata(symbol)
                     if not isinstance(raw, dict):
-                        logger.warning(
-                            f"Provider {provider_name} returned non-dict for {symbol}: {type(raw)}"
-                        )
+                        logger.warning(f"Provider {provider_name} returned non-dict for {symbol}: {type(raw)}")
                         continue
                     validated = self.validator.validate(raw)
                     normalized = self.normalizer.normalize(validated)

@@ -1,7 +1,7 @@
 """Central Bank Engine – orchestrates collectors and aggregator."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 from central_bank_engine.aggregator import (
     CollectorRouter,
@@ -10,7 +10,6 @@ from central_bank_engine.aggregator import (
     KnowledgeLinker,
     Normalizer,
     PolicyCycleBuilder,
-    Publisher,
     Validator,
     VersionManager,
 )

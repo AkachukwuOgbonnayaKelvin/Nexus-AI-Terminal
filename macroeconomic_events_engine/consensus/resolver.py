@@ -8,9 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class ConsensusResolver:
-    def resolve(
-        self, events: List[UniversalMacroEvent]
-    ) -> Optional[UniversalMacroEvent]:
+    def resolve(self, events: List[UniversalMacroEvent]) -> Optional[UniversalMacroEvent]:
         if not events:
             return None
         # Group by event ID (assuming same event from different providers)
