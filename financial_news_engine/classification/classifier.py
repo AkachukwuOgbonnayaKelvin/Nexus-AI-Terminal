@@ -1,19 +1,11 @@
-from typing import Dict
+import re
+from typing import Any, Dict
 
 
 class NewsClassifier:
     def __init__(self):
         self.category_keywords = {
-            "Central Bank": [
-                "fed",
-                "federal reserve",
-                "ecb",
-                "boe",
-                "boj",
-                "rates",
-                "monetary",
-                "policy",
-            ],
+            "Central Bank": ["fed", "federal reserve", "ecb", "boe", "boj", "rates", "monetary", "policy"],
             "Inflation": ["cpi", "inflation", "price", "ppi", "pce"],
             "Employment": ["nfp", "employment", "unemployment", "jobs", "claims"],
             "GDP": ["gdp", "growth", "economy", "recession"],
@@ -30,6 +22,9 @@ class NewsClassifier:
         }
 
     def classify(self, headline: str, summary: str = "") -> Dict[str, str]:
+        # Ensure summary is a string
+        if summary is None:
+            summary = ""
         text = (headline + " " + summary).lower()
         category = "General"
         for cat, keywords in self.category_keywords.items():
