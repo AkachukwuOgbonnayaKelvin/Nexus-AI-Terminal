@@ -2,11 +2,12 @@
 
 from typing import Any, Optional, Type, TypeVar
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class ValidationError(Exception):
     """Exception raised for validation errors."""
+
     pass
 
 

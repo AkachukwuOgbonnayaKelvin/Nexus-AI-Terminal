@@ -1,48 +1,64 @@
-"""Market Price Collector implementation."""
+"""Market Price Collector with real data from Yahoo Finance."""
 
-from typing import Any, Dict, List, Optional
-from datetime import datetime
 import time
+from datetime import datetime
+from typing import Any, Dict, List, Optional
 
 from ndip.gateway import DataGateway
 
 
 class MarketPriceCollector:
-    """Collects market price data from various sources."""
+    """Collects real market price data from Yahoo Finance."""
 
     def __init__(self, gateway: DataGateway) -> None:
         self.gateway = gateway
-        self._sources: List[str] = []
+        self._connectors: Dict[str, Any] = {}
         self._running: bool = False
         self._last_collection: Optional[datetime] = None
 
-    def register_source(self, name: str, source: Any) -> None:
-        """Register a price data source."""
-        self._sources.append(name)
-        self.gateway.register_source(name, source)
+    def register_connector(self, name: str, connector: Any) -> None:
+        """Register a data connector."""
+        self._connectors[name] = connector
+        self.gateway.register_source(name, connector)
 
-    def collect(self, symbol: str) -> Dict[str, Any]:
-        """Collect price data for a symbol."""
-        # In production, this would fetch from external API
-        data = {
-            "asset": symbol,
-            "value": 1.2345,
-            "volume": 1000000,
-            "timestamp": datetime.now().isoformat(),
-            "open": 1.2340,
-            "high": 1.2350,
-            "low": 1.2330,
-            "close": 1.2345,
-            "source": "market_price_engine",
-        }
-        return data
+    def collect(self, symbol: str, source: str = "yahoo") -> Dict[str, Any]:
+        """Collect real price data for a symbol."""
+        if source not in self._connectors:
+            raise ValueError(f"Unknown source: {source}")
 
-    def collect_batch(self, symbols: List[str]) -> List[Dict[str, Any]]:
-        """Collect price data for multiple symbols."""
+        connector = self._connectors[source]
+        if not hasattr(connector, "get_price"):
+            raise ValueError(f"Connector {source} does not support get_price")
+
+        # Fetch real data
+        data = connector.get_price(symbol)
+
+        if data is None:
+            return {
+                "symbol": symbol,
+                "error": "No data received from source",
+                "source": source,
+                "timestamp": datetime.now().isoformat(),
+            }
+
+        # Add source and timestamp if not present
+        data["source"] = source
+        if "timestamp" not in data:
+            data["timestamp"] = datetime.now().isoformat()
+
+        # Send to NDIP pipeline
+        result = self.gateway.ingest(source, data)
+        return result
+
+    def collect_batch(
+        self, symbols: List[str], source: str = "yahoo"
+    ) -> List[Dict[str, Any]]:
+        """Collect real price data for multiple symbols."""
         results = []
         for symbol in symbols:
-            results.append(self.collect(symbol))
-            time.sleep(0.1)  # Rate limiting
+            result = self.collect(symbol, source)
+            results.append(result)
+            time.sleep(0.5)  # Rate limiting
         return results
 
     def start(self) -> None:
@@ -50,15 +66,25 @@ class MarketPriceCollector:
         self._running = True
         self._last_collection = datetime.now()
 
+        # Connect all registered connectors
+        for _name, connector in self._connectors.items():
+            if hasattr(connector, "connect"):
+                connector.connect()
+
     def stop(self) -> None:
         """Stop the collector."""
         self._running = False
+
+        # Disconnect all registered connectors
+        for _name, connector in self._connectors.items():
+            if hasattr(connector, "disconnect"):
+                connector.disconnect()
 
     def get_stats(self) -> Dict[str, Any]:
         """Get collector statistics."""
         return {
             "running": self._running,
-            "sources": self._sources,
+            "connectors": list(self._connectors.keys()),
             "last_collection": self._last_collection,
-            "total_sources": len(self._sources),
+            "total_connectors": len(self._connectors),
         }

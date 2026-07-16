@@ -1,0 +1,55 @@
+Growth:
+  - GDP
+  - Retail Sales
+  - Industrial Production
+  - Manufacturing Production
+  - Capacity Utilization
+Inflation:
+  - CPI
+  - Core CPI
+  - PPI
+  - Core PPI
+  - PCE
+  - Core PCE
+Labour:
+  - NFP
+  - Unemployment Rate
+  - Jobless Claims
+  - Continuing Claims
+  - Average Hourly Earnings
+  - Labor Force Participation
+Housing:
+  - Housing Starts
+  - Building Permits
+  - Existing Home Sales
+  - New Home Sales
+  - Case-Shiller
+Confidence:
+  - Consumer Confidence
+  - Consumer Sentiment
+  - Business Sentiment
+  - ISM Manufacturing
+  - ISM Services
+Central Bank:
+  - Interest Rate Decision
+  - Monetary Policy Statement
+  - Press Conference
+  - Meeting Minutes
+Trade:
+  - Trade Balance
+  - Current Account
+  - Import Price Index
+  - Export Price Index
+Government:
+  - Budget Deficit
+  - Government Debt
+  - Treasury Auctions
+Business Activity:
+  - PMI Manufacturing
+  - PMI Services
+  - Durable Goods Orders
+  - Factory Orders
+Energy:
+  - Crude Oil Inventories
+  - Natural Gas Storage
+  - Rig Count

@@ -1,7 +1,4 @@
-"""Market Price Engine.
-
-Collects price data from multiple sources (MT5, Polygon, Alpha Vantage, etc.)
-"""
+"""Market Price Engine for real-time price data."""
 
 from .collector import MarketPriceCollector
 
