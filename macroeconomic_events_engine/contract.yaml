@@ -1,0 +1,67 @@
+engine_id: MAC-002
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+  - topic: economic.events.cleaned
+    schema: economic_cleaned_v1
+    required: true
+
+outputs:
+  - topic: macro.data.raw
+    domain: macro
+    version: "1.0"
+    description: Raw macroeconomic data
+  - topic: macro.data.cleaned
+    domain: macro
+    version: "1.0"
+    description: Cleaned macroeconomic data
+  - topic: macro.analytics
+    domain: macro
+    version: "1.0"
+    description: Macroeconomic analytics
+
+schemas:
+  macro_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: country
+        type: string
+        required: true
+      - name: indicator
+        type: string
+        required: true
+      - name: value
+        type: float
+        required: true
+      - name: unit
+        type: string
+        required: false
+      - name: period
+        type: string
+        required: false
+
+  macro_analytics_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: country
+        type: string
+        required: true
+      - name: indicator
+        type: string
+        required: true
+      - name: score
+        type: float
+        required: true
+      - name: trend
+        type: string
+        required: true
+      - name: confidence
+        type: float
+        required: true

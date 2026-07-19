@@ -1,11 +1,18 @@
-"""Central Bank Intelligence Engine (CENT-001) – NRES Compliant."""
+"""Central Bank Intelligence Engine (CENT-001)."""
 
 __version__ = "1.0.0"
 
-from .acquisition import CentralBankCollector
-from .warehouse import CentralBankWarehouse
+# Import only what actually exists
+try:
+    from .acquisition import CentralBankCollector
+except ImportError:
+    CentralBankCollector = None
 
-# Gateways and publishers are optional; import only if needed
+try:
+    from .warehouse import CentralBankWarehouse
+except ImportError:
+    CentralBankWarehouse = None
+
 try:
     from .gateway import CentralBankGateway
 except ImportError:

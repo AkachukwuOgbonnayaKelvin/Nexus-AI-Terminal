@@ -1,0 +1,35 @@
+id: NEWS-001
+name: Financial News Engine
+version: 1.0.0
+owner: Data Team
+purpose: Acquire, normalize, and analyze financial news data
+domain: news
+stage: development
+status: active
+
+architecture:
+  required:
+    - acquisition
+    - processing
+    - classification
+    - publication
+  optional:
+    - runtime
+    - gateway
+    - warehouse
+    - docs
+
+integration:
+  dar: false
+  ndip: true
+  warehouse: true
+
+dependencies:
+  - GLO-001
+  - ECO-001
+
+runtime:
+  schedule: "*/1 * * * *"
+  priority: 2
+  retries: 3
+  timeout: 60

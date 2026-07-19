@@ -1,0 +1,85 @@
+# MKT-001 Source Registry
+# Defines the hierarchy and authority of all market data sources
+
+sources:
+  pepperstone_mt5:
+    id: SRC-MKT-001
+    name: Pepperstone MT5
+    type: broker_execution_feed
+    priority: 1
+    authority: primary
+    realtime: true
+    historical: true
+    description: Primary execution-market feed from Pepperstone brokerage
+    asset_classes:
+      - forex
+      - indices
+      - commodities
+      - metals
+    enabled: true
+    health_check_interval: 10
+    timeout: 5
+    retries: 3
+
+  composite_market_api:
+    id: SRC-MKT-002
+    name: Composite Market API
+    type: composite_market_feed
+    priority: 2
+    authority: validation
+    realtime: true
+    historical: true
+    description: Independent composite feed for validation and coverage
+    asset_classes:
+      - forex
+      - stocks
+      - commodities
+      - crypto
+    enabled: true
+    health_check_interval: 30
+    timeout: 10
+    retries: 3
+
+  yahoo_finance:
+    id: SRC-MKT-003
+    name: Yahoo Finance
+    type: historical_reference
+    priority: 3
+    authority: research
+    realtime: false
+    historical: true
+    description: Long-term historical research data
+    asset_classes:
+      - stocks
+      - indices
+      - etfs
+    enabled: true
+    health_check_interval: 60
+    timeout: 15
+    retries: 2
+
+source_authority_matrix:
+  live_forex_price:
+    primary: pepperstone_mt5
+    validation: composite_market_api
+    fallback: yahoo_finance
+  forex_ohlcv:
+    primary: pepperstone_mt5
+    validation: composite_market_api
+    fallback: yahoo_finance
+  stock_price:
+    primary: composite_market_api
+    validation: yahoo_finance
+    fallback: yahoo_finance
+  index_price:
+    primary: composite_market_api
+    validation: yahoo_finance
+    fallback: yahoo_finance
+  commodity_price:
+    primary: pepperstone_mt5
+    validation: composite_market_api
+    fallback: yahoo_finance
+  historical_research:
+    primary: yahoo_finance
+    validation: composite_market_api
+    fallback: pepperstone_mt5

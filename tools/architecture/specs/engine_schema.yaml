@@ -1,0 +1,59 @@
+# Nexus Engine Specification Schema
+# Every engine must include engine.yaml and contract.yaml
+
+# engine.yaml – Declares what the engine is
+engine:
+  id: "ENG-001"                    # Unique engine ID
+  name: "Example Engine"
+  version: "1.0.0"
+  maturity: "Development"           # Prototype | Development | Integrated | Certified | Production | Deprecated
+  type: "acquisition"               # acquisition | intelligence | presentation | infrastructure | orchestration
+
+components:
+  warehouse:
+    required: true
+  gateway:
+    optional: true
+  runtime:
+    required: true
+  publication:
+    optional: true
+  # Future components can be added without changing schema
+  # feature_store: optional
+  # knowledge_graph: optional
+  # streaming: optional
+
+# contract.yaml – Declares what the engine does
+publishes:
+  - topic: "institutional.example.raw"
+    schema: "ExampleSchema"
+    version: "1"
+
+consumes:
+  - topic: "institutional.data.warehouse"
+    schema: "DataSchema"
+    version: "1"
+
+interfaces:
+  required:
+    - collect
+    - store
+  optional:
+    - health_check
+    - get_metrics
+
+dependencies:
+  allowed:
+    - foundation
+    - ndip
+    - providers
+  forbidden:
+    - workspaces
+    - intelligence
+
+workflow:                           # Execution flow
+  - collect
+  - validate
+  - normalize
+  - store
+  - publish

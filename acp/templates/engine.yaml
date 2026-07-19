@@ -1,0 +1,27 @@
+id: ENGINE-001
+name: Engine Name
+version: 1.0.0
+owner: Platform Team
+purpose: Describe what this engine does
+classification: Domain Intelligence
+maturity: Development
+stage: Development
+allowed_failures: 10
+
+lifecycle:
+  can_start: true
+  can_stop: true
+  can_recover: true
+  can_schedule: true
+  can_monitor: true
+  recovery_timeout: 30
+
+runtime:
+  schedule: "*/5 * * * *"
+  priority: 3
+  retries: 3
+  timeout: 60
+  retry_delay: 5
+
+dependencies:
+  - GLO-001

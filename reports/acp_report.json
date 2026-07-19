@@ -1,0 +1,2100 @@
+{
+  "timestamp": "2026-07-17T05:00:08.210595",
+  "total_validators": 298,
+  "passed": 13,
+  "failed": 285,
+  "critical": 1,
+  "high": 276,
+  "medium": 8,
+  "low": 0,
+  "architecture_score": 43.557046979865774,
+  "certified": false,
+  "results": [
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "central_bank_engine missing required folders: runtime",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "economic_events_engine missing required folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "financial_news_engine missing required folders: runtime",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": true,
+      "message": "institutional_positioning_engine has complete structure",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing required folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing required folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "market_price_engine missing required folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "importance_engine missing required folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing required folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "market_price_engine missing required folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "economic_events_engine missing required folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing required folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineStructureValidator",
+      "passed": false,
+      "message": "market_positioning_warehouse missing required folders: acquisition, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "ImportValidator",
+      "passed": false,
+      "message": "Found 958 broken imports",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "RuntimeValidator",
+      "passed": true,
+      "message": "Runtime and registry found",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "central_bank_engine missing folders: runtime",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "central_bank_engine missing files in warehouse: repository.py, models.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "economic_events_engine missing folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "economic_events_engine missing files in warehouse: repository.py, models.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "economic_events_engine missing files in publication: publisher.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "financial_news_engine missing folders: runtime",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "financial_news_engine missing files in warehouse: repository.py, models.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "financial_news_engine missing files in publication: publisher.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "institutional_positioning_engine missing files in warehouse: repository.py, models.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing folders: runtime, gateway",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing files in warehouse: repository.py, models.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing files in publication: publisher.py",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway, observability",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "market_price_engine missing folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway, observability",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "importance_engine missing folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway, observability",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway, observability",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "BlueprintValidator",
+      "passed": false,
+      "message": "market_price_engine missing folders: acquisition, providers, warehouse, publication, runtime, configuration, tests, gateway, observability",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "ImportBoundaryValidator",
+      "passed": true,
+      "message": "All import boundaries respected",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "DependencyGraphValidator",
+      "passed": true,
+      "message": "No circular dependencies found",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankPublisher in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CollectorRouter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: PolicyCycleBuilder in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: KnowledgeLinker in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: VersionManager in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConfidenceEngine in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankClassifier in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\classification\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BaseCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RateCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: SpeechCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MinutesCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: StatementCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CalendarCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\gateway\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: KnowledgeLinker in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\knowledge_linking\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankNormalizer in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\normalisation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: health_check in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOCConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOCAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOEConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boe\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOEAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boe\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOJConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boj\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BOJAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boj\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ECBConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\ecb\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ECBAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\ecb\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: FederalReserveConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\federal_reserve\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: FederalReserveAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\federal_reserve\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RBAConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rba\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RBAAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rba\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RBNZConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rbnz\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RBNZAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rbnz\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: SNBConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\snb\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: SNBAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\snb\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankPublisher in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\publication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankValidator in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CentralBankWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicService in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: UniversalEconomicEvent in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\dtos\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: health_check in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MetricsCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BaseEconomicProvider in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\interfaces\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: FredConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\tier2_secondary\\fred\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: FredAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\tier2_secondary\\fred\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicService in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsClassifier in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\classification\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsConsensusResolver in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\consensus\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EntityExtractor in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\entities\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\gateway\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ImportanceScorer in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\importance_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: KnowledgeLinker in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\knowledge_linking\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsNormalizer in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\normalisation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: health_check in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: metrics in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsAPIConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\newsapi\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsAPIAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\newsapi\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RSSConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\rss\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RSSAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\rss\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsPublisher in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\publication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsValidator in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: NewsWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: database in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: cache in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: websocket in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: message_bus in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: scheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: authentication in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: monitoring in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AuthManager in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\authentication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: User in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\authentication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: get_redis_client in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\cache\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: get_session in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\database\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: close_session in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\database\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EventBus in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\message_bus\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: Event in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\message_bus\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: WebSocketManager in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\websocket\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: logging in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: validation in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: cache in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: serialization in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ranking in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: probability in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: security in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: scheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: utilities in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: statistics in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CacheManager in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\cache\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: get_logger in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\logging\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: setup_logging in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\logging\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: calculate_probability in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\probability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: normalize_probabilities in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\probability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: timestamp_to_datetime in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: format_currency in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: truncate_string in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: validate in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: is_valid in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ValidationError in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: intelligence_standard in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: hub_standard in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: publish_cache_standard in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: domain_client_standard in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: workspace_manual in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ClientRequest in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ClientResponse in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ClientConfig in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HubConfig in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HubStatus in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HubHealth in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: UniversalIntelligence in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConfidenceScore in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EvidenceItem in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RiskAssessment in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: Recommendation in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: IntelligenceMetadata in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: IntelligenceHealth in C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HistoricalCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\collectors\\historical\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: IncrementalCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\collectors\\incremental\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ReportDiscovery in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\discovery\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ReportDownloader in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\downloader\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\gateway\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HistoricalBackfill in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\historical\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTNormalizer in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\normalization\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: health_check in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: metrics in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ParserFactory in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: DisaggregatedParser in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: LegacyParser in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: TFFParser in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BaseParser in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CFTCConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\providers\\cftc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CFTCAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\providers\\cftc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTPublisher in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\publication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTScheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTUpdater in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTBackfill in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTRuntimeState in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTRuntimeConfig in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AutomatedCOTScheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTValidator in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: COTWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RawWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConsensusWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroService in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroClassifier in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\classification\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConsensusResolver in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\consensus\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ImpactScorer in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\impact\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroNormalizer in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\normalisation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: health_check in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: metrics in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\observability\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: TradingEconomicsConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier1_primary\\tradingeconomics\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: TradingEconomicsAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier1_primary\\tradingeconomics\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ForexFactoryConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\forexfactory\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ForexFactoryAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\forexfactory\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: InvestingConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\investing\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: InvestingAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\investing\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroPublisher in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\publication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroService in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\services\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MacroValidator in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\validation\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RawWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConsensusWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HistoricalImport in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: WeeklyScheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: LifecycleManager in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: Repository in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: WarehouseState in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AssetClassifier in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\classification\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ParserFactory in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\parser\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HistoricalLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\providers\\cftc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: WeeklyLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\providers\\cftc\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: HistoricalImport in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: WeeklyScheduler in C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\runtime\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: core in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: gateway in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: validation in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: normalization in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: classification in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: warehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: distribution in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AcquisitionCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\acquisition\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: market_price_engine in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: EconomicCalendarCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\economic_calendar_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MarketPriceEngine in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\market_price\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MarketPriceCollector in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\market_price_engine\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: DataGateway in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\gateway\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: PublicationRouter in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\publication\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ReferenceDataManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: RegistryManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: DependencyManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ConflictManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: VersionManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: QualityManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AuditManager in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ExchangeLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CurrencyLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CountryLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: SectorLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: IndustryLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: CompanyLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AssetTypeLoader in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: PriceWarehouse in C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\warehouses\\price\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ProviderManager in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ProviderHealth in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ProviderFailover in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ProviderMetrics in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: UniversalTransport in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\dtos\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BaseProvider in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: ProviderStatus in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BaseAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MT5Connector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\mt5\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: MT5Adapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\mt5\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: PolygonConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\polygon\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: PolygonAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\polygon\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AlphaVantageConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\alpha_vantage\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: AlphaVantageAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\alpha_vantage\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: YahooConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: YahooAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: YahooMetadataConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo_metadata\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: YahooMetadataAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo_metadata\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BinanceConnector in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier3_specialized\\binance\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "InitValidator",
+      "passed": false,
+      "message": "Missing export: BinanceAdapter in C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier3_specialized\\binance\\__init__.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "NamingValidator",
+      "passed": true,
+      "message": "All naming conventions followed",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "CircularValidator",
+      "passed": true,
+      "message": "No circular dependencies found",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "FolderValidator",
+      "passed": true,
+      "message": "All required folders exist",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "economic_events_engine missing publication/publisher.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "financial_news_engine missing publication/publisher.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing publication/publisher.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing publication/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "market_price_engine missing publication/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "importance_engine missing publication/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing publication/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "PublicationValidator",
+      "passed": false,
+      "message": "market_price_engine missing publication/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "central_bank_engine missing warehouse/repository.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "economic_events_engine missing warehouse/repository.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "financial_news_engine missing warehouse/repository.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "institutional_positioning_engine missing warehouse/repository.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "macroeconomic_events_engine missing warehouse/repository.py",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing warehouse/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "market_price_engine missing warehouse/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "importance_engine missing warehouse/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "economic_calendar_engine missing warehouse/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "WarehouseValidator",
+      "passed": false,
+      "message": "market_price_engine missing warehouse/ folder",
+      "severity": "high",
+      "suggested_fix": null
+    },
+    {
+      "validator": "NDIPValidator",
+      "passed": true,
+      "message": "NDIP structure is complete",
+      "severity": "critical",
+      "suggested_fix": null
+    },
+    {
+      "validator": "ProviderValidator",
+      "passed": true,
+      "message": "Provider validation passed",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "HistoricalValidator",
+      "passed": true,
+      "message": "Historical validation passed",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "EngineContractValidator",
+      "passed": true,
+      "message": "Engine contract validation passed",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "SchemaValidator",
+      "passed": true,
+      "message": "Schema validation passed",
+      "severity": "medium",
+      "suggested_fix": null
+    },
+    {
+      "validator": "HealthValidator",
+      "passed": true,
+      "message": "Health validation passed",
+      "severity": "medium",
+      "suggested_fix": null
+    }
+  ]
+}

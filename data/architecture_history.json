@@ -1,0 +1,15 @@
+[
+  {
+    "timestamp": "2026-07-17T05:38:20.460932",
+    "overall": 41.93877551020408,
+    "architecture": 65,
+    "runtime": 100.0,
+    "ndip": 14.285714285714285,
+    "warehouse": 57.14285714285714,
+    "dar": 0,
+    "testing": 57.14285714285714,
+    "documentation": 0.0,
+    "errors": 10,
+    "warnings": 0
+  }
+]

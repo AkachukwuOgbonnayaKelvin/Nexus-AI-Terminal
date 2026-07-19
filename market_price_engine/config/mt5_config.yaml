@@ -1,0 +1,8 @@
+# MT5 Configuration for Pepperstone
+mt5:
+  terminal_path: "C:/Program Files/Pepperstone MetaTrader 5/terminal64.exe"
+  login: 51492515
+  password: "mumILOVEU@12"
+  server: "PepperstoneBS-MT5-Live01"
+  timeout: 60
+  retries: 3

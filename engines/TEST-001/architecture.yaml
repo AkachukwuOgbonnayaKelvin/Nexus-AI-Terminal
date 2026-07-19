@@ -1,0 +1,31 @@
+id: TEST-001-architecture
+version: 1.0.0
+engine: TEST-001
+
+required_folders:
+  - acquisition/
+  - acquisition/providers/
+  - acquisition/gateway/
+  - acquisition/parser/
+  - warehouse/
+  - warehouse/raw/
+  - warehouse/cleaned/
+  - warehouse/analytics/
+  - runtime/
+  - publication/
+  - observability/
+  - tests/
+
+required_files:
+  - acquisition/__init__.py
+  - acquisition/providers/__init__.py
+  - acquisition/gateway/__init__.py
+  - acquisition/parser/__init__.py
+  - warehouse/__init__.py
+  - runtime/__init__.py
+  - runtime/scheduler.py
+  - runtime/health.py
+  - runtime/metrics.py
+  - publication/__init__.py
+  - observability/__init__.py
+  - tests/__init__.py

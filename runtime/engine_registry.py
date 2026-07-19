@@ -2,10 +2,28 @@
 
 from typing import List
 
-from runtime.adapters.central_bank import CentralBankEngineAdapter
-from runtime.adapters.financial_news import FinancialNewsEngineAdapter
-from runtime.adapters.macro_events import MacroEventsEngineAdapter
 from runtime.base_engine import BaseRawEngine
+
+# Import adapters only if they exist
+try:
+    from runtime.adapters.central_bank import CentralBankEngineAdapter
+except ImportError:
+    CentralBankEngineAdapter = None
+
+try:
+    from runtime.adapters.financial_news import FinancialNewsEngineAdapter
+except ImportError:
+    FinancialNewsEngineAdapter = None
+
+try:
+    from runtime.adapters.macro_events import MacroEventsEngineAdapter
+except ImportError:
+    MacroEventsEngineAdapter = None
+
+try:
+    from runtime.adapters.cot_engine import COTEngineAdapter
+except ImportError:
+    COTEngineAdapter = None
 
 
 class EngineRegistry:
@@ -27,8 +45,12 @@ registry = EngineRegistry()
 
 
 def register_engines():
-    """Register all engines."""
-    registry.register(CentralBankEngineAdapter())
-    registry.register(FinancialNewsEngineAdapter())
-    registry.register(MacroEventsEngineAdapter())
-    # Add more engines here as adapters are created
+    """Register all available engines."""
+    if CentralBankEngineAdapter:
+        registry.register(CentralBankEngineAdapter())
+    if FinancialNewsEngineAdapter:
+        registry.register(FinancialNewsEngineAdapter())
+    if MacroEventsEngineAdapter:
+        registry.register(MacroEventsEngineAdapter())
+    if COTEngineAdapter:
+        registry.register(COTEngineAdapter())

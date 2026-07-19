@@ -1,0 +1,34 @@
+publishes:
+  - topic: "institutional.central_bank.raw"
+    schema: "CentralBankEvent"
+    version: "1"
+
+consumes: []
+
+interfaces:
+  required:
+    - collect
+    - store
+    - publish
+    - health_check
+  optional:
+    - get_metrics
+    - repair
+
+dependencies:
+  allowed:
+    - foundation
+    - ndip
+    - providers
+    - shared_services
+  forbidden:
+    - workspaces
+    - intelligence
+
+workflow:
+  - collect
+  - validate
+  - normalize
+  - classify
+  - store
+  - publish

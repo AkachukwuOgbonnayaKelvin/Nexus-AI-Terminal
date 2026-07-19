@@ -1,0 +1,110 @@
+# Nexus Platform Registry – Source of Truth
+version: "2.0.0"
+last_updated: "2026-07-17"
+
+engines:
+  - id: "CENT-001"
+    name: "Central Bank Intelligence Engine"
+    path: "central_bank_engine"
+    enabled: true
+    maturity: "Production"
+    type: "acquisition"
+    owner: "core"
+    runtime:
+      managed_by: "DAR"  # DAR, self, hybrid
+      collector: true
+      scheduler: false
+    dependencies:
+      - foundation
+      - ndip
+      - providers
+    ndip:
+      publishes:
+        - topic: "institutional.central_bank.raw"
+          schema: "CentralBankEvent"
+          version: "1"
+      consumes: []
+
+  - id: "MKT-001"
+    name: "Market Price Engine"
+    path: "market_price_engine"
+    enabled: false
+    maturity: "Development"
+    type: "acquisition"
+    owner: "core"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: true
+
+  - id: "MAC-001"
+    name: "Macroeconomic Statistics Engine"
+    path: "macroeconomic_statistics_engine"
+    enabled: false
+    maturity: "Development"
+    type: "acquisition"
+    owner: "macro"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: false
+
+  - id: "MAC-002"
+    name: "Macroeconomic Events Engine"
+    path: "macroeconomic_events_engine"
+    enabled: true
+    maturity: "Development"
+    type: "acquisition"
+    owner: "macro"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: true
+
+  - id: "NEWS-001"
+    name: "Financial News Engine"
+    path: "financial_news_engine"
+    enabled: true
+    maturity: "Development"
+    type: "acquisition"
+    owner: "news"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: true
+
+  - id: "INS-001"
+    name: "Institutional Positioning Engine"
+    path: "institutional_positioning_engine"
+    enabled: true
+    maturity: "Development"
+    type: "acquisition"
+    owner: "institutional"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: true
+
+  - id: "ECO-001"
+    name: "Economic Calendar Engine"
+    path: "economic_calendar_engine"
+    enabled: false
+    maturity: "Prototype"
+    type: "acquisition"
+    owner: "macro"
+    runtime:
+      managed_by: "DAR"
+      collector: true
+      scheduler: false
+
+# Platform Dependencies
+platform:
+  dar:
+    enabled: true
+    version: "1.0.0"
+  ndip:
+    enabled: true
+    version: "1.0.0"
+  executive_ai:
+    enabled: false
+    version: "0.1.0"

@@ -1,0 +1,37 @@
+id: INS-001
+name: Institutional Positioning Engine
+version: 1.0.0
+owner: Analytics Team
+purpose: Track institutional positioning using COT and other data
+domain: institutional
+stage: development
+status: active
+
+architecture:
+  required:
+    - acquisition
+    - parser
+    - classification
+    - warehouse
+    - analysis
+    - publication
+  optional:
+    - runtime
+    - gateway
+    - docs
+
+integration:
+  dar: true
+  ndip: true
+  warehouse: true
+
+dependencies:
+  - GLO-001
+  - GLO-002
+
+runtime:
+  managed_by: DAR
+  schedule: "weekly"
+  schedule_day: "Friday"
+  retries: 3
+  timeout: 300

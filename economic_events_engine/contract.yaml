@@ -1,0 +1,49 @@
+engine_id: ECO-001
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+  - topic: global.macro.analytics
+    schema: macro_v1
+    required: false
+
+outputs:
+  - topic: economic.events.raw
+    domain: economic
+    version: "1.0"
+    description: Raw economic event data
+  - topic: economic.events.cleaned
+    domain: economic
+    version: "1.0"
+    description: Cleaned economic event data
+  - topic: economic.events.analytics
+    domain: economic
+    version: "1.0"
+    description: Processed economic analytics
+
+schemas:
+  economic_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: event_name
+        type: string
+        required: true
+      - name: country
+        type: string
+        required: true
+      - name: actual
+        type: float
+        required: false
+      - name: forecast
+        type: float
+        required: false
+      - name: previous
+        type: float
+        required: false
+      - name: impact
+        type: string
+        required: true

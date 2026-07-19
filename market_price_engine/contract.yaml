@@ -1,0 +1,141 @@
+engine_id: MKT-001
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: false
+    description: Market regime for context-aware data validation
+
+outputs:
+  - topic: market.price.tick
+    domain: market
+    version: "1.0"
+    description: Real-time tick data from primary source
+    frequency: realtime
+    schema_version: tick_v1
+
+  - topic: market.price.ohlcv
+    domain: market
+    version: "1.0"
+    description: OHLCV bars across multiple timeframes
+    frequency: continuous
+    schema_version: ohlcv_v1
+
+  - topic: market.price.snapshot
+    domain: market
+    version: "1.0"
+    description: Current market snapshot
+    frequency: realtime
+    schema_version: snapshot_v1
+
+  - topic: market.price.instrument
+    domain: market
+    version: "1.0"
+    description: Instrument metadata and availability
+    frequency: on_change
+    schema_version: instrument_v1
+
+  - topic: market.price.quality
+    domain: market
+    version: "1.0"
+    description: Data quality metrics and health
+    frequency: periodic
+    schema_version: quality_v1
+
+schemas:
+  tick_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: symbol
+        type: string
+        required: true
+      - name: bid
+        type: float
+        required: true
+      - name: ask
+        type: float
+        required: true
+      - name: spread
+        type: float
+        required: false
+      - name: volume
+        type: float
+        required: false
+      - name: source
+        type: string
+        required: true
+      - name: quality_score
+        type: float
+        required: false
+
+  ohlcv_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: symbol
+        type: string
+        required: true
+      - name: timeframe
+        type: string
+        required: true
+      - name: open
+        type: float
+        required: true
+      - name: high
+        type: float
+        required: true
+      - name: low
+        type: float
+        required: true
+      - name: close
+        type: float
+        required: true
+      - name: tick_volume
+        type: float
+        required: false
+      - name: real_volume
+        type: float
+        required: false
+      - name: spread
+        type: float
+        required: false
+      - name: source
+        type: string
+        required: true
+      - name: quality_score
+        type: float
+        required: false
+      - name: provenance
+        type: object
+        required: false
+
+  snapshot_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: symbol
+        type: string
+        required: true
+      - name: bid
+        type: float
+        required: true
+      - name: ask
+        type: float
+        required: true
+      - name: spread
+        type: float
+        required: true
+      - name: last_price
+        type: float
+        required: true
+      - name: session
+        type: string
+        required: false
+      - name: source
+        type: string
+        required: true

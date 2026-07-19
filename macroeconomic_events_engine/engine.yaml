@@ -1,0 +1,36 @@
+id: MAC-002
+name: Macroeconomic Events Engine
+version: 1.0.0
+owner: Macro Team
+purpose: Collect and analyze macroeconomic events and indicators
+domain: macro
+stage: development
+status: active
+
+architecture:
+  required:
+    - acquisition
+    - processing
+    - analysis
+    - publication
+  optional:
+    - runtime
+    - gateway
+    - warehouse
+    - docs
+
+integration:
+  dar: false
+  ndip: true
+  warehouse: true
+
+dependencies:
+  - GLO-001
+  - GLO-002
+  - ECO-001
+
+runtime:
+  schedule: "*/5 * * * *"
+  priority: 3
+  retries: 3
+  timeout: 60

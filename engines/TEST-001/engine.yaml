@@ -1,0 +1,23 @@
+allowed_failures: 10
+classification: Domain Intelligence
+dependencies: []
+id: TEST-001
+lifecycle:
+  can_monitor: true
+  can_recover: true
+  can_schedule: true
+  can_start: true
+  can_stop: true
+  recovery_timeout: 30
+maturity: Development
+name: Test Engine
+owner: Platform Team
+purpose: Engine purpose needs to be defined
+runtime:
+  priority: 3
+  retries: 3
+  retry_delay: 5
+  schedule: '*/5 * * * *'
+  timeout: 60
+stage: Development
+version: 1.0.0

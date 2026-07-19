@@ -70,3 +70,9 @@ tools/qa/
 
 # Ruff cache
 .ruff_cache/
+
+# MKT-001 data files
+market_price_engine/data/*.pkl
+market_price_engine/data/*.json
+*.pkl
+*.pickle

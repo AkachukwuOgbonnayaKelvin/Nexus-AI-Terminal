@@ -1,0 +1,29 @@
+id: TEST-001-contract
+version: 1.0.0
+engine: TEST-001
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+
+outputs:
+  - topic: test.raw
+    schema: test_raw_v1
+    description: Raw test data
+  - topic: test.cleaned
+    schema: test_cleaned_v1
+    description: Cleaned test data
+  - topic: test.analytics
+    schema: test_analytics_v1
+    description: Test analytics
+
+schemas:
+  test_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: value
+        type: float
+        required: true

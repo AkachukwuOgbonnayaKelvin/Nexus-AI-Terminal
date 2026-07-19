@@ -1,0 +1,69 @@
+id: MKT-001
+name: Market Price Engine
+version: 1.0.0
+owner: Platform Team
+purpose: Institutional market data acquisition with multi-source hierarchy
+domain: market_data
+stage: development
+status: active
+
+architecture:
+  required:
+    - providers
+    - collectors
+    - adapters
+    - normalization
+    - quality
+    - warehouse
+    - publication
+    - runtime
+  optional:
+    - reconciliation
+    - observability
+    - services
+    - tests
+    - docs
+
+integration:
+  dar: true
+  ndip: true
+  warehouse: true
+
+runtime:
+  managed_by: DAR
+  schedule: "continuous"
+  priority: 1
+  retries: 3
+  timeout: 60
+
+source_hierarchy:
+  tier1_primary:
+    - pepperstone_mt5
+  tier2_validation:
+    - composite_api
+  tier3_historical:
+    - yahoo_finance
+
+asset_classes:
+  - forex
+  - indices
+  - commodities
+  - bonds
+  - metals
+  - crypto
+
+timeframes:
+  - tick
+  - M1
+  - M5
+  - M15
+  - M30
+  - H1
+  - H4
+  - D1
+  - W1
+  - MN1
+
+dependencies:
+  - GLO-001
+  - GLO-002

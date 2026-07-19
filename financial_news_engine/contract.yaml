@@ -1,0 +1,61 @@
+engine_id: NEWS-001
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+  - topic: economic.events.cleaned
+    schema: economic_cleaned_v1
+    required: false
+
+outputs:
+  - topic: news.raw
+    domain: news
+    version: "1.0"
+    description: Raw news data
+  - topic: news.cleaned
+    domain: news
+    version: "1.0"
+    description: Cleaned news data
+  - topic: news.analytics
+    domain: news
+    version: "1.0"
+    description: News analytics and sentiment
+
+schemas:
+  news_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: source
+        type: string
+        required: true
+      - name: headline
+        type: string
+        required: true
+      - name: content
+        type: string
+        required: true
+      - name: category
+        type: string
+        required: true
+
+  news_analytics_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: sentiment_score
+        type: float
+        required: true
+      - name: sentiment_label
+        type: string
+        required: true
+      - name: relevance_score
+        type: float
+        required: true
+      - name: confidence
+        type: float
+        required: true

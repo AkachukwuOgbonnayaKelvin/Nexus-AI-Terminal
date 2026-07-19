@@ -1,0 +1,4960 @@
+{
+  "encoding": [],
+  "missing_imports": [
+    {
+      "module": "run_automated_cot",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "run_cot_engine",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "run_cot_only",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_cot_only",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "run_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_engine",
+      "missing": "dotenv"
+    },
+    {
+      "module": "run_engine",
+      "missing": "config"
+    },
+    {
+      "module": "run_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_macro_events_engine",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "run_macro_stats_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_macro_stats_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "run_macro_stats_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "run_macro_stats_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_macro_stats_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "run_metadata_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "run_metadata_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_metadata_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "run_metadata_engine",
+      "missing": "config"
+    },
+    {
+      "module": "run_metadata_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "central_bank_engine.dtos",
+      "missing": "pydantic"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.provider_manager",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.provider_manager",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.__init__",
+      "missing": "publication"
+    },
+    {
+      "module": "central_bank_engine.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "central_bank_engine.__init__",
+      "missing": "gateway"
+    },
+    {
+      "module": "central_bank_engine.__init__",
+      "missing": "acquisition"
+    },
+    {
+      "module": "central_bank_engine.acquisition.collector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.acquisition.collector",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "central_bank_engine.aggregator.normalizer",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.aggregator.publisher",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.aggregator.publisher",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "publisher"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "policy_cycle"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "versioner"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "linker"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "deduplicator"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "collector_router"
+    },
+    {
+      "module": "central_bank_engine.aggregator.__init__",
+      "missing": "confidence"
+    },
+    {
+      "module": "central_bank_engine.classification.__init__",
+      "missing": "classifier"
+    },
+    {
+      "module": "central_bank_engine.collectors.boc",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.boc",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.boc",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.boe",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.boe",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.boe",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.boj",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.boj",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.boj",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.ecb",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.ecb",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.ecb",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.federal_reserve",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.federal_reserve",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.federal_reserve",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.rba",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.rba",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.rba",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.rbnz",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.rbnz",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.rbnz",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.snb",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.collectors.snb",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.collectors.snb",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.collectors.__init__",
+      "missing": "base"
+    },
+    {
+      "module": "central_bank_engine.gateway.service",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.gateway.service",
+      "missing": "fastapi"
+    },
+    {
+      "module": "central_bank_engine.gateway.__init__",
+      "missing": "service"
+    },
+    {
+      "module": "central_bank_engine.knowledge_linking.__init__",
+      "missing": "linker"
+    },
+    {
+      "module": "central_bank_engine.normalisation.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "central_bank_engine.observability.health",
+      "missing": "ndip"
+    },
+    {
+      "module": "central_bank_engine.observability.__init__",
+      "missing": "metrics"
+    },
+    {
+      "module": "central_bank_engine.observability.__init__",
+      "missing": "health"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boc.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boc.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boe.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boe.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boe.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boe.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boe.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boj.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boj.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boj.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boj.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.boj.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.ecb.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.ecb.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.ecb.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.ecb.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.ecb.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.federal_reserve.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rba.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rba.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rba.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rba.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rba.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rbnz.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rbnz.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rbnz.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rbnz.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.rbnz.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.snb.adapter",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.snb.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.snb.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.snb.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "central_bank_engine.providers.tier1_primary.snb.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "central_bank_engine.publication.publisher",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.publication.publisher",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.publication.__init__",
+      "missing": "publisher"
+    },
+    {
+      "module": "central_bank_engine.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "central_bank_engine.warehouse.event_warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "central_bank_engine.warehouse.event_warehouse",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "central_bank_engine.warehouse.__init__",
+      "missing": "event_warehouse"
+    },
+    {
+      "module": "economic_events_engine.__init__",
+      "missing": "services"
+    },
+    {
+      "module": "economic_events_engine.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "economic_events_engine.__init__",
+      "missing": "acquisition"
+    },
+    {
+      "module": "economic_events_engine.acquisition.collector",
+      "missing": "providers"
+    },
+    {
+      "module": "economic_events_engine.acquisition.collector",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.acquisition.collector",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "economic_events_engine.dtos.economic_event",
+      "missing": "pydantic"
+    },
+    {
+      "module": "economic_events_engine.dtos.__init__",
+      "missing": "economic_event"
+    },
+    {
+      "module": "economic_events_engine.observability.health",
+      "missing": "ndip"
+    },
+    {
+      "module": "economic_events_engine.observability.__init__",
+      "missing": "metrics"
+    },
+    {
+      "module": "economic_events_engine.observability.__init__",
+      "missing": "health"
+    },
+    {
+      "module": "economic_events_engine.providers.interfaces.base_economic_provider",
+      "missing": "providers"
+    },
+    {
+      "module": "economic_events_engine.providers.interfaces.__init__",
+      "missing": "base_economic_provider"
+    },
+    {
+      "module": "economic_events_engine.providers.tier2_secondary.fred.adapter",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.providers.tier2_secondary.fred.connector",
+      "missing": "pandas_datareader"
+    },
+    {
+      "module": "economic_events_engine.providers.tier2_secondary.fred.connector",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.providers.tier2_secondary.fred.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "economic_events_engine.providers.tier2_secondary.fred.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "economic_events_engine.services.service",
+      "missing": "fastapi"
+    },
+    {
+      "module": "economic_events_engine.services.service",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.services.__init__",
+      "missing": "service"
+    },
+    {
+      "module": "economic_events_engine.warehouse.warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "economic_events_engine.warehouse.warehouse",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "economic_events_engine.warehouse.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "financial_news_engine.dtos",
+      "missing": "pydantic"
+    },
+    {
+      "module": "financial_news_engine.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "financial_news_engine.__init__",
+      "missing": "gateway"
+    },
+    {
+      "module": "financial_news_engine.__init__",
+      "missing": "acquisition"
+    },
+    {
+      "module": "financial_news_engine.acquisition.collector",
+      "missing": "providers"
+    },
+    {
+      "module": "financial_news_engine.acquisition.collector",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "financial_news_engine.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "financial_news_engine.classification.__init__",
+      "missing": "classifier"
+    },
+    {
+      "module": "financial_news_engine.consensus.__init__",
+      "missing": "resolver"
+    },
+    {
+      "module": "financial_news_engine.entities.__init__",
+      "missing": "extractor"
+    },
+    {
+      "module": "financial_news_engine.gateway.service",
+      "missing": "fastapi"
+    },
+    {
+      "module": "financial_news_engine.gateway.service",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "financial_news_engine.gateway.__init__",
+      "missing": "service"
+    },
+    {
+      "module": "financial_news_engine.importance_engine.__init__",
+      "missing": "scorer"
+    },
+    {
+      "module": "financial_news_engine.knowledge_linking.__init__",
+      "missing": "linker"
+    },
+    {
+      "module": "financial_news_engine.normalisation.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "financial_news_engine.observability.__init__",
+      "missing": "metrics"
+    },
+    {
+      "module": "financial_news_engine.observability.__init__",
+      "missing": "health"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.newsapi.adapter",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.newsapi.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.newsapi.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.newsapi.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.newsapi.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.adapter",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.adapter",
+      "missing": "email"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.connector",
+      "missing": "feedparser"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "financial_news_engine.providers.tier3_backup.rss.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "financial_news_engine.publication.__init__",
+      "missing": "publisher"
+    },
+    {
+      "module": "financial_news_engine.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "financial_news_engine.warehouse.news_warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "financial_news_engine.warehouse.news_warehouse",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "financial_news_engine.warehouse.__init__",
+      "missing": "news_warehouse"
+    },
+    {
+      "module": "foundation.config",
+      "missing": "dotenv"
+    },
+    {
+      "module": "foundation.schemas",
+      "missing": "pydantic"
+    },
+    {
+      "module": "foundation.__main__",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.__main__",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.infrastructure.authentication.__init__",
+      "missing": "auth"
+    },
+    {
+      "module": "foundation.infrastructure.cache.redis_client",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.infrastructure.cache.__init__",
+      "missing": "redis_client"
+    },
+    {
+      "module": "foundation.infrastructure.database.connection",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.infrastructure.database.__init__",
+      "missing": "connection"
+    },
+    {
+      "module": "foundation.infrastructure.message_bus.__init__",
+      "missing": "bus"
+    },
+    {
+      "module": "foundation.infrastructure.scheduler.__init__",
+      "missing": "scheduler"
+    },
+    {
+      "module": "foundation.infrastructure.websocket.__init__",
+      "missing": "manager"
+    },
+    {
+      "module": "foundation.shared_services.cache.cache_manager",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.shared_services.cache.__init__",
+      "missing": "cache_manager"
+    },
+    {
+      "module": "foundation.shared_services.logging.logger",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.shared_services.logging.logger",
+      "missing": "foundation"
+    },
+    {
+      "module": "foundation.shared_services.logging.__init__",
+      "missing": "logger"
+    },
+    {
+      "module": "foundation.shared_services.probability.__init__",
+      "missing": "calculator"
+    },
+    {
+      "module": "foundation.shared_services.utilities.__init__",
+      "missing": "helpers"
+    },
+    {
+      "module": "foundation.shared_services.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "foundation.standards.domain_client_standard.schemas",
+      "missing": "pydantic"
+    },
+    {
+      "module": "foundation.standards.hub_standard.schemas",
+      "missing": "pydantic"
+    },
+    {
+      "module": "foundation.standards.intelligence_standard.schemas",
+      "missing": "pydantic"
+    },
+    {
+      "module": "foundation.standards.intelligence_standard.__init__",
+      "missing": "schemas"
+    },
+    {
+      "module": "institutional_positioning_engine.dtos",
+      "missing": "pydantic"
+    },
+    {
+      "module": "institutional_positioning_engine.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "institutional_positioning_engine.__init__",
+      "missing": "gateway"
+    },
+    {
+      "module": "institutional_positioning_engine.__init__",
+      "missing": "acquisition"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.collector",
+      "missing": "providers"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "institutional_positioning_engine.collectors.historical.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.collectors.historical.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "institutional_positioning_engine.collectors.incremental.collector",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.collectors.incremental.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.crawler",
+      "missing": "urllib.parse"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.crawler",
+      "missing": "requests"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.crawler",
+      "missing": "bs4"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.dataset_discovery",
+      "missing": "requests"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.discovery",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.discovery.__init__",
+      "missing": "discovery"
+    },
+    {
+      "module": "institutional_positioning_engine.downloader.downloader",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.downloader.downloader",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.downloader.__init__",
+      "missing": "downloader"
+    },
+    {
+      "module": "institutional_positioning_engine.gateway.gateway",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.gateway.__init__",
+      "missing": "gateway"
+    },
+    {
+      "module": "institutional_positioning_engine.historical.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.historical.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.historical.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.historical.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.historical.__init__",
+      "missing": "backfill"
+    },
+    {
+      "module": "institutional_positioning_engine.normalization.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "institutional_positioning_engine.observability.__init__",
+      "missing": "metrics"
+    },
+    {
+      "module": "institutional_positioning_engine.observability.__init__",
+      "missing": "health"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.disaggregated",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.legacy",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.parser_factory",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.parser_factory",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.parser_factory",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.tff",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.__init__",
+      "missing": "tff"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.__init__",
+      "missing": "base_parser"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.__init__",
+      "missing": "parser_factory"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.__init__",
+      "missing": "legacy"
+    },
+    {
+      "module": "institutional_positioning_engine.parser.__init__",
+      "missing": "disaggregated"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.adapter",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.historical",
+      "missing": "requests"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.pre_api",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.pre_api",
+      "missing": "requests"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.provider_manager",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.provider_manager",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "institutional_positioning_engine.providers.cftc.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "institutional_positioning_engine.publication.__init__",
+      "missing": "publisher"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.automated_scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.automated_scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.automated_scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.automated_scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.backfill",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.health",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.scheduler",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.updater",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.updater",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.updater",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.updater",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "updater"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "state"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "automated_scheduler"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "config"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "scheduler"
+    },
+    {
+      "module": "institutional_positioning_engine.runtime.__init__",
+      "missing": "backfill"
+    },
+    {
+      "module": "institutional_positioning_engine.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "institutional_positioning_engine.warehouse.warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "institutional_positioning_engine.warehouse.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "macroeconomic_events_engine.dtos",
+      "missing": "pydantic"
+    },
+    {
+      "module": "macroeconomic_events_engine.__init__",
+      "missing": "services"
+    },
+    {
+      "module": "macroeconomic_events_engine.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "macroeconomic_events_engine.__init__",
+      "missing": "acquisition"
+    },
+    {
+      "module": "macroeconomic_events_engine.acquisition.collector",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.acquisition.collector",
+      "missing": "providers"
+    },
+    {
+      "module": "macroeconomic_events_engine.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "macroeconomic_events_engine.classification.classifier",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.classification.classifier",
+      "missing": "yaml"
+    },
+    {
+      "module": "macroeconomic_events_engine.classification.__init__",
+      "missing": "classifier"
+    },
+    {
+      "module": "macroeconomic_events_engine.consensus.resolver",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.consensus.__init__",
+      "missing": "resolver"
+    },
+    {
+      "module": "macroeconomic_events_engine.impact.scorer",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.impact.__init__",
+      "missing": "scorer"
+    },
+    {
+      "module": "macroeconomic_events_engine.normalisation.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "macroeconomic_events_engine.observability.__init__",
+      "missing": "metrics"
+    },
+    {
+      "module": "macroeconomic_events_engine.observability.__init__",
+      "missing": "health"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.adapter",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.adapter",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.investing.adapter",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.investing.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.investing.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "macroeconomic_events_engine.providers.tier2_secondary.investing.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "macroeconomic_events_engine.publication.__init__",
+      "missing": "publisher"
+    },
+    {
+      "module": "macroeconomic_events_engine.services.service",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.services.service",
+      "missing": "fastapi"
+    },
+    {
+      "module": "macroeconomic_events_engine.services.__init__",
+      "missing": "service"
+    },
+    {
+      "module": "macroeconomic_events_engine.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.consensus_warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.consensus_warehouse",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.raw_warehouse",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.raw_warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.__init__",
+      "missing": "raw_warehouse"
+    },
+    {
+      "module": "macroeconomic_events_engine.warehouse.__init__",
+      "missing": "consensus_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.dtos",
+      "missing": "pydantic"
+    },
+    {
+      "module": "market_positioning_warehouse.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.__init__",
+      "missing": "runtime"
+    },
+    {
+      "module": "market_positioning_warehouse.classification.asset_classifier",
+      "missing": "yaml"
+    },
+    {
+      "module": "market_positioning_warehouse.classification.__init__",
+      "missing": "asset_classifier"
+    },
+    {
+      "module": "market_positioning_warehouse.parser.parser_factory",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.parser.__init__",
+      "missing": "parser_factory"
+    },
+    {
+      "module": "market_positioning_warehouse.providers.cftc.historical_loader",
+      "missing": "pandas"
+    },
+    {
+      "module": "market_positioning_warehouse.providers.cftc.historical_loader",
+      "missing": "requests"
+    },
+    {
+      "module": "market_positioning_warehouse.providers.cftc.weekly_loader",
+      "missing": "requests"
+    },
+    {
+      "module": "market_positioning_warehouse.providers.cftc.__init__",
+      "missing": "weekly_loader"
+    },
+    {
+      "module": "market_positioning_warehouse.providers.cftc.__init__",
+      "missing": "historical_loader"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.historical_import",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.historical_import",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.historical_import",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.lifecycle",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.lifecycle",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.lifecycle",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.lifecycle",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.repair_manager",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.repair_manager",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.repair_manager",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.weekly_scheduler",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.weekly_scheduler",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.weekly_scheduler",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.__init__",
+      "missing": "historical_import"
+    },
+    {
+      "module": "market_positioning_warehouse.runtime.__init__",
+      "missing": "weekly_scheduler"
+    },
+    {
+      "module": "market_positioning_warehouse.transformation.ndip_transformer",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.transformation.ndip_transformer",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.transformation.ndip_transformer",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.warehouse.repository",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "market_positioning_warehouse.warehouse.__init__",
+      "missing": "repository"
+    },
+    {
+      "module": "ndip.acquisition.collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.metadata_collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.metadata_collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.metadata_collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.metadata_collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.acquisition.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "ndip.classification.__init__",
+      "missing": "classifier"
+    },
+    {
+      "module": "ndip.connectors.yahoo_connector",
+      "missing": "yfinance"
+    },
+    {
+      "module": "ndip.distribution.__init__",
+      "missing": "distributor"
+    },
+    {
+      "module": "ndip.engines.economic_calendar_engine.collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.engines.economic_calendar_engine.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "ndip.engines.market_price.engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.engines.market_price.engine",
+      "missing": "providers"
+    },
+    {
+      "module": "ndip.engines.market_price.__init__",
+      "missing": "engine"
+    },
+    {
+      "module": "ndip.engines.market_price_engine.collector",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.engines.market_price_engine.__init__",
+      "missing": "collector"
+    },
+    {
+      "module": "ndip.gateway.gateway",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.gateway.gateway",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.gateway.gateway",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.gateway.gateway",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.gateway.__init__",
+      "missing": "gateway"
+    },
+    {
+      "module": "ndip.normalization.__init__",
+      "missing": "normalizer"
+    },
+    {
+      "module": "ndip.publication.router",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.publication.__init__",
+      "missing": "router"
+    },
+    {
+      "module": "ndip.reference_data.audit_manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.registry_manager",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "dependency_manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "version_manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "registry_manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "audit_manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "quality_manager"
+    },
+    {
+      "module": "ndip.reference_data.__init__",
+      "missing": "conflict_manager"
+    },
+    {
+      "module": "ndip.reference_data.loaders.asset_type_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.base_loader",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.reference_data.loaders.company_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.country_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.currency_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.exchange_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.industry_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.sector_loader",
+      "missing": "base_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "exchange_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "currency_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "industry_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "company_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "country_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "sector_loader"
+    },
+    {
+      "module": "ndip.reference_data.loaders.__init__",
+      "missing": "asset_type_loader"
+    },
+    {
+      "module": "ndip.utils.db_connector",
+      "missing": "asyncpg"
+    },
+    {
+      "module": "ndip.utils.db_connector",
+      "missing": "foundation"
+    },
+    {
+      "module": "ndip.validation.__init__",
+      "missing": "validator"
+    },
+    {
+      "module": "ndip.warehouse.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "ndip.warehouses.metadata_warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.warehouses.metadata_warehouse",
+      "missing": "uuid"
+    },
+    {
+      "module": "ndip.warehouses.price.warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.warehouses.price.warehouse",
+      "missing": "ndip"
+    },
+    {
+      "module": "ndip.warehouses.price.__init__",
+      "missing": "warehouse"
+    },
+    {
+      "module": "providers.provider_health",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.provider_manager",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.__init__",
+      "missing": "provider_health"
+    },
+    {
+      "module": "providers.__init__",
+      "missing": "provider_metrics"
+    },
+    {
+      "module": "providers.__init__",
+      "missing": "provider_failover"
+    },
+    {
+      "module": "providers.__init__",
+      "missing": "provider_manager"
+    },
+    {
+      "module": "providers.dtos.__init__",
+      "missing": "transport"
+    },
+    {
+      "module": "providers.interfaces.base_adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.interfaces.__init__",
+      "missing": "base_provider"
+    },
+    {
+      "module": "providers.interfaces.__init__",
+      "missing": "base_adapter"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.connector",
+      "missing": "MetaTrader5"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier1_primary.mt5.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier1_primary.polygon.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier2_secondary.alpha_vantage.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.connector",
+      "missing": "yfinance"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.connector",
+      "missing": "yfinance"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier2_secondary.yahoo_metadata.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.adapter",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.connector",
+      "missing": "providers"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.connector",
+      "missing": "requests"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.__init__",
+      "missing": "adapter"
+    },
+    {
+      "module": "providers.tier3_specialized.binance.__init__",
+      "missing": "connector"
+    },
+    {
+      "module": "runtime.dispatcher",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.engine_registry",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.engine_registry",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.engine_registry",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.engine_registry",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.engine_registry",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.health",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.runtime",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.runtime",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.runtime",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.runtime",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.runtime",
+      "missing": "signal"
+    },
+    {
+      "module": "runtime.scheduler",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.scheduler",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.scheduler",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.adapters.central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "runtime.adapters.central_bank",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.adapters.cot_engine",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "runtime.adapters.cot_engine",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "providers"
+    },
+    {
+      "module": "runtime.adapters.financial_news",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "runtime"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "providers"
+    },
+    {
+      "module": "runtime.adapters.macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.discover_cftc_datasets",
+      "missing": "requests"
+    },
+    {
+      "module": "scripts.parse_cot_file",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.project_integrity",
+      "missing": "chardet"
+    },
+    {
+      "module": "scripts.project_integrity",
+      "missing": "ast"
+    },
+    {
+      "module": "scripts.test_aggregator",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_aggregator",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank_engine",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank_registry",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_central_bank_registry",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_cot_complete",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_complete",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_complete",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_complete",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_complete",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_data_loading",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "scripts.test_cot_data_loading",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "scripts.test_cot_data_loading",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "scripts.test_cot_data_loading",
+      "missing": "market_positioning_warehouse"
+    },
+    {
+      "module": "scripts.test_cot_discovery",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_discovery",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_discovery",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_cot_engine",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_engine",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_engine",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_cot_full",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_cot_full",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_full",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_full",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_full",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_cot_institutional",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_institutional",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_institutional",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_institutional",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_cot_institutional",
+      "missing": "institutional_positioning_engine"
+    },
+    {
+      "module": "scripts.test_economic_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_economic_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_economic_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_economic_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_economic_engine",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_fed_collectors",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_fed_collectors",
+      "missing": "central_bank_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_macro_events",
+      "missing": "macroeconomic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_stats",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_macro_stats",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_stats",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_macro_stats",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_macro_stats",
+      "missing": "economic_events_engine"
+    },
+    {
+      "module": "scripts.test_market_price",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price_new",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price_new",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price_new",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_market_price_new",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_market_price_new",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_metadata_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_metadata_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_metadata_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_metadata_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_metadata_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "ndip"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "providers"
+    },
+    {
+      "module": "scripts.test_news_engine",
+      "missing": "financial_news_engine"
+    },
+    {
+      "module": "tools.qa.engine.deterministic.runner",
+      "missing": "argparse"
+    },
+    {
+      "module": "tools.qa.engine.deterministic.runner",
+      "missing": "yaml"
+    }
+  ],
+  "missing_classes": [],
+  "circular_imports": [],
+  "broken_init": [
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "missing_export": "CentralBankCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "missing_export": "CentralBankWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "missing_export": "CentralBankGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\__init__.py",
+      "missing_export": "CentralBankPublisher"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\acquisition\\__init__.py",
+      "missing_export": "CentralBankCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "missing_export": "CollectorRouter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "missing_export": "PolicyCycleBuilder"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "missing_export": "KnowledgeLinker"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "missing_export": "VersionManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\aggregator\\__init__.py",
+      "missing_export": "ConfidenceEngine"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\classification\\__init__.py",
+      "missing_export": "CentralBankClassifier"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "BaseCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "RateCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "SpeechCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "MinutesCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "StatementCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\collectors\\__init__.py",
+      "missing_export": "CalendarCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\gateway\\__init__.py",
+      "missing_export": "CentralBankGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\knowledge_linking\\__init__.py",
+      "missing_export": "KnowledgeLinker"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\normalisation\\__init__.py",
+      "missing_export": "CentralBankNormalizer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\observability\\__init__.py",
+      "missing_export": "health_check"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boc\\__init__.py",
+      "missing_export": "BOCConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boc\\__init__.py",
+      "missing_export": "BOCAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boe\\__init__.py",
+      "missing_export": "BOEConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boe\\__init__.py",
+      "missing_export": "BOEAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boj\\__init__.py",
+      "missing_export": "BOJConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\boj\\__init__.py",
+      "missing_export": "BOJAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\ecb\\__init__.py",
+      "missing_export": "ECBConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\ecb\\__init__.py",
+      "missing_export": "ECBAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\federal_reserve\\__init__.py",
+      "missing_export": "FederalReserveConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\federal_reserve\\__init__.py",
+      "missing_export": "FederalReserveAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rba\\__init__.py",
+      "missing_export": "RBAConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rba\\__init__.py",
+      "missing_export": "RBAAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rbnz\\__init__.py",
+      "missing_export": "RBNZConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\rbnz\\__init__.py",
+      "missing_export": "RBNZAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\snb\\__init__.py",
+      "missing_export": "SNBConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\providers\\tier1_primary\\snb\\__init__.py",
+      "missing_export": "SNBAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\publication\\__init__.py",
+      "missing_export": "CentralBankPublisher"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\validation\\__init__.py",
+      "missing_export": "CentralBankValidator"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\central_bank_engine\\warehouse\\__init__.py",
+      "missing_export": "CentralBankWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "missing_export": "EconomicCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "missing_export": "EconomicWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\__init__.py",
+      "missing_export": "EconomicService"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\acquisition\\__init__.py",
+      "missing_export": "EconomicCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\dtos\\__init__.py",
+      "missing_export": "UniversalEconomicEvent"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\observability\\__init__.py",
+      "missing_export": "health_check"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\observability\\__init__.py",
+      "missing_export": "MetricsCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\interfaces\\__init__.py",
+      "missing_export": "BaseEconomicProvider"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\tier2_secondary\\fred\\__init__.py",
+      "missing_export": "FredConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\providers\\tier2_secondary\\fred\\__init__.py",
+      "missing_export": "FredAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\services\\__init__.py",
+      "missing_export": "EconomicService"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\economic_events_engine\\warehouse\\__init__.py",
+      "missing_export": "EconomicWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "missing_export": "NewsCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "missing_export": "NewsWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\__init__.py",
+      "missing_export": "NewsGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\acquisition\\__init__.py",
+      "missing_export": "NewsCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\classification\\__init__.py",
+      "missing_export": "NewsClassifier"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\consensus\\__init__.py",
+      "missing_export": "NewsConsensusResolver"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\entities\\__init__.py",
+      "missing_export": "EntityExtractor"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\gateway\\__init__.py",
+      "missing_export": "NewsGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\importance_engine\\__init__.py",
+      "missing_export": "ImportanceScorer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\knowledge_linking\\__init__.py",
+      "missing_export": "KnowledgeLinker"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\normalisation\\__init__.py",
+      "missing_export": "NewsNormalizer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\observability\\__init__.py",
+      "missing_export": "health_check"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\observability\\__init__.py",
+      "missing_export": "metrics"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\newsapi\\__init__.py",
+      "missing_export": "NewsAPIConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\newsapi\\__init__.py",
+      "missing_export": "NewsAPIAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\rss\\__init__.py",
+      "missing_export": "RSSConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\providers\\tier3_backup\\rss\\__init__.py",
+      "missing_export": "RSSAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\publication\\__init__.py",
+      "missing_export": "NewsPublisher"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\validation\\__init__.py",
+      "missing_export": "NewsValidator"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\financial_news_engine\\warehouse\\__init__.py",
+      "missing_export": "NewsWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "database"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "cache"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "websocket"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "message_bus"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "scheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "authentication"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\__init__.py",
+      "missing_export": "monitoring"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\authentication\\__init__.py",
+      "missing_export": "AuthManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\authentication\\__init__.py",
+      "missing_export": "User"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\cache\\__init__.py",
+      "missing_export": "get_redis_client"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\database\\__init__.py",
+      "missing_export": "get_session"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\database\\__init__.py",
+      "missing_export": "close_session"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\message_bus\\__init__.py",
+      "missing_export": "EventBus"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\message_bus\\__init__.py",
+      "missing_export": "Event"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\infrastructure\\websocket\\__init__.py",
+      "missing_export": "WebSocketManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "logging"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "validation"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "cache"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "serialization"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "ranking"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "probability"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "security"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "scheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "utilities"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\__init__.py",
+      "missing_export": "statistics"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\cache\\__init__.py",
+      "missing_export": "CacheManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\logging\\__init__.py",
+      "missing_export": "get_logger"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\logging\\__init__.py",
+      "missing_export": "setup_logging"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\probability\\__init__.py",
+      "missing_export": "calculate_probability"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\probability\\__init__.py",
+      "missing_export": "normalize_probabilities"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "missing_export": "timestamp_to_datetime"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "missing_export": "format_currency"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\utilities\\__init__.py",
+      "missing_export": "truncate_string"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "missing_export": "validate"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "missing_export": "is_valid"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\shared_services\\validation\\__init__.py",
+      "missing_export": "ValidationError"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "missing_export": "intelligence_standard"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "missing_export": "hub_standard"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "missing_export": "publish_cache_standard"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "missing_export": "domain_client_standard"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\__init__.py",
+      "missing_export": "workspace_manual"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "missing_export": "ClientRequest"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "missing_export": "ClientResponse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\domain_client_standard\\__init__.py",
+      "missing_export": "ClientConfig"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "missing_export": "HubConfig"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "missing_export": "HubStatus"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\hub_standard\\__init__.py",
+      "missing_export": "HubHealth"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "UniversalIntelligence"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "ConfidenceScore"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "EvidenceItem"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "RiskAssessment"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "Recommendation"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "IntelligenceMetadata"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\foundation\\standards\\intelligence_standard\\__init__.py",
+      "missing_export": "IntelligenceHealth"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "missing_export": "COTCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "missing_export": "COTWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\__init__.py",
+      "missing_export": "COTGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\acquisition\\__init__.py",
+      "missing_export": "COTCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\collectors\\historical\\__init__.py",
+      "missing_export": "HistoricalCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\collectors\\incremental\\__init__.py",
+      "missing_export": "IncrementalCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\discovery\\__init__.py",
+      "missing_export": "ReportDiscovery"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\downloader\\__init__.py",
+      "missing_export": "ReportDownloader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\gateway\\__init__.py",
+      "missing_export": "COTGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\historical\\__init__.py",
+      "missing_export": "HistoricalBackfill"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\normalization\\__init__.py",
+      "missing_export": "COTNormalizer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\observability\\__init__.py",
+      "missing_export": "health_check"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\observability\\__init__.py",
+      "missing_export": "metrics"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "missing_export": "ParserFactory"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "missing_export": "DisaggregatedParser"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "missing_export": "LegacyParser"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "missing_export": "TFFParser"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\parser\\__init__.py",
+      "missing_export": "BaseParser"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\providers\\cftc\\__init__.py",
+      "missing_export": "CFTCConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\providers\\cftc\\__init__.py",
+      "missing_export": "CFTCAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\publication\\__init__.py",
+      "missing_export": "COTPublisher"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "COTScheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "COTUpdater"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "COTBackfill"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "COTRuntimeState"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "COTRuntimeConfig"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\runtime\\__init__.py",
+      "missing_export": "AutomatedCOTScheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\validation\\__init__.py",
+      "missing_export": "COTValidator"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\institutional_positioning_engine\\warehouse\\__init__.py",
+      "missing_export": "COTWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "missing_export": "MacroCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "missing_export": "RawWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "missing_export": "ConsensusWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\__init__.py",
+      "missing_export": "MacroService"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\acquisition\\__init__.py",
+      "missing_export": "MacroCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\classification\\__init__.py",
+      "missing_export": "MacroClassifier"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\consensus\\__init__.py",
+      "missing_export": "ConsensusResolver"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\impact\\__init__.py",
+      "missing_export": "ImpactScorer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\normalisation\\__init__.py",
+      "missing_export": "MacroNormalizer"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\observability\\__init__.py",
+      "missing_export": "health_check"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\observability\\__init__.py",
+      "missing_export": "metrics"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier1_primary\\tradingeconomics\\__init__.py",
+      "missing_export": "TradingEconomicsConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier1_primary\\tradingeconomics\\__init__.py",
+      "missing_export": "TradingEconomicsAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\forexfactory\\__init__.py",
+      "missing_export": "ForexFactoryConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\forexfactory\\__init__.py",
+      "missing_export": "ForexFactoryAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\investing\\__init__.py",
+      "missing_export": "InvestingConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\providers\\tier2_secondary\\investing\\__init__.py",
+      "missing_export": "InvestingAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\publication\\__init__.py",
+      "missing_export": "MacroPublisher"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\services\\__init__.py",
+      "missing_export": "MacroService"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\validation\\__init__.py",
+      "missing_export": "MacroValidator"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\warehouse\\__init__.py",
+      "missing_export": "RawWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\macroeconomic_events_engine\\warehouse\\__init__.py",
+      "missing_export": "ConsensusWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "missing_export": "HistoricalImport"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "missing_export": "WeeklyScheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "missing_export": "LifecycleManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "missing_export": "Repository"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\__init__.py",
+      "missing_export": "WarehouseState"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\classification\\__init__.py",
+      "missing_export": "AssetClassifier"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\parser\\__init__.py",
+      "missing_export": "ParserFactory"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\providers\\cftc\\__init__.py",
+      "missing_export": "HistoricalLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\providers\\cftc\\__init__.py",
+      "missing_export": "WeeklyLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\runtime\\__init__.py",
+      "missing_export": "HistoricalImport"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\market_positioning_warehouse\\runtime\\__init__.py",
+      "missing_export": "WeeklyScheduler"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "core"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "gateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "validation"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "normalization"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "classification"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "warehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\__init__.py",
+      "missing_export": "distribution"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\acquisition\\__init__.py",
+      "missing_export": "AcquisitionCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\__init__.py",
+      "missing_export": "market_price_engine"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\economic_calendar_engine\\__init__.py",
+      "missing_export": "EconomicCalendarCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\market_price\\__init__.py",
+      "missing_export": "MarketPriceEngine"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\engines\\market_price_engine\\__init__.py",
+      "missing_export": "MarketPriceCollector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\gateway\\__init__.py",
+      "missing_export": "DataGateway"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\publication\\__init__.py",
+      "missing_export": "PublicationRouter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "ReferenceDataManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "RegistryManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "DependencyManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "ConflictManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "VersionManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "QualityManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\__init__.py",
+      "missing_export": "AuditManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "ExchangeLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "CurrencyLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "CountryLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "SectorLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "IndustryLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "CompanyLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\reference_data\\loaders\\__init__.py",
+      "missing_export": "AssetTypeLoader"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\ndip\\warehouses\\price\\__init__.py",
+      "missing_export": "PriceWarehouse"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "missing_export": "ProviderManager"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "missing_export": "ProviderHealth"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "missing_export": "ProviderFailover"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\__init__.py",
+      "missing_export": "ProviderMetrics"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\dtos\\__init__.py",
+      "missing_export": "UniversalTransport"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "missing_export": "BaseProvider"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "missing_export": "ProviderStatus"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\interfaces\\__init__.py",
+      "missing_export": "BaseAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\mt5\\__init__.py",
+      "missing_export": "MT5Connector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\mt5\\__init__.py",
+      "missing_export": "MT5Adapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\polygon\\__init__.py",
+      "missing_export": "PolygonConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier1_primary\\polygon\\__init__.py",
+      "missing_export": "PolygonAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\alpha_vantage\\__init__.py",
+      "missing_export": "AlphaVantageConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\alpha_vantage\\__init__.py",
+      "missing_export": "AlphaVantageAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo\\__init__.py",
+      "missing_export": "YahooConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo\\__init__.py",
+      "missing_export": "YahooAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo_metadata\\__init__.py",
+      "missing_export": "YahooMetadataConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier2_secondary\\yahoo_metadata\\__init__.py",
+      "missing_export": "YahooMetadataAdapter"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier3_specialized\\binance\\__init__.py",
+      "missing_export": "BinanceConnector"
+    },
+    {
+      "file": "C:\\Users\\HP\\Nexus-AI-Terminal\\providers\\tier3_specialized\\binance\\__init__.py",
+      "missing_export": "BinanceAdapter"
+    }
+  ],
+  "syntax_errors": [],
+  "orphan_modules": [
+    "central_bank_engine.providers.tier1_primary.boe.__init__",
+    "foundation.schemas",
+    "institutional_positioning_engine.publication.publisher",
+    "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.connector",
+    "market_positioning_warehouse.configuration.__init__",
+    "financial_news_engine.acquisition.__init__",
+    "economic_events_engine.acquisition.collector",
+    "tools.qa.engine.ai.root_cause_engine",
+    "financial_news_engine.gateway.service",
+    "macroeconomic_events_engine.observability.__init__",
+    "financial_news_engine.providers.tier3_backup.newsapi.adapter",
+    "foundation.shared_services.probability.__init__",
+    "foundation.infrastructure.scheduler.__init__",
+    "central_bank_engine.knowledge_linking.__init__",
+    "tools.qa.engine.deterministic.runner",
+    "tools.qa.reports.generators.html_generator",
+    "market_positioning_warehouse.publication.ndip_publisher",
+    "ndip.engines.market_price_engine.__init__",
+    "central_bank_engine.providers.tier1_primary.snb.__init__",
+    "foundation.infrastructure.cache.__init__",
+    "providers.tier2_secondary.yahoo_metadata.__init__",
+    "providers.interfaces.__init__",
+    "institutional_positioning_engine.collectors.historical.__init__",
+    "providers.tier3_specialized.binance.adapter",
+    "financial_news_engine.normalisation.__init__",
+    "central_bank_engine.publication.publisher",
+    "ndip.reference_data.loaders.base_loader",
+    "central_bank_engine.providers.tier1_primary.boj.adapter",
+    "providers.tier2_secondary.alpha_vantage.connector",
+    "foundation.shared_services.validation.validator",
+    "financial_news_engine.classification.classifier",
+    "central_bank_engine.aggregator.confidence",
+    "providers.tier1_primary.mt5.connector",
+    "economic_events_engine.dtos.economic_event",
+    "ndip.reference_data.__init__",
+    "tools.qa.engine.deterministic.flask_validator",
+    "central_bank_engine.gateway.__init__",
+    "central_bank_engine.classification.__init__",
+    "foundation.standards.hub_standard.schemas",
+    "foundation.standards.intelligence_standard.schemas",
+    "scripts.test_aggregator",
+    "ndip.classification.__init__",
+    "institutional_positioning_engine.normalization.__init__",
+    "macroeconomic_events_engine.consensus.resolver",
+    "central_bank_engine.providers.tier1_primary.rba.connector",
+    "macroeconomic_events_engine.validation.__init__",
+    "tools.qa.engine.deterministic.black_check",
+    "providers.tier2_secondary.yahoo.connector",
+    "market_positioning_warehouse.warehouse.__init__",
+    "financial_news_engine.entities.__init__",
+    "ndip.normalization.__init__",
+    "tools.qa.tests.test_dummy",
+    "scripts.test_cot_complete",
+    "ndip.engines.economic_calendar_engine.__init__",
+    "ndip.acquisition.__init__",
+    "foundation.infrastructure.scheduler.scheduler",
+    "foundation.infrastructure.cache.redis_client",
+    "macroeconomic_events_engine.impact.__init__",
+    "run_macro_stats_engine",
+    "central_bank_engine.acquisition.collector",
+    "scripts.test_cot_discovery",
+    "institutional_positioning_engine.publication.__init__",
+    "economic_events_engine.observability.metrics",
+    "central_bank_engine.gateway.service",
+    "providers.tier2_secondary.yahoo.__init__",
+    "institutional_positioning_engine.historical.backfill",
+    "central_bank_engine.providers.tier1_primary.snb.adapter",
+    "economic_events_engine.services.__init__",
+    "economic_events_engine.services.service",
+    "ndip.engines.__init__",
+    "institutional_positioning_engine.runtime.__init__",
+    "scripts.test_central_bank_engine",
+    "run_engine",
+    "scripts.test_fed_collectors",
+    "macroeconomic_events_engine.warehouse.__init__",
+    "economic_events_engine.providers.tier2_secondary.fred.__init__",
+    "providers.dtos.__init__",
+    "central_bank_engine.warehouse.__init__",
+    "institutional_positioning_engine.gateway.__init__",
+    "ndip.distribution.distributor",
+    "scripts.add_central_banks",
+    "ndip.validation.__init__",
+    "ndip.gateway.gateway",
+    "foundation.infrastructure.authentication.auth",
+    "foundation.shared_services.utilities.__init__",
+    "macroeconomic_events_engine.providers.tier2_secondary.investing.adapter",
+    "scripts.test_economic_engine",
+    "tools.qa.engine.deterministic.html_validator",
+    "institutional_positioning_engine.acquisition.__init__",
+    "scripts.test_cot_data_loading",
+    "central_bank_engine.aggregator.__init__",
+    "central_bank_engine.observability.__init__",
+    "providers.tier2_secondary.yahoo.adapter",
+    "institutional_positioning_engine.collectors.historical.collector",
+    "economic_events_engine.dtos.__init__",
+    "institutional_positioning_engine.runtime.health",
+    "central_bank_engine.providers.tier1_primary.ecb.connector",
+    "tools.qa.engine.deterministic.dependency_scan",
+    "tools.qa.setup",
+    "tools.qa.engine.deterministic.css_validator",
+    "foundation.standards.domain_client_standard.schemas",
+    "economic_events_engine.warehouse.warehouse",
+    "economic_events_engine.observability.health",
+    "central_bank_engine.providers.tier1_primary.federal_reserve.connector",
+    "run_cot_engine",
+    "central_bank_engine.providers.tier1_primary.boc.__init__",
+    "economic_events_engine.__init__",
+    "ndip.distribution.__init__",
+    "institutional_positioning_engine.historical.__init__",
+    "foundation.standards.__init__",
+    "ndip.warehouse.warehouse",
+    "macroeconomic_events_engine.normalisation.__init__",
+    "central_bank_engine.observability.metrics",
+    "macroeconomic_events_engine.services.service",
+    "tools.qa.engine.deterministic.eslint_check",
+    "central_bank_engine.providers.tier1_primary.boc.adapter",
+    "tools.qa.scripts.auto_restart",
+    "macroeconomic_events_engine.warehouse.raw_warehouse",
+    "financial_news_engine.knowledge_linking.__init__",
+    "run_metadata_engine",
+    "central_bank_engine.aggregator.deduplicator",
+    "macroeconomic_events_engine.classification.classifier",
+    "ndip.reference_data.loaders.__init__",
+    "ndip.reference_data.loaders.currency_loader",
+    "institutional_positioning_engine.gateway.gateway",
+    "economic_events_engine.observability.__init__",
+    "foundation.infrastructure.websocket.__init__",
+    "foundation.infrastructure.authentication.__init__",
+    "central_bank_engine.publication.__init__",
+    "central_bank_engine.providers.tier1_primary.rbnz.__init__",
+    "institutional_positioning_engine.parser.parser_factory",
+    "foundation.__init__",
+    "providers.tier1_primary.polygon.__init__",
+    "tools.qa.scripts.health_check",
+    "tools.qa.dashboard.web.api",
+    "run_macro_events_engine",
+    "financial_news_engine.providers.tier3_backup.rss.__init__",
+    "institutional_positioning_engine.discovery.discovery",
+    "tools.qa.engine.deterministic.mypy_check",
+    "financial_news_engine.validation.validator",
+    "scripts.test_macro_events",
+    "foundation.__main__",
+    "institutional_positioning_engine.normalization.normalizer",
+    "macroeconomic_events_engine.acquisition.collector",
+    "ndip.classification.classifier",
+    "economic_events_engine.providers.tier2_secondary.fred.connector",
+    "institutional_positioning_engine.warehouse.warehouse",
+    "ndip.reference_data.loaders.exchange_loader",
+    "central_bank_engine.providers.tier1_primary.rbnz.adapter",
+    "tools.qa.dashboard.windows.dashboard",
+    "macroeconomic_events_engine.__init__",
+    "scripts.test_central_bank",
+    "financial_news_engine.warehouse.news_warehouse",
+    "providers.tier2_secondary.alpha_vantage.adapter",
+    "scripts.test_cot_institutional",
+    "central_bank_engine.providers.tier1_primary.ecb.__init__",
+    "scripts.test_macro_stats",
+    "foundation.infrastructure.__init__",
+    "financial_news_engine.acquisition.collector",
+    "central_bank_engine.providers.tier1_primary.boc.connector",
+    "institutional_positioning_engine.providers.cftc.adapter",
+    "scripts.test_central_bank_registry",
+    "scripts.test_news_engine",
+    "central_bank_engine.providers.tier1_primary.federal_reserve.adapter",
+    "foundation.standards.domain_client_standard.__init__",
+    "central_bank_engine.providers.tier1_primary.boj.connector",
+    "run_cot_only",
+    "foundation.infrastructure.message_bus.__init__",
+    "foundation.shared_services.logging.__init__",
+    "ndip.reference_data.loaders.industry_loader",
+    "foundation.shared_services.utilities.helpers",
+    "institutional_positioning_engine.providers.cftc.__init__",
+    "institutional_positioning_engine.collectors.incremental.__init__",
+    "scripts.patch_central_bank_connectors",
+    "tools.qa.engine.ai.bug_detective",
+    "financial_news_engine.validation.__init__",
+    "central_bank_engine.normalisation.__init__",
+    "market_positioning_warehouse.providers.cftc.__init__",
+    "financial_news_engine.providers.tier3_backup.rss.connector",
+    "runtime.__init__",
+    "market_positioning_warehouse.classification.__init__",
+    "ndip.__init__",
+    "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.connector",
+    "foundation.infrastructure.database.__init__",
+    "foundation.infrastructure.message_bus.bus",
+    "market_positioning_warehouse.providers.__init__",
+    "foundation.weights",
+    "ndip.engines.economic_calendar_engine.collector",
+    "ndip.warehouses.base.__init__",
+    "central_bank_engine.providers.tier1_primary.snb.connector",
+    "market_positioning_warehouse.warehouse.repository",
+    "ndip.engines.market_price.engine",
+    "macroeconomic_events_engine.providers.tier2_secondary.investing.connector",
+    "foundation.shared_services.logging.logger",
+    "ndip.reference_data.loaders.company_loader",
+    "central_bank_engine.classification.classifier",
+    "institutional_positioning_engine.downloader.downloader",
+    "market_positioning_warehouse.runtime.__init__",
+    "tools.qa.engine.ai.suggestion_engine",
+    "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.adapter",
+    "institutional_positioning_engine.validation.validator",
+    "foundation.infrastructure.database.connection",
+    "providers.tier2_secondary.yahoo_metadata.adapter",
+    "central_bank_engine.providers.tier1_primary.boe.connector",
+    "ndip.engines.market_price.__init__",
+    "central_bank_engine.providers.tier1_primary.rba.adapter",
+    "foundation.shared_services.probability.calculator",
+    "financial_news_engine.providers.tier3_backup.newsapi.__init__",
+    "tools.qa.scripts.auto_pull",
+    "macroeconomic_events_engine.consensus.__init__",
+    "institutional_positioning_engine.__init__",
+    "macroeconomic_events_engine.warehouse.consensus_warehouse",
+    "macroeconomic_events_engine.providers.tier2_secondary.investing.__init__",
+    "market_positioning_warehouse.transformation.__init__",
+    "ndip.quality.metadata_quality",
+    "tools.qa.engine.deterministic.bandit_check",
+    "tools.qa.engine.ai.__init__",
+    "run_automated_cot",
+    "central_bank_engine.validation.validator",
+    "central_bank_engine.aggregator.validator",
+    "institutional_positioning_engine.runtime.scheduler",
+    "ndip.publication.__init__",
+    "financial_news_engine.publication.__init__",
+    "institutional_positioning_engine.observability.__init__",
+    "providers.tier2_secondary.alpha_vantage.__init__",
+    "tools.qa.engine.deterministic.playwright_check",
+    "tools.qa.reports.generators.pdf_generator",
+    "scripts.generate_bank_collectors",
+    "market_positioning_warehouse.__init__",
+    "foundation.shared_services.cache.__init__",
+    "ndip.reference_data.loaders.sector_loader",
+    "tools.qa.reports.generators.json_generator",
+    "central_bank_engine.aggregator.normalizer",
+    "macroeconomic_events_engine.tests.__init__",
+    "tools.qa.engine.deterministic.ruff_check",
+    "financial_news_engine.classification.__init__",
+    "financial_news_engine.entities.extractor",
+    "providers.tier1_primary.polygon.adapter",
+    "central_bank_engine.providers.tier1_primary.boj.__init__",
+    "providers.tier2_secondary.yahoo_metadata.connector",
+    "central_bank_engine.aggregator.policy_cycle",
+    "central_bank_engine.providers.tier1_primary.ecb.adapter",
+    "tools.qa.engine.deterministictest_check",
+    "scripts.discover_cftc_datasets",
+    "scripts.test_cot_full",
+    "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.adapter",
+    "scripts.test_cot_engine",
+    "financial_news_engine.observability.__init__",
+    "runtime.adapters.__init__",
+    "financial_news_engine.importance_engine.__init__",
+    "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.__init__",
+    "market_positioning_warehouse.parser.parser_factory",
+    "central_bank_engine.validation.__init__",
+    "financial_news_engine.gateway.__init__",
+    "foundation.constants",
+    "foundation.shared_services.__init__",
+    "ndip.reference_data.loaders.country_loader",
+    "scripts.test_market_price",
+    "ndip.reference_data.loaders.asset_type_loader",
+    "market_positioning_warehouse.transformation.ndip_transformer",
+    "financial_news_engine.consensus.__init__",
+    "central_bank_engine.providers.tier1_primary.rba.__init__",
+    "macroeconomic_events_engine.services.__init__",
+    "scripts.test_metadata_engine",
+    "financial_news_engine.__init__",
+    "financial_news_engine.normalisation.normalizer",
+    "central_bank_engine.aggregator.collector_router",
+    "institutional_positioning_engine.validation.__init__",
+    "financial_news_engine.warehouse.__init__",
+    "central_bank_engine.acquisition.__init__",
+    "central_bank_engine.aggregator.linker",
+    "macroeconomic_events_engine.publication.__init__",
+    "financial_news_engine.providers.tier3_backup.newsapi.connector",
+    "foundation.standards.intelligence_standard.__init__",
+    "central_bank_engine.observability.health",
+    "providers.tier3_specialized.binance.__init__",
+    "market_positioning_warehouse.classification.asset_classifier",
+    "scripts.project_integrity",
+    "central_bank_engine.providers.tier1_primary.federal_reserve.__init__",
+    "macroeconomic_events_engine.impact.scorer",
+    "scripts.test_market_price_new",
+    "central_bank_engine.__init__",
+    "providers.tier1_primary.mt5.adapter",
+    "runtime.runtime",
+    "central_bank_engine.normalisation.normalizer",
+    "ndip.warehouse.__init__",
+    "providers.tier1_primary.polygon.connector",
+    "scripts.qa_runner",
+    "economic_events_engine.acquisition.__init__",
+    "providers.tier1_primary.mt5.__init__",
+    "foundation.shared_services.validation.__init__",
+    "ndip.engines.market_price_engine.collector",
+    "institutional_positioning_engine.runtime.updater",
+    "economic_events_engine.providers.tier2_secondary.fred.adapter",
+    "institutional_positioning_engine.warehouse.__init__",
+    "ndip.gateway.__init__",
+    "ndip.warehouses.price.__init__",
+    "foundation.infrastructure.websocket.manager",
+    "central_bank_engine.providers.tier1_primary.boe.adapter",
+    "foundation.standards.hub_standard.__init__",
+    "foundation.shared_services.cache.cache_manager",
+    "central_bank_engine.providers.tier1_primary.rbnz.connector",
+    "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.__init__",
+    "market_positioning_warehouse.parser.__init__",
+    "tools.qa.engine.ai.patch_generator",
+    "macroeconomic_events_engine.classification.__init__",
+    "central_bank_engine.knowledge_linking.linker",
+    "central_bank_engine.aggregator.versioner",
+    "institutional_positioning_engine.parser.__init__",
+    "central_bank_engine.collectors.__init__",
+    "scripts.parse_cot_file",
+    "economic_events_engine.warehouse.__init__",
+    "tools.qa.engine.deterministic.__init__",
+    "institutional_positioning_engine.discovery.__init__",
+    "market_positioning_warehouse.publication.__init__",
+    "institutional_positioning_engine.parser.parser",
+    "institutional_positioning_engine.collectors.incremental.collector",
+    "scripts.fix_central_bank_health",
+    "institutional_positioning_engine.acquisition.collector",
+    "providers.__init__",
+    "financial_news_engine.providers.tier3_backup.rss.adapter",
+    "economic_events_engine.providers.interfaces.__init__",
+    "institutional_positioning_engine.runtime.backfill",
+    "institutional_positioning_engine.downloader.__init__",
+    "providers.tier3_specialized.binance.connector",
+    "macroeconomic_events_engine.acquisition.__init__"
+  ],
+  "duplicate_modules": [
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.acquisition.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.aggregator.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.classification.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.collectors.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.gateway.__init__"
+    },
+    {
+      "name": "linker",
+      "module1": "central_bank_engine.aggregator.linker",
+      "module2": "central_bank_engine.knowledge_linking.linker"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.knowledge_linking.__init__"
+    },
+    {
+      "name": "normalizer",
+      "module1": "central_bank_engine.aggregator.normalizer",
+      "module2": "central_bank_engine.normalisation.normalizer"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.normalisation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.observability.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.boc.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.boe.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.boe.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.boe.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.boj.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.boj.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.boj.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.ecb.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.ecb.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.ecb.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.federal_reserve.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.federal_reserve.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.federal_reserve.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.rba.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.rba.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.rba.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.rbnz.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.rbnz.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.rbnz.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "central_bank_engine.providers.tier1_primary.snb.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "central_bank_engine.providers.tier1_primary.snb.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.providers.tier1_primary.snb.__init__"
+    },
+    {
+      "name": "publisher",
+      "module1": "central_bank_engine.aggregator.publisher",
+      "module2": "central_bank_engine.publication.publisher"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.publication.__init__"
+    },
+    {
+      "name": "validator",
+      "module1": "central_bank_engine.aggregator.validator",
+      "module2": "central_bank_engine.validation.validator"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.validation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "central_bank_engine.warehouse.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "economic_events_engine.acquisition.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.acquisition.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.dtos.__init__"
+    },
+    {
+      "name": "health",
+      "module1": "central_bank_engine.observability.health",
+      "module2": "economic_events_engine.observability.health"
+    },
+    {
+      "name": "metrics",
+      "module1": "central_bank_engine.observability.metrics",
+      "module2": "economic_events_engine.observability.metrics"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.observability.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.providers.interfaces.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "economic_events_engine.providers.tier2_secondary.fred.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "economic_events_engine.providers.tier2_secondary.fred.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.providers.tier2_secondary.fred.__init__"
+    },
+    {
+      "name": "service",
+      "module1": "central_bank_engine.gateway.service",
+      "module2": "economic_events_engine.services.service"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.services.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "economic_events_engine.warehouse.__init__"
+    },
+    {
+      "name": "dtos",
+      "module1": "central_bank_engine.dtos",
+      "module2": "financial_news_engine.dtos"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "financial_news_engine.acquisition.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.acquisition.__init__"
+    },
+    {
+      "name": "classifier",
+      "module1": "central_bank_engine.classification.classifier",
+      "module2": "financial_news_engine.classification.classifier"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.classification.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.consensus.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.entities.__init__"
+    },
+    {
+      "name": "service",
+      "module1": "central_bank_engine.gateway.service",
+      "module2": "financial_news_engine.gateway.service"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.gateway.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.importance_engine.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.knowledge_linking.__init__"
+    },
+    {
+      "name": "normalizer",
+      "module1": "central_bank_engine.aggregator.normalizer",
+      "module2": "financial_news_engine.normalisation.normalizer"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.normalisation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.observability.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "financial_news_engine.providers.tier3_backup.newsapi.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "financial_news_engine.providers.tier3_backup.newsapi.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.providers.tier3_backup.newsapi.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "financial_news_engine.providers.tier3_backup.rss.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "financial_news_engine.providers.tier3_backup.rss.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.providers.tier3_backup.rss.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.publication.__init__"
+    },
+    {
+      "name": "validator",
+      "module1": "central_bank_engine.aggregator.validator",
+      "module2": "financial_news_engine.validation.validator"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.validation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "financial_news_engine.warehouse.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.authentication.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.cache.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.database.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.message_bus.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.scheduler.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.infrastructure.websocket.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.cache.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.logging.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.probability.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.utilities.__init__"
+    },
+    {
+      "name": "validator",
+      "module1": "central_bank_engine.aggregator.validator",
+      "module2": "foundation.shared_services.validation.validator"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.shared_services.validation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.standards.__init__"
+    },
+    {
+      "name": "schemas",
+      "module1": "foundation.schemas",
+      "module2": "foundation.standards.domain_client_standard.schemas"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.standards.domain_client_standard.__init__"
+    },
+    {
+      "name": "schemas",
+      "module1": "foundation.schemas",
+      "module2": "foundation.standards.hub_standard.schemas"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.standards.hub_standard.__init__"
+    },
+    {
+      "name": "schemas",
+      "module1": "foundation.schemas",
+      "module2": "foundation.standards.intelligence_standard.schemas"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "foundation.standards.intelligence_standard.__init__"
+    },
+    {
+      "name": "dtos",
+      "module1": "central_bank_engine.dtos",
+      "module2": "institutional_positioning_engine.dtos"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "institutional_positioning_engine.acquisition.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.acquisition.__init__"
+    },
+    {
+      "name": "base",
+      "module1": "central_bank_engine.collectors.base",
+      "module2": "institutional_positioning_engine.collectors.base"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "institutional_positioning_engine.collectors.historical.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.collectors.historical.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "institutional_positioning_engine.collectors.incremental.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.collectors.incremental.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.discovery.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.downloader.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.gateway.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.historical.__init__"
+    },
+    {
+      "name": "normalizer",
+      "module1": "central_bank_engine.aggregator.normalizer",
+      "module2": "institutional_positioning_engine.normalization.normalizer"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.normalization.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.observability.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.parser.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "institutional_positioning_engine.providers.cftc.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "institutional_positioning_engine.providers.cftc.connector"
+    },
+    {
+      "name": "provider_manager",
+      "module1": "central_bank_engine.provider_manager",
+      "module2": "institutional_positioning_engine.providers.cftc.provider_manager"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.providers.cftc.__init__"
+    },
+    {
+      "name": "publisher",
+      "module1": "central_bank_engine.aggregator.publisher",
+      "module2": "institutional_positioning_engine.publication.publisher"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.publication.__init__"
+    },
+    {
+      "name": "backfill",
+      "module1": "institutional_positioning_engine.historical.backfill",
+      "module2": "institutional_positioning_engine.runtime.backfill"
+    },
+    {
+      "name": "config",
+      "module1": "foundation.config",
+      "module2": "institutional_positioning_engine.runtime.config"
+    },
+    {
+      "name": "health",
+      "module1": "central_bank_engine.observability.health",
+      "module2": "institutional_positioning_engine.runtime.health"
+    },
+    {
+      "name": "scheduler",
+      "module1": "foundation.infrastructure.scheduler.scheduler",
+      "module2": "institutional_positioning_engine.runtime.scheduler"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.runtime.__init__"
+    },
+    {
+      "name": "validator",
+      "module1": "central_bank_engine.aggregator.validator",
+      "module2": "institutional_positioning_engine.validation.validator"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.validation.__init__"
+    },
+    {
+      "name": "warehouse",
+      "module1": "economic_events_engine.warehouse.warehouse",
+      "module2": "institutional_positioning_engine.warehouse.warehouse"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "institutional_positioning_engine.warehouse.__init__"
+    },
+    {
+      "name": "dtos",
+      "module1": "central_bank_engine.dtos",
+      "module2": "macroeconomic_events_engine.dtos"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "macroeconomic_events_engine.acquisition.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.acquisition.__init__"
+    },
+    {
+      "name": "classifier",
+      "module1": "central_bank_engine.classification.classifier",
+      "module2": "macroeconomic_events_engine.classification.classifier"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.classification.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.consensus.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.impact.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.normalisation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.observability.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.providers.tier1_primary.tradingeconomics.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.forexfactory.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.investing.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.investing.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.providers.tier2_secondary.investing.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.publication.__init__"
+    },
+    {
+      "name": "service",
+      "module1": "central_bank_engine.gateway.service",
+      "module2": "macroeconomic_events_engine.services.service"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.services.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.tests.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.validation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "macroeconomic_events_engine.warehouse.__init__"
+    },
+    {
+      "name": "dtos",
+      "module1": "central_bank_engine.dtos",
+      "module2": "market_positioning_warehouse.dtos"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.classification.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.configuration.__init__"
+    },
+    {
+      "name": "parser_factory",
+      "module1": "institutional_positioning_engine.parser.parser_factory",
+      "module2": "market_positioning_warehouse.parser.parser_factory"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.parser.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.providers.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.providers.cftc.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.publication.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.runtime.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.transformation.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "market_positioning_warehouse.warehouse.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "ndip.acquisition.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.acquisition.__init__"
+    },
+    {
+      "name": "classifier",
+      "module1": "central_bank_engine.classification.classifier",
+      "module2": "ndip.classification.classifier"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.classification.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.distribution.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.engines.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "ndip.engines.economic_calendar_engine.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.engines.economic_calendar_engine.__init__"
+    },
+    {
+      "name": "engine",
+      "module1": "central_bank_engine.engine",
+      "module2": "ndip.engines.market_price.engine"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.engines.market_price.__init__"
+    },
+    {
+      "name": "collector",
+      "module1": "central_bank_engine.acquisition.collector",
+      "module2": "ndip.engines.market_price_engine.collector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.engines.market_price_engine.__init__"
+    },
+    {
+      "name": "gateway",
+      "module1": "institutional_positioning_engine.gateway.gateway",
+      "module2": "ndip.gateway.gateway"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.gateway.__init__"
+    },
+    {
+      "name": "normalizer",
+      "module1": "central_bank_engine.aggregator.normalizer",
+      "module2": "ndip.normalization.normalizer"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.normalization.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.publication.__init__"
+    },
+    {
+      "name": "manager",
+      "module1": "foundation.infrastructure.websocket.manager",
+      "module2": "ndip.reference_data.manager"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.reference_data.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.reference_data.loaders.__init__"
+    },
+    {
+      "name": "validator",
+      "module1": "central_bank_engine.aggregator.validator",
+      "module2": "ndip.validation.validator"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.validation.__init__"
+    },
+    {
+      "name": "warehouse",
+      "module1": "economic_events_engine.warehouse.warehouse",
+      "module2": "ndip.warehouse.warehouse"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.warehouse.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.warehouses.base.__init__"
+    },
+    {
+      "name": "warehouse",
+      "module1": "economic_events_engine.warehouse.warehouse",
+      "module2": "ndip.warehouses.price.warehouse"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "ndip.warehouses.price.__init__"
+    },
+    {
+      "name": "provider_manager",
+      "module1": "central_bank_engine.provider_manager",
+      "module2": "providers.provider_manager"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.dtos.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.interfaces.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier1_primary.mt5.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier1_primary.mt5.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier1_primary.mt5.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier1_primary.polygon.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier1_primary.polygon.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier1_primary.polygon.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier2_secondary.alpha_vantage.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier2_secondary.alpha_vantage.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier2_secondary.alpha_vantage.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier2_secondary.yahoo.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier2_secondary.yahoo.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier2_secondary.yahoo.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier2_secondary.yahoo_metadata.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier2_secondary.yahoo_metadata.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier2_secondary.yahoo_metadata.__init__"
+    },
+    {
+      "name": "adapter",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.adapter",
+      "module2": "providers.tier3_specialized.binance.adapter"
+    },
+    {
+      "name": "connector",
+      "module1": "central_bank_engine.providers.tier1_primary.boc.connector",
+      "module2": "providers.tier3_specialized.binance.connector"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "providers.tier3_specialized.binance.__init__"
+    },
+    {
+      "name": "health",
+      "module1": "central_bank_engine.observability.health",
+      "module2": "runtime.health"
+    },
+    {
+      "name": "metrics",
+      "module1": "central_bank_engine.observability.metrics",
+      "module2": "runtime.metrics"
+    },
+    {
+      "name": "scheduler",
+      "module1": "foundation.infrastructure.scheduler.scheduler",
+      "module2": "runtime.scheduler"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "runtime.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "runtime.adapters.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "tools.qa.engine.ai.__init__"
+    },
+    {
+      "name": "__init__",
+      "module1": "central_bank_engine.__init__",
+      "module2": "tools.qa.engine.deterministic.__init__"
+    }
+  ]
+}

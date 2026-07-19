@@ -1,0 +1,134 @@
+
+======================================================================
+  ACP ARCHITECTURE OS v4.0 - PLATFORM SCAN
+  Nexus AI Terminal
+======================================================================
+
+Project Root: C:\Users\HP\Nexus-AI-Terminal
+
+Platform Summary:
+  - Registered Engines: 6
+  - NDIP domains: 16
+  - DAR registrations: 1
+  - Warehouse domains: 8
+  - Python modules: 424
+  - Python packages: 140
+
+Discovered Engines:
+  [OK] CENTRAL_BANK_ENGINE - central_bank_engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\central_bank_engine
+     Stage: development
+     Status: Development
+  [OK] ECO-001 - Economic Events Engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\economic_events_engine
+     Stage: development
+     Status: Development
+  [OK] NEWS-001 - Financial News Engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\financial_news_engine
+     Stage: development
+     Status: Development
+  [OK] INS-001 - Institutional Positioning Engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\institutional_positioning_engine
+     Stage: development
+     Status: Development
+  [OK] MAC-002 - Macroeconomic Events Engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\macroeconomic_events_engine
+     Stage: development
+     Status: Development
+  [OK] TEST-001 - Test Engine
+     Path: C:\Users\HP\Nexus-AI-Terminal\engines\TEST-001
+     Stage: Development
+     Status: Development
+
+Analyzing Engines:
+----------------------------------------------------------------------
+
+  Engine: CENTRAL_BANK_ENGINE
+     Architecture Compliance: 100%
+     Architecture Maturity: 42%
+     Overall Health: 82%
+     Status: Warning
+        [INFO] Optional component 'runtime' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+        [INFO] README.md not found
+           Consider adding documentation for developer onboarding
+     Dependencies: 100% - Healthy
+        Internal Dependencies: central_bank_engine, providers, ndip
+        External Dependencies: datetime, typing, pydantic, logging, dataclasses, abc, os, feedparser, requests, fastapi, collections, json
+
+  Engine: ECO-001
+     Architecture Compliance: 100%
+     Architecture Maturity: 28%
+     Overall Health: 78%
+     Status: Warning
+        [INFO] Optional component 'runtime' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'gateway' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+        [INFO] README.md not found
+           Consider adding documentation for developer onboarding
+     Dependencies: 100% - Healthy
+        Internal Dependencies: economic_events_engine, providers, ndip
+        External Dependencies: logging, typing, datetime, pydantic, collections, abc, pandas_datareader, fastapi, json
+
+  Engine: NEWS-001
+     Architecture Compliance: 100%
+     Architecture Maturity: 42%
+     Overall Health: 82%
+     Status: Warning
+        [INFO] Optional component 'runtime' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+        [INFO] README.md not found
+           Consider adding documentation for developer onboarding
+     Dependencies: 100% - Healthy
+        Internal Dependencies: financial_news_engine, providers, ndip
+        External Dependencies: datetime, typing, pydantic, logging, re, fastapi, os, requests, email, feedparser, json
+
+  Engine: INS-001
+     Architecture Compliance: 100%
+     Architecture Maturity: 71%
+     Overall Health: 91%
+     Status: Healthy
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+     Dependencies: 100% - Healthy
+        Internal Dependencies: institutional_positioning_engine, providers, ndip
+        External Dependencies: datetime, typing, pydantic, logging, abc, json, pathlib, re, urllib, requests, bs4, os, csv, hashlib, time, io, asyncio
+
+  Engine: MAC-002
+     Architecture Compliance: 100%
+     Architecture Maturity: 28%
+     Overall Health: 78%
+     Status: Warning
+        [INFO] Optional component 'runtime' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'gateway' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+        [INFO] README.md not found
+           Consider adding documentation for developer onboarding
+     Dependencies: 100% - Healthy
+        Internal Dependencies: macroeconomic_events_engine, providers, ndip
+        External Dependencies: datetime, typing, pydantic, logging, yaml, pathlib, statistics, os, requests, fastapi, json
+
+  Engine: TEST-001
+     Architecture Compliance: 100%
+     Architecture Maturity: 57%
+     Overall Health: 87%
+     Status: Healthy
+        [INFO] Optional component 'gateway' not implemented
+           Add only if required by engine specification
+        [INFO] Optional component 'docs' not implemented
+           Add only if required by engine specification
+        [INFO] README.md not found
+           Consider adding documentation for developer onboarding
+     Dependencies: 100% - Healthy
+
+======================================================================

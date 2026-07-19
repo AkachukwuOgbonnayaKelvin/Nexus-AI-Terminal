@@ -1,0 +1,80 @@
+engine_id: INS-001
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+  - topic: global.macro.analytics
+    schema: macro_v1
+    required: true
+
+outputs:
+  - topic: institutional.cot.raw
+    domain: institutional
+    version: "1.0"
+    description: Raw COT data
+  - topic: institutional.cot.cleaned
+    domain: institutional
+    version: "1.0"
+    description: Cleaned COT data
+  - topic: institutional.positioning.analytics
+    domain: institutional
+    version: "1.0"
+    description: Institutional positioning analytics
+  - topic: institutional.smart_money.signal
+    domain: institutional
+    version: "1.0"
+    description: Smart money signals
+
+schemas:
+  cot_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: symbol
+        type: string
+        required: true
+      - name: report_date
+        type: datetime
+        required: true
+      - name: dealer_long
+        type: float
+        required: false
+      - name: dealer_short
+        type: float
+        required: false
+      - name: asset_manager_long
+        type: float
+        required: false
+      - name: asset_manager_short
+        type: float
+        required: false
+      - name: leveraged_funds_long
+        type: float
+        required: false
+      - name: leveraged_funds_short
+        type: float
+        required: false
+
+  positioning_analytics_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: symbol
+        type: string
+        required: true
+      - name: institutional_bias
+        type: string
+        required: true
+      - name: smart_money_score
+        type: float
+        required: true
+      - name: positioning_confidence
+        type: float
+        required: true
+      - name: trend_alignment
+        type: string
+        required: true

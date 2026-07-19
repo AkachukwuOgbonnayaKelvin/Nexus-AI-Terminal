@@ -1,7 +1,24 @@
-"""Financial News Engine (NEWS-001) – NRES Compliant."""
+"""Financial News Engine (NEWS-001)."""
 
-from .acquisition import NewsCollector
-from .gateway import NewsGateway
-from .warehouse import NewsWarehouse
+__version__ = "1.0.0"
 
-__all__ = ["NewsCollector", "NewsWarehouse", "NewsGateway"]
+try:
+    from .acquisition import NewsCollector
+except ImportError:
+    NewsCollector = None
+
+try:
+    from .warehouse import NewsWarehouse
+except ImportError:
+    NewsWarehouse = None
+
+try:
+    from .gateway import NewsGateway
+except ImportError:
+    NewsGateway = None
+
+__all__ = [
+    "NewsCollector",
+    "NewsWarehouse",
+    "NewsGateway",
+]

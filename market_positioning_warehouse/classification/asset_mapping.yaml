@@ -1,0 +1,62 @@
+# Complete Asset Classification Mapping
+
+assets:
+  # ===== FOREX =====
+  "EURO FX": { asset_class: "forex", subclass: "major", symbol: "EUR" }
+  "BRITISH POUND": { asset_class: "forex", subclass: "major", symbol: "GBP" }
+  "JAPANESE YEN": { asset_class: "forex", subclass: "major", symbol: "JPY" }
+  "SWISS FRANC": { asset_class: "forex", subclass: "major", symbol: "CHF" }
+  "CANADIAN DOLLAR": { asset_class: "forex", subclass: "major", symbol: "CAD" }
+  "AUSTRALIAN DOLLAR": { asset_class: "forex", subclass: "major", symbol: "AUD" }
+  "NEW ZEALAND DOLLAR": { asset_class: "forex", subclass: "major", symbol: "NZD" }
+  "MEXICAN PESO": { asset_class: "forex", subclass: "emerging", symbol: "MXN" }
+  "USD INDEX": { asset_class: "forex", subclass: "index", symbol: "DXY" }
+
+  # ===== METALS =====
+  "GOLD": { asset_class: "metals", subclass: "precious", symbol: "XAU" }
+  "SILVER": { asset_class: "metals", subclass: "precious", symbol: "XAG" }
+  "COPPER": { asset_class: "metals", subclass: "base", symbol: "HG" }
+  "PLATINUM": { asset_class: "metals", subclass: "precious", symbol: "PL" }
+  "PALLADIUM": { asset_class: "metals", subclass: "precious", symbol: "PA" }
+
+  # ===== ENERGY =====
+  "WTI CRUDE": { asset_class: "energy", subclass: "oil", symbol: "CL" }
+  "BRENT CRUDE": { asset_class: "energy", subclass: "oil", symbol: "BZ" }
+  "NATURAL GAS": { asset_class: "energy", subclass: "gas", symbol: "NG" }
+  "HEATING OIL": { asset_class: "energy", subclass: "oil", symbol: "HO" }
+  "GASOLINE": { asset_class: "energy", subclass: "oil", symbol: "RB" }
+
+  # ===== EQUITY INDICES =====
+  "S&P 500": { asset_class: "index", subclass: "equity", symbol: "ES" }
+  "NASDAQ 100": { asset_class: "index", subclass: "equity", symbol: "NQ" }
+  "DOW JONES": { asset_class: "index", subclass: "equity", symbol: "YM" }
+  "RUSSELL 2000": { asset_class: "index", subclass: "equity", symbol: "RTY" }
+  "VIX": { asset_class: "index", subclass: "volatility", symbol: "VX" }
+
+  # ===== TREASURIES/BONDS =====
+  "2-YEAR TREASURY": { asset_class: "bonds", subclass: "treasury", symbol: "ZT" }
+  "5-YEAR TREASURY": { asset_class: "bonds", subclass: "treasury", symbol: "ZF" }
+  "10-YEAR TREASURY": { asset_class: "bonds", subclass: "treasury", symbol: "ZN" }
+  "30-YEAR TREASURY": { asset_class: "bonds", subclass: "treasury", symbol: "ZB" }
+  "ULTRA BOND": { asset_class: "bonds", subclass: "treasury", symbol: "UB" }
+
+  # ===== AGRICULTURE =====
+  "CORN": { asset_class: "agriculture", subclass: "grains", symbol: "C" }
+  "WHEAT": { asset_class: "agriculture", subclass: "grains", symbol: "W" }
+  "SOYBEANS": { asset_class: "agriculture", subclass: "grains", symbol: "S" }
+  "SOYBEAN OIL": { asset_class: "agriculture", subclass: "grains", symbol: "ZL" }
+  "SOYBEAN MEAL": { asset_class: "agriculture", subclass: "grains", symbol: "ZM" }
+  "COFFEE": { asset_class: "agriculture", subclass: "softs", symbol: "KC" }
+  "COCOA": { asset_class: "agriculture", subclass: "softs", symbol: "CC" }
+  "COTTON": { asset_class: "agriculture", subclass: "softs", symbol: "CT" }
+  "SUGAR": { asset_class: "agriculture", subclass: "softs", symbol: "SB" }
+
+  # ===== LIVESTOCK =====
+  "LIVE CATTLE": { asset_class: "livestock", subclass: "cattle", symbol: "LC" }
+  "FEEDER CATTLE": { asset_class: "livestock", subclass: "cattle", symbol: "FC" }
+  "LEAN HOGS": { asset_class: "livestock", subclass: "hogs", symbol: "LH" }
+
+  # ===== CRYPTO =====
+  "BITCOIN": { asset_class: "crypto", subclass: "bitcoin", symbol: "BTC" }
+  "MICRO BITCOIN": { asset_class: "crypto", subclass: "bitcoin", symbol: "MBT" }
+  "ETHER": { asset_class: "crypto", subclass: "ethereum", symbol: "ETH" }

@@ -1,0 +1,29 @@
+id: ENGINE-001-contract
+version: 1.0.0
+engine: ENGINE-001
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: true
+
+outputs:
+  - topic: domain.engine.raw
+    schema: engine_raw_v1
+    description: Raw data from engine
+  - topic: domain.engine.cleaned
+    schema: engine_cleaned_v1
+    description: Cleaned data from engine
+  - topic: domain.engine.analytics
+    schema: engine_analytics_v1
+    description: Analytics from engine
+
+schemas:
+  engine_raw_v1:
+    fields:
+      - name: timestamp
+        type: datetime
+        required: true
+      - name: data
+        type: object
+        required: true

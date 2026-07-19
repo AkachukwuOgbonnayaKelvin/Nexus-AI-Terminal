@@ -1,0 +1,35 @@
+id: CENT-001
+name: Central Bank Engine
+version: 1.0.0
+owner: Platform Team
+purpose: Collect and analyze central bank policy decisions
+domain: institutional
+stage: development
+status: active
+
+architecture:
+  required:
+    - acquisition
+    - parser
+    - classification
+    - warehouse
+    - publication
+  optional:
+    - runtime
+    - gateway
+    - docs
+
+integration:
+  dar: false
+  ndip: true
+  warehouse: true
+
+dependencies:
+  - GLO-001
+  - GLO-002
+
+runtime:
+  schedule: "*/1 * * * *"
+  priority: 1
+  retries: 3
+  timeout: 60
