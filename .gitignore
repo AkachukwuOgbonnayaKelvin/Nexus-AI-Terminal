@@ -76,3 +76,19 @@ market_price_engine/data/*.pkl
 market_price_engine/data/*.json
 *.pkl
 *.pickle
+
+# MKT-001 Data Files (Large - 106MB)
+market_price_engine/data/*.pkl
+market_price_engine/data/*.pickle
+market_price_engine/data/*.json
+market_price_engine/data/*.db
+
+# MAC-001 Data Files
+macroeconomic_statistics_engine/data/*.pkl
+macroeconomic_statistics_engine/data/*.pickle
+macroeconomic_statistics_engine/data/*.json
+
+# Any other data
+*.pkl
+*.pickle
+data/
