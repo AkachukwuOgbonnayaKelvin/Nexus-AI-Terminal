@@ -2,10 +2,8 @@
 
 import csv
 import logging
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +63,9 @@ class CFTCOTParser:
         "concentration_8_net_short": 38,
     }
 
-    def parse_file(self, file_path: str, report_type: str = "disaggregated") -> List[Dict[str, Any]]:
+    def parse_file(
+        self, file_path: str, report_type: str = "disaggregated"
+    ) -> List[Dict[str, Any]]:
         """Parse a CFTC COT file."""
         records = []
         try:

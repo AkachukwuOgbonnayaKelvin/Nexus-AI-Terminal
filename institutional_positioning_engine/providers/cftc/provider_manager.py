@@ -3,7 +3,9 @@
 import logging
 from typing import Any, Dict, List, Optional
 
-from institutional_positioning_engine.providers.cftc.historical import HistoricalArchiveClient
+from institutional_positioning_engine.providers.cftc.historical import (
+    HistoricalArchiveClient,
+)
 from institutional_positioning_engine.providers.cftc.pre_api import PREAPIClient
 
 logger = logging.getLogger(__name__)
@@ -35,7 +37,9 @@ class CFTCProviderManager:
         try:
             data = self.historical.get_latest_report()
             if data:
-                logger.info("Successfully fetched latest report from historical archive")
+                logger.info(
+                    "Successfully fetched latest report from historical archive"
+                )
                 return data
         except Exception as e:
             logger.warning(f"Historical archive failed: {e}")

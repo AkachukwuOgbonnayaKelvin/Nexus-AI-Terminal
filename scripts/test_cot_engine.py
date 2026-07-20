@@ -24,7 +24,9 @@ async def main():
     pm = ProviderManager()
     cftc = CFTCConnector()
     cftc_adapter = CFTCAdapter()
-    pm.register_provider("cftc", cftc, cftc_adapter, capabilities=["institutional_positioning"])
+    pm.register_provider(
+        "cftc", cftc, cftc_adapter, capabilities=["institutional_positioning"]
+    )
 
     collector = COTCollector(pm)
     warehouse = COTWarehouse()
@@ -38,7 +40,9 @@ async def main():
         result = await warehouse.store(record)
         if result:
             stored += 1
-            print(f"  ✅ {record.market_code} - {record.market_name} - OI: {record.open_interest}")
+            print(
+                f"  ✅ {record.market_code} - {record.market_name} - OI: {record.open_interest}"
+            )
 
     print(f"\nStored {stored} records")
 

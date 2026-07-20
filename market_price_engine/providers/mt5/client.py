@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """MT5 Provider Client - Primary execution-market feed"""
 
-import sys
-from pathlib import Path
 from typing import Optional, Dict, Any, List
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # Try to import MetaTrader5
 try:
     import MetaTrader5 as mt5
+
     MT5_AVAILABLE = True
 except ImportError:
     MT5_AVAILABLE = False
@@ -42,9 +41,7 @@ class MT5Client:
             # Login if credentials provided
             if self.login and self.password:
                 authorized = mt5.login(
-                    login=self.login,
-                    password=self.password,
-                    server=self.server
+                    login=self.login, password=self.password, server=self.server
                 )
                 if not authorized:
                     print(f"MT5 login failed: {mt5.last_error()}")
@@ -92,13 +89,15 @@ class MT5Client:
                     "time": tick.time,
                     "time_msc": tick.time_msc,
                     "flags": tick.flags,
-                    "volume_real": tick.volume_real
+                    "volume_real": tick.volume_real,
                 }
         except Exception as e:
             print(f"Error getting tick for {symbol}: {e}")
         return None
 
-    def get_rates(self, symbol: str, timeframe: int, count: int) -> Optional[List[Dict[str, Any]]]:
+    def get_rates(
+        self, symbol: str, timeframe: int, count: int
+    ) -> Optional[List[Dict[str, Any]]]:
         """Get OHLCV rates"""
         if not self.connected or not MT5_AVAILABLE:
             return None
@@ -115,7 +114,7 @@ class MT5Client:
                         "close": r[4],
                         "tick_volume": r[5],
                         "spread": r[6],
-                        "real_volume": r[7]
+                        "real_volume": r[7],
                     }
                     for r in rates
                 ]
@@ -123,8 +122,9 @@ class MT5Client:
             print(f"Error getting rates for {symbol}: {e}")
         return None
 
-    def get_historical_rates(self, symbol: str, timeframe: int,
-                              start_date: datetime, end_date: datetime) -> Optional[List[Dict[str, Any]]]:
+    def get_historical_rates(
+        self, symbol: str, timeframe: int, start_date: datetime, end_date: datetime
+    ) -> Optional[List[Dict[str, Any]]]:
         """Get historical rates for date range"""
         if not self.connected or not MT5_AVAILABLE:
             return None
@@ -141,7 +141,7 @@ class MT5Client:
                         "close": r[4],
                         "tick_volume": r[5],
                         "spread": r[6],
-                        "real_volume": r[7]
+                        "real_volume": r[7],
                     }
                     for r in rates
                 ]
@@ -160,5 +160,5 @@ class MT5Client:
             "available": MT5_AVAILABLE,
             "symbol_count": len(self.get_symbols()) if self.connected else 0,
             "terminal_path": self.terminal_path,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat(),
         }

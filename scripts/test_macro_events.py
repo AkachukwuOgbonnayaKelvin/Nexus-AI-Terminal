@@ -20,7 +20,10 @@ from macroeconomic_events_engine.providers.tier2_secondary.forexfactory import (
     ForexFactoryAdapter,
     ForexFactoryConnector,
 )
-from macroeconomic_events_engine.providers.tier2_secondary.investing import InvestingAdapter, InvestingConnector
+from macroeconomic_events_engine.providers.tier2_secondary.investing import (
+    InvestingAdapter,
+    InvestingConnector,
+)
 from macroeconomic_events_engine.warehouse import ConsensusWarehouse, RawWarehouse
 from ndip.utils.db_connector import close_pool
 from providers.provider_manager import ProviderManager
@@ -36,15 +39,21 @@ async def main():
     # Register providers
     te = TradingEconomicsConnector()
     te_adapter = TradingEconomicsAdapter()
-    pm.register_provider("trading_economics", te, te_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "trading_economics", te, te_adapter, capabilities=["macroeconomic_events"]
+    )
 
     ff = ForexFactoryConnector()
     ff_adapter = ForexFactoryAdapter()
-    pm.register_provider("forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"]
+    )
 
     inv = InvestingConnector()
     inv_adapter = InvestingAdapter()
-    pm.register_provider("investing", inv, inv_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "investing", inv, inv_adapter, capabilities=["macroeconomic_events"]
+    )
 
     collector = MacroCollector(pm)
     raw_warehouse = RawWarehouse()

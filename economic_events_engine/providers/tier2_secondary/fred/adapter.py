@@ -263,7 +263,9 @@ class FredAdapter:
             },
         )
         # Determine release time: FRED provides date as string
-        release_time = datetime.fromisoformat(raw["date"]) if raw.get("date") else datetime.now()
+        release_time = (
+            datetime.fromisoformat(raw["date"]) if raw.get("date") else datetime.now()
+        )
         return UniversalEconomicEvent(
             event_id=f"fred_{series_id}_{raw['date']}",
             provider=provider_name,
@@ -288,8 +290,12 @@ class FredAdapter:
             status="Released",
             source_url=f"https://fred.stlouisfed.org/series/{series_id}",
             tags=[meta["category"]],
-            affected_assets=["USD", "Treasuries", "Stocks"] if meta["importance"] == "High" else [],
-            affected_markets=["FX", "Rates", "Equities"] if meta["importance"] == "High" else [],
+            affected_assets=["USD", "Treasuries", "Stocks"]
+            if meta["importance"] == "High"
+            else [],
+            affected_markets=["FX", "Rates", "Equities"]
+            if meta["importance"] == "High"
+            else [],
             confidence=0.95,
             quality_score=0.95,
             metadata={"series_id": series_id},

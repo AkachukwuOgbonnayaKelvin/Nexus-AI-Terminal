@@ -29,10 +29,14 @@ class ParserFactory:
             return self._default_parser
         return parser
 
-    def parse(self, report_type: str, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def parse(
+        self, report_type: str, data: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
         """Parse data using the correct parser."""
         parser = self.get_parser(report_type)
-        logger.info(f"Parsing {len(data)} records with {parser.get_report_type()} parser")
+        logger.info(
+            f"Parsing {len(data)} records with {parser.get_report_type()} parser"
+        )
         return parser.parse(data)
 
     def get_supported_types(self) -> List[str]:

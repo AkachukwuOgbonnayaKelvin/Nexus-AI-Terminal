@@ -5,7 +5,9 @@ from datetime import datetime
 from typing import Any, Dict
 
 from market_positioning_warehouse.parser import ParserFactory
-from market_positioning_warehouse.providers.cftc.historical_loader import HistoricalLoader
+from market_positioning_warehouse.providers.cftc.historical_loader import (
+    HistoricalLoader,
+)
 from market_positioning_warehouse.warehouse import Repository
 
 logger = logging.getLogger(__name__)
@@ -23,7 +25,9 @@ class HistoricalImport:
 
     async def run(self) -> Dict[str, Any]:
         """Run the historical import."""
-        logger.info(f"Starting historical import from {self.start_year} to {self.end_year}")
+        logger.info(
+            f"Starting historical import from {self.start_year} to {self.end_year}"
+        )
 
         total_records = 0
         years_processed = 0
@@ -47,5 +51,7 @@ class HistoricalImport:
             except Exception as e:
                 logger.error(f"Failed to process {year}: {e}")
 
-        logger.info(f"Historical import complete: {total_records} records from {years_processed} years")
+        logger.info(
+            f"Historical import complete: {total_records} records from {years_processed} years"
+        )
         return {"years_processed": years_processed, "records_inserted": total_records}

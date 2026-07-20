@@ -41,7 +41,9 @@ class HistoricalBackfill:
                     total_records += 1
                 processed += 1
                 if processed % 10 == 0:
-                    logger.info(f"Processed {processed} reports, {total_records} records")
+                    logger.info(
+                        f"Processed {processed} reports, {total_records} records"
+                    )
 
         markets = self.parser.get_discovered_markets()
         for code, info in markets.items():

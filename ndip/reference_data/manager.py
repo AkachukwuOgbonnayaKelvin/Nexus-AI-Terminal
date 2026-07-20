@@ -38,7 +38,9 @@ class ReferenceDataManager:
             "asset_type": AssetTypeLoader(self.registry_manager),
         }
 
-    async def resolve_asset(self, metadata: Dict[str, Any], source: str) -> Dict[str, Any]:
+    async def resolve_asset(
+        self, metadata: Dict[str, Any], source: str
+    ) -> Dict[str, Any]:
         refs = self._extract_references(metadata)
         resolved = {}
         for ref_type in self.dependency_manager.get_order():

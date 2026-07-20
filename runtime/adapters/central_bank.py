@@ -39,7 +39,10 @@ class CentralBankEngineAdapter(BaseRawEngine):
         self._initialized = False
 
     def health(self):
-        return {"status": "healthy" if self._initialized else "not_initialized", "engine": "central_bank"}
+        return {
+            "status": "healthy" if self._initialized else "not_initialized",
+            "engine": "central_bank",
+        }
 
     def metrics(self):
         return {"engine": "central_bank", "last_run": "N/A", "collected": 0}

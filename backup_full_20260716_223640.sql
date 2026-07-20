@@ -26,7 +26,7 @@ CREATE EXTENSION IF NOT EXISTS timescaledb WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION timescaledb; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION timescaledb; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION timescaledb IS 'Enables scalable inserts and complex queries for time-series data (Community Edition)';
@@ -49,7 +49,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
@@ -3621,4 +3621,3 @@ ALTER TABLE ONLY public.cot_statistics
 --
 
 \unrestrict 9CkYx3xpRjDbgXHYDjo5RhKYdH5bTYqcdZBUnADae5l9N0Ld0YvkVfoh0KKgRWd
-

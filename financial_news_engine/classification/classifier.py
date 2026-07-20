@@ -4,7 +4,16 @@ from typing import Dict
 class NewsClassifier:
     def __init__(self):
         self.category_keywords = {
-            "Central Bank": ["fed", "federal reserve", "ecb", "boe", "boj", "rates", "monetary", "policy"],
+            "Central Bank": [
+                "fed",
+                "federal reserve",
+                "ecb",
+                "boe",
+                "boj",
+                "rates",
+                "monetary",
+                "policy",
+            ],
             "Inflation": ["cpi", "inflation", "price", "ppi", "pce"],
             "Employment": ["nfp", "employment", "unemployment", "jobs", "claims"],
             "GDP": ["gdp", "growth", "economy", "recession"],

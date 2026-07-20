@@ -78,6 +78,10 @@ class HistoricalArchiveClient:
         try:
             url = f"{self.base_url}/cot_{datetime.now().year}.zip"
             response = requests.head(url, timeout=5)
-            return response.status_code in [200, 302, 404]  # Any response means it's reachable
+            return response.status_code in [
+                200,
+                302,
+                404,
+            ]  # Any response means it's reachable
         except Exception:
             return False

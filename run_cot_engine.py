@@ -12,7 +12,9 @@ import logging
 
 from market_positioning_warehouse.runtime.lifecycle import LifecycleManager
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 
 async def main():

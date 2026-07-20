@@ -1,7 +1,5 @@
 """Weekly Loader – Loads current week's CFTC data from official sources."""
 
-import csv
-import io
 import logging
 from datetime import datetime
 from typing import Any, Dict, List, Optional

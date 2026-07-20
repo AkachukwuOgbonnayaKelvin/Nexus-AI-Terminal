@@ -4,7 +4,7 @@ import logging
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -19,7 +19,11 @@ class CFTCWebCrawler:
         self.base_url = "https://www.cftc.gov"
         self.historical_url = "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalData/index.htm"
         self.session = requests.Session()
-        self.session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"})
+        self.session.headers.update(
+            {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            }
+        )
 
     def discover_reports(self) -> List[Dict[str, Any]]:
         """Discover all COT reports from the CFTC historical data page."""
@@ -63,7 +67,9 @@ class CFTCWebCrawler:
         is_file = any(ext in href_lower for ext in file_extensions)
 
         # Check if it contains COT-related keywords
-        is_cot = any(keyword in href_lower or keyword in text_lower for keyword in cot_keywords)
+        is_cot = any(
+            keyword in href_lower or keyword in text_lower for keyword in cot_keywords
+        )
 
         return is_file and is_cot
 

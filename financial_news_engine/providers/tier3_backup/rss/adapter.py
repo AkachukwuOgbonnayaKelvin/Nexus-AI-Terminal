@@ -10,7 +10,9 @@ class RSSAdapter:
         published_at = raw.get("published")
         if published_at:
             try:
-                published_at = datetime.fromtimestamp(email.utils.mktime_tz(email.utils.parsedate_tz(published_at)))
+                published_at = datetime.fromtimestamp(
+                    email.utils.mktime_tz(email.utils.parsedate_tz(published_at))
+                )
             except Exception:
                 published_at = datetime.now()
         else:

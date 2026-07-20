@@ -1,0 +1,101 @@
+# MAC-001 Source Priority Configuration
+
+source_hierarchy:
+  tier_1_official:
+    priority: 1
+    description: "Official national statistics sources - Source of record"
+    sources:
+      US:
+        bea: "Bureau of Economic Analysis"
+        bls: "Bureau of Labor Statistics"
+        federal_reserve: "Federal Reserve"
+        treasury: "US Treasury"
+      EU:
+        ecb: "European Central Bank"
+        eurostat: "Eurostat"
+      UK:
+        ons: "Office for National Statistics"
+        boe: "Bank of England"
+      JP:
+        boj: "Bank of Japan"
+        statistics_bureau: "Statistics Bureau of Japan"
+      CA:
+        statcan: "Statistics Canada"
+        boc: "Bank of Canada"
+      AU:
+        abs: "Australian Bureau of Statistics"
+        rba: "Reserve Bank of Australia"
+      NG:
+        nbs: "National Bureau of Statistics"
+        cbn: "Central Bank of Nigeria"
+
+  tier_2_international:
+    priority: 2
+    description: "Official international sources - Cross-country coverage"
+    sources:
+      imf: "International Monetary Fund"
+      world_bank: "World Bank"
+      oecd: "OECD"
+
+  tier_3_aggregator:
+    priority: 3
+    description: "Commercial aggregator - Fallback and coverage expansion"
+    sources:
+      trading_economics: "Trading Economics"
+
+indicator_source_mapping:
+  gdp:
+    US: bea
+    EU: eurostat
+    UK: ons
+    JP: statistics_bureau
+    CA: statcan
+    AU: abs
+    NG: nbs
+    international: imf
+
+  cpi:
+    US: bls
+    EU: eurostat
+    UK: ons
+    JP: statistics_bureau
+    CA: statcan
+    AU: abs
+    NG: nbs
+
+  unemployment:
+    US: bls
+    EU: eurostat
+    UK: ons
+    JP: statistics_bureau
+    CA: statcan
+    AU: abs
+    NG: nbs
+
+  policy_rate:
+    US: federal_reserve
+    EU: ecb
+    UK: boe
+    JP: boj
+    CA: boc
+    AU: rba
+    NG: cbn
+
+fallback_chain:
+  gdp:
+    - bea
+    - imf
+    - world_bank
+    - trading_economics
+  cpi:
+    - bls
+    - imf
+    - trading_economics
+  unemployment:
+    - bls
+    - imf
+    - trading_economics
+  policy_rate:
+    - federal_reserve
+    - ecb
+    - trading_economics

@@ -5,7 +5,9 @@ from typing import Any, Dict, List, Optional
 
 import requests
 
-from institutional_positioning_engine.discovery.dataset_discovery import DatasetDiscovery
+from institutional_positioning_engine.discovery.dataset_discovery import (
+    DatasetDiscovery,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +21,9 @@ class PREAPIClient:
         self.datasets = self.discovery.discover_all()
         logger.info(f"Discovered {len(self.datasets)} datasets")
 
-    def get_latest_report(self, report_type: str = "disaggregated") -> Optional[List[Dict[str, Any]]]:
+    def get_latest_report(
+        self, report_type: str = "disaggregated"
+    ) -> Optional[List[Dict[str, Any]]]:
         """Get the latest report for a specific type."""
         dataset_id = self.datasets.get(report_type)
         if not dataset_id:

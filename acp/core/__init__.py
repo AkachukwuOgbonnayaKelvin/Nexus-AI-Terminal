@@ -3,4 +3,4 @@
 
 from .architecture_os import ArchitectureOS
 
-__all__ = ['ArchitectureOS']
+__all__ = ["ArchitectureOS"]

@@ -88,7 +88,9 @@ class CentralBankWarehouse:
         row = await fetchrow(query, bank)
         return dict(row) if row else None
 
-    async def get_latest_statement(self, bank: str = "Federal Reserve") -> Optional[dict]:
+    async def get_latest_statement(
+        self, bank: str = "Federal Reserve"
+    ) -> Optional[dict]:
         query = f"""
             SELECT * FROM {self.table}
             WHERE bank = $1 AND event_type IN ('Statement', 'Minutes')

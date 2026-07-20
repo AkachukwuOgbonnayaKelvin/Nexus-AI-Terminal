@@ -19,7 +19,10 @@ from ndip.utils.db_connector import close_pool
 from providers.provider_manager import ProviderManager
 from providers.tier1_primary.mt5 import MT5Adapter, MT5Connector
 from providers.tier1_primary.polygon import PolygonAdapter, PolygonConnector
-from providers.tier2_secondary.alpha_vantage import AlphaVantageAdapter, AlphaVantageConnector
+from providers.tier2_secondary.alpha_vantage import (
+    AlphaVantageAdapter,
+    AlphaVantageConnector,
+)
 from providers.tier2_secondary.yahoo import YahooAdapter, YahooConnector
 from providers.tier3_specialized.binance import BinanceAdapter, BinanceConnector
 

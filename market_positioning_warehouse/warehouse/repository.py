@@ -1,7 +1,7 @@
 """Repository – Data access layer for the warehouse."""
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import List
 
 from market_positioning_warehouse.dtos import UniversalPosition
 
@@ -20,7 +20,9 @@ class Repository:
         try:
             self._storage.append(position)
             self._counter += 1
-            logger.debug(f"Stored position: {position.market_name} - {position.report_date}")
+            logger.debug(
+                f"Stored position: {position.market_name} - {position.report_date}"
+            )
             return True
         except Exception as e:
             logger.error(f"Failed to store position: {e}")

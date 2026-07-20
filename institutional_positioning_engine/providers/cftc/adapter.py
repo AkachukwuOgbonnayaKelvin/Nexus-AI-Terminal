@@ -5,7 +5,9 @@ from institutional_positioning_engine.dtos import UniversalCOTRecord
 
 
 class CFTCAdapter:
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> List[UniversalCOTRecord]:
+    def adapt(
+        self, raw: Dict[str, Any], provider_name: str
+    ) -> List[UniversalCOTRecord]:
         """Convert raw CFTC data to UniversalCOTRecord list."""
         if not raw:
             return []

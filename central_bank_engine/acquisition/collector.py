@@ -39,7 +39,9 @@ class CentralBankCollector:
                 self.pm.failover.record_failure(name)
         return events
 
-    async def get_latest_rate(self, bank: str = "Federal Reserve") -> Optional[UniversalCentralBankEvent]:
+    async def get_latest_rate(
+        self, bank: str = "Federal Reserve"
+    ) -> Optional[UniversalCentralBankEvent]:
         provider_names = self.pm.get_providers(capability="central_bank")
         for name in provider_names:
             provider = self.pm.get_provider(name)

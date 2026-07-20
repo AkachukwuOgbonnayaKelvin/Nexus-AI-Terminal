@@ -1,0 +1,101 @@
+# MAC-001 Country Configuration
+# Defines all countries and their data sources
+
+countries:
+  US:
+    name: "United States"
+    currency: "USD"
+    primary_sources:
+      - fred
+      - bea
+      - bls
+      - federal_reserve
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  EU:
+    name: "Eurozone"
+    currency: "EUR"
+    primary_sources:
+      - ecb
+      - eurostat
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  UK:
+    name: "United Kingdom"
+    currency: "GBP"
+    primary_sources:
+      - ons
+      - boe
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  JP:
+    name: "Japan"
+    currency: "JPY"
+    primary_sources:
+      - statistics_bureau
+      - boj
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  CH:
+    name: "Switzerland"
+    currency: "CHF"
+    primary_sources:
+      - swiss_stats
+      - snb
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  CA:
+    name: "Canada"
+    currency: "CAD"
+    primary_sources:
+      - statcan
+      - boc
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  AU:
+    name: "Australia"
+    currency: "AUD"
+    primary_sources:
+      - abs
+      - rba
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates
+  
+  NZ:
+    name: "New Zealand"
+    currency: "NZD"
+    primary_sources:
+      - stats_nz
+      - rbnz
+    data_domains:
+      - gdp
+      - cpi
+      - unemployment
+      - rates

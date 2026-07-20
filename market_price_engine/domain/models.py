@@ -49,6 +49,7 @@ class DataStatus(str, Enum):
 @dataclass
 class Tick:
     """Tick data model"""
+
     timestamp: datetime
     symbol: str
     bid: float
@@ -67,6 +68,7 @@ class Tick:
 @dataclass
 class OHLCV:
     """OHLCV bar data model"""
+
     timestamp: datetime
     symbol: str
     timeframe: str
@@ -83,16 +85,19 @@ class OHLCV:
 
     def validate(self) -> bool:
         """Validate OHLCV data integrity"""
-        return (self.high >= self.low and
-                self.high >= self.open and
-                self.high >= self.close and
-                self.low <= self.open and
-                self.low <= self.close)
+        return (
+            self.high >= self.low
+            and self.high >= self.open
+            and self.high >= self.close
+            and self.low <= self.open
+            and self.low <= self.close
+        )
 
 
 @dataclass
 class MarketSnapshot:
     """Current market snapshot"""
+
     timestamp: datetime
     symbol: str
     bid: float
@@ -107,6 +112,7 @@ class MarketSnapshot:
 @dataclass
 class Instrument:
     """Instrument metadata"""
+
     symbol: str
     asset_class: AssetClass
     description: str
@@ -125,6 +131,7 @@ class Instrument:
 @dataclass
 class QualityMetrics:
     """Data quality metrics"""
+
     symbol: str
     timestamp: datetime
     freshness: float

@@ -47,9 +47,7 @@ class FederalReserveConnector(BaseProvider):
 
     def get_policy_rate(self) -> Optional[Dict[str, Any]]:
         if self.api_key:
-            url = (
-                f"{self.fred_url}/series/observations?series_id=FEDFUNDS&api_key={self.api_key}&limit=1&sort_order=desc"
-            )
+            url = f"{self.fred_url}/series/observations?series_id=FEDFUNDS&api_key={self.api_key}&limit=1&sort_order=desc"
             try:
                 resp = requests.get(url, timeout=10)
                 data = resp.json()
@@ -106,8 +104,12 @@ class FederalReserveConnector(BaseProvider):
                         "release_time": release_time.isoformat(),
                         "source_url": entry.link,
                         "governor": "Jerome Powell",
-                        "importance": "High" if event_type in ["RateDecision", "Minutes"] else "Medium",
-                        "communication_type": "Statement" if event_type == "Statement" else "Speech",
+                        "importance": "High"
+                        if event_type in ["RateDecision", "Minutes"]
+                        else "Medium",
+                        "communication_type": "Statement"
+                        if event_type == "Statement"
+                        else "Speech",
                     }
                 )
         except Exception:

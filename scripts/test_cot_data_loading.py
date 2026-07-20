@@ -8,7 +8,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from market_positioning_warehouse.parser import ParserFactory
-from market_positioning_warehouse.providers.cftc.historical_loader import HistoricalLoader
+from market_positioning_warehouse.providers.cftc.historical_loader import (
+    HistoricalLoader,
+)
 from market_positioning_warehouse.providers.cftc.weekly_loader import WeeklyLoader
 from market_positioning_warehouse.warehouse import Repository
 

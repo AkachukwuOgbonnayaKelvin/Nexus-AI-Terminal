@@ -20,7 +20,9 @@ class HistoricalCollector(BaseCollector):
     async def collect_all(self) -> List[Dict[str, Any]]:
         """Collect all historical reports."""
         all_reports = []
-        logger.info(f"Starting historical collection from {self.start_year} to {self.end_year}")
+        logger.info(
+            f"Starting historical collection from {self.start_year} to {self.end_year}"
+        )
         for year in range(self.start_year, self.end_year):
             try:
                 report = self._generate_stub_report(year)

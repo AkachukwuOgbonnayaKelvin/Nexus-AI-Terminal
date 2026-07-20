@@ -2,7 +2,9 @@
 
 import logging
 
-from institutional_positioning_engine.runtime.automated_scheduler import AutomatedCOTScheduler
+from institutional_positioning_engine.runtime.automated_scheduler import (
+    AutomatedCOTScheduler,
+)
 from runtime.base_engine import BaseRawEngine
 
 logger = logging.getLogger(__name__)

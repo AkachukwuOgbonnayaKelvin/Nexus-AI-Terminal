@@ -6,18 +6,21 @@ import sys
 from pathlib import Path
 import yaml
 import logging
-from typing import Dict, List, Any, Optional, Set
-from dataclasses import dataclass, field
-from datetime import datetime
+from typing import Dict, List
+from dataclasses import dataclass
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
+
 
 @dataclass
 class PlatformEngine:
     """Engine definition from platform registry."""
+
     id: str
     name: str
     path: str
@@ -26,14 +29,17 @@ class PlatformEngine:
     type: str
     owner: str
 
+
 @dataclass
 class ArchitectureDebt:
     """Architecture debt metrics."""
+
     critical: int = 0
     high: int = 0
     medium: int = 0
     low: int = 0
     estimated_fix_time: str = "0 hours"
+
 
 class ACPPlatform:
     """Platform Architecture Compiler."""
@@ -71,7 +77,7 @@ class ACPPlatform:
             return
 
         try:
-            with open(registry_file, 'r') as f:
+            with open(registry_file, "r") as f:
                 data = yaml.safe_load(f)
 
             for eng in data.get("engines", []):
@@ -94,36 +100,52 @@ class ACPPlatform:
             engine_path = self.root / spec.path
 
             if not engine_path.exists():
-                self.errors.append({
-                    "engine": engine_id,
-                    "path": spec.path,
-                    "error": "Engine path does not exist",
-                    "severity": "critical" if spec.maturity in ["Production", "Certified"] else "medium",
-                    "fix": f"Create directory: {spec.path}",
-                })
+                self.errors.append(
+                    {
+                        "engine": engine_id,
+                        "path": spec.path,
+                        "error": "Engine path does not exist",
+                        "severity": "critical"
+                        if spec.maturity in ["Production", "Certified"]
+                        else "medium",
+                        "fix": f"Create directory: {spec.path}",
+                    }
+                )
                 continue
 
             # Check for engine.yaml
             engine_yaml = engine_path / "engine.yaml"
             if not engine_yaml.exists():
-                severity = "critical" if spec.maturity in ["Production", "Certified"] else "high"
-                self.errors.append({
-                    "engine": engine_id,
-                    "error": "Missing engine.yaml",
-                    "severity": severity,
-                    "fix": f"Create {spec.path}/engine.yaml",
-                })
+                severity = (
+                    "critical"
+                    if spec.maturity in ["Production", "Certified"]
+                    else "high"
+                )
+                self.errors.append(
+                    {
+                        "engine": engine_id,
+                        "error": "Missing engine.yaml",
+                        "severity": severity,
+                        "fix": f"Create {spec.path}/engine.yaml",
+                    }
+                )
 
             # Check for contract.yaml
             contract_yaml = engine_path / "contract.yaml"
             if not contract_yaml.exists():
-                severity = "critical" if spec.maturity in ["Production", "Certified"] else "high"
-                self.errors.append({
-                    "engine": engine_id,
-                    "error": "Missing contract.yaml",
-                    "severity": severity,
-                    "fix": f"Create {spec.path}/contract.yaml",
-                })
+                severity = (
+                    "critical"
+                    if spec.maturity in ["Production", "Certified"]
+                    else "high"
+                )
+                self.errors.append(
+                    {
+                        "engine": engine_id,
+                        "error": "Missing contract.yaml",
+                        "severity": severity,
+                        "fix": f"Create {spec.path}/contract.yaml",
+                    }
+                )
 
     def _validate_engine_states(self) -> None:
         """Validate based on engine maturity."""
@@ -137,34 +159,46 @@ class ACPPlatform:
                 required = ["warehouse", "publication", "runtime", "gateway"]
                 missing = [r for r in required if not (engine_path / r).exists()]
                 for m in missing:
-                    self.errors.append({
-                        "engine": engine_id,
-                        "error": f"Production engine missing required component: {m}",
-                        "severity": "critical",
-                        "fix": f"Create {spec.path}/{m}/",
-                    })
+                    self.errors.append(
+                        {
+                            "engine": engine_id,
+                            "error": f"Production engine missing required component: {m}",
+                            "severity": "critical",
+                            "fix": f"Create {spec.path}/{m}/",
+                        }
+                    )
 
             elif spec.maturity in ["Integrated"]:
                 required = ["warehouse", "publication", "runtime"]
                 missing = [r for r in required if not (engine_path / r).exists()]
                 for m in missing:
-                    self.warnings.append({
-                        "engine": engine_id,
-                        "warning": f"Integrated engine missing recommended component: {m}",
-                        "severity": "medium",
-                        "fix": f"Consider adding {spec.path}/{m}/",
-                    })
+                    self.warnings.append(
+                        {
+                            "engine": engine_id,
+                            "warning": f"Integrated engine missing recommended component: {m}",
+                            "severity": "medium",
+                            "fix": f"Consider adding {spec.path}/{m}/",
+                        }
+                    )
 
             elif spec.maturity in ["Development"]:
-                optional = ["warehouse", "publication", "runtime", "gateway", "observability"]
+                optional = [
+                    "warehouse",
+                    "publication",
+                    "runtime",
+                    "gateway",
+                    "observability",
+                ]
                 missing = [o for o in optional if not (engine_path / o).exists()]
                 for m in missing:
-                    self.suggestions.append({
-                        "engine": engine_id,
-                        "suggestion": f"Add optional component for development: {m}",
-                        "severity": "low",
-                        "fix": f"Create {spec.path}/{m}/ when needed",
-                    })
+                    self.suggestions.append(
+                        {
+                            "engine": engine_id,
+                            "suggestion": f"Add optional component for development: {m}",
+                            "severity": "low",
+                            "fix": f"Create {spec.path}/{m}/ when needed",
+                        }
+                    )
 
     def _validate_contracts(self) -> None:
         """Validate NDIP contracts."""
@@ -175,32 +209,38 @@ class ACPPlatform:
                 continue
 
             try:
-                with open(contract_file, 'r') as f:
+                with open(contract_file, "r") as f:
                     data = yaml.safe_load(f)
 
                 # Check for publications
                 if not data.get("publishes"):
                     if spec.type == "acquisition":
-                        self.warnings.append({
-                            "engine": engine_id,
-                            "warning": "Acquisition engine has no publications",
-                            "severity": "medium",
-                        })
+                        self.warnings.append(
+                            {
+                                "engine": engine_id,
+                                "warning": "Acquisition engine has no publications",
+                                "severity": "medium",
+                            }
+                        )
 
                 # Check for workflow
                 if not data.get("workflow"):
-                    self.warnings.append({
-                        "engine": engine_id,
-                        "warning": "No workflow defined in contract.yaml",
-                        "severity": "low",
-                    })
+                    self.warnings.append(
+                        {
+                            "engine": engine_id,
+                            "warning": "No workflow defined in contract.yaml",
+                            "severity": "low",
+                        }
+                    )
 
             except Exception as e:
-                self.errors.append({
-                    "engine": engine_id,
-                    "error": f"Failed to parse contract.yaml: {e}",
-                    "severity": "medium",
-                })
+                self.errors.append(
+                    {
+                        "engine": engine_id,
+                        "error": f"Failed to parse contract.yaml: {e}",
+                        "severity": "medium",
+                    }
+                )
 
     def _validate_dependencies(self) -> None:
         """Validate dependencies."""
@@ -221,7 +261,12 @@ class ACPPlatform:
                 self.debt.low += 1
 
         # Estimate fix time
-        total = self.debt.critical * 30 + self.debt.high * 15 + self.debt.medium * 5 + self.debt.low * 1
+        total = (
+            self.debt.critical * 30
+            + self.debt.high * 15
+            + self.debt.medium * 5
+            + self.debt.low * 1
+        )
         if total < 60:
             self.debt.estimated_fix_time = f"{total} minutes"
         elif total < 1440:
@@ -236,11 +281,15 @@ class ACPPlatform:
         print("=" * 70)
 
         # Platform Overview
-        print(f"\nPlatform Overview:")
+        print("\nPlatform Overview:")
         print(f"  Registered Engines: {len(self.registry)}")
         enabled = sum(1 for e in self.registry.values() if e.enabled)
         print(f"  Enabled Engines: {enabled}")
-        production = sum(1 for e in self.registry.values() if e.maturity in ["Production", "Certified"])
+        production = sum(
+            1
+            for e in self.registry.values()
+            if e.maturity in ["Production", "Certified"]
+        )
         print(f"  Production Engines: {production}")
 
         # Engine Status
@@ -248,7 +297,13 @@ class ACPPlatform:
         print("Engine Status")
         print("-" * 70)
         for engine_id, spec in self.registry.items():
-            status = "OK" if spec.maturity in ["Production", "Certified"] else "IN PROGRESS" if spec.maturity in ["Integrated"] else "DEV"
+            status = (
+                "OK"
+                if spec.maturity in ["Production", "Certified"]
+                else "IN PROGRESS"
+                if spec.maturity in ["Integrated"]
+                else "DEV"
+            )
             enabled = "Enabled" if spec.enabled else "Disabled"
             print(f"  {status} {engine_id}: {spec.name} ({spec.maturity}) [{enabled}]")
 
@@ -269,7 +324,7 @@ class ACPPlatform:
             print("-" * 70)
             for err in self.errors[:10]:
                 print(f"  * {err.get('engine', 'unknown')}: {err.get('error', '')}")
-                if err.get('fix'):
+                if err.get("fix"):
                     print(f"    Fix: {err['fix']}")
             if len(self.errors) > 10:
                 print(f"  ... and {len(self.errors) - 10} more")
@@ -290,7 +345,9 @@ class ACPPlatform:
             print(f"Suggestions ({len(self.suggestions)})")
             print("-" * 70)
             for sug in self.suggestions[:5]:
-                print(f"  * {sug.get('engine', 'unknown')}: {sug.get('suggestion', '')}")
+                print(
+                    f"  * {sug.get('engine', 'unknown')}: {sug.get('suggestion', '')}"
+                )
             if len(self.suggestions) > 5:
                 print(f"  ... and {len(self.suggestions) - 5} more")
 
@@ -323,11 +380,13 @@ class ACPPlatform:
                 print("   Platform is fully certified")
         print("=" * 70)
 
+
 def main():
     """Run ACP v3.0."""
     compiler = ACPPlatform(".")
     success = compiler.compile()
     sys.exit(0 if success else 1)
+
 
 if __name__ == "__main__":
     main()

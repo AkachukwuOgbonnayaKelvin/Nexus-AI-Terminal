@@ -5,8 +5,14 @@ from central_bank_engine.dtos import UniversalCentralBankEvent
 
 
 class ECBAdapter:
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> UniversalCentralBankEvent:
-        release_time = raw.get("release_time") or raw.get("effective_date") or datetime.now().isoformat()
+    def adapt(
+        self, raw: Dict[str, Any], provider_name: str
+    ) -> UniversalCentralBankEvent:
+        release_time = (
+            raw.get("release_time")
+            or raw.get("effective_date")
+            or datetime.now().isoformat()
+        )
         if isinstance(release_time, str):
             release_time = datetime.fromisoformat(release_time.replace("Z", "+00:00"))
 

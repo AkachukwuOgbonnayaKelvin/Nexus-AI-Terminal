@@ -11,8 +11,12 @@ from tools.architecture.validators.runtime_validator import RuntimeValidator
 
 # Structural validators
 from tools.architecture.validators.structural.blueprint import BlueprintValidator
-from tools.architecture.validators.structural.import_boundary import ImportBoundaryValidator
-from tools.architecture.validators.structural.dependency_graph import DependencyGraphValidator
+from tools.architecture.validators.structural.import_boundary import (
+    ImportBoundaryValidator,
+)
+from tools.architecture.validators.structural.dependency_graph import (
+    DependencyGraphValidator,
+)
 
 # Other validators
 from tools.architecture.validators.init_validator import InitValidator
@@ -24,7 +28,9 @@ from tools.architecture.validators.warehouse_validator import WarehouseValidator
 from tools.architecture.validators.ndip_validator import NDIPValidator
 from tools.architecture.validators.provider_validator import ProviderValidator
 from tools.architecture.validators.historical_validator import HistoricalValidator
-from tools.architecture.validators.engine_contract_validator import EngineContractValidator
+from tools.architecture.validators.engine_contract_validator import (
+    EngineContractValidator,
+)
 from tools.architecture.validators.schema_validator import SchemaValidator
 from tools.architecture.validators.health_validator import HealthValidator
 
@@ -34,12 +40,10 @@ VALIDATOR_CLASSES: List[Type[BaseValidator]] = [
     EngineStructureValidator,
     ImportValidator,
     RuntimeValidator,
-    
     # Structural
     BlueprintValidator,
     ImportBoundaryValidator,
     DependencyGraphValidator,
-    
     # Others
     InitValidator,
     NamingValidator,
@@ -54,6 +58,7 @@ VALIDATOR_CLASSES: List[Type[BaseValidator]] = [
     SchemaValidator,
     HealthValidator,
 ]
+
 
 def get_validators(root_path: Path) -> List[BaseValidator]:
     """Instantiate all validators."""

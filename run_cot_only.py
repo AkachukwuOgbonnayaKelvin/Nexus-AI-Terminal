@@ -10,9 +10,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 import asyncio
 import logging
 
-from institutional_positioning_engine.runtime.automated_scheduler import AutomatedCOTScheduler
+from institutional_positioning_engine.runtime.automated_scheduler import (
+    AutomatedCOTScheduler,
+)
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 
 async def run_cot():

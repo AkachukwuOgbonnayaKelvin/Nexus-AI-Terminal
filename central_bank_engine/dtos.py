@@ -27,7 +27,9 @@ class UniversalCentralBankEvent(BaseModel):
     importance: str  # Critical, High, Medium, Low
     policy_bias: Optional[str] = None  # Hawkish, Neutral, Dovish, Unknown
     hawkish_dovish_score: Optional[float] = None
-    communication_type: (str)  # Speech, Statement, Minutes, PressConference, Interview, Testimony
+    communication_type: (
+        str  # Speech, Statement, Minutes, PressConference, Interview, Testimony
+    )
     source_url: Optional[str] = None
     attachments: List[str] = []
     document_hash: Optional[str] = None

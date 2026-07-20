@@ -1,7 +1,7 @@
 """NDIP Transformer – Creates asset-specific position collections."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Dict
 
 from market_positioning_warehouse.classification import AssetClassifier
 from market_positioning_warehouse.publication import NDIPPublisher

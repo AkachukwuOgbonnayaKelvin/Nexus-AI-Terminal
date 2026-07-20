@@ -1,7 +1,7 @@
 """Asset Classifier – Maps market names to asset classes."""
 
 import logging
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import yaml
 from pathlib import Path

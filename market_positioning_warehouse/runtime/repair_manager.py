@@ -3,7 +3,9 @@
 import logging
 from typing import Any, Dict
 
-from market_positioning_warehouse.providers.cftc.historical_loader import HistoricalLoader
+from market_positioning_warehouse.providers.cftc.historical_loader import (
+    HistoricalLoader,
+)
 from market_positioning_warehouse.warehouse import Repository
 from market_positioning_warehouse.warehouse.state import WarehouseState
 
@@ -38,4 +40,7 @@ class RepairManager:
             except Exception as e:
                 logger.error(f"Failed to repair {report_date}: {e}")
 
-        return {"status": "partial" if repaired < len(missing) else "complete", "repaired": repaired}
+        return {
+            "status": "partial" if repaired < len(missing) else "complete",
+            "repaired": repaired,
+        }

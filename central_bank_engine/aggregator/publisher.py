@@ -13,7 +13,9 @@ class Publisher:
     def __init__(self):
         self.warehouse = CentralBankWarehouse()
 
-    async def publish(self, events: List[UniversalCentralBankEvent]) -> List[Dict[str, Any]]:
+    async def publish(
+        self, events: List[UniversalCentralBankEvent]
+    ) -> List[Dict[str, Any]]:
         results = []
         for event in events:
             try:
@@ -25,7 +27,9 @@ class Publisher:
                     }
                 )
                 if result:
-                    logger.info(f"✅ Published event {event.event_id} ({event.bank} - {event.event_type})")
+                    logger.info(
+                        f"✅ Published event {event.event_id} ({event.bank} - {event.event_type})"
+                    )
                 else:
                     logger.error(f"❌ Failed to publish event {event.event_id}")
             except Exception as e:

@@ -15,7 +15,9 @@ for bank in banks:
     content = connector_path.read_text(encoding="utf-8")
 
     # Change _connected = bool(self.api_key) to _connected = True
-    content = content.replace("self._connected = bool(self.api_key)", "self._connected = True")
+    content = content.replace(
+        "self._connected = bool(self.api_key)", "self._connected = True"
+    )
 
     # Make connect() simply return True
     content = content.replace(

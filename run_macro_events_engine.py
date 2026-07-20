@@ -21,12 +21,17 @@ from macroeconomic_events_engine.providers.tier2_secondary.forexfactory import (
     ForexFactoryAdapter,
     ForexFactoryConnector,
 )
-from macroeconomic_events_engine.providers.tier2_secondary.investing import InvestingAdapter, InvestingConnector
+from macroeconomic_events_engine.providers.tier2_secondary.investing import (
+    InvestingAdapter,
+    InvestingConnector,
+)
 from macroeconomic_events_engine.warehouse import ConsensusWarehouse, RawWarehouse
 from ndip.utils.db_connector import close_pool
 from providers.provider_manager import ProviderManager
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -38,15 +43,21 @@ async def main_loop():
     # Register providers
     te = TradingEconomicsConnector()
     te_adapter = TradingEconomicsAdapter()
-    pm.register_provider("trading_economics", te, te_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "trading_economics", te, te_adapter, capabilities=["macroeconomic_events"]
+    )
 
     ff = ForexFactoryConnector()
     ff_adapter = ForexFactoryAdapter()
-    pm.register_provider("forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"]
+    )
 
     inv = InvestingConnector()
     inv_adapter = InvestingAdapter()
-    pm.register_provider("investing", inv, inv_adapter, capabilities=["macroeconomic_events"])
+    pm.register_provider(
+        "investing", inv, inv_adapter, capabilities=["macroeconomic_events"]
+    )
 
     # Reset health for all providers to ensure they are tried
     for name in pm.get_providers(capability="macroeconomic_events"):

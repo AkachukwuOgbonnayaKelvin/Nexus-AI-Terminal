@@ -84,7 +84,9 @@ class FedSpeechCollector(SpeechCollector):
                 title = entry.title.lower()
                 if "speech" in title or "testimony" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"fed_speech_{entry.id.split('/')[-1]}"
@@ -122,7 +124,9 @@ class FedMinutesCollector(MinutesCollector):
                 title = entry.title.lower()
                 if "minutes" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"fed_minutes_{entry.id.split('/')[-1]}"
@@ -161,7 +165,9 @@ class FedStatementCollector(StatementCollector):
                     # Exclude minutes, speeches, etc.
                     if "minutes" not in title and "speech" not in title:
                         published = entry.published_parsed
-                        release_time = datetime(*published[:6]) if published else datetime.now()
+                        release_time = (
+                            datetime(*published[:6]) if published else datetime.now()
+                        )
                         events.append(
                             {
                                 "event_id": f"fed_statement_{entry.id.split('/')[-1]}"
@@ -199,7 +205,9 @@ class FedCalendarCollector(CalendarCollector):
                 title = entry.title.lower()
                 if "schedule" in title and "meeting" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"fed_calendar_{entry.id.split('/')[-1]}"

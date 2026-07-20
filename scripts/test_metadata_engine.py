@@ -12,7 +12,10 @@ from ndip.acquisition.metadata_collector import MetadataAcquisitionCollector
 from ndip.utils.db_connector import close_pool
 from ndip.warehouses.metadata_warehouse import MetadataWarehouse
 from providers.provider_manager import ProviderManager
-from providers.tier2_secondary.yahoo_metadata import YahooMetadataAdapter, YahooMetadataConnector
+from providers.tier2_secondary.yahoo_metadata import (
+    YahooMetadataAdapter,
+    YahooMetadataConnector,
+)
 
 
 async def main():

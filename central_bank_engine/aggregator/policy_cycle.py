@@ -17,7 +17,9 @@ class PolicyCycleBuilder:
             bank = event.get("bank")
             release_time = event.get("release_time")
             if isinstance(release_time, str):
-                release_time = datetime.fromisoformat(release_time.replace("Z", "+00:00"))
+                release_time = datetime.fromisoformat(
+                    release_time.replace("Z", "+00:00")
+                )
             if not release_time:
                 continue
             # Create a cycle key: bank + year + month

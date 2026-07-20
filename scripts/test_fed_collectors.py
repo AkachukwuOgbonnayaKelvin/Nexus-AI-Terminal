@@ -45,7 +45,9 @@ async def main():
 
     print("\nCollector statuses:")
     for name, status in pm.get_collector_statuses().items():
-        print(f"  {name}: success={status['success_count']}, errors={status['error_count']}")
+        print(
+            f"  {name}: success={status['success_count']}, errors={status['error_count']}"
+        )
 
     print("\n✅ Test complete.")
 

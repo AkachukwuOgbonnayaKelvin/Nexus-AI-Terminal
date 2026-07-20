@@ -10,7 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from providers.mt5.client import MT5Client
-from domain.models import Tick, OHLCV, AssetClass, Timeframe
+from domain.models import Tick, OHLCV
 
 
 class MT5Acquirer:
@@ -41,19 +41,27 @@ class MT5Acquirer:
                 ask=tick_data["ask"],
                 volume=tick_data.get("volume"),
                 source="pepperstone_mt5",
-                provenance={"provider": "Pepperstone", "terminal": "MT5"}
+                provenance={"provider": "Pepperstone", "terminal": "MT5"},
             )
         return None
 
-    def acquire_ohlcv(self, symbol: str, timeframe: str, count: int = 100) -> List[OHLCV]:
+    def acquire_ohlcv(
+        self, symbol: str, timeframe: str, count: int = 100
+    ) -> List[OHLCV]:
         """Acquire OHLCV data"""
         if not self.client or not self.client.is_connected():
             return []
 
         timeframe_map = {
-            "M1": 1, "M5": 5, "M15": 15, "M30": 30,
-            "H1": 60, "H4": 240, "D1": 1440,
-            "W1": 10080, "MN1": 43200
+            "M1": 1,
+            "M5": 5,
+            "M15": 15,
+            "M30": 30,
+            "H1": 60,
+            "H4": 240,
+            "D1": 1440,
+            "W1": 10080,
+            "MN1": 43200,
         }
 
         mt5_timeframe = timeframe_map.get(timeframe, 1)
@@ -72,7 +80,7 @@ class MT5Acquirer:
                     tick_volume=r["tick_volume"],
                     spread=r["spread"],
                     source="pepperstone_mt5",
-                    provenance={"provider": "Pepperstone", "terminal": "MT5"}
+                    provenance={"provider": "Pepperstone", "terminal": "MT5"},
                 )
                 for r in rates
             ]

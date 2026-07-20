@@ -9,7 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 class Normalizer:
-    def normalize(self, events: List[Dict[str, Any]]) -> List[UniversalCentralBankEvent]:
+    def normalize(
+        self, events: List[Dict[str, Any]]
+    ) -> List[UniversalCentralBankEvent]:
         normalized = []
         for event in events:
             try:
@@ -43,6 +45,8 @@ class Normalizer:
                 )
                 normalized.append(dto)
             except Exception as e:
-                logger.error(f"Normalization failed: {e} for event {event.get('event_id')}")
+                logger.error(
+                    f"Normalization failed: {e} for event {event.get('event_id')}"
+                )
         logger.info(f"Normalized {len(normalized)} events")
         return normalized

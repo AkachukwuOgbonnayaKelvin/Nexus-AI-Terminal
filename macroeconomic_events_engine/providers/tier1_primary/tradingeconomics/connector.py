@@ -49,7 +49,9 @@ class TradingEconomicsConnector(BaseProvider):
     def supports_symbol(self, symbol: str) -> bool:
         return True
 
-    def get_calendar(self, country: str = None, start_date: str = None, end_date: str = None) -> List[Dict[str, Any]]:
+    def get_calendar(
+        self, country: str = None, start_date: str = None, end_date: str = None
+    ) -> List[Dict[str, Any]]:
         if not self.api_key:
             return []
         url = f"{self.base_url}/calendar"

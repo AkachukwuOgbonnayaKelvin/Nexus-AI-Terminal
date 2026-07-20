@@ -6,7 +6,9 @@ class NewsNormalizer:
         """Normalize field names and values."""
         # Ensure article_id is present
         if "article_id" not in record:
-            record["article_id"] = f"news_{record.get('provider', 'unknown')}_{record.get('published_at', '')}"
+            record["article_id"] = (
+                f"news_{record.get('provider', 'unknown')}_{record.get('published_at', '')}"
+            )
         # Ensure language is set
         if "language" not in record:
             record["language"] = "en"

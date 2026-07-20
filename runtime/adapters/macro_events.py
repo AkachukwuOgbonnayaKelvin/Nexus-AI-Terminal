@@ -21,7 +21,10 @@ from macroeconomic_events_engine.providers.tier2_secondary.forexfactory import (
     ForexFactoryAdapter,
     ForexFactoryConnector,
 )
-from macroeconomic_events_engine.providers.tier2_secondary.investing import InvestingAdapter, InvestingConnector
+from macroeconomic_events_engine.providers.tier2_secondary.investing import (
+    InvestingAdapter,
+    InvestingConnector,
+)
 from macroeconomic_events_engine.warehouse import ConsensusWarehouse, RawWarehouse
 from providers.provider_manager import ProviderManager
 
@@ -57,13 +60,22 @@ class MacroEventsEngineAdapter(BaseRawEngine):
             self.pm = ProviderManager()
             te = TradingEconomicsConnector()
             te_adapter = TradingEconomicsAdapter()
-            self.pm.register_provider("trading_economics", te, te_adapter, capabilities=["macroeconomic_events"])
+            self.pm.register_provider(
+                "trading_economics",
+                te,
+                te_adapter,
+                capabilities=["macroeconomic_events"],
+            )
             ff = ForexFactoryConnector()
             ff_adapter = ForexFactoryAdapter()
-            self.pm.register_provider("forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"])
+            self.pm.register_provider(
+                "forexfactory", ff, ff_adapter, capabilities=["macroeconomic_events"]
+            )
             inv = InvestingConnector()
             inv_adapter = InvestingAdapter()
-            self.pm.register_provider("investing", inv, inv_adapter, capabilities=["macroeconomic_events"])
+            self.pm.register_provider(
+                "investing", inv, inv_adapter, capabilities=["macroeconomic_events"]
+            )
             self.collector = MacroCollector(self.pm)
             self.raw_warehouse = RawWarehouse()
             self.consensus_warehouse = ConsensusWarehouse()
@@ -102,7 +114,10 @@ class MacroEventsEngineAdapter(BaseRawEngine):
         self._initialized = False
 
     def health(self):
-        return {"status": "healthy" if self._initialized else "not_initialized", "engine": "macro_events"}
+        return {
+            "status": "healthy" if self._initialized else "not_initialized",
+            "engine": "macro_events",
+        }
 
     def metrics(self):
         return {"engine": "macro_events", "last_run": "N/A", "events": 0}

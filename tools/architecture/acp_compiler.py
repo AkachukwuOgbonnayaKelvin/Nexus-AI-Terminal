@@ -5,22 +5,23 @@
 import sys
 from pathlib import Path
 import yaml
-import json
 import logging
-from typing import Dict, List, Any, Optional, Set
-from dataclasses import dataclass, field
-from datetime import datetime
-import graphlib
+from typing import Dict, List, Set
+from dataclasses import dataclass
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
+
 
 @dataclass
 class EngineSpec:
     """Engine specification from engine.yaml."""
+
     id: str
     name: str
     version: str
@@ -28,14 +29,17 @@ class EngineSpec:
     type: str
     components: Dict[str, bool]  # component -> required/optional
 
+
 @dataclass
 class ContractSpec:
     """Contract specification from contract.yaml."""
+
     publishes: List[Dict[str, str]]
     consumes: List[Dict[str, str]]
     interfaces: Dict[str, List[str]]
     dependencies: Dict[str, List[str]]
     workflow: List[str]
+
 
 class ACPCompiler:
     """Architecture Compiler – Validates and certifies the entire platform."""
@@ -75,7 +79,7 @@ class ACPCompiler:
             engine_file = engine_path / "engine.yaml"
             if engine_file.exists():
                 try:
-                    with open(engine_file, 'r') as f:
+                    with open(engine_file, "r") as f:
                         data = yaml.safe_load(f)
                     eng = data.get("engine", {})
                     components = data.get("components", {})
@@ -88,23 +92,37 @@ class ACPCompiler:
                         components={k: v == "required" for k, v in components.items()},
                     )
                 except Exception as e:
-                    self.errors.append({"engine": engine_name, "error": f"Failed to parse engine.yaml: {e}"})
+                    self.errors.append(
+                        {
+                            "engine": engine_name,
+                            "error": f"Failed to parse engine.yaml: {e}",
+                        }
+                    )
 
             # Load contract.yaml
             contract_file = engine_path / "contract.yaml"
             if contract_file.exists():
                 try:
-                    with open(contract_file, 'r') as f:
+                    with open(contract_file, "r") as f:
                         data = yaml.safe_load(f)
                     self.contracts[engine_name] = ContractSpec(
                         publishes=data.get("publishes", []),
                         consumes=data.get("consumes", []),
-                        interfaces=data.get("interfaces", {"required": [], "optional": []}),
-                        dependencies=data.get("dependencies", {"allowed": [], "forbidden": []}),
+                        interfaces=data.get(
+                            "interfaces", {"required": [], "optional": []}
+                        ),
+                        dependencies=data.get(
+                            "dependencies", {"allowed": [], "forbidden": []}
+                        ),
                         workflow=data.get("workflow", []),
                     )
                 except Exception as e:
-                    self.errors.append({"engine": engine_name, "error": f"Failed to parse contract.yaml: {e}"})
+                    self.errors.append(
+                        {
+                            "engine": engine_name,
+                            "error": f"Failed to parse contract.yaml: {e}",
+                        }
+                    )
 
         logger.info(f"Loaded {len(self.engines)} engine specifications")
         logger.info(f"Loaded {len(self.contracts)} contract specifications")
@@ -113,7 +131,9 @@ class ACPCompiler:
         """Find all engine directories."""
         engines = []
         for path in self.root.glob("**/*_engine"):
-            if path.is_dir() and not any(p in str(path) for p in [".venv", "__pycache__", "tools"]):
+            if path.is_dir() and not any(
+                p in str(path) for p in [".venv", "__pycache__", "tools"]
+            ):
                 engines.append(path)
         return engines
 
@@ -124,30 +144,38 @@ class ACPCompiler:
             spec = self.engines.get(engine_name)
 
             if not spec:
-                self.errors.append({
-                    "engine": engine_name,
-                    "error": "Missing engine.yaml",
-                    "severity": "critical"
-                })
+                self.errors.append(
+                    {
+                        "engine": engine_name,
+                        "error": "Missing engine.yaml",
+                        "severity": "critical",
+                    }
+                )
                 continue
 
             # Check required components
             for comp, required in spec.components.items():
                 comp_path = engine_path / comp
                 if required and not comp_path.exists():
-                    self.errors.append({
-                        "engine": engine_name,
-                        "component": comp,
-                        "error": f"Required component '{comp}' missing",
-                        "severity": "high" if spec.maturity in ["Certified", "Production"] else "medium"
-                    })
+                    self.errors.append(
+                        {
+                            "engine": engine_name,
+                            "component": comp,
+                            "error": f"Required component '{comp}' missing",
+                            "severity": "high"
+                            if spec.maturity in ["Certified", "Production"]
+                            else "medium",
+                        }
+                    )
                 elif not required and not comp_path.exists():
-                    self.warnings.append({
-                        "engine": engine_name,
-                        "component": comp,
-                        "warning": f"Optional component '{comp}' missing",
-                        "severity": "low"
-                    })
+                    self.warnings.append(
+                        {
+                            "engine": engine_name,
+                            "component": comp,
+                            "warning": f"Optional component '{comp}' missing",
+                            "severity": "low",
+                        }
+                    )
 
     def _validate_contracts(self) -> None:
         """Validate contracts."""
@@ -155,17 +183,21 @@ class ACPCompiler:
             # Check NDIP topics
             for pub in contract.publishes:
                 if not pub.get("topic"):
-                    self.errors.append({
-                        "engine": engine_name,
-                        "error": f"Publication missing topic: {pub}",
-                        "severity": "critical"
-                    })
+                    self.errors.append(
+                        {
+                            "engine": engine_name,
+                            "error": f"Publication missing topic: {pub}",
+                            "severity": "critical",
+                        }
+                    )
                 if not pub.get("schema"):
-                    self.warnings.append({
-                        "engine": engine_name,
-                        "warning": f"Publication missing schema: {pub}",
-                        "severity": "medium"
-                    })
+                    self.warnings.append(
+                        {
+                            "engine": engine_name,
+                            "warning": f"Publication missing schema: {pub}",
+                            "severity": "medium",
+                        }
+                    )
 
     def _build_dependency_graph(self) -> None:
         """Build the dependency graph."""
@@ -191,22 +223,26 @@ class ACPCompiler:
             # Check forbidden dependencies
             for forbidden in contract.dependencies.get("forbidden", []):
                 if forbidden in self.graph.get(engine_name, set()):
-                    self.errors.append({
-                        "engine": engine_name,
-                        "dependency": forbidden,
-                        "error": f"Forbidden dependency: {engine_name} -> {forbidden}",
-                        "severity": "critical"
-                    })
+                    self.errors.append(
+                        {
+                            "engine": engine_name,
+                            "dependency": forbidden,
+                            "error": f"Forbidden dependency: {engine_name} -> {forbidden}",
+                            "severity": "critical",
+                        }
+                    )
 
     def _validate_workflows(self) -> None:
         """Validate workflows."""
         for engine_name, contract in self.contracts.items():
             if not contract.workflow:
-                self.warnings.append({
-                    "engine": engine_name,
-                    "warning": "No workflow defined in contract.yaml",
-                    "severity": "medium"
-                })
+                self.warnings.append(
+                    {
+                        "engine": engine_name,
+                        "warning": "No workflow defined in contract.yaml",
+                        "severity": "medium",
+                    }
+                )
 
     def _detect_drift(self) -> None:
         """Detect architectural drift."""
@@ -221,7 +257,7 @@ class ACPCompiler:
         print("ACP v2.0: ARCHITECTURE COMPILATION REPORT")
         print("=" * 70)
 
-        print(f"\nStatistics:")
+        print("\nStatistics:")
         print(f"  Engines: {len(self.engines)}")
         print(f"  Contracts: {len(self.contracts)}")
         print(f"  Dependencies: {sum(len(v) for v in self.graph.values())}")
@@ -244,7 +280,13 @@ class ACPCompiler:
         print("ENGINE STATUS")
         print("-" * 70)
         for engine_name, spec in self.engines.items():
-            status = "OK" if spec.maturity in ["Certified", "Production"] else "IN PROGRESS" if spec.maturity in ["Integrated"] else "DEV"
+            status = (
+                "OK"
+                if spec.maturity in ["Certified", "Production"]
+                else "IN PROGRESS"
+                if spec.maturity in ["Integrated"]
+                else "DEV"
+            )
             print(f"{status} {engine_name}: {spec.maturity}")
 
         print("\n" + "-" * 70)
@@ -266,11 +308,13 @@ class ACPCompiler:
             print("   Architecture is certified")
         print("=" * 70)
 
+
 def main():
     """Run ACP v2.0."""
     compiler = ACPCompiler(".")
     success = compiler.compile()
     sys.exit(0 if success else 1)
+
 
 if __name__ == "__main__":
     main()

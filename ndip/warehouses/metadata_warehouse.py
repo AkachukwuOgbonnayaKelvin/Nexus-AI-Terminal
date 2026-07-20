@@ -94,7 +94,11 @@ class MetadataWarehouse:
         ]
 
     def _get_insertable_fields(self, record: Dict[str, Any]) -> Dict[str, Any]:
-        return {k: v for k, v in record.items() if k in self.allowed_fields and v is not None}
+        return {
+            k: v
+            for k, v in record.items()
+            if k in self.allowed_fields and v is not None
+        }
 
     async def store_asset(self, record: Dict[str, Any], source: str) -> Dict[str, Any]:
         symbol = record.get("symbol")
@@ -180,7 +184,9 @@ class MetadataWarehouse:
                 "action": "inserted",
             }
 
-    async def _record_version(self, asset_id: str, version: int, record: Dict[str, Any]):
+    async def _record_version(
+        self, asset_id: str, version: int, record: Dict[str, Any]
+    ):
         """Log version history with proper JSON serialization."""
         # Convert UUIDs and other non-serializable types to strings
         serializable = {}
@@ -206,14 +212,20 @@ class MetadataWarehouse:
         )
 
     async def get_asset(self, symbol: str) -> Optional[Dict[str, Any]]:
-        row = await fetchrow(f"SELECT * FROM {self.schema}.asset_registry WHERE symbol = $1", symbol)
+        row = await fetchrow(
+            f"SELECT * FROM {self.schema}.asset_registry WHERE symbol = $1", symbol
+        )
         return dict(row) if row else None
 
     async def get_asset_by_uuid(self, asset_id: str) -> Optional[Dict[str, Any]]:
-        row = await fetchrow(f"SELECT * FROM {self.schema}.asset_registry WHERE asset_id = $1", asset_id)
+        row = await fetchrow(
+            f"SELECT * FROM {self.schema}.asset_registry WHERE asset_id = $1", asset_id
+        )
         return dict(row) if row else None
 
-    async def search_assets(self, query: str, asset_class: str = None, limit: int = 20) -> List[Dict[str, Any]]:
+    async def search_assets(
+        self, query: str, asset_class: str = None, limit: int = 20
+    ) -> List[Dict[str, Any]]:
         sql = f"SELECT * FROM {self.schema}.asset_registry WHERE symbol ILIKE $1 OR long_name ILIKE $1"
         params = [f"%{query}%"]
         if asset_class:

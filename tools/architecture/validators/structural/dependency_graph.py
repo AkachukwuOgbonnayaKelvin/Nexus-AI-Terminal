@@ -2,10 +2,11 @@
 
 import ast
 from pathlib import Path
-from typing import List, Dict, Set, Tuple
+from typing import List, Dict, Set
 from collections import defaultdict
 from tools.architecture.models import ARCResult
 from tools.architecture.validators.base import BaseValidator
+
 
 class DependencyGraphValidator(BaseValidator):
     """Validates the dependency graph for cycles."""
@@ -19,20 +20,22 @@ class DependencyGraphValidator(BaseValidator):
 
     def validate(self) -> List[ARCResult]:
         results = []
-        
+
         self._build_graph()
         cycles = self._find_cycles()
-        
+
         if cycles:
-            results.append(self.result(
-                False,
-                f"Found {len(cycles)} circular dependencies",
-                details=cycles[:10],
-                severity="critical"
-            ))
+            results.append(
+                self.result(
+                    False,
+                    f"Found {len(cycles)} circular dependencies",
+                    details=cycles[:10],
+                    severity="critical",
+                )
+            )
         else:
             results.append(self.result(True, "No circular dependencies found"))
-        
+
         return results
 
     def _build_graph(self) -> None:
@@ -40,14 +43,16 @@ class DependencyGraphValidator(BaseValidator):
         for py_file in self.root.rglob("*.py"):
             if any(e in str(py_file) for e in [".venv", "__pycache__", "tools"]):
                 continue
-            
+
             rel_path = py_file.relative_to(self.root)
-            module_name = str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
-            
+            module_name = (
+                str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
+            )
+
             try:
-                with open(py_file, 'r', encoding='utf-8') as f:
+                with open(py_file, "r", encoding="utf-8") as f:
                     tree = ast.parse(f.read())
-                
+
                 for node in ast.walk(tree):
                     if isinstance(node, ast.Import):
                         for alias in node.names:
@@ -64,7 +69,7 @@ class DependencyGraphValidator(BaseValidator):
         """Find circular dependencies."""
         cycles = []
         visited = set()
-        
+
         def dfs(node: str, path: List[str]) -> None:
             if node in path:
                 cycle_start = path.index(node)
@@ -76,9 +81,9 @@ class DependencyGraphValidator(BaseValidator):
             for dep in self.graph.get(node, []):
                 if dep in self.graph:
                     dfs(dep, path + [node])
-        
+
         for module in self.graph:
             if module not in visited:
                 dfs(module, [])
-        
+
         return cycles

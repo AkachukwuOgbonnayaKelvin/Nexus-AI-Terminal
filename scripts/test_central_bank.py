@@ -16,7 +16,10 @@ from central_bank_engine.providers.tier1_primary.boj import BOJAdapter, BOJConne
 from central_bank_engine.providers.tier1_primary.ecb import ECBAdapter, ECBConnector
 
 # Import all 8 central bank connectors and adapters
-from central_bank_engine.providers.tier1_primary.federal_reserve import FederalReserveAdapter, FederalReserveConnector
+from central_bank_engine.providers.tier1_primary.federal_reserve import (
+    FederalReserveAdapter,
+    FederalReserveConnector,
+)
 from central_bank_engine.providers.tier1_primary.rba import RBAAdapter, RBAConnector
 from central_bank_engine.providers.tier1_primary.rbnz import RBNZAdapter, RBNZConnector
 from central_bank_engine.providers.tier1_primary.snb import SNBAdapter, SNBConnector
@@ -80,7 +83,9 @@ async def main():
     for name, _, _ in banks:
         rate = await warehouse.get_latest_rate(name.replace("_", " ").title())
         if rate:
-            print(f"  {rate['bank']}: {rate['new_rate']} (as of {rate['release_time']})")
+            print(
+                f"  {rate['bank']}: {rate['new_rate']} (as of {rate['release_time']})"
+            )
         else:
             print(f"  {name}: No rate data yet")
 

@@ -1,0 +1,190 @@
+# MAC-001 Indicator Configuration
+# Defines all macroeconomic indicators with their metadata
+
+indicators:
+  # GDP
+  gdp:
+    name: "Gross Domestic Product"
+    category: "gdp"
+    countries: ["US"]
+    units: "billions_usd"
+    frequency: "quarterly"
+    primary_source: "bea"
+    fred_series: "GDP"
+    description: "GDP in current dollars"
+
+  gdp_growth:
+    name: "GDP Growth Rate"
+    category: "gdp"
+    countries: ["US"]
+    units: "percent"
+    frequency: "quarterly"
+    primary_source: "bea"
+    fred_series: "GDPC1"
+    description: "Real GDP growth rate"
+
+  # Inflation
+  cpi:
+    name: "Consumer Price Index"
+    category: "inflation"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "CPIAUCSL"
+    description: "CPI for All Urban Consumers"
+
+  core_cpi:
+    name: "Core Consumer Price Index"
+    category: "inflation"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "CPILFESL"
+    description: "CPI excluding food and energy"
+
+  pce:
+    name: "Personal Consumption Expenditures"
+    category: "inflation"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "bea"
+    fred_series: "PCE"
+    description: "PCE Price Index"
+
+  core_pce:
+    name: "Core PCE Price Index"
+    category: "inflation"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "bea"
+    fred_series: "PCEPILFE"
+    description: "Core PCE Price Index"
+
+  ppi:
+    name: "Producer Price Index"
+    category: "inflation"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "PPIACO"
+    description: "PPI for All Commodities"
+
+  # Labor
+  unemployment:
+    name: "Unemployment Rate"
+    category: "labor"
+    countries: ["US"]
+    units: "percent"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "UNRATE"
+    description: "Civilian Unemployment Rate"
+
+  payrolls:
+    name: "Nonfarm Payrolls"
+    category: "labor"
+    countries: ["US"]
+    units: "thousands"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "PAYEMS"
+    description: "Total Nonfarm Payrolls"
+
+  participation_rate:
+    name: "Labor Force Participation Rate"
+    category: "labor"
+    countries: ["US"]
+    units: "percent"
+    frequency: "monthly"
+    primary_source: "bls"
+    fred_series: "CIVPART"
+    description: "Civilian Labor Force Participation Rate"
+
+  # Interest Rates
+  fed_funds_rate:
+    name: "Federal Funds Rate"
+    category: "rates"
+    countries: ["US"]
+    units: "percent"
+    frequency: "daily"
+    primary_source: "federal_reserve"
+    fred_series: "FEDFUNDS"
+    description: "Effective Federal Funds Rate"
+
+  treasury_10y:
+    name: "10-Year Treasury Yield"
+    category: "rates"
+    countries: ["US"]
+    units: "percent"
+    frequency: "daily"
+    primary_source: "treasury"
+    fred_series: "DGS10"
+    description: "10-Year Treasury Constant Maturity Rate"
+
+  treasury_2y:
+    name: "2-Year Treasury Yield"
+    category: "rates"
+    countries: ["US"]
+    units: "percent"
+    frequency: "daily"
+    primary_source: "treasury"
+    fred_series: "DGS2"
+    description: "2-Year Treasury Constant Maturity Rate"
+
+  # Production
+  industrial_production:
+    name: "Industrial Production"
+    category: "production"
+    countries: ["US"]
+    units: "index"
+    frequency: "monthly"
+    primary_source: "federal_reserve"
+    fred_series: "INDPRO"
+    description: "Industrial Production Index"
+
+  capacity_utilization:
+    name: "Capacity Utilization"
+    category: "production"
+    countries: ["US"]
+    units: "percent"
+    frequency: "monthly"
+    primary_source: "federal_reserve"
+    fred_series: "TCU"
+    description: "Capacity Utilization Rate"
+
+  # Retail
+  retail_sales:
+    name: "Retail Sales"
+    category: "retail"
+    countries: ["US"]
+    units: "billions_usd"
+    frequency: "monthly"
+    primary_source: "census"
+    fred_series: "RSXFS"
+    description: "Retail and Food Services Sales"
+
+  # Housing
+  housing_starts:
+    name: "Housing Starts"
+    category: "housing"
+    countries: ["US"]
+    units: "thousands"
+    frequency: "monthly"
+    primary_source: "census"
+    fred_series: "HOUST"
+    description: "Housing Starts (Total)"
+
+  existing_home_sales:
+    name: "Existing Home Sales"
+    category: "housing"
+    countries: ["US"]
+    units: "millions"
+    frequency: "monthly"
+    primary_source: "nar"
+    fred_series: "EXHOSLUSM495S"
+    description: "Existing Home Sales"

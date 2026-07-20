@@ -1,11 +1,12 @@
 """Automated COT Scheduler – Runs independently but integrates with DAR."""
 
-import asyncio
 import logging
 from datetime import datetime
 
 from institutional_positioning_engine.parser import ParserFactory
-from institutional_positioning_engine.providers.cftc.provider_manager import CFTCProviderManager
+from institutional_positioning_engine.providers.cftc.provider_manager import (
+    CFTCProviderManager,
+)
 from institutional_positioning_engine.publication import COTPublisher
 from institutional_positioning_engine.warehouse import COTWarehouse
 

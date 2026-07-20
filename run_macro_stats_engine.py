@@ -12,12 +12,17 @@ import logging
 from datetime import datetime, timedelta
 
 from economic_events_engine.acquisition import EconomicCollector
-from economic_events_engine.providers.tier2_secondary.fred import FredAdapter, FredConnector
+from economic_events_engine.providers.tier2_secondary.fred import (
+    FredAdapter,
+    FredConnector,
+)
 from economic_events_engine.warehouse import EconomicWarehouse
 from ndip.utils.db_connector import close_pool
 from providers.provider_manager import ProviderManager
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
 
 # FRED series to track
@@ -53,7 +58,9 @@ async def main_loop():
                 if event:
                     stored = await warehouse.store_event(event)
                     if stored:
-                        logger.info(f"Updated {series_id}: {event.actual} ({event.release_time_utc.date()})")
+                        logger.info(
+                            f"Updated {series_id}: {event.actual} ({event.release_time_utc.date()})"
+                        )
                     else:
                         logger.warning(f"Failed to store {series_id}")
                 else:
@@ -61,7 +68,9 @@ async def main_loop():
             except Exception as e:
                 logger.error(f"Error fetching {series_id}: {e}")
         # Sleep until next day at 02:00 UTC
-        next_run = datetime.now().replace(hour=2, minute=0, second=0, microsecond=0) + timedelta(days=1)
+        next_run = datetime.now().replace(
+            hour=2, minute=0, second=0, microsecond=0
+        ) + timedelta(days=1)
         if next_run < datetime.now():
             next_run += timedelta(days=1)
         sleep_seconds = (next_run - datetime.now()).total_seconds()

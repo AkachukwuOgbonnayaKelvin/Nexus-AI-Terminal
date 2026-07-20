@@ -1,7 +1,7 @@
 """NDIP Publisher – Publishes position data to NDIP."""
 
 import logging
-from typing import Any, Dict, List
+from typing import List
 
 logger = logging.getLogger(__name__)
 

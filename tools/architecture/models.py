@@ -4,9 +4,11 @@ from dataclasses import dataclass, field
 from typing import Any, Optional, List
 from datetime import datetime
 
+
 @dataclass
 class ARCResult:
     """Result of a single validation."""
+
     validator: str
     passed: bool
     message: str
@@ -16,9 +18,11 @@ class ARCResult:
     file_path: Optional[str] = None
     line_number: Optional[int] = None
 
+
 @dataclass
 class ARCReport:
     """Complete ARC validation report."""
+
     timestamp: datetime = field(default_factory=datetime.now)
     total_validators: int = 0
     passed: int = 0
@@ -59,7 +63,9 @@ class ARCReport:
             "medium": 1,
             "low": 0.5,
         }
-        total_weight = sum(weight.get(r.severity, 1) for r in self.results if not r.passed)
+        total_weight = sum(
+            weight.get(r.severity, 1) for r in self.results if not r.passed
+        )
         max_weight = self.total_validators * 5
         self.architecture_score = max(0, 100 - (total_weight / max_weight * 100))
         return self.architecture_score

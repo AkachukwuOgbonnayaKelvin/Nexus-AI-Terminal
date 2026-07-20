@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 class CentralBankGateway:
     def __init__(self):
         self.warehouse = CentralBankWarehouse()
-        self.router = APIRouter(prefix="/central-bank", tags=["Central Bank Intelligence"])
+        self.router = APIRouter(
+            prefix="/central-bank", tags=["Central Bank Intelligence"]
+        )
         self._register_routes()
 
     def _register_routes(self):

@@ -6,6 +6,7 @@ from typing import List, Dict, Set
 from tools.architecture.validators.base import BaseValidator
 from tools.architecture.models import ARCResult
 
+
 class CircularValidator(BaseValidator):
     """Detects circular dependencies."""
 
@@ -19,14 +20,16 @@ class CircularValidator(BaseValidator):
     def validate(self) -> List[ARCResult]:
         self._build_import_graph()
         cycles = self._find_cycles()
-        
+
         if cycles:
-            return [self.result(
-                False,
-                f"Found {len(cycles)} circular dependencies",
-                details=cycles[:10],
-                severity="critical"
-            )]
+            return [
+                self.result(
+                    False,
+                    f"Found {len(cycles)} circular dependencies",
+                    details=cycles[:10],
+                    severity="critical",
+                )
+            ]
         return [self.result(True, "No circular dependencies found")]
 
     def _build_import_graph(self) -> None:
@@ -34,10 +37,12 @@ class CircularValidator(BaseValidator):
             if any(e in str(py_file) for e in [".venv", "__pycache__", "tools"]):
                 continue
             rel_path = py_file.relative_to(self.root)
-            module_name = str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
+            module_name = (
+                str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
+            )
             self.imports[module_name] = set()
             try:
-                with open(py_file, 'r', encoding='utf-8') as f:
+                with open(py_file, "r", encoding="utf-8") as f:
                     tree = ast.parse(f.read())
                 for node in ast.walk(tree):
                     if isinstance(node, ast.Import):
@@ -53,7 +58,7 @@ class CircularValidator(BaseValidator):
     def _find_cycles(self) -> List[List[str]]:
         cycles = []
         visited = set()
-        
+
         def dfs(node: str, path: List[str]) -> None:
             if node in path:
                 cycle_start = path.index(node)
@@ -65,9 +70,9 @@ class CircularValidator(BaseValidator):
             for dep in self.imports.get(node, []):
                 if dep in self.imports:
                     dfs(dep, path + [node])
-        
+
         for module in self.imports:
             if module not in visited:
                 dfs(module, [])
-        
+
         return cycles

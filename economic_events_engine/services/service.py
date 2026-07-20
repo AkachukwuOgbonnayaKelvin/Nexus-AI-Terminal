@@ -17,7 +17,9 @@ class EconomicService:
 
     def _register_routes(self):
         @self.router.get("/today")
-        async def get_today(country: Optional[str] = None, importance: Optional[str] = None):
+        async def get_today(
+            country: Optional[str] = None, importance: Optional[str] = None
+        ):
             events = await self.warehouse.get_today_events(country, importance)
             return {"status": "success", "count": len(events), "data": events}
 
@@ -48,7 +50,9 @@ class EconomicService:
                     status_code=400,
                     detail="Invalid date format. Use ISO format (YYYY-MM-DDTHH:MM:SS).",
                 )
-            events = await self.warehouse.get_historical_series(series_id, start_dt, end_dt)
+            events = await self.warehouse.get_historical_series(
+                series_id, start_dt, end_dt
+            )
             return {"status": "success", "count": len(events), "data": events}
 
         @self.router.get("/country/{country}")

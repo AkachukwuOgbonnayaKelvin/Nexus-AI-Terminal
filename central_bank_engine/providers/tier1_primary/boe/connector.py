@@ -83,8 +83,12 @@ class BOEConnector(BaseProvider):
                         "release_time": release_time.isoformat(),
                         "source_url": entry.link,
                         "governor": "Andrew Bailey",
-                        "importance": "High" if event_type in ["RateDecision", "Minutes"] else "Medium",
-                        "communication_type": "Statement" if event_type == "Statement" else "Speech",
+                        "importance": "High"
+                        if event_type in ["RateDecision", "Minutes"]
+                        else "Medium",
+                        "communication_type": "Statement"
+                        if event_type == "Statement"
+                        else "Speech",
                     }
                 )
         except Exception:

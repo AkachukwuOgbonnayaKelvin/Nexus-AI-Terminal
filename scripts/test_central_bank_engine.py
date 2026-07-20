@@ -10,7 +10,9 @@ import logging
 
 from central_bank_engine.engine import CentralBankEngine
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 
 async def main():
@@ -27,7 +29,9 @@ async def main():
 
     print("\nCollector statuses:")
     for name, status in result.get("collector_status", {}).items():
-        print(f"  {name}: success={status['success_count']}, errors={status['error_count']}")
+        print(
+            f"  {name}: success={status['success_count']}, errors={status['error_count']}"
+        )
 
     print("\n✅ Engine run complete.")
 

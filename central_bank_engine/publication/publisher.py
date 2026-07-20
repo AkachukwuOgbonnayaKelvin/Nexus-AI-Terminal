@@ -16,7 +16,9 @@ class CentralBankPublisher:
         """Publish event to warehouse (and eventually NDIP)."""
         result = await self.warehouse.store(event)
         if result:
-            logger.info(f"Published {event.event_id} ({event.bank} - {event.event_type})")
+            logger.info(
+                f"Published {event.event_id} ({event.bank} - {event.event_type})"
+            )
         else:
             logger.error(f"Failed to publish {event.event_id}")
         return result

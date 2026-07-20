@@ -2,7 +2,6 @@
 
 import csv
 import logging
-import re
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
@@ -118,7 +117,9 @@ class COTParser:
 
             # Extract market code from name
             record["market_code"] = self._extract_market_code(record["market_name"])
-            record["report_date"] = row.get("Report Date", datetime.now().strftime("%Y-%m-%d"))
+            record["report_date"] = row.get(
+                "Report Date", datetime.now().strftime("%Y-%m-%d")
+            )
 
             return record
         except Exception as e:
@@ -174,7 +175,9 @@ class COTParser:
                 "market_name": record.get("market_name", market_code),
                 "first_seen": record.get("report_date"),
                 "last_seen": record.get("report_date"),
-                "asset_class": self._classify_market(market_code, record.get("market_name", "")),
+                "asset_class": self._classify_market(
+                    market_code, record.get("market_name", "")
+                ),
             }
         else:
             self.market_registry[market_code]["last_seen"] = record.get("report_date")
@@ -183,17 +186,39 @@ class COTParser:
         """Classify market by asset class."""
         code = market_code.upper()
         name = market_name.upper()
-        if code in ["EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD", "MXN"] or "FX" in name:
+        if (
+            code in ["EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD", "MXN"]
+            or "FX" in name
+        ):
             return "forex"
-        if code in ["XAU", "XAG", "HG", "PL", "PA"] or "GOLD" in name or "SILVER" in name:
+        if (
+            code in ["XAU", "XAG", "HG", "PL", "PA"]
+            or "GOLD" in name
+            or "SILVER" in name
+        ):
             return "metals"
-        if code in ["CL", "BZ", "NG"] or "OIL" in name or "GAS" in name or "ENERGY" in name:
+        if (
+            code in ["CL", "BZ", "NG"]
+            or "OIL" in name
+            or "GAS" in name
+            or "ENERGY" in name
+        ):
             return "energy"
-        if code in ["ES", "NQ", "YM"] or "S&P" in name or "NASDAQ" in name or "DOW" in name:
+        if (
+            code in ["ES", "NQ", "YM"]
+            or "S&P" in name
+            or "NASDAQ" in name
+            or "DOW" in name
+        ):
             return "index"
         if code in ["ZN", "ZB", "ZF", "ZT"] or "TREASURY" in name or "BOND" in name:
             return "bonds"
-        if code in ["C", "W", "S"] or "CORN" in name or "WHEAT" in name or "SOY" in name:
+        if (
+            code in ["C", "W", "S"]
+            or "CORN" in name
+            or "WHEAT" in name
+            or "SOY" in name
+        ):
             return "agriculture"
         if code in ["BTC", "ETH"]:
             return "crypto"

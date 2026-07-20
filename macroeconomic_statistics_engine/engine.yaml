@@ -1,0 +1,78 @@
+id: MAC-001
+name: Macroeconomic Statistics Engine
+version: 1.0.0
+owner: Macro Team
+purpose: Acquire, normalize, validate, version, and publish macroeconomic statistics
+domain: macro
+stage: development
+status: active
+
+architecture:
+  required:
+    - providers
+    - collectors
+    - normalization
+    - revision
+    - classification
+    - warehouse
+    - publication
+    - runtime
+  optional:
+    - observability
+    - tests
+    - docs
+
+integration:
+  dar: true
+  ndip: true
+  warehouse: true
+
+runtime:
+  managed_by: DAR
+  schedule: "daily"
+  priority: 2
+  retries: 3
+  timeout: 120
+
+source_hierarchy:
+  tier1_official:
+    - bea
+    - bls
+    - federal_reserve
+    - ecb
+    - eurostat
+    - ons
+    - boe
+    - statcan
+    - abs
+    - boj
+    - nbs
+  tier2_international:
+    - imf
+    - world_bank
+    - oecd
+  tier3_aggregator:
+    - trading_economics
+
+data_domains:
+  - gdp
+  - inflation
+  - labor
+  - central_bank
+  - growth
+  - trade
+  - fiscal
+  - housing
+
+countries:
+  - US
+  - EU
+  - UK
+  - JP
+  - CA
+  - AU
+  - NG
+
+dependencies:
+  - GLO-001
+  - GLO-002

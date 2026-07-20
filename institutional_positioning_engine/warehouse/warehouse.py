@@ -1,7 +1,7 @@
 """COT Warehouse – institutional-grade storage."""
 
 import logging
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from ndip.utils.db_connector import execute, fetchrow
 

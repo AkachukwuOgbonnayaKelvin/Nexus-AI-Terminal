@@ -1,0 +1,100 @@
+engine_id: MAC-001
+version: 1.0.0
+
+inputs:
+  - topic: global.regime.analytics
+    schema: market_regime_v1
+    required: false
+    description: Market regime for context-aware data validation
+
+outputs:
+  - topic: macro.statistics.raw
+    domain: macro
+    version: "1.0"
+    description: Raw macroeconomic data from source
+    schema_version: macro_raw_v1
+
+  - topic: macro.statistics.normalized
+    domain: macro
+    version: "1.0"
+    description: Normalized macroeconomic observations
+    schema_version: macro_normalized_v1
+
+  - topic: macro.statistics.validated
+    domain: macro
+    version: "1.0"
+    description: Validated macroeconomic statistics
+    schema_version: macro_validated_v1
+
+  - topic: macro.statistics.revised
+    domain: macro
+    version: "1.0"
+    description: Revision-aware macroeconomic data
+    schema_version: macro_revised_v1
+
+  - topic: macro.statistics.vintage
+    domain: macro
+    version: "1.0"
+    description: Vintage-specific historical data
+    schema_version: macro_vintage_v1
+
+  - topic: macro.statistics.current
+    domain: macro
+    version: "1.0"
+    description: Current macroeconomic snapshot
+    schema_version: macro_current_v1
+
+  - topic: macro.statistics.release
+    domain: macro
+    version: "1.0"
+    description: Economic release notifications
+    schema_version: macro_release_v1
+
+schemas:
+  macro_observation_v1:
+    fields:
+      - name: indicator
+        type: string
+        required: true
+      - name: country
+        type: string
+        required: true
+      - name: period
+        type: string
+        required: true
+      - name: value
+        type: float
+        required: true
+      - name: previous
+        type: float
+        required: false
+      - name: forecast
+        type: float
+        required: false
+      - name: unit
+        type: string
+        required: true
+      - name: frequency
+        type: string
+        required: true
+      - name: source
+        type: string
+        required: true
+      - name: source_tier
+        type: integer
+        required: true
+      - name: release_date
+        type: datetime
+        required: true
+      - name: vintage_date
+        type: datetime
+        required: true
+      - name: revision_number
+        type: integer
+        required: false
+      - name: quality_score
+        type: float
+        required: false
+      - name: status
+        type: string
+        required: true

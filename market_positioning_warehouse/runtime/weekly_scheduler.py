@@ -1,7 +1,7 @@
 """Weekly Scheduler – Runs every Friday."""
 
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from market_positioning_warehouse.parser import ParserFactory
 from market_positioning_warehouse.providers.cftc.weekly_loader import WeeklyLoader

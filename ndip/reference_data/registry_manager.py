@@ -10,7 +10,9 @@ class RegistryManager:
     def __init__(self):
         self.cache = {}
 
-    async def lookup(self, table: str, unique_field: str, value: str) -> Optional[Dict[str, Any]]:
+    async def lookup(
+        self, table: str, unique_field: str, value: str
+    ) -> Optional[Dict[str, Any]]:
         cache_key = f"{table}:{unique_field}:{value}"
         if cache_key in self.cache:
             return self.cache[cache_key]
@@ -34,7 +36,9 @@ class RegistryManager:
         result = await fetchrow(query, *[record[c] for c in columns])
         inserted_record = {pk: result[pk]}
         inserted_record.update(record)
-        self.cache = {k: v for k, v in self.cache.items() if not k.startswith(f"{table}:")}
+        self.cache = {
+            k: v for k, v in self.cache.items() if not k.startswith(f"{table}:")
+        }
         return inserted_record
 
     async def _get_primary_key(self, table: str) -> str:

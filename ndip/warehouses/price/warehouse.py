@@ -81,7 +81,9 @@ class PriceWarehouse(BaseWarehouse):
     async def query(self, symbol: str, limit: int = 100) -> List[Dict[str, Any]]:
         results = []
         for table in self.TABLE_MAP.values():
-            query = f"SELECT * FROM {table} WHERE symbol = $1 ORDER BY time DESC LIMIT $2"
+            query = (
+                f"SELECT * FROM {table} WHERE symbol = $1 ORDER BY time DESC LIMIT $2"
+            )
             rows = await fetch(query, symbol, limit)
             results.extend(rows)
         results.sort(key=lambda x: x["time"], reverse=True)

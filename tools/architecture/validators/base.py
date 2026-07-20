@@ -2,8 +2,9 @@
 
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Optional, Any
+from typing import List, Any
 from tools.architecture.models import ARCResult
+
 
 class BaseValidator(ABC):
     """Abstract base class for all validators."""
@@ -21,7 +22,9 @@ class BaseValidator(ABC):
         """Return the default severity for this validator."""
         return "medium"
 
-    def result(self, passed: bool, message: str, details: Any = None, severity: str = None) -> ARCResult:
+    def result(
+        self, passed: bool, message: str, details: Any = None, severity: str = None
+    ) -> ARCResult:
         """Create a result."""
         return ARCResult(
             validator=self.name,

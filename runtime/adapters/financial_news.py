@@ -12,7 +12,10 @@ sys.path.insert(0, str(project_root))
 from financial_news_engine.acquisition import NewsCollector
 from financial_news_engine.classification import NewsClassifier
 from financial_news_engine.entities import EntityExtractor
-from financial_news_engine.providers.tier3_backup.newsapi import NewsAPIAdapter, NewsAPIConnector
+from financial_news_engine.providers.tier3_backup.newsapi import (
+    NewsAPIAdapter,
+    NewsAPIConnector,
+)
 from financial_news_engine.providers.tier3_backup.rss import RSSAdapter, RSSConnector
 from financial_news_engine.warehouse import NewsWarehouse
 from providers.provider_manager import ProviderManager
@@ -47,7 +50,9 @@ class FinancialNewsEngineAdapter(BaseRawEngine):
             self.pm = ProviderManager()
             newsapi = NewsAPIConnector()
             newsapi_adapter = NewsAPIAdapter()
-            self.pm.register_provider("newsapi", newsapi, newsapi_adapter, capabilities=["news"])
+            self.pm.register_provider(
+                "newsapi", newsapi, newsapi_adapter, capabilities=["news"]
+            )
             rss = RSSConnector()
             rss_adapter = RSSAdapter()
             self.pm.register_provider("rss", rss, rss_adapter, capabilities=["news"])
@@ -67,7 +72,9 @@ class FinancialNewsEngineAdapter(BaseRawEngine):
             classification = self.classifier.classify(article.headline, article.summary)
             article.category = classification["category"]
             article.importance = classification["importance"]
-            entities = self.extractor.extract(f"{article.headline} {article.summary or ''} {article.body or ''}")
+            entities = self.extractor.extract(
+                f"{article.headline} {article.summary or ''} {article.body or ''}"
+            )
             article.currencies = entities.get("currencies", [])
             article.assets = entities.get("assets", [])
             article.central_banks = entities.get("central_banks", [])
@@ -80,7 +87,10 @@ class FinancialNewsEngineAdapter(BaseRawEngine):
         self._initialized = False
 
     def health(self):
-        return {"status": "healthy" if self._initialized else "not_initialized", "engine": "financial_news"}
+        return {
+            "status": "healthy" if self._initialized else "not_initialized",
+            "engine": "financial_news",
+        }
 
     def metrics(self):
         return {"engine": "financial_news", "last_run": "N/A", "articles": 0}

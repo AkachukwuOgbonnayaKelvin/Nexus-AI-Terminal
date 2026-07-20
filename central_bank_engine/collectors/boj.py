@@ -84,7 +84,9 @@ class BOJSpeechCollector(SpeechCollector):
                 title = entry.title.lower()
                 if "speech" in title or "testimony" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"boj_speech_{entry.id.split('/')[-1]}"
@@ -122,7 +124,9 @@ class BOJMinutesCollector(MinutesCollector):
                 title = entry.title.lower()
                 if "minutes" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"boj_minutes_{entry.id.split('/')[-1]}"
@@ -160,7 +164,9 @@ class BOJStatementCollector(StatementCollector):
                 if "statement" in title or "announcement" in title or "press" in title:
                     if "minutes" not in title and "speech" not in title:
                         published = entry.published_parsed
-                        release_time = datetime(*published[:6]) if published else datetime.now()
+                        release_time = (
+                            datetime(*published[:6]) if published else datetime.now()
+                        )
                         events.append(
                             {
                                 "event_id": f"boj_statement_{entry.id.split('/')[-1]}"
@@ -197,7 +203,9 @@ class BOJCalendarCollector(CalendarCollector):
                 title = entry.title.lower()
                 if "schedule" in title or "calendar" in title:
                     published = entry.published_parsed
-                    release_time = datetime(*published[:6]) if published else datetime.now()
+                    release_time = (
+                        datetime(*published[:6]) if published else datetime.now()
+                    )
                     events.append(
                         {
                             "event_id": f"boj_calendar_{entry.id.split('/')[-1]}"

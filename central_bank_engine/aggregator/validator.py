@@ -13,7 +13,9 @@ class Validator:
         for event in events:
             missing = [f for f in self.REQUIRED_FIELDS if not event.get(f)]
             if missing:
-                logger.warning(f"Skipping event missing fields: {missing} - {event.get('title', 'unknown')}")
+                logger.warning(
+                    f"Skipping event missing fields: {missing} - {event.get('title', 'unknown')}"
+                )
                 continue
             # If release_time is missing, set it to now
             if "release_time" not in event or not event["release_time"]:
@@ -24,7 +26,9 @@ class Validator:
                 try:
                     datetime.fromisoformat(event["release_time"].replace("Z", "+00:00"))
                 except ValueError:
-                    logger.warning(f"Invalid timestamp format: {event['release_time']}, using current time")
+                    logger.warning(
+                        f"Invalid timestamp format: {event['release_time']}, using current time"
+                    )
                     event["release_time"] = datetime.now().isoformat()
             valid_events.append(event)
         logger.info(f"Validated {len(valid_events)} / {len(events)} events")

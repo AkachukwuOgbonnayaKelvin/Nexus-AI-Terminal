@@ -4,11 +4,8 @@
 
 import ast
 import json
-import os
-import re
-import sys
 from collections import defaultdict
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set
 
 import chardet
 from pathlib import Path
@@ -79,12 +76,21 @@ class ProjectIntegrity:
 
     def _discover_modules(self) -> None:
         """Discover all Python modules."""
-        excluded = ["venv", "__pycache__", ".git", ".pytest_cache", ".mypy_cache", ".ruff_cache"]
+        excluded = [
+            "venv",
+            "__pycache__",
+            ".git",
+            ".pytest_cache",
+            ".mypy_cache",
+            ".ruff_cache",
+        ]
         for py_file in self.root.rglob("*.py"):
             if any(e in str(py_file) for e in excluded):
                 continue
             rel_path = py_file.relative_to(self.root)
-            module_name = str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
+            module_name = (
+                str(rel_path).replace("\\", ".").replace("/", ".").replace(".py", "")
+            )
             self.modules[module_name] = py_file
             self.all_exports.add(module_name)
 
@@ -147,7 +153,7 @@ class ProjectIntegrity:
                         "error": str(e),
                     }
                 )
-            except Exception as e:
+            except Exception:
                 pass
 
     def _check_syntax(self) -> None:
@@ -287,14 +293,24 @@ class ProjectIntegrity:
                         for node in ast.walk(tree):
                             if isinstance(node, ast.Assign):
                                 for target in node.targets:
-                                    if isinstance(target, ast.Name) and target.id == "__all__":
+                                    if (
+                                        isinstance(target, ast.Name)
+                                        and target.id == "__all__"
+                                    ):
                                         if isinstance(node.value, ast.List):
                                             for elt in node.value.elts:
-                                                if isinstance(elt, ast.Constant) and isinstance(elt.value, str):
+                                                if isinstance(
+                                                    elt, ast.Constant
+                                                ) and isinstance(elt.value, str):
                                                     export = elt.value
-                                                    export_path = file_path.parent / f"{export}.py"
+                                                    export_path = (
+                                                        file_path.parent
+                                                        / f"{export}.py"
+                                                    )
                                                     if not export_path.exists():
-                                                        self.issues["broken_init"].append(
+                                                        self.issues[
+                                                            "broken_init"
+                                                        ].append(
                                                             {
                                                                 "file": str(file_path),
                                                                 "missing_export": export,

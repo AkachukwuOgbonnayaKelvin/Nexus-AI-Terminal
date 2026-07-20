@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Generate collector files for all central banks."""
 
-
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
