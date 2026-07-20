@@ -1,0 +1,136 @@
+# ECO-002 Source Registry
+
+sources:
+  sec_edgar:
+    id: SRC-ECO-001
+    name: SEC EDGAR
+    tier: 1
+    role: primary
+    description: Official SEC filings for US-listed companies
+    capabilities:
+      - filings
+      - xbrl
+      - financial_statements
+      - 10-K
+      - 10-Q
+      - 8-K
+    priority: 1
+    countries: [US]
+    enabled: true
+
+  company_ir:
+    id: SRC-ECO-002
+    name: Company Investor Relations
+    tier: 1
+    role: primary
+    description: Official company earnings releases and IR materials
+    capabilities:
+      - earnings_release
+      - guidance
+      - presentations
+      - conference_calls
+    priority: 1
+    countries: [US, UK, CA, AU, JP, EU]
+    enabled: true
+
+  regulatory:
+    id: SRC-ECO-003
+    name: Regulatory Filings
+    tier: 1
+    role: primary
+    description: International regulatory filing systems
+    capabilities:
+      - filings
+      - financial_statements
+    priority: 1
+    countries: [UK, CA, JP, AU, EU]
+    enabled: true
+
+  financial_modeling_prep:
+    id: SRC-ECO-004
+    name: Financial Modeling Prep
+    tier: 2
+    role: secondary
+    description: Normalized financial data API
+    capabilities:
+      - earnings
+      - estimates
+      - financial_statements
+      - income_statement
+      - balance_sheet
+      - cash_flow
+    priority: 2
+    countries: [US, UK, CA, AU, JP, EU]
+    enabled: true
+
+  alpha_vantage:
+    id: SRC-ECO-005
+    name: Alpha Vantage
+    tier: 2
+    role: secondary
+    description: API-based financial data
+    capabilities:
+      - earnings
+      - estimates
+      - surprises
+      - revenue
+    priority: 3
+    countries: [US]
+    enabled: true
+
+  finnhub:
+    id: SRC-ECO-006
+    name: Finnhub
+    tier: 2
+    role: secondary
+    description: Earnings and financial data API
+    capabilities:
+      - earnings
+      - estimates
+      - guidance
+      - calendar
+    priority: 3
+    countries: [US, UK, CA, AU, JP, EU]
+    enabled: true
+
+company_registry:
+  AAPL:
+    name: Apple Inc.
+    country: US
+    exchange: NASDAQ
+    currency: USD
+    sec_cik: 0000320193
+    sector: Technology
+    industry: Consumer Electronics
+  MSFT:
+    name: Microsoft Corporation
+    country: US
+    exchange: NASDAQ
+    currency: USD
+    sec_cik: 0000789019
+    sector: Technology
+    industry: Software
+  GOOGL:
+    name: Alphabet Inc.
+    country: US
+    exchange: NASDAQ
+    currency: USD
+    sec_cik: 0001652044
+    sector: Technology
+    industry: Internet
+  AMZN:
+    name: Amazon.com Inc.
+    country: US
+    exchange: NASDAQ
+    currency: USD
+    sec_cik: 0001018724
+    sector: Consumer
+    industry: E-commerce
+  TSLA:
+    name: Tesla Inc.
+    country: US
+    exchange: NASDAQ
+    currency: USD
+    sec_cik: 0001318605
+    sector: Automotive
+    industry: Electric Vehicles

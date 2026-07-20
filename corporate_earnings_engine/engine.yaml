@@ -1,0 +1,56 @@
+id: ECO-002
+name: Corporate Earnings Engine
+version: 1.0.0
+owner: Data Team
+purpose: Acquire, normalize, validate, and publish corporate earnings data
+domain: corporate_earnings
+stage: development
+status: active
+
+architecture:
+  required:
+    - providers
+    - collectors
+    - parsers
+    - normalizers
+    - validators
+    - warehouse
+    - ndip
+    - runtime
+  optional:
+    - config
+    - schemas
+    - tests
+
+integration:
+  dar: true
+  ndip: true
+  warehouse: true
+
+runtime:
+  managed_by: DAR
+  schedule: "daily"
+  priority: 3
+  retries: 3
+  timeout: 120
+
+source_hierarchy:
+  tier1_primary:
+    - sec_edgar
+    - company_ir
+    - regulatory
+  tier2_secondary:
+    - financial_modeling_prep
+    - alpha_vantage
+    - finnhub
+
+data_domains:
+  - earnings
+  - financial_statements
+  - estimates
+  - guidance
+  - filings
+
+dependencies:
+  - GLO-001
+  - GLO-002

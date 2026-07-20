@@ -1,0 +1,85 @@
+engine_id: ECO-002
+version: 1.0.0
+
+outputs:
+  - topic: corporate.earnings.raw
+    domain: corporate
+    version: "1.0"
+    description: Raw earnings data from sources
+    schema_version: earnings_raw_v1
+
+  - topic: corporate.earnings.normalized
+    domain: corporate
+    version: "1.0"
+    description: Normalized earnings observations
+    schema_version: earnings_normalized_v1
+
+  - topic: corporate.financial_statements
+    domain: corporate
+    version: "1.0"
+    description: Financial statements data
+    schema_version: financial_statement_v1
+
+  - topic: corporate.estimates
+    domain: corporate
+    version: "1.0"
+    description: Earnings estimates data
+    schema_version: estimates_v1
+
+  - topic: corporate.guidance
+    domain: corporate
+    version: "1.0"
+    description: Company guidance data
+    schema_version: guidance_v1
+
+  - topic: corporate.filings
+    domain: corporate
+    version: "1.0"
+    description: Regulatory filings metadata
+    schema_version: filings_v1
+
+schemas:
+  earnings_normalized_v1:
+    fields:
+      - name: symbol
+        type: string
+        required: true
+      - name: company_name
+        type: string
+        required: true
+      - name: period
+        type: string
+        required: true
+      - name: period_type
+        type: string
+        required: true
+      - name: actual_eps
+        type: float
+        required: false
+      - name: estimated_eps
+        type: float
+        required: false
+      - name: actual_revenue
+        type: float
+        required: false
+      - name: estimated_revenue
+        type: float
+        required: false
+      - name: currency
+        type: string
+        required: true
+      - name: fiscal_period_end
+        type: datetime
+        required: true
+      - name: announcement_date
+        type: datetime
+        required: true
+      - name: source
+        type: string
+        required: true
+      - name: source_tier
+        type: integer
+        required: true
+      - name: provenance
+        type: object
+        required: false
