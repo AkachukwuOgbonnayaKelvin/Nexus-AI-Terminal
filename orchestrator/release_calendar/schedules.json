@@ -1,0 +1,46 @@
+{
+  "MAC-001_US_CPI": {
+    "dataset_id": "MAC-001_US_CPI",
+    "frequency": "monthly",
+    "day_of_week": null,
+    "day_of_month": 15,
+    "time_of_day": "08:30",
+    "timezone": "UTC",
+    "release_delay": 0,
+    "retry_interval": 60,
+    "max_retries": 5
+  },
+  "MAC-001_US_GDP": {
+    "dataset_id": "MAC-001_US_GDP",
+    "frequency": "quarterly",
+    "day_of_week": null,
+    "day_of_month": 25,
+    "time_of_day": "08:30",
+    "timezone": "UTC",
+    "release_delay": 0,
+    "retry_interval": 60,
+    "max_retries": 5
+  },
+  "MAC-001_US_EMPLOYMENT": {
+    "dataset_id": "MAC-001_US_EMPLOYMENT",
+    "frequency": "monthly",
+    "day_of_week": null,
+    "day_of_month": 3,
+    "time_of_day": "08:30",
+    "timezone": "UTC",
+    "release_delay": 0,
+    "retry_interval": 60,
+    "max_retries": 5
+  },
+  "INS-001_COT": {
+    "dataset_id": "INS-001_COT",
+    "frequency": "weekly",
+    "day_of_week": 4,
+    "day_of_month": null,
+    "time_of_day": "15:30",
+    "timezone": "UTC",
+    "release_delay": 0,
+    "retry_interval": 60,
+    "max_retries": 5
+  }
+}
