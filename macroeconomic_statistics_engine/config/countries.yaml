@@ -15,7 +15,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   EU:
     name: "Eurozone"
     currency: "EUR"
@@ -27,7 +27,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   UK:
     name: "United Kingdom"
     currency: "GBP"
@@ -39,7 +39,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   JP:
     name: "Japan"
     currency: "JPY"
@@ -51,7 +51,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   CH:
     name: "Switzerland"
     currency: "CHF"
@@ -63,7 +63,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   CA:
     name: "Canada"
     currency: "CAD"
@@ -75,7 +75,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   AU:
     name: "Australia"
     currency: "AUD"
@@ -87,7 +87,7 @@ countries:
       - cpi
       - unemployment
       - rates
-  
+
   NZ:
     name: "New Zealand"
     currency: "NZD"

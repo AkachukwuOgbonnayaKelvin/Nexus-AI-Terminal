@@ -5,7 +5,6 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 from pathlib import Path
 import sys
-import os
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -15,37 +14,37 @@ from corporate_earnings_engine.providers.registry import ProviderRegistry
 
 class EarningsCollector:
     """Collects earnings data from primary and secondary sources"""
-    
+
     def __init__(self, config: Optional[Dict[str, Any]] = None):
         self.config = config or {}
         self.registry = ProviderRegistry(config)
         self._observations: List[EarningsObservation] = []
-    
+
     def collect(self, symbols: Optional[List[str]] = None) -> List[EarningsObservation]:
         """Collect earnings data for symbols"""
         self._observations = []
-        
+
         if symbols is None:
             # Get symbols from primary provider
             primary = self.registry.get_primary_provider()
             if primary:
                 symbols = primary.get_available_symbols()
-        
+
         if not symbols:
             return []
-        
+
         for symbol in symbols:
             observations = self._collect_for_symbol(symbol)
             self._observations.extend(observations)
-        
+
         return self._observations
-    
+
     def _collect_for_symbol(self, symbol: str) -> List[EarningsObservation]:
         """Collect earnings for a single symbol with failover"""
-        
+
         end_date = datetime.now()
-        start_date = end_date - timedelta(days=365*5)  # 5 years of data
-        
+        start_date = end_date - timedelta(days=365 * 5)  # 5 years of data
+
         # Try Tier 1 providers first
         tier1_providers = self.registry.get_providers_by_tier(1)
         for provider in tier1_providers:
@@ -53,7 +52,7 @@ class EarningsCollector:
                 data = provider.get_earnings(symbol, start_date, end_date)
                 if data:
                     return data
-        
+
         # Try Tier 2 providers
         tier2_providers = self.registry.get_providers_by_tier(2)
         for provider in tier2_providers:
@@ -61,8 +60,8 @@ class EarningsCollector:
                 data = provider.get_earnings(symbol, start_date, end_date)
                 if data:
                     return data
-        
+
         return []
-    
+
     def get_observations(self) -> List[EarningsObservation]:
         return self._observations

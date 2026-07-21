@@ -92,3 +92,28 @@ macroeconomic_statistics_engine/data/*.json
 *.pkl
 *.pickle
 data/
+
+# Corrupted test files
+test_contract_structure.py
+test_glb*.py
+test_hub*.py
+
+# Backup files
+backup_*.tar.gz
+backup_*/
+
+# Cache files
+*.pyc
+__pycache__/
+global_intelligence_hub/cache_data/*.json
+global_intelligence_hub/cache_data/*.json
+# Legacy files
+global_intelligence_hub/
+intelligence_engines/
+apply_all_fixes.py
+fix_asset_impact_engine.py
+# Legacy files
+global_intelligence_hub/
+intelligence_engines/
+apply_all_fixes.py
+fix_asset_impact_engine.py

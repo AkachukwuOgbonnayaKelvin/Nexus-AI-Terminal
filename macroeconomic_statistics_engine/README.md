@@ -40,4 +40,3 @@ Acquire, normalize, validate, version, and publish macroeconomic statistics from
 ## Testing
 ```bash
 python -m pytest tests/
-

@@ -30,23 +30,25 @@ class VerificationOS:
         self.gates = {}
         self.results = {}
         self.resolver = get_resolver()
-    
+
     def register_gate(self, name: str, gate) -> None:
         """Register a verification gate"""
         self.gates[name] = gate
-    
-    def verify_engine(self, engine_id: str, gates: Optional[List[str]] = None) -> Dict[str, Any]:
+
+    def verify_engine(
+        self, engine_id: str, gates: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
         """Run verification on a specific engine"""
-        
+
         identity = self.resolver.resolve(engine_id)
         if not identity:
             return {
                 "engine": engine_id,
                 "overall_status": "FAIL",
                 "error": f"Engine '{engine_id}' not found",
-                "gates": {}
+                "gates": {},
             }
-        
+
         self.results = {
             "engine": engine_id,
             "resolved_id": identity.id,
@@ -55,11 +57,11 @@ class VerificationOS:
             "timestamp": datetime.now().isoformat(),
             "gates": {},
             "overall_status": "PENDING",
-            "critical_failures": []
+            "critical_failures": [],
         }
-        
+
         gates_to_run = gates if gates else list(self.gates.keys())
-        
+
         for gate_name in gates_to_run:
             if gate_name in self.gates:
                 print(f"\n[{gate_name.upper()}] Running {gate_name} gate...")
@@ -67,26 +69,29 @@ class VerificationOS:
                     gate = self.gates[gate_name]
                     result = gate.run(identity.id)
                     self.results["gates"][gate_name] = result
-                    
+
                     if result.get("status") in ["FAIL", "ERROR"]:
                         self.results["overall_status"] = "FAIL"
-                        self.results["critical_failures"].append({
-                            "gate": gate_name,
-                            "reason": result.get("issues", [{"message": "Unknown failure"}])[0].get("message", "Unknown")
-                        })
+                        self.results["critical_failures"].append(
+                            {
+                                "gate": gate_name,
+                                "reason": result.get(
+                                    "issues", [{"message": "Unknown failure"}]
+                                )[0].get("message", "Unknown"),
+                            }
+                        )
                 except Exception as e:
                     print(f"Error running {gate_name}: {e}")
                     self.results["gates"][gate_name] = {
                         "status": "ERROR",
                         "score": 0,
-                        "issues": [{"message": str(e)}]
+                        "issues": [{"message": str(e)}],
                     }
                     self.results["overall_status"] = "FAIL"
-                    self.results["critical_failures"].append({
-                        "gate": gate_name,
-                        "reason": str(e)
-                    })
-        
+                    self.results["critical_failures"].append(
+                        {"gate": gate_name, "reason": str(e)}
+                    )
+
         if self.results["overall_status"] != "FAIL":
             all_passed = all(
                 self.results["gates"][g].get("status") in ["PASS", "NOT_APPLICABLE"]
@@ -94,37 +99,41 @@ class VerificationOS:
                 if g in self.results["gates"]
             )
             self.results["overall_status"] = "PASS" if all_passed else "PARTIAL"
-        
+
         return self.results
-    
+
     def verify_all_engines(self) -> Dict[str, Any]:
         engines = self.resolver.list_all_engines()
         all_results = {}
-        
+
         for engine_id in engines:
             print(f"\n{'='*60}")
             print(f"VERIFYING: {engine_id}")
-            print('='*60)
+            print("=" * 60)
             all_results[engine_id] = self.verify_engine(engine_id)
-        
+
         return all_results
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="NEXUS ENGINE VERIFICATION OS",
-        formatter_class=argparse.RawDescriptionHelpFormatter
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("--engine", "-e", type=str, help="Engine ID to verify")
     parser.add_argument("--all", "-a", action="store_true", help="Verify all engines")
     parser.add_argument("--gate", "-g", type=str, help="Run a specific gate only")
-    parser.add_argument("--gates", "-G", type=str, help="Comma-separated list of gates to run")
-    parser.add_argument("--verbose", "-v", action="store_true", help="Show detailed output")
-    
+    parser.add_argument(
+        "--gates", "-G", type=str, help="Comma-separated list of gates to run"
+    )
+    parser.add_argument(
+        "--verbose", "-v", action="store_true", help="Show detailed output"
+    )
+
     args = parser.parse_args()
-    
+
     vos = VerificationOS()
-    
+
     vos.register_gate("acp", ACPGate())
     vos.register_gate("eiv", EIVGate())
     vos.register_gate("efl", EFLGate())
@@ -133,13 +142,13 @@ def main():
     vos.register_gate("rrt", RRTGate())
     vos.register_gate("e2e", E2EGate())
     vos.register_gate("gcv", GCVGate())  # New Global Coverage Validation
-    
+
     gates_to_run = None
     if args.gate:
         gates_to_run = [args.gate]
     elif args.gates:
         gates_to_run = args.gates.split(",")
-    
+
     if args.all:
         results = vos.verify_all_engines()
     elif args.engine:
@@ -147,14 +156,14 @@ def main():
     else:
         parser.print_help()
         return
-    
+
     report = ConsoleReport(results)
     report.render()
-    
+
     if isinstance(results, dict):
         if results.get("overall_status") in ["FAIL", "PARTIAL"]:
             sys.exit(1)
-    
+
     sys.exit(0)
 
 

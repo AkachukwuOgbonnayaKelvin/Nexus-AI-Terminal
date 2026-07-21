@@ -2,7 +2,6 @@
 """Raw Backend Certification Runner"""
 
 import sys
-import os
 from pathlib import Path
 from typing import Dict, Any
 from datetime import datetime
@@ -11,15 +10,23 @@ from datetime import datetime
 project_root = Path(__file__).parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from tools.verification.raw_backend_certification.auditors.mkt001_auditor import MKT001Auditor
-from tools.verification.raw_backend_certification.auditors.mac001_auditor import MAC001Auditor
-from tools.verification.raw_backend_certification.auditors.eco002_auditor import ECO002Auditor
-from tools.verification.raw_backend_certification.reports.report_generator import ReportGenerator
+from tools.verification.raw_backend_certification.auditors.mkt001_auditor import (
+    MKT001Auditor,
+)
+from tools.verification.raw_backend_certification.auditors.mac001_auditor import (
+    MAC001Auditor,
+)
+from tools.verification.raw_backend_certification.auditors.eco002_auditor import (
+    ECO002Auditor,
+)
+from tools.verification.raw_backend_certification.reports.report_generator import (
+    ReportGenerator,
+)
 
 
 class CertificationRunner:
     """Runs raw backend certification for all engines"""
-    
+
     def __init__(self):
         self.engines = {
             "MKT-001": MKT001Auditor(),
@@ -27,40 +34,46 @@ class CertificationRunner:
             "ECO-002": ECO002Auditor(),
         }
         self.results: Dict[str, Any] = {}
-    
+
     def run_all(self) -> Dict[str, Any]:
         """Run certification for all engines"""
-        print("\n" + "="*70)
+        print("\n" + "=" * 70)
         print("  NEXUS RAW DATA BACKEND CERTIFICATION")
-        print("="*70)
+        print("=" * 70)
         print(f"  Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print("="*70)
+        print("=" * 70)
         print("")
-        
+
         for engine_id, auditor in self.engines.items():
             print(f"[{engine_id}] Running certification...")
             try:
                 result = auditor.run_all()
                 self.results[engine_id] = result
-                
-                status_icon = "✅" if result.status == "CERTIFIED" else "⚠️" if result.status == "PARTIAL" else "❌"
+
+                status_icon = (
+                    "✅"
+                    if result.status == "CERTIFIED"
+                    else "⚠️"
+                    if result.status == "PARTIAL"
+                    else "❌"
+                )
                 print(f"  {status_icon} {result.engine_name}: {result.status}")
                 print("")
             except Exception as e:
                 print(f"  ❌ Error running {engine_id}: {e}")
                 print("")
-        
+
         # Generate final report
         report = ReportGenerator(self.results)
         report.print_summary()
-        
+
         return self.results
-    
+
     def get_certification_status(self) -> str:
         """Get overall certification status"""
         if not self.results:
             return "NOT_RUN"
-        
+
         statuses = [r.status for r in self.results.values()]
         if all(s == "CERTIFIED" for s in statuses):
             return "CERTIFIED"
@@ -74,7 +87,7 @@ def main():
     """Main entry point"""
     runner = CertificationRunner()
     results = runner.run_all()
-    
+
     # Exit with appropriate code
     status = runner.get_certification_status()
     if status == "CERTIFIED":

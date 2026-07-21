@@ -16,11 +16,11 @@ from acp.compilers import PlatformCompiler
 from acp.output import Visualizer
 
 __all__ = [
-    'ArchitectureOS',
-    'Visualizer',
-    'IdentityCompiler',
-    'ArchitectureCompiler',
-    'DependencyCompiler',
-    'RuntimeCompiler',
-    'PlatformCompiler'
+    "ArchitectureOS",
+    "Visualizer",
+    "IdentityCompiler",
+    "ArchitectureCompiler",
+    "DependencyCompiler",
+    "RuntimeCompiler",
+    "PlatformCompiler",
 ]
