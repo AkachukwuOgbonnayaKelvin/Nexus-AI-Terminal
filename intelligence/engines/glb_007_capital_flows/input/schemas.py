@@ -3,7 +3,6 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
 from pydantic import BaseModel, Field
 
 from ..constants import CapitalFlowType, FlowDirection
@@ -11,6 +10,7 @@ from ..constants import CapitalFlowType, FlowDirection
 
 class CapitalFlowInput(BaseModel):
     """Canonical capital flow input contract"""
+
     flow_id: str
     asset: str
     region: str
@@ -27,6 +27,7 @@ class CapitalFlowInput(BaseModel):
 
 class LiquidityInput(BaseModel):
     """Liquidity data input contract"""
+
     global_liquidity: float = Field(ge=0, le=100)
     central_bank_liquidity: float = Field(ge=0, le=100)
     money_market_liquidity: float = Field(ge=0, le=100)

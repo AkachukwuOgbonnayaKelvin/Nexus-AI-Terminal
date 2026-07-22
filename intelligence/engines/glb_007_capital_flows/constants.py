@@ -7,6 +7,7 @@ from enum import Enum
 
 class CapitalFlowType(str, Enum):
     """Types of capital flows"""
+
     RISK_ON = "RISK_ON"
     RISK_OFF = "RISK_OFF"
     SAFE_HAVEN = "SAFE_HAVEN"
@@ -21,6 +22,7 @@ class CapitalFlowType(str, Enum):
 
 class LiquidityState(str, Enum):
     """Liquidity states"""
+
     ABUNDANT = "ABUNDANT"
     NORMAL = "NORMAL"
     TIGHTENING = "TIGHTENING"
@@ -29,6 +31,7 @@ class LiquidityState(str, Enum):
 
 class FlowDirection(str, Enum):
     """Flow direction"""
+
     INFLOW = "INFLOW"
     OUTFLOW = "OUTFLOW"
     NEUTRAL = "NEUTRAL"
@@ -36,6 +39,7 @@ class FlowDirection(str, Enum):
 
 class FlowMomentum(str, Enum):
     """Flow momentum"""
+
     ACCELERATING = "ACCELERATING"
     DECELERATING = "DECELERATING"
     STABLE = "STABLE"

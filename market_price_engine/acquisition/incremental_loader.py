@@ -38,7 +38,7 @@ class IncrementalLoader:
             try:
                 with open(self._state_file) as f:
                     return json.load(f)
-            except:
+            except Exception:
                 return {}
         return {}
 

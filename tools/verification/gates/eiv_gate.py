@@ -209,7 +209,7 @@ class EIVGate:
                     return {"status": "PASS", "message": "DAR integration configured"}
                 if data.get("runtime", {}).get("managed_by") == "DAR":
                     return {"status": "PASS", "message": "DAR integration configured"}
-            except:
+            except Exception:
                 pass
         return {
             "status": "WARN",

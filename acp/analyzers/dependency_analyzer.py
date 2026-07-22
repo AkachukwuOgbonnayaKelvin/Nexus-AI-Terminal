@@ -129,5 +129,5 @@ class DependencyAnalyzer:
                             result["circular_dependencies"].append(
                                 f"{engine_id} -> {dep} -> {engine_id}"
                             )
-                    except:
+                    except Exception:
                         pass

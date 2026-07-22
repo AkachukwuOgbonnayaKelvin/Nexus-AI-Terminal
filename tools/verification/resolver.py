@@ -113,7 +113,7 @@ class EngineIdentityResolver:
             try:
                 with open(contract_yaml_path) as f:
                     contract_data = yaml.safe_load(f)
-            except:
+            except Exception:
                 pass
 
         # Build identity

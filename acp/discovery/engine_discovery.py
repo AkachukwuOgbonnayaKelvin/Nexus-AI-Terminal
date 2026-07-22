@@ -110,7 +110,7 @@ class EngineDiscovery:
                                 or "provider" in content.lower()
                             ):
                                 engine_imports += 1
-                    except:
+                    except Exception:
                         pass
 
                 if engine_signals >= 2 or engine_imports >= 2:

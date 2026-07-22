@@ -13,11 +13,13 @@ logger = logging.getLogger(__name__)
 
 class LiquidityAnalyzer:
     """Analyze liquidity conditions"""
-    
-    def analyze_liquidity(self, liquidity_data: Optional[LiquidityInput]) -> Dict[str, Any]:
+
+    def analyze_liquidity(
+        self, liquidity_data: Optional[LiquidityInput]
+    ) -> Dict[str, Any]:
         """
         Analyze liquidity conditions.
-        
+
         Returns:
             Dict with liquidity analysis
         """
@@ -27,21 +29,21 @@ class LiquidityAnalyzer:
                 "liquidity_score": 50.0,
                 "liquidity_state": LiquidityState.NORMAL.value,
                 "funding_stress": 50.0,
-                "confidence": 0
+                "confidence": 0,
             }
-        
+
         # Calculate overall liquidity score
         components = [
             liquidity_data.global_liquidity,
             liquidity_data.central_bank_liquidity,
             liquidity_data.money_market_liquidity,
-            liquidity_data.credit_liquidity
+            liquidity_data.credit_liquidity,
         ]
         liquidity_score = sum(components) / len(components)
-        
+
         # Determine liquidity state
         state = self._determine_state(liquidity_score, liquidity_data.funding_stress)
-        
+
         return {
             "status": "OPERATIONAL",
             "liquidity_score": liquidity_score,
@@ -51,10 +53,12 @@ class LiquidityAnalyzer:
             "money_market_liquidity": liquidity_data.money_market_liquidity,
             "credit_liquidity": liquidity_data.credit_liquidity,
             "funding_stress": liquidity_data.funding_stress,
-            "confidence": liquidity_data.confidence
+            "confidence": liquidity_data.confidence,
         }
-    
-    def _determine_state(self, liquidity_score: float, funding_stress: float) -> LiquidityState:
+
+    def _determine_state(
+        self, liquidity_score: float, funding_stress: float
+    ) -> LiquidityState:
         """Determine liquidity state from score and stress"""
         if funding_stress > 70 or liquidity_score < 30:
             return LiquidityState.STRESSED

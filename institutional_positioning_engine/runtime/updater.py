@@ -25,7 +25,7 @@ class COTUpdater:
         logger.info("Fetching latest COT report...")
         try:
             # Check if we already have the latest
-            last_report = await self.state.get_last_report()
+            # last_report = ...  # Unused
             # In production, we'd check if a newer report is available
             # For now, we'll just download the latest stub
             report = {

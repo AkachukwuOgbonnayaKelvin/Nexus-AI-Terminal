@@ -40,24 +40,24 @@ def run_certification():
     print("\nTest 2: NDIP Consumption...")
     try:
         test_data = {
-            'flows': [
+            "flows": [
                 {
-                    'flow_id': 'FLOW-001',
-                    'asset': 'XAUUSD',
-                    'region': 'GLOBAL',
-                    'flow_type': 'SAFE_HAVEN',
-                    'direction': 'INFLOW',
-                    'amount': 1250000000,
-                    'amount_normalized': 85.0,
-                    'velocity': 82.0,
-                    'persistence': 74.0,
-                    'confidence': 88.0,
-                    'timestamp': datetime.utcnow().isoformat(),
-                    'source': 'NDIP'
+                    "flow_id": "FLOW-001",
+                    "asset": "XAUUSD",
+                    "region": "GLOBAL",
+                    "flow_type": "SAFE_HAVEN",
+                    "direction": "INFLOW",
+                    "amount": 1250000000,
+                    "amount_normalized": 85.0,
+                    "velocity": 82.0,
+                    "persistence": 74.0,
+                    "confidence": 88.0,
+                    "timestamp": datetime.utcnow().isoformat(),
+                    "source": "NDIP",
                 }
             ]
         }
-        engine.consume_ndip(NDIP_TOPICS['CAPITAL_FLOWS'], test_data)
+        engine.consume_ndip(NDIP_TOPICS["CAPITAL_FLOWS"], test_data)
         results.append(("NDIP Consumption", "PASS"))
         print("  ✅ PASS")
     except Exception as e:
@@ -69,29 +69,29 @@ def run_certification():
     print("\nTest 3: Engine Run...")
     try:
         liquidity_data = {
-            'global_liquidity': 64.5,
-            'central_bank_liquidity': 72.0,
-            'money_market_liquidity': 61.0,
-            'credit_liquidity': 58.0,
-            'funding_stress': 32.0,
-            'confidence': 82.0,
-            'timestamp': datetime.utcnow().isoformat()
+            "global_liquidity": 64.5,
+            "central_bank_liquidity": 72.0,
+            "money_market_liquidity": 61.0,
+            "credit_liquidity": 58.0,
+            "funding_stress": 32.0,
+            "confidence": 82.0,
+            "timestamp": datetime.utcnow().isoformat(),
         }
-        engine.consume_ndip(NDIP_TOPICS['GLOBAL_LIQUIDITY'], liquidity_data)
+        engine.consume_ndip(NDIP_TOPICS["GLOBAL_LIQUIDITY"], liquidity_data)
         report = engine.run()
-        core = report.get('core_intelligence', {})
-        
+        core = report.get("core_intelligence", {})
+
         # Check core intelligence
-        assert core.get('capital_flow_score', 0) > 0
-        assert core.get('flow_direction') is not None
-        assert core.get('liquidity_score', 0) > 0
-        
+        assert core.get("capital_flow_score", 0) > 0
+        assert core.get("flow_direction") is not None
+        assert core.get("liquidity_score", 0) > 0
+
         # Check asset impact matrix
-        matrix = report.get('asset_impact_matrix')
+        matrix = report.get("asset_impact_matrix")
         assert matrix is not None
-        impacts = matrix.get('impacts', {})
+        impacts = matrix.get("impacts", {})
         assert len(impacts) > 0
-        
+
         results.append(("Engine Run", "PASS"))
         print("  ✅ PASS")
         print(f"     Flow Score: {core.get('capital_flow_score', 0):.1f}")
@@ -107,19 +107,23 @@ def run_certification():
     print("\nTest 4: Asset Impact Matrix Validation...")
     try:
         report = engine.get_last_report()
-        matrix = report.get('asset_impact_matrix')
-        impacts = matrix.get('impacts', {})
-        
+        matrix = report.get("asset_impact_matrix")
+        impacts = matrix.get("impacts", {})
+
         # Check score range for all assets
         for asset, impact in impacts.items():
-            score = impact.get('score', 0)
+            score = impact.get("score", 0)
             assert -100 <= score <= 100, f"Score {score} out of range for {asset}"
-        
+
         # Check direction is valid
         for asset, impact in impacts.items():
-            direction = impact.get('direction', 'NEUTRAL')
-            assert direction in ['BULLISH', 'BEARISH', 'NEUTRAL'], f"Invalid direction {direction} for {asset}"
-        
+            direction = impact.get("direction", "NEUTRAL")
+            assert direction in [
+                "BULLISH",
+                "BEARISH",
+                "NEUTRAL",
+            ], f"Invalid direction {direction} for {asset}"
+
         results.append(("Asset Impact Matrix Validation", "PASS"))
         print("  ✅ PASS")
         print(f"     All {len(impacts)} assets validated")

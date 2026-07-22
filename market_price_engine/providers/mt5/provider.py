@@ -131,7 +131,7 @@ class MT5Provider(MarketDataProvider):
             if self._mt5_initialized:
                 try:
                     mt5.shutdown()
-                except:
+                except Exception:
                     pass
                 self._mt5_initialized = False
             self.connected = False
@@ -143,7 +143,7 @@ class MT5Provider(MarketDataProvider):
             try:
                 mt5.shutdown()
                 print("[MT5] Disconnected")
-            except:
+            except Exception:
                 pass
             self.connected = False
             self._mt5_initialized = False

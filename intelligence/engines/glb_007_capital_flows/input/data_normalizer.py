@@ -3,7 +3,7 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Data Normalizer
 """
 
 import logging
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional
 from datetime import datetime
 
 from .schemas import CapitalFlowInput, LiquidityInput
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class DataNormalizer:
     """Normalize raw NDIP data into canonical format"""
-    
+
     def normalize_flow(self, raw: Dict[str, Any]) -> Optional[CapitalFlowInput]:
         """Normalize a raw flow record"""
         try:
@@ -29,13 +29,15 @@ class DataNormalizer:
                 velocity=raw.get("velocity", 50.0),
                 persistence=raw.get("persistence", 50.0),
                 confidence=raw.get("confidence", 70.0),
-                timestamp=datetime.fromisoformat(raw.get("timestamp", datetime.utcnow().isoformat())),
-                source=raw.get("source", "NDIP")
+                timestamp=datetime.fromisoformat(
+                    raw.get("timestamp", datetime.utcnow().isoformat())
+                ),
+                source=raw.get("source", "NDIP"),
             )
         except Exception as e:
             logger.warning(f"Failed to normalize flow: {e}")
             return None
-    
+
     def normalize_liquidity(self, raw: Dict[str, Any]) -> Optional[LiquidityInput]:
         """Normalize raw liquidity data"""
         try:
@@ -46,7 +48,9 @@ class DataNormalizer:
                 credit_liquidity=raw.get("credit_liquidity", 50.0),
                 funding_stress=raw.get("funding_stress", 50.0),
                 confidence=raw.get("confidence", 70.0),
-                timestamp=datetime.fromisoformat(raw.get("timestamp", datetime.utcnow().isoformat()))
+                timestamp=datetime.fromisoformat(
+                    raw.get("timestamp", datetime.utcnow().isoformat())
+                ),
             )
         except Exception as e:
             logger.warning(f"Failed to normalize liquidity: {e}")
