@@ -3,8 +3,8 @@
 NDIP Warehouse Database Inspection
 """
 
-import sqlite3
 import os
+import sqlite3
 
 print("=" * 70)
 print("NDIP WAREHOUSE DATABASE INSPECTION")
@@ -20,7 +20,7 @@ print(f"\nDatabase files found: {db_files}")
 
 # Check each database
 for db_file in db_files:
-    print(f"\n{'='*50}")
+    print(f"\n{'=' * 50}")
     print(f"DATABASE: {db_file}")
     print("=" * 50)
 

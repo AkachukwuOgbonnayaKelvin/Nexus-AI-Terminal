@@ -3,7 +3,7 @@
 import logging
 import time
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 import requests
 
@@ -38,7 +38,7 @@ class CFTCConnector:
             self._connected = False
             return False
 
-    def health(self) -> Dict[str, Any]:
+    def health(self) -> dict[str, Any]:
         """Return health status."""
         return {
             "status": "healthy" if self._connected else "unhealthy",
@@ -47,7 +47,7 @@ class CFTCConnector:
             "retries": 0,
         }
 
-    def get(self, url: str, retries: int = 3) -> Optional[requests.Response]:
+    def get(self, url: str, retries: int = 3) -> requests.Response | None:
         """GET with retry logic."""
         for attempt in range(retries):
             try:
@@ -57,7 +57,7 @@ class CFTCConnector:
                 if attempt < retries - 1:
                     time.sleep(self.retry_delay * (attempt + 1))
             except Exception as e:
-                logger.warning(f"Request failed (attempt {attempt+1}): {e}")
+                logger.warning(f"Request failed (attempt {attempt + 1}): {e}")
                 if attempt < retries - 1:
                     time.sleep(self.retry_delay * (attempt + 1))
         return None

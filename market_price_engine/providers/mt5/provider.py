@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """MT5 Provider - Primary execution-market feed with multi-instance support"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
-import sys
-from pathlib import Path
 import os
+import sys
+from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -23,7 +22,7 @@ from providers.base import MarketDataProvider, OHLCVData
 class MT5Provider(MarketDataProvider):
     """MT5 provider for Pepperstone market data with multi-instance support"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "mt5"
         self.terminal_path = self.config.get(
@@ -49,7 +48,7 @@ class MT5Provider(MarketDataProvider):
             self.connect()
         return self.connected
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         """Get provider health status"""
         return {
             "provider": self.name,
@@ -148,7 +147,7 @@ class MT5Provider(MarketDataProvider):
             self.connected = False
             self._mt5_initialized = False
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         """Get all available symbols from MT5"""
         if not self.is_available():
             return []
@@ -166,7 +165,7 @@ class MT5Provider(MarketDataProvider):
             print(f"[MT5] Error getting symbols: {e}")
             return []
 
-    def get_current_quote(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_current_quote(self, symbol: str) -> dict[str, Any] | None:
         """Get current tick/quote for a symbol"""
         if not self.is_available():
             return None
@@ -190,7 +189,7 @@ class MT5Provider(MarketDataProvider):
 
     def get_historical_bars(
         self, symbol: str, timeframe: str, start_date: datetime, end_date: datetime
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """Get historical OHLCV from MT5 with retry logic"""
         if not self.is_available():
             return []
@@ -244,7 +243,7 @@ class MT5Provider(MarketDataProvider):
 
             except Exception as e:
                 print(
-                    f"[MT5] Historical error (attempt {attempt+1}/{self.retries}) for {symbol}: {e}"
+                    f"[MT5] Historical error (attempt {attempt + 1}/{self.retries}) for {symbol}: {e}"
                 )
                 if attempt == self.retries - 1:
                     return []

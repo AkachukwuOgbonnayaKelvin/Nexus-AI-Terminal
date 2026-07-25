@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Build Canonical Historical Memory from Raw Data
 """
@@ -48,7 +47,7 @@ if asset_coverage:
     for symbol, coverage in sorted(
         asset_coverage.items(), key=lambda x: x[1], reverse=True
     )[:10]:
-        print(f"  {symbol}: {coverage*100:.1f}%")
+        print(f"  {symbol}: {coverage * 100:.1f}%")
 
 # Save canonical windows
 output_file = "canonical_historical_windows.json"

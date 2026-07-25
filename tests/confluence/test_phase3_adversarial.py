@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Confluence Engine - Phase 3 Adversarial/Conflict Testing
 
@@ -10,21 +9,21 @@ Tests the Harmonization Core under disagreement scenarios:
 - Dependent evidence
 """
 
-import sys
 import os
+import sys
 from datetime import datetime, timedelta
 
 # Add project root to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
-from intelligence.confluence.schemas import NormalizedSignal, Direction, SignalType
 from intelligence.confluence.evidence import EvidenceCollector
 from intelligence.confluence.harmonization import (
-    WeightedConsensus,
-    ConfluenceScore,
     ConflictDetector,
+    ConfluenceScore,
     EvidenceDeduplicator,
+    WeightedConsensus,
 )
+from intelligence.confluence.schemas import Direction, NormalizedSignal, SignalType
 
 
 def create_signal(engine_id, score, direction, confidence=85.0, reliability=0.85):
@@ -55,9 +54,9 @@ def run_test(
     expected_confidence_min=0,
 ):
     """Run a single test case."""
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print(f"TEST: {name}")
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
 
     # Collect evidence
     collector = EvidenceCollector()
@@ -139,9 +138,9 @@ def run_test(
 
 def test_deduplicator():
     """Test evidence deduplication with dependent signals."""
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print("TEST: Evidence Deduplicator - Dependent Evidence")
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
 
     # Create signals from dependent engines
     signals = [

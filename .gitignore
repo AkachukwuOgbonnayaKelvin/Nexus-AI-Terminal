@@ -117,3 +117,18 @@ global_intelligence_hub/
 intelligence_engines/
 apply_all_fixes.py
 fix_asset_impact_engine.py
+# CSV exports (large, intermediate)
+*.csv
+
+# Log files
+*.log
+
+# Checkpoint files
+*_checkpoint.json
+
+# Backup files
+*.db.gz
+*.db.backup
+raw_schema_backup.sql
+raw_schema_backup.sql
+raw_schema_backup.sql

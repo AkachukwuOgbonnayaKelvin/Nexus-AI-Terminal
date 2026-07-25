@@ -2,26 +2,26 @@
 Phase 7: Global Intelligence Hub - Integration Test
 """
 
-import sys
 import os
+import sys
 from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../.."))
 
 from intelligence.confluence.contracts import (
-    GlobalIntelligenceOutput,
-    GlobalEntityRating,
-    AssetClassRating,
-    EntityType,
-    Direction,
     AssetClass,
+    AssetClassRating,
+    Direction,
+    EntityType,
+    GlobalEntityRating,
+    GlobalIntelligenceOutput,
 )
 from intelligence.global_hub import (
-    StateManager,
-    IngestionGateway,
-    DeterministicSummaryEngine,
     AIExecutiveInterpreter,
+    DeterministicSummaryEngine,
+    IngestionGateway,
     OverviewViewModel,
+    StateManager,
 )
 
 
@@ -146,9 +146,9 @@ def test_phase7_integration():
     result = gateway.ingest(output)
     print(f"  Ingestion result: {result}")
 
-    assert (
-        result["status"] == "accepted"
-    ), f"Expected 'accepted', got {result['status']}"
+    assert result["status"] == "accepted", (
+        f"Expected 'accepted', got {result['status']}"
+    )
     print("  ✅ Ingestion accepted")
 
     # Step 2: Test State Manager

@@ -1,26 +1,25 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 NEXUS ENGINE VERIFICATION OS
 Complete engine certification pipeline
 """
 
-import sys
 import argparse
-from pathlib import Path
+import sys
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from tools.verification.gates.acp_gate import ACPGate
-from tools.verification.gates.eiv_gate import EIVGate
-from tools.verification.gates.efl_gate import EFLGate
-from tools.verification.gates.lcv_gate import LCVGate
 from tools.verification.gates.dqv_gate import DQVGate
-from tools.verification.gates.rrt_gate import RRTGate
 from tools.verification.gates.e2e_gate import E2EGate
+from tools.verification.gates.efl_gate import EFLGate
+from tools.verification.gates.eiv_gate import EIVGate
 from tools.verification.gates.gcv_gate import GCVGate
+from tools.verification.gates.lcv_gate import LCVGate
+from tools.verification.gates.rrt_gate import RRTGate
 from tools.verification.reports.console_report import ConsoleReport
 from tools.verification.resolver import get_resolver
 
@@ -36,8 +35,8 @@ class VerificationOS:
         self.gates[name] = gate
 
     def verify_engine(
-        self, engine_id: str, gates: Optional[List[str]] = None
-    ) -> Dict[str, Any]:
+        self, engine_id: str, gates: list[str] | None = None
+    ) -> dict[str, Any]:
         """Run verification on a specific engine"""
 
         identity = self.resolver.resolve(engine_id)
@@ -102,12 +101,12 @@ class VerificationOS:
 
         return self.results
 
-    def verify_all_engines(self) -> Dict[str, Any]:
+    def verify_all_engines(self) -> dict[str, Any]:
         engines = self.resolver.list_all_engines()
         all_results = {}
 
         for engine_id in engines:
-            print(f"\n{'='*60}")
+            print(f"\n{'=' * 60}")
             print(f"VERIFYING: {engine_id}")
             print("=" * 60)
             all_results[engine_id] = self.verify_engine(engine_id)
