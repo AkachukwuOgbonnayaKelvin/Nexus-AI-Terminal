@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Re-export OHLC Data with Proper Structure
 """
 
-import pickle
+import json
 import os
+import pickle
 import sys
 import types
-import json
 
 print("=" * 70)
 print("RE-EXPORTING OHLC DATA")

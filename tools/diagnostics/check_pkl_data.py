@@ -3,8 +3,9 @@
 Check PKL Data Structure
 """
 
-import pickle
 import os
+import pickle
+
 import pandas as pd
 
 print("=" * 70)

@@ -4,8 +4,9 @@ import os
 import time
 from datetime import datetime, timedelta
 
-from intelligence.data.tick.contracts.coverage import CoverageStatus  # Fixed
 from run_sync_final import run_sync
+
+from intelligence.data.tick.contracts.coverage import CoverageStatus  # Fixed
 
 SYMBOLS = [
     "EURUSD",

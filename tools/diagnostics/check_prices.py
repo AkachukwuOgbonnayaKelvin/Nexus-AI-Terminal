@@ -3,8 +3,8 @@
 Check Prices Table
 """
 
-import sqlite3
 import os
+import sqlite3
 
 print("=" * 70)
 print("PRICES TABLE INSPECTION")
