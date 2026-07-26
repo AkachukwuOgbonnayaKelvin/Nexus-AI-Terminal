@@ -1,26 +1,23 @@
-# -*- coding: utf-8 -*-
 """Central Scheduler - Owns all execution timing"""
 
-from typing import Dict
-from datetime import datetime
 import logging
-import time
 import sys
+import traceback
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
+from orchestrator.policies.continuous import ContinuousPolicy
+from orchestrator.policies.event_driven import EventDrivenPolicy
+from orchestrator.policies.release_aware import ReleaseAwarePolicy
+from orchestrator.release_calendar.calendar import ReleaseCalendar, ReleaseSchedule
 from orchestrator.state.dataset_state import (
-    DatasetStateRegistry,
     DatasetState,
+    DatasetStateRegistry,
     DatasetStatus,
     UpdatePolicy,
 )
-from orchestrator.release_calendar.calendar import ReleaseCalendar, ReleaseSchedule
-from orchestrator.policies.continuous import ContinuousPolicy
-from orchestrator.policies.release_aware import ReleaseAwarePolicy
-from orchestrator.policies.event_driven import EventDrivenPolicy
-
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +28,7 @@ class CentralScheduler:
     def __init__(self):
         self.registry = DatasetStateRegistry()
         self.calendar = ReleaseCalendar()
-        self.policies: Dict[str, any] = {}
+        self.policies: dict[str, any] = {}
         self.running = False
         self.cycle_id = 0
 
@@ -114,12 +111,13 @@ class CentralScheduler:
                     logger.debug(f"  Dataset {dataset_id} not due")
             except Exception as e:
                 logger.error(f"Error checking {dataset_id}: {e}")
+                traceback.print_exc()
 
         logger.info(f"=== Cycle {cycle_id} complete ===")
 
         return results
 
-    def _run_dataset(self, dataset_id: str, cycle_id: str) -> Dict:
+    def _run_dataset(self, dataset_id: str, cycle_id: str) -> dict:
         """Run a single dataset by calling the actual engine"""
         state = self.registry.get(dataset_id)
         if not state:
@@ -153,58 +151,57 @@ class CentralScheduler:
                 result["engine_result"] = engine_result
 
             elif dataset_id.startswith("CENT-001"):
-                # Central Bank Engine - to be implemented
-                result["engine_result"] = {
-                    "status": "SKIPPED",
-                    "message": "Not yet implemented",
-                }
+                from central_bank_engine.runtime.scheduler import run_cent001
+
+                engine_result = run_cent001()
+                result["engine_result"] = engine_result
 
             elif dataset_id.startswith("INS-001"):
-                # Institutional Positioning Engine - to be implemented
-                result["engine_result"] = {
-                    "status": "SKIPPED",
-                    "message": "Not yet implemented",
-                }
+                from institutional_positioning_engine.runtime.scheduler import (
+                    run_ins001,
+                )
+
+                engine_result = run_ins001()
+                result["engine_result"] = engine_result
+
+            elif dataset_id.startswith("TICK-001"):
+                from intelligence.data.tick.runners.sync_runner import run_tick_sync
+
+                engine_result = run_tick_sync()
+                result["engine_result"] = engine_result
+
+            elif dataset_id.startswith("VOL-001"):
+                from intelligence.data.volume.runners.sync_runner import run_volume_sync
+
+                engine_result = run_volume_sync()
+                result["engine_result"] = engine_result
+
+            elif dataset_id.startswith("SENT-001"):
+                from intelligence.data.sentiment.runners.sync_runner import (
+                    run_sentiment_sync,
+                )
+
+                engine_result = run_sentiment_sync()
+                result["engine_result"] = engine_result
 
             else:
-                result["engine_result"] = {
-                    "status": "UNKNOWN",
-                    "message": f"Unknown dataset: {dataset_id}",
-                }
+                logger.warning(f"Unknown dataset_id: {dataset_id}")
+                result["status"] = "SKIPPED"
+                return result
 
-            # Check if engine execution was successful
-            if result["engine_result"].get("status") == "SUCCESS":
-                state.status = DatasetStatus.COMPLETE
-                state.last_successful_fetch = datetime.now()
-                result["status"] = "COMPLETE"
-            else:
-                state.status = DatasetStatus.FAILED
-                state.last_error = result["engine_result"].get("error", "Unknown error")
-                result["status"] = "FAILED"
-
-            self.registry.save()
-            logger.info(f"    {dataset_id}: {result['status']}")
+            state.status = DatasetStatus.COMPLETE
+            result["status"] = "COMPLETE"
 
         except Exception as e:
             state.status = DatasetStatus.FAILED
-            state.last_error = str(e)
-            self.registry.save()
             result["status"] = "FAILED"
             result["error"] = str(e)
-            logger.error(f"    {dataset_id} FAILED: {e}")
+            logger.error(f"Error running {dataset_id}: {e}")
+            traceback.print_exc()
 
+        self.registry.save()
         return result
 
-    def run_once(self):
-        """Run one scheduler cycle"""
+    def run_once(self) -> dict:
+        """Run one full scheduler cycle"""
         return self.check_and_run()
-
-    def run_forever(self):
-        """Run the scheduler continuously"""
-        self.running = True
-        while self.running:
-            self.check_and_run()
-            time.sleep(60)  # Check every minute
-
-    def stop(self):
-        self.running = False

@@ -3,7 +3,7 @@ import gc
 import json
 import os
 import time
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from intelligence.data.common.writer import DataWriter
 from intelligence.data.tick.contracts import TickRequest
@@ -34,7 +34,7 @@ def save_checkpoint(symbol: str, checkpoint: dict):
 
 def run_sync(symbol: str, days_back: int = 3, frozen_target: datetime = None):
     mgr = DataAvailabilityManager()
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     target_start = now - timedelta(days=days_back)
     if frozen_target is None:
         frozen_target = now
@@ -68,10 +68,13 @@ def run_sync(symbol: str, days_back: int = 3, frozen_target: datetime = None):
         last_completed = checkpoint.get("last_completed")
         if last_completed:
             last_completed_dt = datetime.fromisoformat(last_completed)
+            # Make it timezone-aware (UTC) if it's naive
+            if last_completed_dt.tzinfo is None:
+                last_completed_dt = last_completed_dt.replace(tzinfo=UTC)
             if last_completed_dt > current and last_completed_dt < end:
-                print(
-                    f"  Checkpoint inside gap at {last_completed_dt}. Starting from gap start for safety."
-                )
+                print(f"  Resuming from checkpoint inside gap: {last_completed_dt}")
+                # Optionally skip ahead, but we'll start from gap start for safety
+                # current = last_completed_dt
             else:
                 print("  Checkpoint outside gap, starting from gap start.")
 

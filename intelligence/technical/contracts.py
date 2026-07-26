@@ -1,74 +1,77 @@
-"""
-Canonical contracts for technical data.
-Ensures every engine receives a typed, predictable structure.
-"""
-
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
+from enum import Enum
+from typing import Any
 
 
-@dataclass(frozen=True)
-class OHLCVBar:
-    """Canonical OHLCV bar."""
+class EngineBias(Enum):
+    BULLISH = "bullish"
+    BEARISH = "bearish"
+    NEUTRAL = "neutral"
+    UNKNOWN = "unknown"
 
+
+class MarketRegime(Enum):
+    TRENDING_UP = "trending_up"
+    TRENDING_DOWN = "trending_down"
+    RANGING = "ranging"
+    CONSOLIDATING = "consolidating"
+    EXPANDING = "expanding"
+    CONTRACTING = "contracting"
+    UNKNOWN = "unknown"
+
+
+class SignalConfidence(Enum):
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
+
+
+@dataclass
+class TechnicalSignal:
+    engine: str
     symbol: str
     timeframe: str
     timestamp: datetime
-    open: float
-    high: float
-    low: float
-    close: float
-    volume: float | None = None
+    bias: EngineBias
+    direction: str
+    confidence: float
+    regime: MarketRegime
+    regime_confidence: float
+    key_levels: list[dict[str, Any]] = field(default_factory=list)
+    events: list[dict[str, Any]] = field(default_factory=list)
+    invalidation_level: float | None = None
+    invalidation_condition: str | None = None
+    reasoning: list[str] = field(default_factory=list)
+    data_quality: float = 1.0
+    data_gaps: bool = False
+    version: str = "1.0"
+    processing_time_ms: float | None = None
+    data_range_start: datetime | None = None
+    data_range_end: datetime | None = None
+    extras: dict[str, Any] = field(default_factory=dict)
 
-    def __post_init__(self):
-        # Validate OHLC
-        if self.high < self.low:
-            raise ValueError(f"High < Low: {self.high} < {self.low}")
-        if self.high < self.open or self.high < self.close:
-            raise ValueError(f"High invalid: {self.high}")
-        if self.low > self.open or self.low > self.close:
-            raise ValueError(f"Low invalid: {self.low}")
-        if self.open <= 0 or self.high <= 0 or self.low <= 0 or self.close <= 0:
-            raise ValueError("Prices must be positive")
 
-
-@dataclass(frozen=True)
-class OHLCVSeries:
-    """A series of OHLCV bars for a symbol and timeframe."""
-
+@dataclass
+class OHLCRequest:
     symbol: str
     timeframe: str
-    bars: list[OHLCVBar]
-    coverage_start: datetime | None = None
-    coverage_end: datetime | None = None
-
-    def __len__(self):
-        return len(self.bars)
-
-    def __getitem__(self, idx):
-        return self.bars[idx]
+    start: datetime
+    end: datetime
+    max_bars: int | None = None
 
 
-@dataclass(frozen=True)
-class TickBar:
-    """Canonical tick data."""
-
+@dataclass
+class TickRequest:
     symbol: str
-    timestamp: datetime
-    price: float
-    volume: float | None = None
-    bid: float | None = None
-    ask: float | None = None
+    start: datetime
+    end: datetime
+    max_ticks: int | None = 100000
 
 
-@dataclass(frozen=True)
-class VolumeBar:
-    """Canonical volume data."""
-
+@dataclass
+class VolumeRequest:
     symbol: str
-    timeframe: str
-    timestamp: datetime
-    volume: float
-    baseline: float | None = None
-    z_score: float | None = None
-    regime: str | None = None
+    start: datetime
+    end: datetime
+    aggregate: str = "1m"

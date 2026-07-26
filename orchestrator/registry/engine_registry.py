@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Engine Registry - Registers all engines with the scheduler"""
 
 from orchestrator.scheduler.core import CentralScheduler
@@ -7,7 +6,7 @@ from orchestrator.scheduler.core import CentralScheduler
 def register_all_engines(scheduler: CentralScheduler):
     """Register all raw data engines with the scheduler"""
 
-    # MKT-001 - Continuous (24/7 market data)
+    # MKT-001 - Continuous (24/7 market data) - 1 minute
     scheduler.register_dataset(
         dataset_id="MKT-001_MARKET_PRICES",
         engine_id="MKT-001",
@@ -15,8 +14,31 @@ def register_all_engines(scheduler: CentralScheduler):
         interval_minutes=1,
     )
 
+    # TICK-001 - Tick data - 5 minutes
+    scheduler.register_dataset(
+        dataset_id="TICK-001_RAW",
+        engine_id="TICK-001",
+        update_policy="continuous",
+        interval_minutes=5,
+    )
+
+    # VOL-001 - Volume data - 5 minutes
+    scheduler.register_dataset(
+        dataset_id="VOL-001_RAW",
+        engine_id="VOL-001",
+        update_policy="continuous",
+        interval_minutes=5,
+    )
+
+    # SENT-001 - Sentiment data - 15 minutes
+    scheduler.register_dataset(
+        dataset_id="SENT-001_RAW",
+        engine_id="SENT-001",
+        update_policy="continuous",
+        interval_minutes=15,
+    )
+
     # MAC-001 - Release-aware (CPI, GDP, Employment)
-    # CPI - Monthly
     scheduler.register_dataset(
         dataset_id="MAC-001_US_CPI",
         engine_id="MAC-001",
@@ -25,8 +47,6 @@ def register_all_engines(scheduler: CentralScheduler):
         day_of_month=15,
         time_of_day="08:30",
     )
-
-    # GDP - Quarterly
     scheduler.register_dataset(
         dataset_id="MAC-001_US_GDP",
         engine_id="MAC-001",
@@ -35,8 +55,6 @@ def register_all_engines(scheduler: CentralScheduler):
         day_of_month=25,
         time_of_day="08:30",
     )
-
-    # Employment - Monthly
     scheduler.register_dataset(
         dataset_id="MAC-001_US_EMPLOYMENT",
         engine_id="MAC-001",
@@ -48,7 +66,9 @@ def register_all_engines(scheduler: CentralScheduler):
 
     # ECO-002 - Event-driven (Earnings releases)
     scheduler.register_dataset(
-        dataset_id="ECO-002_EARNINGS", engine_id="ECO-002", update_policy="event_driven"
+        dataset_id="ECO-002_EARNINGS",
+        engine_id="ECO-002",
+        update_policy="event_driven",
     )
 
     # CENT-001 - Event-driven (Central bank announcements)
