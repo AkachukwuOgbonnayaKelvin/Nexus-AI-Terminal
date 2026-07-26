@@ -1,13 +1,11 @@
 """WebSocket manager."""
 
-from typing import Set
-
 
 class WebSocketManager:
     """WebSocket connection manager."""
 
     def __init__(self) -> None:
-        self._connections: Set[str] = set()
+        self._connections: set[str] = set()
 
     def connect(self, client_id: str) -> None:
         """Register a WebSocket connection."""
@@ -20,7 +18,6 @@ class WebSocketManager:
     def broadcast(self, message: str) -> None:
         """Broadcast a message to all clients."""
         # In production, this would send via WebSocket
-        pass
 
     def get_connections(self) -> int:
         """Get the number of active connections."""

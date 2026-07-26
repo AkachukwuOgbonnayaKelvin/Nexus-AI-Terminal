@@ -5,10 +5,10 @@ configuration files, and defaults.
 """
 
 import os
-from typing import Any, Dict, Optional
+from pathlib import Path
+from typing import Any
 
 from dotenv import load_dotenv
-from pathlib import Path
 
 # Load environment variables from .env file if it exists
 env_file = Path(__file__).parent.parent / ".env"
@@ -32,12 +32,12 @@ class Config:
     REPORTS_DIR: Path = ROOT_DIR / "qa" / "reports"
 
     # Database
-    DATABASE_URL: Optional[str] = os.getenv("DATABASE_URL")
+    DATABASE_URL: str | None = os.getenv("DATABASE_URL")
     DATABASE_POOL_SIZE: int = int(os.getenv("DATABASE_POOL_SIZE", "10"))
     DATABASE_MAX_OVERFLOW: int = int(os.getenv("DATABASE_MAX_OVERFLOW", "20"))
 
     # Redis
-    REDIS_URL: Optional[str] = os.getenv("REDIS_URL", "redis://localhost:6379")
+    REDIS_URL: str | None = os.getenv("REDIS_URL", "redis://localhost:6379")
     REDIS_DB: int = int(os.getenv("REDIS_DB", "0"))
 
     # API
@@ -46,7 +46,7 @@ class Config:
     API_WORKERS: int = int(os.getenv("API_WORKERS", "4"))
 
     # Authentication
-    SECRET_KEY: Optional[str] = os.getenv("SECRET_KEY")
+    SECRET_KEY: str | None = os.getenv("SECRET_KEY")
     ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(
         os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
@@ -54,7 +54,7 @@ class Config:
 
     # Market Data
     MARKET_DATA_PROVIDER: str = os.getenv("MARKET_DATA_PROVIDER", "alpha_vantage")
-    MARKET_DATA_API_KEY: Optional[str] = os.getenv("MARKET_DATA_API_KEY")
+    MARKET_DATA_API_KEY: str | None = os.getenv("MARKET_DATA_API_KEY")
     MARKET_DATA_TIMEOUT: int = int(os.getenv("MARKET_DATA_TIMEOUT", "30"))
 
     # NDIP
@@ -62,7 +62,7 @@ class Config:
     NDIP_QUEUE_MAXSIZE: int = int(os.getenv("NDIP_QUEUE_MAXSIZE", "10000"))
 
     @classmethod
-    def to_dict(cls) -> Dict[str, Any]:
+    def to_dict(cls) -> dict[str, Any]:
         """Convert configuration to dictionary."""
         return {
             "app_name": cls.APP_NAME,

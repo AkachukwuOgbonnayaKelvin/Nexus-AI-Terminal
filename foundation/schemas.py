@@ -4,7 +4,7 @@ This module defines base Pydantic schemas used across the platform.
 """
 
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -15,7 +15,7 @@ class TimestampMixin(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     created_at: datetime = Field(default_factory=datetime.now)
-    updated_at: Optional[datetime] = Field(default=None)
+    updated_at: datetime | None = Field(default=None)
 
     def touch(self) -> None:
         """Update the updated_at timestamp."""
@@ -25,8 +25,8 @@ class TimestampMixin(BaseModel):
 class IDMixin(BaseModel):
     """Mixin for ID fields."""
 
-    id: Optional[str] = Field(default=None, description="Unique identifier")
-    name: Optional[str] = Field(default=None, description="Name")
+    id: str | None = Field(default=None, description="Unique identifier")
+    name: str | None = Field(default=None, description="Name")
 
 
 class BaseResponse(BaseModel):
@@ -34,7 +34,7 @@ class BaseResponse(BaseModel):
 
     status: str = Field(..., description="Response status")
     message: str = Field(..., description="Response message")
-    data: Optional[Dict[str, Any]] = Field(default=None, description="Response data")
+    data: dict[str, Any] | None = Field(default=None, description="Response data")
     timestamp: datetime = Field(default_factory=datetime.now)
 
 
@@ -49,7 +49,7 @@ class ErrorResponse(BaseResponse):
     """Error response schema."""
 
     error_code: str = Field(..., description="Error code")
-    error_details: Optional[Dict[str, Any]] = Field(
+    error_details: dict[str, Any] | None = Field(
         default=None, description="Error details"
     )
-    traceback: Optional[str] = Field(default=None, description="Error traceback")
+    traceback: str | None = Field(default=None, description="Error traceback")

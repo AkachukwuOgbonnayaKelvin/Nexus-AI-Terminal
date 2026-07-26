@@ -3,16 +3,16 @@ Global Intelligence Hub - Main Hub Class
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
-from .report_collector import ReportCollector
-from .consensus_engine import ConsensusEngine
-from .confidence_engine import ConfidenceEngine
-from .evidence_matrix_builder import EvidenceMatrixBuilder
-from .risk_matrix_builder import RiskMatrixBuilder
-from .executive_summary_generator import ExecutiveSummaryGenerator
 from .ai_context_builder import AIContextBuilder
+from .confidence_engine import ConfidenceEngine
+from .consensus_engine import ConsensusEngine
+from .evidence_matrix_builder import EvidenceMatrixBuilder
+from .executive_summary_generator import ExecutiveSummaryGenerator
+from .report_collector import ReportCollector
+from .risk_matrix_builder import RiskMatrixBuilder
 from .snapshot_builder import SnapshotBuilder
 
 logger = logging.getLogger(__name__)
@@ -33,8 +33,8 @@ class GlobalIntelligenceHub:
         self.ai_context_builder = AIContextBuilder()
         self.snapshot_builder = SnapshotBuilder()
 
-        self.last_snapshot: Optional[Dict[str, Any]] = None
-        self.last_run_time: Optional[datetime] = None
+        self.last_snapshot: dict[str, Any] | None = None
+        self.last_run_time: datetime | None = None
 
     def collect_report(self, engine_id: str, report: Any) -> bool:
         """
@@ -42,7 +42,7 @@ class GlobalIntelligenceHub:
         """
         return self.report_collector.collect_report(engine_id, report)
 
-    def build_snapshot(self) -> Dict[str, Any]:
+    def build_snapshot(self) -> dict[str, Any]:
         """
         Build the complete Global Intelligence Snapshot.
         """
@@ -93,11 +93,11 @@ class GlobalIntelligenceHub:
 
         return snapshot
 
-    def get_last_snapshot(self) -> Optional[Dict[str, Any]]:
+    def get_last_snapshot(self) -> dict[str, Any] | None:
         """Get the last built snapshot."""
         return self.last_snapshot
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """Check hub health."""
         status = self.report_collector.get_collection_status()
 

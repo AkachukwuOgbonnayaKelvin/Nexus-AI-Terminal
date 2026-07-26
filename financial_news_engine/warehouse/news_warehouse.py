@@ -1,7 +1,6 @@
 import json
 import logging
 from datetime import datetime, timedelta
-from typing import List, Optional
 
 from financial_news_engine.dtos import UniversalNews
 from ndip.utils.db_connector import execute, fetch, fetchrow
@@ -60,28 +59,28 @@ class NewsWarehouse:
             logger.error(f"News store error: {e}")
             return False
 
-    async def get_latest(self, limit: int = 20) -> List[dict]:
+    async def get_latest(self, limit: int = 20) -> list[dict]:
         query = f"SELECT * FROM {self.table} ORDER BY published_at DESC LIMIT $1"
         rows = await fetch(query, limit)
         return [dict(row) for row in rows]
 
-    async def get_high_impact(self, limit: int = 20) -> List[dict]:
+    async def get_high_impact(self, limit: int = 20) -> list[dict]:
         query = f"SELECT * FROM {self.table} WHERE importance IN ('Critical', 'High') ORDER BY published_at DESC LIMIT $1"
         rows = await fetch(query, limit)
         return [dict(row) for row in rows]
 
-    async def get_breaking(self, hours: int = 6) -> List[dict]:
+    async def get_breaking(self, hours: int = 6) -> list[dict]:
         cutoff = datetime.now() - timedelta(hours=hours)
         query = f"SELECT * FROM {self.table} WHERE published_at >= $1 AND importance = 'Critical' ORDER BY published_at DESC"
         rows = await fetch(query, cutoff)
         return [dict(row) for row in rows]
 
-    async def get_by_asset(self, asset: str, limit: int = 20) -> List[dict]:
+    async def get_by_asset(self, asset: str, limit: int = 20) -> list[dict]:
         query = f"SELECT * FROM {self.table} WHERE metadata->>'assets' LIKE $1 OR metadata->>'currencies' LIKE $1 ORDER BY published_at DESC LIMIT $2"
         rows = await fetch(query, f"%{asset}%", limit)
         return [dict(row) for row in rows]
 
-    async def get_article(self, article_id: str) -> Optional[dict]:
+    async def get_article(self, article_id: str) -> dict | None:
         query = f"SELECT * FROM {self.table} WHERE article_id = $1"
         row = await fetchrow(query, article_id)
         return dict(row) if row else None

@@ -1,8 +1,8 @@
-from typing import Any, Dict
+from typing import Any
 
 
 class CentralBankNormalizer:
-    def normalize(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, record: dict[str, Any]) -> dict[str, Any]:
         """Normalize field names and values."""
         # Set default policy_bias if not present
         if "policy_bias" not in record:

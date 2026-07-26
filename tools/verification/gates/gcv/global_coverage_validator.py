@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Global Coverage Validation - Tests earnings data availability by region"""
 
-from typing import Dict, Any
-from pathlib import Path
 import sys
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
@@ -60,7 +59,7 @@ class GlobalCoverageValidator:
             },
         }
 
-    def validate(self) -> Dict[str, Any]:
+    def validate(self) -> dict[str, Any]:
         """Run global coverage validation"""
         results = {
             "name": "GCV",

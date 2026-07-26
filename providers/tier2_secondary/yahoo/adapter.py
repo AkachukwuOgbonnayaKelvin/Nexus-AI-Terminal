@@ -1,7 +1,7 @@
 """Yahoo Finance adapter – converts raw data to UniversalTransport."""
 
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from providers.dtos.transport import UniversalTransport
 from providers.interfaces.base_adapter import BaseAdapter
@@ -10,7 +10,7 @@ from providers.interfaces.base_adapter import BaseAdapter
 class YahooAdapter(BaseAdapter):
     """Converts Yahoo raw data to UniversalTransport."""
 
-    def adapt(self, raw_data: Dict[str, Any], source: str) -> UniversalTransport:
+    def adapt(self, raw_data: dict[str, Any], source: str) -> UniversalTransport:
         if not raw_data:
             return None
 
@@ -41,8 +41,8 @@ class YahooAdapter(BaseAdapter):
         )
 
     def adapt_batch(
-        self, raw_data: List[Dict[str, Any]], source: str
-    ) -> List[UniversalTransport]:
+        self, raw_data: list[dict[str, Any]], source: str
+    ) -> list[UniversalTransport]:
         return [self.adapt(item, source) for item in raw_data if item]
 
     def _classify(self, symbol: str) -> str:

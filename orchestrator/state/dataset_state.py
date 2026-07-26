@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 """Dataset State Registry - Tracks state of each dataset"""
 
-from typing import Dict, Any, Optional
+import json
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-import json
 from pathlib import Path
+from typing import Any
 
 
 class UpdatePolicy(Enum):
@@ -36,22 +35,22 @@ class DatasetState:
     engine_id: str
     update_policy: UpdatePolicy
     historical_loaded: bool = False
-    last_observation_period: Optional[str] = None
-    last_successful_fetch: Optional[datetime] = None
-    last_release_id: Optional[str] = None
-    next_expected_release: Optional[str] = None
+    last_observation_period: str | None = None
+    last_successful_fetch: datetime | None = None
+    last_release_id: str | None = None
+    next_expected_release: str | None = None
     status: DatasetStatus = DatasetStatus.WAITING
     run_count: int = 0
-    last_error: Optional[str] = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    last_error: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class DatasetStateRegistry:
     """Registry for all dataset states"""
 
-    def __init__(self, state_file: Optional[Path] = None):
+    def __init__(self, state_file: Path | None = None):
         self.state_file = state_file or Path("orchestrator/state/dataset_states.json")
-        self.states: Dict[str, DatasetState] = {}
+        self.states: dict[str, DatasetState] = {}
         self._load()
 
     def _load(self):
@@ -106,7 +105,7 @@ class DatasetStateRegistry:
         with open(self.state_file, "w") as f:
             json.dump(data, f, indent=2)
 
-    def get(self, dataset_id: str) -> Optional[DatasetState]:
+    def get(self, dataset_id: str) -> DatasetState | None:
         return self.states.get(dataset_id)
 
     def register(self, state: DatasetState):

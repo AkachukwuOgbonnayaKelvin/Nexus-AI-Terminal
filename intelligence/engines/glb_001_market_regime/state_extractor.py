@@ -3,10 +3,10 @@ GLB-001 Market Regime Engine - State Extractor
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
-from .schemas import MarketDimension
 from .constants import DIMENSION_WEIGHTS
+from .schemas import MarketDimension
 
 logger = logging.getLogger(__name__)
 
@@ -15,9 +15,9 @@ class StateExtractor:
     """Extracts market state from normalized input data."""
 
     def __init__(self):
-        self.dimensions: Dict[str, MarketDimension] = {}
+        self.dimensions: dict[str, MarketDimension] = {}
 
-    def extract(self, normalized_data: Dict[str, Any]) -> Dict[str, MarketDimension]:
+    def extract(self, normalized_data: dict[str, Any]) -> dict[str, MarketDimension]:
         """Extract all market dimensions from normalized data."""
         self.dimensions = {}
 
@@ -36,7 +36,7 @@ class StateExtractor:
 
         return self.dimensions
 
-    def _extract_risk_sentiment(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_risk_sentiment(self, data: dict[str, Any]) -> MarketDimension:
         risk = data.get("risk", {})
         sentiment_score = risk.get("risk_sentiment", 50)
         return MarketDimension(
@@ -51,7 +51,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_trend_strength(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_trend_strength(self, data: dict[str, Any]) -> MarketDimension:
         trend = data.get("trend", {})
         strength = trend.get("trend_strength", 50)
         return MarketDimension(
@@ -66,7 +66,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_volatility(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_volatility(self, data: dict[str, Any]) -> MarketDimension:
         vol = data.get("volatility", {})
         vix = vol.get("vix", 20)
         if vix <= 10:
@@ -87,7 +87,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_momentum(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_momentum(self, data: dict[str, Any]) -> MarketDimension:
         momentum_score = 50
         price = data.get("price", {})
         symbols = price.get("symbols", {})
@@ -107,7 +107,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_breadth(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_breadth(self, data: dict[str, Any]) -> MarketDimension:
         breadth = data.get("breadth", {})
         ratio = breadth.get("breadth_ratio", 1.0)
         breadth_score = 50 + ((ratio - 1.0) * 50)
@@ -124,7 +124,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_macro_growth(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_macro_growth(self, data: dict[str, Any]) -> MarketDimension:
         macro = data.get("macro", {})
         growth = macro.get("growth", {})
         if "score" in growth:
@@ -145,7 +145,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_inflation(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_inflation(self, data: dict[str, Any]) -> MarketDimension:
         macro = data.get("macro", {})
         inflation = macro.get("inflation", {})
         if "score" in inflation:
@@ -174,7 +174,7 @@ class StateExtractor:
             else "NEUTRAL",
         )
 
-    def _extract_liquidity(self, data: Dict[str, Any]) -> MarketDimension:
+    def _extract_liquidity(self, data: dict[str, Any]) -> MarketDimension:
         risk = data.get("risk", {})
         liquidity_score = risk.get("risk_on_score", 50)
         return MarketDimension(

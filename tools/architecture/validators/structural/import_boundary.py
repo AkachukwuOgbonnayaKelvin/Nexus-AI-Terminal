@@ -2,7 +2,7 @@
 
 import ast
 from pathlib import Path
-from typing import List, Dict
+
 from tools.architecture.models import ARCResult
 from tools.architecture.validators.base import BaseValidator
 
@@ -40,7 +40,7 @@ class ImportBoundaryValidator(BaseValidator):
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
         violations = self._check_imports()
 
@@ -58,7 +58,7 @@ class ImportBoundaryValidator(BaseValidator):
 
         return results
 
-    def _check_imports(self) -> List[Dict]:
+    def _check_imports(self) -> list[dict]:
         """Check for import boundary violations."""
         violations = []
 

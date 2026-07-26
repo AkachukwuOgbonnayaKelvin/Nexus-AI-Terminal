@@ -1,13 +1,13 @@
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.dtos import UniversalCOTRecord
 
 
 class CFTCAdapter:
     def adapt(
-        self, raw: Dict[str, Any], provider_name: str
-    ) -> List[UniversalCOTRecord]:
+        self, raw: dict[str, Any], provider_name: str
+    ) -> list[UniversalCOTRecord]:
         """Convert raw CFTC data to UniversalCOTRecord list."""
         if not raw:
             return []

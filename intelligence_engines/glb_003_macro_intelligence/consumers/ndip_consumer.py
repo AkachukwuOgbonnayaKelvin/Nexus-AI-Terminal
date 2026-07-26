@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
 """NDIP Consumer for Macro Intelligence Engine"""
 
-from typing import Dict, Any, List
 import logging
+from typing import Any
 
 from intelligence_engines.glb_003_macro_intelligence.engine import (
     MacroIntelligenceEngine,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +21,7 @@ class NDIPConsumer:
         self.engine = MacroIntelligenceEngine()
         self.topics = self.engine.get_required_ndip_topics()
 
-    def consume(self, ndip_data: Dict[str, Any]) -> Dict[str, Any]:
+    def consume(self, ndip_data: dict[str, Any]) -> dict[str, Any]:
         """
         Consume NDIP data and run the engine.
 
@@ -46,6 +44,6 @@ class NDIPConsumer:
 
         return report.to_dict()
 
-    def get_topics(self) -> List[str]:
+    def get_topics(self) -> list[str]:
         """Get the topics this consumer subscribes to"""
         return self.topics

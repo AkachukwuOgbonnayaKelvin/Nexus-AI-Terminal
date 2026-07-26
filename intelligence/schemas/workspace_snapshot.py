@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Workspace Snapshot Schema - Authoritative state of a workspace"""
 
-from typing import List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Any
 
 from intelligence.schemas.engine_report import EngineReport
 
@@ -27,13 +26,13 @@ class WorkspaceSnapshot:
 
     # FACTORY defaults
     timestamp: datetime = field(default_factory=datetime.now)
-    engine_reports: List[EngineReport] = field(default_factory=list)
-    consensus: Dict[str, Any] = field(default_factory=dict)
-    executive_summary: Dict[str, Any] = field(default_factory=dict)
-    executive_ai_context: Dict[str, Any] = field(default_factory=dict)
-    ui_dataset: Dict[str, Any] = field(default_factory=dict)
-    evidence_matrix: Dict[str, float] = field(default_factory=dict)
-    standard_report: Dict[str, Any] = field(default_factory=dict)
+    engine_reports: list[EngineReport] = field(default_factory=list)
+    consensus: dict[str, Any] = field(default_factory=dict)
+    executive_summary: dict[str, Any] = field(default_factory=dict)
+    executive_ai_context: dict[str, Any] = field(default_factory=dict)
+    ui_dataset: dict[str, Any] = field(default_factory=dict)
+    evidence_matrix: dict[str, float] = field(default_factory=dict)
+    standard_report: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""

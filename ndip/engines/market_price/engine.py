@@ -2,7 +2,7 @@
 
 import asyncio
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from ndip.acquisition.collector import AcquisitionCollector
 from providers.provider_manager import ProviderManager
@@ -17,10 +17,10 @@ class MarketPriceEngine:
         self.provider_manager = provider_manager
         self.collector = AcquisitionCollector()
         self.is_running = False
-        self.symbols: List[str] = []
+        self.symbols: list[str] = []
         self.interval_seconds: int = 60
 
-    def set_symbols(self, symbols: List[str]) -> None:
+    def set_symbols(self, symbols: list[str]) -> None:
         """Set the list of symbols to track."""
         self.symbols = symbols
 
@@ -28,7 +28,7 @@ class MarketPriceEngine:
         """Set collection interval in seconds."""
         self.interval_seconds = seconds
 
-    async def collect_once(self) -> Dict[str, Any]:
+    async def collect_once(self) -> dict[str, Any]:
         """Run a single collection cycle."""
         results = {}
         for symbol in self.symbols:

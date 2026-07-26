@@ -1,8 +1,7 @@
 """NDIP Validator – Checks NDIP integration."""
 
-from typing import List
-from tools.architecture.validators.base import BaseValidator
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class NDIPValidator(BaseValidator):
@@ -11,7 +10,7 @@ class NDIPValidator(BaseValidator):
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
 
         ndip_dir = self.root / "ndip"

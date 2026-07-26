@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Base Auditor for Raw Backend Certification"""
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass
@@ -13,9 +12,9 @@ class AuditResult:
     name: str
     status: str  # PASS, FAIL, WARNING, SKIP
     message: str
-    details: Dict[str, Any] = field(default_factory=dict)
-    expected: Optional[Any] = None
-    actual: Optional[Any] = None
+    details: dict[str, Any] = field(default_factory=dict)
+    expected: Any | None = None
+    actual: Any | None = None
 
 
 @dataclass
@@ -25,9 +24,9 @@ class EngineCertification:
     engine_id: str
     engine_name: str
     status: str  # CERTIFIED, PARTIAL, FAILED
-    checks: List[AuditResult] = field(default_factory=list)
-    summary: Dict[str, Any] = field(default_factory=dict)
-    records: Dict[str, int] = field(default_factory=dict)  # provider, warehouse, ndip
+    checks: list[AuditResult] = field(default_factory=list)
+    summary: dict[str, Any] = field(default_factory=dict)
+    records: dict[str, int] = field(default_factory=dict)  # provider, warehouse, ndip
 
 
 class BaseAuditor(ABC):
@@ -35,37 +34,31 @@ class BaseAuditor(ABC):
 
     def __init__(self, engine_id: str):
         self.engine_id = engine_id
-        self.results: List[AuditResult] = []
+        self.results: list[AuditResult] = []
 
     @abstractmethod
     def audit_provider(self) -> AuditResult:
         """Audit provider data acquisition"""
-        pass
 
     @abstractmethod
     def audit_warehouse(self) -> AuditResult:
         """Audit warehouse storage"""
-        pass
 
     @abstractmethod
     def audit_ndip(self) -> AuditResult:
         """Audit NDIP publication"""
-        pass
 
     @abstractmethod
     def audit_lineage(self) -> AuditResult:
         """Audit data lineage"""
-        pass
 
     @abstractmethod
     def audit_parity(self) -> AuditResult:
         """Audit provider ↔ warehouse ↔ ndip parity"""
-        pass
 
     @abstractmethod
     def audit_idempotency(self) -> AuditResult:
         """Audit duplicate prevention"""
-        pass
 
     def run_all(self) -> EngineCertification:
         """Run all audits and return certification"""

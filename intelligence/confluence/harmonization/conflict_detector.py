@@ -6,8 +6,8 @@ Separates directional conflict from neutral uncertainty.
 """
 
 import logging
-from typing import Dict, List, Any
 from collections import defaultdict
+from typing import Any
 
 from ..evidence.evidence_model import EvidenceGroup
 from ..schemas import Direction
@@ -23,7 +23,7 @@ class ConflictDetector:
     def __init__(self):
         self.thresholds = {"none": 0.05, "low": 0.20, "medium": 0.55, "high": 1.00}
 
-    def detect_conflicts(self, groups: List[EvidenceGroup]) -> Dict[str, Any]:
+    def detect_conflicts(self, groups: list[EvidenceGroup]) -> dict[str, Any]:
         """Detect conflicts across all evidence groups."""
         results = {}
 
@@ -60,7 +60,7 @@ class ConflictDetector:
             },
         }
 
-    def _analyze_group_conflicts(self, group: EvidenceGroup) -> Dict[str, Any]:
+    def _analyze_group_conflicts(self, group: EvidenceGroup) -> dict[str, Any]:
         """Analyze conflicts within a single evidence group."""
         signals = group.evidence
         total = len(signals)
@@ -118,9 +118,7 @@ class ConflictDetector:
         elif bearish > bullish:
             consensus = "BEARISH"
         else:
-            if bullish > 0 and neutral > 0:
-                consensus = "NEUTRAL"
-            elif bearish > 0 and neutral > 0:
+            if bullish > 0 and neutral > 0 or bearish > 0 and neutral > 0:
                 consensus = "NEUTRAL"
             elif bullish > 0:
                 consensus = "BULLISH"

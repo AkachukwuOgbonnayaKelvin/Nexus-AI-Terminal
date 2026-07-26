@@ -7,8 +7,8 @@ Stores and manages institutional positioning data from multiple sources.
 import json
 import logging
 import os
-from typing import Dict, List, Optional, Any
 from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -26,9 +26,9 @@ class PositioningWarehouse:
 
     def __init__(self, storage_path: str = "./data/positioning"):
         self.storage_path = storage_path
-        self._cot_data: List[Dict] = []
-        self._fund_flows: List[Dict] = []
-        self._institutional_positions: List[Dict] = []
+        self._cot_data: list[dict] = []
+        self._fund_flows: list[dict] = []
+        self._institutional_positions: list[dict] = []
         self._load()
 
     def _load(self) -> None:
@@ -60,37 +60,37 @@ class PositioningWarehouse:
         except Exception as e:
             logger.error(f"Failed to save positioning data: {e}")
 
-    def store_cot(self, data: Dict[str, Any]) -> None:
+    def store_cot(self, data: dict[str, Any]) -> None:
         """Store COT data."""
         record = {**data, "stored_at": datetime.utcnow().isoformat()}
         self._cot_data.append(record)
         self._save()
 
-    def store_fund_flows(self, data: Dict[str, Any]) -> None:
+    def store_fund_flows(self, data: dict[str, Any]) -> None:
         """Store fund flow data."""
         record = {**data, "stored_at": datetime.utcnow().isoformat()}
         self._fund_flows.append(record)
         self._save()
 
-    def store_institutional_positions(self, data: Dict[str, Any]) -> None:
+    def store_institutional_positions(self, data: dict[str, Any]) -> None:
         """Store institutional positioning data."""
         record = {**data, "stored_at": datetime.utcnow().isoformat()}
         self._institutional_positions.append(record)
         self._save()
 
-    def get_cot(self, symbol: Optional[str] = None) -> List[Dict]:
+    def get_cot(self, symbol: str | None = None) -> list[dict]:
         """Get COT data."""
         if symbol:
             return [r for r in self._cot_data if r.get("symbol") == symbol]
         return self._cot_data
 
-    def get_fund_flows(self, symbol: Optional[str] = None) -> List[Dict]:
+    def get_fund_flows(self, symbol: str | None = None) -> list[dict]:
         """Get fund flow data."""
         if symbol:
             return [r for r in self._fund_flows if r.get("symbol") == symbol]
         return self._fund_flows
 
-    def get_institutional_positions(self, symbol: Optional[str] = None) -> List[Dict]:
+    def get_institutional_positions(self, symbol: str | None = None) -> list[dict]:
         """Get institutional positioning data."""
         if symbol:
             return [
@@ -98,7 +98,7 @@ class PositioningWarehouse:
             ]
         return self._institutional_positions
 
-    def get_stats(self) -> Dict[str, int]:
+    def get_stats(self) -> dict[str, int]:
         """Get storage statistics."""
         return {
             "cot_records": len(self._cot_data),

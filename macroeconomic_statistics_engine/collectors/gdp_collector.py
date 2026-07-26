@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """GDP Collector - Collects full historical GDP data for all countries"""
 
-from typing import List, Dict, Any, Optional
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -15,7 +14,7 @@ from macroeconomic_statistics_engine.providers.base import MacroObservation
 class GDPCollector(BaseCollector):
     """Collects GDP data from primary and fallback sources"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         super().__init__(config)
         self._indicator = "gdp"
         self._countries = ["US", "EU", "UK", "JP", "CH", "CA", "AU", "NZ"]
@@ -23,10 +22,10 @@ class GDPCollector(BaseCollector):
     def get_indicator_name(self) -> str:
         return "GDP"
 
-    def get_countries(self) -> List[str]:
+    def get_countries(self) -> list[str]:
         return self._countries
 
-    def collect(self) -> List[MacroObservation]:
+    def collect(self) -> list[MacroObservation]:
         """Collect full historical GDP data for all countries"""
         self._clear_observations()
 
@@ -60,7 +59,7 @@ class GDPCollector(BaseCollector):
 
         return self._observations
 
-    def get_historical_coverage(self) -> Dict[str, Any]:
+    def get_historical_coverage(self) -> dict[str, Any]:
         """Get historical coverage report"""
         coverage = {}
 

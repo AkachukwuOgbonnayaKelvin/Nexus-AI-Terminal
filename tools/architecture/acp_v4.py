@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """ACP v4.0: Architecture Operating System."""
 
-import sys
-from pathlib import Path
-import yaml
 import json
 import logging
-from typing import Dict, List, Any
+import sys
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
+from typing import Any
+
+import yaml
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -30,9 +30,9 @@ class PlatformEngine:
     maturity: str
     type: str
     owner: str
-    runtime: Dict[str, Any]
-    dependencies: List[str]
-    ndip: Dict[str, List[Dict[str, str]]]
+    runtime: dict[str, Any]
+    dependencies: list[str]
+    ndip: dict[str, list[dict[str, str]]]
 
 
 @dataclass
@@ -54,11 +54,11 @@ class ACPv4:
 
     def __init__(self, root_path: str = "."):
         self.root = Path(root_path).resolve()
-        self.registry: Dict[str, PlatformEngine] = {}
-        self.errors: List[Dict] = []
-        self.warnings: List[Dict] = []
-        self.suggestions: List[Dict] = []
-        self.history: List[Dict] = []
+        self.registry: dict[str, PlatformEngine] = {}
+        self.errors: list[dict] = []
+        self.warnings: list[dict] = []
+        self.suggestions: list[dict] = []
+        self.history: list[dict] = []
         self.health = ArchitectureHealth()
         self.debt = {"critical": 0, "high": 0, "medium": 0, "low": 0}
 

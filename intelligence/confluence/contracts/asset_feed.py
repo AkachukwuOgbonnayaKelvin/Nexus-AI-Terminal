@@ -8,10 +8,9 @@ This is SEMI-FINISHED intelligence for Asset Intelligence.
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
 
-from .normalized_signal import Direction
 from .harmonized_result import ConflictLevel
+from .normalized_signal import Direction
 
 
 class FeedStatus(str, Enum):
@@ -55,16 +54,16 @@ class AssetIntelligenceFeed:
     asset_class_direction: Direction
 
     # OPTIONAL FIELDS (with defaults)
-    currency_context: Optional[CurrencyContext] = None
-    supporting_evidence: List[str] = field(default_factory=list)
-    contradicting_evidence: List[str] = field(default_factory=list)
+    currency_context: CurrencyContext | None = None
+    supporting_evidence: list[str] = field(default_factory=list)
+    contradicting_evidence: list[str] = field(default_factory=list)
     evidence_count: int = 0
     conflict_level: ConflictLevel = ConflictLevel.NONE
-    global_drivers: List[str] = field(default_factory=list)
-    risk_flags: List[str] = field(default_factory=list)
+    global_drivers: list[str] = field(default_factory=list)
+    risk_flags: list[str] = field(default_factory=list)
     global_regime: str = "UNKNOWN"
     regime_compatibility: float = 0.5
-    historical_bias: Optional[Direction] = None
+    historical_bias: Direction | None = None
     historical_confidence: float = 0.0
     status: FeedStatus = FeedStatus.SEMI_FINISHED
     source: str = "CONFLUENCE_ENGINE"

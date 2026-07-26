@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -20,10 +20,10 @@ class NewsAPIConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return []
 
     def health_check(self) -> bool:
@@ -36,13 +36,13 @@ class NewsAPIConnector(BaseProvider):
         except Exception:
             return False
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"news": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_day": 100}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return []
 
     def supports_symbol(self, symbol: str) -> bool:
@@ -50,7 +50,7 @@ class NewsAPIConnector(BaseProvider):
 
     def get_top_headlines(
         self, country: str = "us", category: str = None, page_size: int = 20
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         if not self.api_key:
             return []
         url = f"{self.base_url}/top-headlines"
@@ -66,7 +66,7 @@ class NewsAPIConnector(BaseProvider):
         except Exception:
             return []
 
-    def get_everything(self, query: str, page_size: int = 20) -> List[Dict[str, Any]]:
+    def get_everything(self, query: str, page_size: int = 20) -> list[dict[str, Any]]:
         if not self.api_key:
             return []
         url = f"{self.base_url}/everything"
@@ -80,6 +80,6 @@ class NewsAPIConnector(BaseProvider):
         except Exception:
             return []
 
-    def get_today_news(self) -> List[Dict[str, Any]]:
+    def get_today_news(self) -> list[dict[str, Any]]:
         # Get top headlines from US for a broad coverage
         return self.get_top_headlines(country="us", page_size=20)

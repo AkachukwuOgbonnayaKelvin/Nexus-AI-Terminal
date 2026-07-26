@@ -2,7 +2,7 @@
 
 import time
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from ndip.gateway import DataGateway
 
@@ -12,16 +12,16 @@ class MarketPriceCollector:
 
     def __init__(self, gateway: DataGateway) -> None:
         self.gateway = gateway
-        self._connectors: Dict[str, Any] = {}
+        self._connectors: dict[str, Any] = {}
         self._running: bool = False
-        self._last_collection: Optional[datetime] = None
+        self._last_collection: datetime | None = None
 
     def register_connector(self, name: str, connector: Any) -> None:
         """Register a data connector."""
         self._connectors[name] = connector
         self.gateway.register_source(name, connector)
 
-    def collect(self, symbol: str, source: str = "yahoo") -> Dict[str, Any]:
+    def collect(self, symbol: str, source: str = "yahoo") -> dict[str, Any]:
         """Collect real price data for a symbol."""
         if source not in self._connectors:
             raise ValueError(f"Unknown source: {source}")
@@ -51,8 +51,8 @@ class MarketPriceCollector:
         return result
 
     def collect_batch(
-        self, symbols: List[str], source: str = "yahoo"
-    ) -> List[Dict[str, Any]]:
+        self, symbols: list[str], source: str = "yahoo"
+    ) -> list[dict[str, Any]]:
         """Collect real price data for multiple symbols."""
         results = []
         for symbol in symbols:
@@ -80,7 +80,7 @@ class MarketPriceCollector:
             if hasattr(connector, "disconnect"):
                 connector.disconnect()
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get collector statistics."""
         return {
             "running": self._running,

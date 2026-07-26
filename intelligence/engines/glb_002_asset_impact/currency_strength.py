@@ -3,7 +3,7 @@ GLB-002 Asset Impact Engine - Currency Strength
 """
 
 import logging
-from typing import Dict, Any, List
+from typing import Any
 
 from .constants import CURRENCIES, FACTOR_WEIGHTS
 from .schemas import CurrencyStrength
@@ -16,7 +16,7 @@ class CurrencyStrengthEngine:
     Calculates individual currency strength based on global factors.
     """
 
-    def calculate(self, global_factors: Dict[str, Any]) -> Dict[str, CurrencyStrength]:
+    def calculate(self, global_factors: dict[str, Any]) -> dict[str, CurrencyStrength]:
         """
         Calculate strength for all currencies.
 
@@ -34,7 +34,7 @@ class CurrencyStrengthEngine:
         return strengths
 
     def _calculate_currency(
-        self, currency: str, factors: Dict[str, Any]
+        self, currency: str, factors: dict[str, Any]
     ) -> CurrencyStrength:
         """
         Calculate strength for a single currency.
@@ -69,8 +69,8 @@ class CurrencyStrengthEngine:
         )
 
     def _get_currency_factors(
-        self, currency: str, factors: Dict[str, Any]
-    ) -> Dict[str, float]:
+        self, currency: str, factors: dict[str, Any]
+    ) -> dict[str, float]:
         """
         Get factors for a specific currency.
         """
@@ -88,13 +88,13 @@ class CurrencyStrengthEngine:
         # Override with actual factors if available
         if "currencies" in factors and currency in factors["currencies"]:
             cur_factors = factors["currencies"][currency]
-            for key in result.keys():
+            for key in result:
                 if key in cur_factors:
                     result[key] = float(cur_factors[key])
 
         return result
 
-    def _calculate_confidence(self, factors: Dict[str, float]) -> float:
+    def _calculate_confidence(self, factors: dict[str, float]) -> float:
         """
         Calculate confidence based on factor consistency.
         """
@@ -115,7 +115,7 @@ class CurrencyStrengthEngine:
 
         return max(50.0, min(95.0, confidence))
 
-    def _identify_risks(self, currency: str, factors: Dict[str, float]) -> List[str]:
+    def _identify_risks(self, currency: str, factors: dict[str, float]) -> list[str]:
         """
         Identify risks for a currency.
         """

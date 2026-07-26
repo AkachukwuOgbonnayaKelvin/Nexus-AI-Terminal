@@ -3,6 +3,7 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 from ..constants import PositioningBias

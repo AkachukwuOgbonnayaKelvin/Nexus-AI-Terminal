@@ -4,7 +4,7 @@ Confluence Engine - Evidence Quality
 Calculates the quality of evidence signals.
 """
 
-from typing import Dict, List, Any
+from typing import Any
 
 from ..schemas import NormalizedSignal
 from .freshness import FreshnessChecker
@@ -39,14 +39,14 @@ class EvidenceQuality:
         return min(1.0, max(0.0, quality))
 
     def calculate_quality_for_signals(
-        self, signals: List[NormalizedSignal]
-    ) -> Dict[str, float]:
+        self, signals: list[NormalizedSignal]
+    ) -> dict[str, float]:
         """
         Calculate quality scores for multiple signals.
         """
         return {s.engine_id: self.calculate_quality(s) for s in signals}
 
-    def get_average_quality(self, signals: List[NormalizedSignal]) -> float:
+    def get_average_quality(self, signals: list[NormalizedSignal]) -> float:
         """
         Get average quality across signals.
         """
@@ -56,7 +56,7 @@ class EvidenceQuality:
         qualities = [self.calculate_quality(s) for s in signals]
         return sum(qualities) / len(qualities)
 
-    def get_quality_summary(self, signals: List[NormalizedSignal]) -> Dict[str, Any]:
+    def get_quality_summary(self, signals: list[NormalizedSignal]) -> dict[str, Any]:
         """
         Get quality summary for a list of signals.
         """
@@ -80,8 +80,8 @@ class EvidenceQuality:
         }
 
     def filter_by_quality(
-        self, signals: List[NormalizedSignal], min_quality: float = 0.3
-    ) -> List[NormalizedSignal]:
+        self, signals: list[NormalizedSignal], min_quality: float = 0.3
+    ) -> list[NormalizedSignal]:
         """
         Filter signals by minimum quality.
         """

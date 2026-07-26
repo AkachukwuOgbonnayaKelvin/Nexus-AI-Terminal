@@ -1,7 +1,6 @@
 """Repository – Data access layer for the warehouse."""
 
 import logging
-from typing import List
 
 from market_positioning_warehouse.dtos import UniversalPosition
 
@@ -12,7 +11,7 @@ class Repository:
     """Repository for position data."""
 
     def __init__(self):
-        self._storage: List[UniversalPosition] = []
+        self._storage: list[UniversalPosition] = []
         self._counter = 0
 
     async def store(self, position: UniversalPosition) -> bool:
@@ -28,7 +27,7 @@ class Repository:
             logger.error(f"Failed to store position: {e}")
             return False
 
-    async def get_unprocessed(self, limit: int = 1000) -> List[UniversalPosition]:
+    async def get_unprocessed(self, limit: int = 1000) -> list[UniversalPosition]:
         """Get unprocessed positions."""
         # Return all positions for now
         return self._storage[:limit]
@@ -37,11 +36,11 @@ class Repository:
         """Get total record count."""
         return self._counter
 
-    async def get_by_market(self, market_name: str) -> List[UniversalPosition]:
+    async def get_by_market(self, market_name: str) -> list[UniversalPosition]:
         """Get positions for a specific market."""
         return [p for p in self._storage if p.market_name == market_name]
 
-    async def get_by_date(self, date: str) -> List[UniversalPosition]:
+    async def get_by_date(self, date: str) -> list[UniversalPosition]:
         """Get positions for a specific date."""
         return [p for p in self._storage if str(p.report_date) == date]
 

@@ -2,7 +2,8 @@
 
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Any
+from typing import Any
+
 from tools.architecture.models import ARCResult
 
 
@@ -14,9 +15,8 @@ class BaseValidator(ABC):
         self.name = self.__class__.__name__
 
     @abstractmethod
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         """Run the validation and return results."""
-        pass
 
     def get_severity(self) -> str:
         """Return the default severity for this validator."""

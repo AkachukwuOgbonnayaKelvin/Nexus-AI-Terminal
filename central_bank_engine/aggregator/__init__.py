@@ -12,12 +12,12 @@ from .versioner import VersionManager
 
 __all__ = [
     "CollectorRouter",
-    "Validator",
+    "ConfidenceEngine",
     "Deduplicator",
+    "KnowledgeLinker",
     "Normalizer",
     "PolicyCycleBuilder",
-    "KnowledgeLinker",
-    "VersionManager",
-    "ConfidenceEngine",
     "Publisher",
+    "Validator",
+    "VersionManager",
 ]

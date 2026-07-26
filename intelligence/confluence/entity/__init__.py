@@ -9,19 +9,19 @@ into complete entity ratings for:
 - Bonds/Rates
 """
 
-from .classifier import EntityClassifier
 from .aggregator import EntityAggregator
-from .rating_engine import EntityRatingEngine
+from .classifier import EntityClassifier
+from .direction import classify_direction, is_bearish, is_bullish, is_neutral
 from .ranker import EntityRanker
-from .direction import classify_direction, is_bullish, is_bearish, is_neutral
+from .rating_engine import EntityRatingEngine
 
 __all__ = [
-    "EntityClassifier",
     "EntityAggregator",
-    "EntityRatingEngine",
+    "EntityClassifier",
     "EntityRanker",
+    "EntityRatingEngine",
     "classify_direction",
-    "is_bullish",
     "is_bearish",
+    "is_bullish",
     "is_neutral",
 ]

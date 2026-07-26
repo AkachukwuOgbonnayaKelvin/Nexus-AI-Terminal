@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
 """Provider Router - Exchange-aware provider selection with fallback"""
 
-from typing import Optional, List, Dict, Any
+import sys
 from datetime import datetime
 from pathlib import Path
-import sys
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from corporate_earnings_engine.providers.base import (
-    EarningsProvider,
     EarningsObservation,
+    EarningsProvider,
 )
 from corporate_earnings_engine.providers.registry import ProviderRegistry
 
@@ -55,7 +54,7 @@ class ProviderRouter:
         "FPH.NZ": "NZX",
     }
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.registry = ProviderRegistry(config)
         self._cache = {}
@@ -63,7 +62,7 @@ class ProviderRouter:
     def get_exchange_for_symbol(self, symbol: str) -> str:
         return self.SYMBOL_EXCHANGE.get(symbol, "NASDAQ")
 
-    def get_providers_for_symbol(self, symbol: str) -> List[EarningsProvider]:
+    def get_providers_for_symbol(self, symbol: str) -> list[EarningsProvider]:
         exchange = self.get_exchange_for_symbol(symbol)
         provider_names = self.EXCHANGE_PROVIDERS.get(
             exchange, self.EXCHANGE_PROVIDERS["NASDAQ"]
@@ -78,9 +77,9 @@ class ProviderRouter:
     def get_earnings_with_fallback(
         self,
         symbol: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[EarningsObservation]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[EarningsObservation]:
         cache_key = f"{symbol}_{start_date}_{end_date}"
         if cache_key in self._cache:
             return self._cache[cache_key]
@@ -114,10 +113,10 @@ class ProviderRouter:
 
     def get_earnings_for_symbols(
         self,
-        symbols: List[str],
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> Dict[str, List[EarningsObservation]]:
+        symbols: list[str],
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> dict[str, list[EarningsObservation]]:
         results = {}
         for symbol in symbols:
             results[symbol] = self.get_earnings_with_fallback(

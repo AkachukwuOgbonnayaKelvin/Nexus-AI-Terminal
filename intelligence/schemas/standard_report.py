@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Standard Report Schema - Unified output for all consumers"""
 
-from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Any
 
 
 @dataclass
@@ -27,19 +26,19 @@ class StandardReport:
     confidence: float = 70.0
 
     # OPTIONAL fields with None default
-    direction: Optional[str] = None
-    risk_level: Optional[str] = None
-    summary: Optional[str] = None
+    direction: str | None = None
+    risk_level: str | None = None
+    summary: str | None = None
 
     # FACTORY defaults
     timestamp: datetime = field(default_factory=datetime.now)
-    top_drivers: List[str] = field(default_factory=list)
-    evidence: List[Dict[str, Any]] = field(default_factory=list)
-    recommendations: List[str] = field(default_factory=list)
-    consumers: List[str] = field(
+    top_drivers: list[str] = field(default_factory=list)
+    evidence: list[dict[str, Any]] = field(default_factory=list)
+    recommendations: list[str] = field(default_factory=list)
+    consumers: list[str] = field(
         default_factory=lambda: ["asset_intelligence", "master_orchestrator"]
     )
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""

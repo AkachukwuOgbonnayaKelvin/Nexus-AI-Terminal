@@ -5,10 +5,11 @@ Manages the creation and retrieval of workspace snapshots.
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
 from intelligence.hub import GlobalIntelligenceHub
+
 from .snapshot import WorkspaceSnapshot
 
 logger = logging.getLogger(__name__)
@@ -21,7 +22,7 @@ class SnapshotService:
 
     def __init__(self):
         self.hub = GlobalIntelligenceHub()
-        self.last_snapshot: Optional[WorkspaceSnapshot] = None
+        self.last_snapshot: WorkspaceSnapshot | None = None
 
     def collect_report(self, engine_id: str, report: Any) -> bool:
         """
@@ -60,13 +61,13 @@ class SnapshotService:
         logger.info(f"Workspace snapshot built: {snapshot.snapshot_id}")
         return snapshot
 
-    def get_last_snapshot(self) -> Optional[WorkspaceSnapshot]:
+    def get_last_snapshot(self) -> WorkspaceSnapshot | None:
         """
         Get the last built snapshot.
         """
         return self.last_snapshot
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """
         Check service health.
         """

@@ -1,7 +1,7 @@
 """NDIP Gateway implementation."""
 
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from ndip.classification import Classifier
 from ndip.normalization import Normalizer
@@ -17,8 +17,8 @@ class DataGateway:
         self.normalizer = Normalizer()
         self.classifier = Classifier()
         self.warehouse = Warehouse()
-        self._sources: Dict[str, Any] = {}
-        self._stats: Dict[str, Any] = {
+        self._sources: dict[str, Any] = {}
+        self._stats: dict[str, Any] = {
             "total_records": 0,
             "last_ingest": None,
             "errors": 0,
@@ -28,7 +28,7 @@ class DataGateway:
         """Register a data source."""
         self._sources[name] = source
 
-    def ingest(self, source: str, data: Any) -> Dict[str, Any]:
+    def ingest(self, source: str, data: Any) -> dict[str, Any]:
         """Ingest data from a source."""
         try:
             # Validate
@@ -63,6 +63,6 @@ class DataGateway:
                 "timestamp": datetime.now().isoformat(),
             }
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get gateway statistics."""
         return self._stats

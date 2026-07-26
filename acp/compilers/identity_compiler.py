@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Identity Compiler - Validates engine identity layer
 Checks: ID, version, owner, purpose, classification
 """
 
-from typing import Dict, Any
+from typing import Any
 
 
 class IdentityCompiler:
@@ -12,7 +11,7 @@ class IdentityCompiler:
 
     def compile(
         self, engine, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Compile the engine's identity layer"""
 
         result = {

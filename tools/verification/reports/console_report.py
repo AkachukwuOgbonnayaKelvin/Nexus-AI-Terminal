@@ -1,28 +1,29 @@
-# -*- coding: utf-8 -*-
 """
 Console Report - Renders verification results in console
 """
 
-from typing import Dict, Any
+from typing import Any
 
 
 class ConsoleReport:
-    def __init__(self, results: Dict[str, Any]):
+    def __init__(self, results: dict[str, Any]):
         self.results = results
 
     def render(self):
         if (
-            isinstance(self.results, dict)
-            and "engine" in self.results
-            and "gates" in self.results
+            (
+                isinstance(self.results, dict)
+                and "engine" in self.results
+                and "gates" in self.results
+            )
+            or isinstance(self.results, dict)
+            and "overall_status" in self.results
         ):
-            self._render_single(self.results)
-        elif isinstance(self.results, dict) and "overall_status" in self.results:
             self._render_single(self.results)
         else:
             self._render_multi(self.results)
 
-    def _render_single(self, result: Dict[str, Any]):
+    def _render_single(self, result: dict[str, Any]):
         print("\n" + "=" * 70)
         print("  NEXUS ENGINE VERIFICATION REPORT")
         print(f"  Engine: {result.get('engine', 'Unknown')}")
@@ -82,7 +83,7 @@ class ConsoleReport:
         print(f"  OVERALL STATUS: {result.get('overall_status', 'UNKNOWN')}")
         print("=" * 70 + "\n")
 
-    def _render_multi(self, results: Dict[str, Any]):
+    def _render_multi(self, results: dict[str, Any]):
         print("\n" + "=" * 70)
         print("  NEXUS ENGINE VERIFICATION REPORT - ALL ENGINES")
         print("=" * 70)

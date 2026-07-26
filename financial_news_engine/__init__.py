@@ -19,6 +19,6 @@ except ImportError:
 
 __all__ = [
     "NewsCollector",
-    "NewsWarehouse",
     "NewsGateway",
+    "NewsWarehouse",
 ]

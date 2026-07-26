@@ -4,15 +4,15 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional, List
 from datetime import datetime
+from typing import Any
 
-from .constants import NDIP_TOPICS
-from .input.schemas import CapitalFlowInput, LiquidityInput
-from .input.data_normalizer import DataNormalizer
 from .analysis.flow_analyzer import FlowAnalyzer
-from .liquidity.liquidity_analyzer import LiquidityAnalyzer
+from .constants import NDIP_TOPICS
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.data_normalizer import DataNormalizer
+from .input.schemas import CapitalFlowInput, LiquidityInput
+from .liquidity.liquidity_analyzer import LiquidityAnalyzer
 
 logger = logging.getLogger(__name__)
 
@@ -31,15 +31,15 @@ class CapitalFlowsEngine:
         self.flow_analyzer = FlowAnalyzer()
         self.liquidity_analyzer = LiquidityAnalyzer()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -93,7 +93,7 @@ class CapitalFlowsEngine:
 
         return report
 
-    def _parse_flows(self) -> List[CapitalFlowInput]:
+    def _parse_flows(self) -> list[CapitalFlowInput]:
         """Parse flows from NDIP data."""
         flows_data = self._latest_data.get(NDIP_TOPICS["CAPITAL_FLOWS"], {})
         raw_flows = flows_data.get("flows", [])
@@ -106,7 +106,7 @@ class CapitalFlowsEngine:
 
         return parsed
 
-    def _parse_liquidity(self) -> Optional[LiquidityInput]:
+    def _parse_liquidity(self) -> LiquidityInput | None:
         """Parse liquidity from NDIP data."""
         liquidity_data = self._latest_data.get(NDIP_TOPICS["GLOBAL_LIQUIDITY"], {})
         if not liquidity_data:
@@ -114,8 +114,8 @@ class CapitalFlowsEngine:
         return self.data_normalizer.normalize_liquidity(liquidity_data)
 
     def _build_core_intelligence(
-        self, flow_analysis: Dict, liquidity_analysis: Dict
-    ) -> Dict:
+        self, flow_analysis: dict, liquidity_analysis: dict
+    ) -> dict:
         """Build core intelligence report"""
         return {
             "global_flow_state": flow_analysis.get("dominant_flow", "UNKNOWN"),
@@ -133,7 +133,7 @@ class CapitalFlowsEngine:
             "confidence": flow_analysis.get("confidence", 50.0),
         }
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         """Return empty report when no flows."""
         return {
             "engine_id": "GLB-007",
@@ -156,10 +156,10 @@ class CapitalFlowsEngine:
             "metadata": {"flow_count": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-007",
             "status": "OPERATIONAL",

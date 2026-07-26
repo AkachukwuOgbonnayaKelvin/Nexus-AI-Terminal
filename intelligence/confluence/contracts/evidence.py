@@ -8,7 +8,6 @@ Adds quality, freshness, independence, and dependency tracking.
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
 
 from .normalized_signal import NormalizedSignal
 
@@ -39,9 +38,9 @@ class EvidenceRecord:
     independence_score: float  # 0-1, how independent from other signals
 
     # OPTIONAL FIELDS (with defaults)
-    dependency_group: Optional[str] = None
-    dependencies: List[str] = field(default_factory=list)
-    dependents: List[str] = field(default_factory=list)
+    dependency_group: str | None = None
+    dependencies: list[str] = field(default_factory=list)
+    dependents: list[str] = field(default_factory=list)
     conflict_status: str = "NONE"
     effective_weight: float = 0.0
     processed_at: datetime = field(default_factory=datetime.utcnow)

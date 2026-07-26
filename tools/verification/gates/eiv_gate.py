@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
 """
 EIV Gate - Engine Integration Validation
 Verifies that the engine can integrate with the platform
 """
 
-from pathlib import Path
-from typing import Dict, Any
-import yaml
 import sys
+from pathlib import Path
+from typing import Any
+
+import yaml
 
 # Add parent to path for resolver
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -22,7 +22,7 @@ class EIVGate:
         self.description = "Engine Integration Validation"
         self.resolver = get_resolver()
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         result = {
             "name": self.name,
             "description": self.description,
@@ -94,13 +94,13 @@ class EIVGate:
 
         return result
 
-    def _check_engine_discovery(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_engine_discovery(self, engine_path: Path) -> dict[str, Any]:
         engine_yaml = engine_path / "engine.yaml"
         if engine_yaml.exists():
             return {"status": "PASS", "message": f"Engine found at {engine_path}"}
         return {"status": "FAIL", "message": "engine.yaml not found"}
 
-    def _check_engine_config(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_engine_config(self, engine_path: Path) -> dict[str, Any]:
         """Check if engine has valid configuration with detailed diagnostics"""
         result = {
             "status": "PASS",
@@ -129,7 +129,7 @@ class EIVGate:
             # Check required fields
             required_fields = ["id", "name", "version"]
             for field in required_fields:
-                if field in data and data[field]:
+                if data.get(field):
                     result["diagnostics"]["found_fields"].append(field)
                 else:
                     result["diagnostics"]["missing_fields"].append(field)
@@ -165,7 +165,7 @@ class EIVGate:
 
         return result
 
-    def _check_provider_connection(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_provider_connection(self, engine_path: Path) -> dict[str, Any]:
         provider_paths = [
             engine_path / "providers",
             engine_path / "acquisition" / "providers",
@@ -180,13 +180,13 @@ class EIVGate:
                 }
         return {"status": "WARN", "message": "No provider modules found (optional)"}
 
-    def _check_warehouse_connection(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_warehouse_connection(self, engine_path: Path) -> dict[str, Any]:
         warehouse_path = engine_path / "warehouse"
         if warehouse_path.exists() and any(warehouse_path.glob("*.py")):
             return {"status": "PASS", "message": "Warehouse modules found"}
         return {"status": "WARN", "message": "No warehouse modules found (optional)"}
 
-    def _check_ndip_connection(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_ndip_connection(self, engine_path: Path) -> dict[str, Any]:
         publication_path = engine_path / "publication"
         if publication_path.exists() and any(publication_path.glob("*.py")):
             return {"status": "PASS", "message": "NDIP publication modules found"}
@@ -195,7 +195,7 @@ class EIVGate:
             "message": "No NDIP publication modules found (optional)",
         }
 
-    def _check_dar_registration(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_dar_registration(self, engine_path: Path) -> dict[str, Any]:
         engine_yaml = engine_path / "engine.yaml"
         if engine_yaml.exists():
             try:

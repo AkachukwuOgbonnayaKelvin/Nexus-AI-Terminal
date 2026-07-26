@@ -1,7 +1,7 @@
 """Publication Router – directs normalized data to the correct warehouse."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from ndip.warehouses.price.warehouse import PriceWarehouse
 
@@ -32,7 +32,7 @@ class PublicationRouter:
             self._warehouses[asset_class] = self.WAREHOUSE_MAP[asset_class]()
         return self._warehouses[asset_class]
 
-    async def route(self, record: Dict[str, Any], source: str) -> Dict[str, Any]:
+    async def route(self, record: dict[str, Any], source: str) -> dict[str, Any]:
         """Route a single record to its warehouse."""
         asset_class = record.get("asset_class", "unknown")
         warehouse = self._get_warehouse(asset_class)

@@ -1,13 +1,13 @@
 """COT Normalizer – normalizes COT data."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 
 class COTNormalizer:
-    def normalize(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, record: dict[str, Any]) -> dict[str, Any]:
         """Normalize a COT record."""
         # Ensure all fields are present with defaults
         normalized = {

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Phase 4: Global Entity Intelligence - Integration Test
 
@@ -9,17 +8,17 @@ Tests the complete Phase 4 pipeline:
 4. Entity Ranking
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
-from intelligence.confluence.contracts import HarmonizedResult, Direction, ConflictLevel
+from intelligence.confluence.contracts import ConflictLevel, Direction, HarmonizedResult
 from intelligence.confluence.entity import (
-    EntityClassifier,
     EntityAggregator,
-    EntityRatingEngine,
+    EntityClassifier,
     EntityRanker,
+    EntityRatingEngine,
 )
 
 

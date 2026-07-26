@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
 """Historical Data Loader - Loads historical data from providers"""
 
-from typing import List, Dict, Any, Optional
+import logging
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-import sys
-import logging
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from providers.registry import ProviderRegistry
 from providers.base import OHLCVData
+from providers.registry import ProviderRegistry
 
 
 class HistoricalDataLoader:
     """Loads historical market data from configured providers"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.registry = ProviderRegistry(config)
         self.logger = logging.getLogger(__name__)
@@ -26,8 +25,8 @@ class HistoricalDataLoader:
         symbol: str,
         timeframe: str,
         days_back: int = 80,
-        provider_name: Optional[str] = None,
-    ) -> List[OHLCVData]:
+        provider_name: str | None = None,
+    ) -> list[OHLCVData]:
         """Load historical bars for a symbol"""
 
         end_date = datetime.now()
@@ -61,8 +60,8 @@ class HistoricalDataLoader:
             return []
 
     def load_historical_multi_symbol(
-        self, symbols: List[str], timeframe: str = "D1", days_back: int = 80
-    ) -> Dict[str, List[OHLCVData]]:
+        self, symbols: list[str], timeframe: str = "D1", days_back: int = 80
+    ) -> dict[str, list[OHLCVData]]:
         """Load historical data for multiple symbols"""
 
         results = {}
@@ -72,7 +71,7 @@ class HistoricalDataLoader:
 
     def validate_coverage(
         self, symbol: str, timeframe: str, required_days: int = 80
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Validate historical data coverage"""
 
         bars = self.load_historical_bars(symbol, timeframe, required_days)

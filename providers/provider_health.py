@@ -1,7 +1,5 @@
 """Provider health monitoring."""
 
-from typing import Dict, List, Optional
-
 from providers.interfaces.base_provider import BaseProvider
 
 
@@ -9,9 +7,9 @@ class ProviderHealth:
     """Tracks health status of providers."""
 
     def __init__(self):
-        self._status: Dict[str, bool] = {}
-        self._priority_map: Dict[str, List[str]] = {}
-        self._providers: Dict[str, BaseProvider] = {}
+        self._status: dict[str, bool] = {}
+        self._priority_map: dict[str, list[str]] = {}
+        self._providers: dict[str, BaseProvider] = {}
 
     def register(self, name: str, provider: BaseProvider) -> None:
         self._providers[name] = provider
@@ -36,7 +34,7 @@ class ProviderHealth:
             self._status[name] = False
             return False
 
-    def get_priority_order(self, asset_class: Optional[str] = None) -> List[str]:
+    def get_priority_order(self, asset_class: str | None = None) -> list[str]:
         """Return provider names in priority order."""
         # For now, return default list
         return self._priority_map.get("default", [])

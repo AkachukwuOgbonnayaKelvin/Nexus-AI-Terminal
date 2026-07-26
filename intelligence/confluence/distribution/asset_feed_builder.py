@@ -6,22 +6,21 @@ Supports asset-aware resolution for currency pairs and other assets.
 """
 
 import logging
-from typing import List, Optional, Tuple
 from datetime import datetime
 
+from ..asset_class.mapper import AssetClassMapper
 from ..contracts import (
+    AssetClass,
     AssetClassRating,
     AssetIntelligenceFeed,
-    AssetClass,
-    Direction,
-    CurrencyContext,
-    FeedStatus,
     ConflictLevel,
+    CurrencyContext,
+    Direction,
+    FeedStatus,
 )
-from .package import ConfluenceIntelligencePackage
 from ..entity.classifier import EntityClassifier
-from ..asset_class.mapper import AssetClassMapper
 from ..entity.direction import classify_direction
+from .package import ConfluenceIntelligencePackage
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +38,7 @@ class AssetFeedBuilder:
 
     def build_for_entity(
         self, entity: str, package: ConfluenceIntelligencePackage
-    ) -> Optional[AssetIntelligenceFeed]:
+    ) -> AssetIntelligenceFeed | None:
         """
         Build a feed for a specific entity.
 
@@ -59,7 +58,7 @@ class AssetFeedBuilder:
 
     def _build_entity_feed(
         self, entity: str, package: ConfluenceIntelligencePackage
-    ) -> Optional[AssetIntelligenceFeed]:
+    ) -> AssetIntelligenceFeed | None:
         """Build feed for an individual entity."""
         # Get entity rating
         entity_rating = package.get_entity_rating(entity)
@@ -106,7 +105,7 @@ class AssetFeedBuilder:
 
     def _build_currency_pair_feed(
         self, pair: str, package: ConfluenceIntelligencePackage
-    ) -> Optional[AssetIntelligenceFeed]:
+    ) -> AssetIntelligenceFeed | None:
         """
         Build feed for a currency pair.
 
@@ -196,8 +195,8 @@ class AssetFeedBuilder:
         return feed
 
     def build_for_entities(
-        self, entities: List[str], package: ConfluenceIntelligencePackage
-    ) -> List[AssetIntelligenceFeed]:
+        self, entities: list[str], package: ConfluenceIntelligencePackage
+    ) -> list[AssetIntelligenceFeed]:
         """
         Build feeds for multiple entities.
 
@@ -217,7 +216,7 @@ class AssetFeedBuilder:
 
     def build_for_all_entities(
         self, package: ConfluenceIntelligencePackage
-    ) -> List[AssetIntelligenceFeed]:
+    ) -> list[AssetIntelligenceFeed]:
         """
         Build feeds for all entities in the package.
 
@@ -246,7 +245,7 @@ class AssetFeedBuilder:
 
     def _generate_currency_pairs(
         self, package: ConfluenceIntelligencePackage
-    ) -> List[str]:
+    ) -> list[str]:
         """Generate major currency pairs from available currencies."""
         currencies = [r.entity for r in package.currency_ratings]
 
@@ -281,13 +280,13 @@ class AssetFeedBuilder:
             len(entity) == 6 and entity.isupper() and all(c.isalpha() for c in entity)
         )
 
-    def _get_asset_class(self, entity: str) -> Optional[AssetClass]:
+    def _get_asset_class(self, entity: str) -> AssetClass | None:
         """Get asset class for an entity."""
         return AssetClassMapper.map_entity(entity)
 
     def _get_asset_class_rating(
-        self, asset_class: Optional[AssetClass], package: ConfluenceIntelligencePackage
-    ) -> Optional[AssetClassRating]:
+        self, asset_class: AssetClass | None, package: ConfluenceIntelligencePackage
+    ) -> AssetClassRating | None:
         """Get asset-class rating for an asset class."""
         if not asset_class:
             return None
@@ -315,7 +314,7 @@ class AssetFeedBuilder:
 
     def _get_evidence(
         self, entity: str, package: ConfluenceIntelligencePackage
-    ) -> Tuple[List[str], List[str]]:
+    ) -> tuple[list[str], list[str]]:
         """Get supporting and contradicting evidence for an entity."""
         rating = package.get_entity_rating(entity)
         if not rating:

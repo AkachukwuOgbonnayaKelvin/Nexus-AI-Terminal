@@ -3,7 +3,7 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Liquidity Analyzer
 """
 
 import logging
-from typing import Dict, Any, Optional
+from typing import Any
 
 from ..constants import LiquidityState
 from ..input.schemas import LiquidityInput
@@ -15,8 +15,8 @@ class LiquidityAnalyzer:
     """Analyze liquidity conditions"""
 
     def analyze_liquidity(
-        self, liquidity_data: Optional[LiquidityInput]
-    ) -> Dict[str, Any]:
+        self, liquidity_data: LiquidityInput | None
+    ) -> dict[str, Any]:
         """
         Analyze liquidity conditions.
 

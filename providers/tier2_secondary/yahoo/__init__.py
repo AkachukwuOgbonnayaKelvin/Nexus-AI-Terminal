@@ -3,4 +3,4 @@
 from .adapter import YahooAdapter
 from .connector import YahooConnector
 
-__all__ = ["YahooConnector", "YahooAdapter"]
+__all__ = ["YahooAdapter", "YahooConnector"]

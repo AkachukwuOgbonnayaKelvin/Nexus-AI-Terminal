@@ -3,8 +3,8 @@ Global Intelligence Hub - Consensus Engine
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ class ConsensusEngine:
     Calculates consensus from multiple intelligence reports.
     """
 
-    def calculate_consensus(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def calculate_consensus(self, reports: dict[str, Any]) -> dict[str, Any]:
         """
         Calculate consensus across all reports.
 
@@ -45,12 +45,12 @@ class ConsensusEngine:
             "generated_at": datetime.utcnow().isoformat(),
         }
 
-    def _calculate_regime_consensus(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def _calculate_regime_consensus(self, reports: dict[str, Any]) -> dict[str, Any]:
         """Calculate consensus on market regime."""
         regimes = []
 
         # Try to get regime from GLB-001
-        if "GLB-001" in reports and reports["GLB-001"]:
+        if reports.get("GLB-001"):
             report = reports["GLB-001"]
             if hasattr(report, "primary_regime"):
                 regimes.append(
@@ -76,12 +76,12 @@ class ConsensusEngine:
             "agreement": len(regimes) > 1,
         }
 
-    def _calculate_asset_consensus(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def _calculate_asset_consensus(self, reports: dict[str, Any]) -> dict[str, Any]:
         """Calculate consensus on asset biases."""
         asset_biases = {}
 
         # Try to get asset data from GLB-002
-        if "GLB-002" in reports and reports["GLB-002"]:
+        if reports.get("GLB-002"):
             report = reports["GLB-002"]
             if hasattr(report, "asset_reports"):
                 for asset, data in report.asset_reports.items():
@@ -98,7 +98,7 @@ class ConsensusEngine:
 
         return asset_biases
 
-    def _calculate_overall_score(self, reports: Dict[str, Any]) -> float:
+    def _calculate_overall_score(self, reports: dict[str, Any]) -> float:
         """Calculate overall consensus score."""
         scores = []
         weights = {

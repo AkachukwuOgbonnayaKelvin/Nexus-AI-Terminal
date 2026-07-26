@@ -1,9 +1,7 @@
 """Probability calculation service implementation."""
 
-from typing import Dict, List
 
-
-def calculate_probability(scores: Dict[str, float]) -> float:
+def calculate_probability(scores: dict[str, float]) -> float:
     """Calculate probability from scores."""
     if not scores:
         return 0.5
@@ -14,7 +12,7 @@ def calculate_probability(scores: Dict[str, float]) -> float:
     return 0.5 + (total_weight / 10)  # Simplified for now
 
 
-def normalize_probabilities(probabilities: List[float]) -> List[float]:
+def normalize_probabilities(probabilities: list[float]) -> list[float]:
     """Normalize a list of probabilities to sum to 1.0."""
     total = sum(probabilities)
     if total == 0:

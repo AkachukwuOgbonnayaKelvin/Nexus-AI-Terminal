@@ -8,7 +8,7 @@ All engines must output this format for the Confluence Engine.
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import List, Dict, Any
+from typing import Any
 
 
 class Direction(str, Enum):
@@ -68,10 +68,10 @@ class NormalizedSignal:
     timestamp: datetime  # When the signal was generated
 
     # OPTIONAL FIELDS (with defaults)
-    drivers: List[str] = field(default_factory=list)
-    risks: List[str] = field(default_factory=list)
-    evidence: List[Dict[str, Any]] = field(default_factory=list)
-    source_data: Dict[str, Any] = field(default_factory=dict)
+    drivers: list[str] = field(default_factory=list)
+    risks: list[str] = field(default_factory=list)
+    evidence: list[dict[str, Any]] = field(default_factory=list)
+    source_data: dict[str, Any] = field(default_factory=dict)
     horizon: str = "SHORT_TERM"  # SHORT_TERM, MEDIUM_TERM, LONG_TERM
     version: str = "1.0"
 

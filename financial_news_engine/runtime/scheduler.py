@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Scheduler for Financial News Engine"""
 
 
@@ -14,4 +13,3 @@ class NewsScheduler:
 
     def run(self):
         """Execute news collection"""
-        pass

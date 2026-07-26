@@ -4,15 +4,15 @@ GLB-005 Central Bank Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional, List
 from datetime import datetime
+from typing import Any
 
-from .constants import NDIP_TOPICS, CentralBank, PolicyStance
-from .input.schemas import CentralBankInput, RateExpectation, BalanceSheetData
 from .analysis.policy_analyzer import PolicyAnalyzer
 from .analysis.rate_forecaster import RateForecaster
-from .transmission.policy_divergence import PolicyDivergenceEngine
+from .constants import NDIP_TOPICS, CentralBank, PolicyStance
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.schemas import BalanceSheetData, CentralBankInput, RateExpectation
+from .transmission.policy_divergence import PolicyDivergenceEngine
 
 logger = logging.getLogger(__name__)
 
@@ -31,15 +31,15 @@ class CentralBankEngine:
         self.rate_forecaster = RateForecaster()
         self.divergence_engine = PolicyDivergenceEngine()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -91,7 +91,7 @@ class CentralBankEngine:
 
         return report
 
-    def _parse_bank_data(self) -> List[CentralBankInput]:
+    def _parse_bank_data(self) -> list[CentralBankInput]:
         """Parse central bank data from NDIP."""
         cb_data = self._latest_data.get(NDIP_TOPICS["CENTRAL_BANK_DATA"], {})
         banks = cb_data.get("banks", [])
@@ -141,8 +141,8 @@ class CentralBankEngine:
         return parsed
 
     def _build_core_intelligence(
-        self, policy: Dict, rates: Dict, divergence: Dict
-    ) -> Dict:
+        self, policy: dict, rates: dict, divergence: dict
+    ) -> dict:
         """Build core intelligence report"""
         return {
             "overall_policy_bias": policy.get("overall_bias", "NEUTRAL"),
@@ -166,7 +166,7 @@ class CentralBankEngine:
             "confidence": policy.get("confidence", 70.0),
         }
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         """Return empty report when no data."""
         return {
             "engine_id": "GLB-005",
@@ -185,10 +185,10 @@ class CentralBankEngine:
             "metadata": {"bank_count": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-005",
             "status": "OPERATIONAL",

@@ -3,10 +3,10 @@ GLB-001 Market Regime Engine - Risk Engine
 """
 
 import logging
-from typing import List, Dict, Any
+from typing import Any
 
-from .schemas import RegimeRisk
 from .constants import MarketRegime
+from .schemas import RegimeRisk
 
 logger = logging.getLogger(__name__)
 
@@ -17,9 +17,9 @@ class RiskEngine:
     def identify_risks(
         self,
         regime: MarketRegime,
-        dimensions: Dict[str, Any],
-        probabilities: Dict[str, float],
-    ) -> List[RegimeRisk]:
+        dimensions: dict[str, Any],
+        probabilities: dict[str, float],
+    ) -> list[RegimeRisk]:
         """Identify risks based on regime classification."""
         risks = []
 
@@ -40,8 +40,8 @@ class RiskEngine:
         return risks
 
     def _risk_on_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         risk_sentiment = dimensions.get("risk_sentiment", {}).get("value", 50)
         if risk_sentiment > 80:
@@ -65,8 +65,8 @@ class RiskEngine:
         return risks
 
     def _risk_off_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         risk_sentiment = dimensions.get("risk_sentiment", {}).get("value", 50)
         if risk_sentiment < 20:
@@ -91,8 +91,8 @@ class RiskEngine:
         return risks
 
     def _trending_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         trend_strength = dimensions.get("trend_strength", {}).get("value", 50)
         if trend_strength > 80:
@@ -107,8 +107,8 @@ class RiskEngine:
         return risks
 
     def _ranging_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         volatility = dimensions.get("volatility", {}).get("value", 50)
         if volatility < 30:
@@ -123,8 +123,8 @@ class RiskEngine:
         return risks
 
     def _transition_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         risks.append(
             RegimeRisk(
@@ -137,8 +137,8 @@ class RiskEngine:
         return risks
 
     def _volatile_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         volatility = dimensions.get("volatility", {}).get("value", 50)
         if volatility > 70:
@@ -153,8 +153,8 @@ class RiskEngine:
         return risks
 
     def _common_risks(
-        self, dimensions: Dict[str, Any], probabilities: Dict[str, float]
-    ) -> List[RegimeRisk]:
+        self, dimensions: dict[str, Any], probabilities: dict[str, float]
+    ) -> list[RegimeRisk]:
         risks = []
         risks.append(
             RegimeRisk(

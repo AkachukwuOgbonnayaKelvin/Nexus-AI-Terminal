@@ -4,22 +4,22 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional, List
 from datetime import datetime
+from typing import Any
 
-from .constants import NDIP_TOPICS
-from .input.schemas import (
-    COTInput,
-    RetailSentimentInput,
-    InstitutionalPositioningInput,
-    OptionsSentimentInput,
-)
-from .input.data_normalizer import DataNormalizer
-from .analysis.sentiment_analyzer import SentimentAnalyzer
-from .analysis.positioning_analyzer import PositioningAnalyzer
 from .analysis.crowding_analyzer import CrowdingAnalyzer
 from .analysis.divergence_analyzer import DivergenceAnalyzer
+from .analysis.positioning_analyzer import PositioningAnalyzer
+from .analysis.sentiment_analyzer import SentimentAnalyzer
+from .constants import NDIP_TOPICS
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.data_normalizer import DataNormalizer
+from .input.schemas import (
+    COTInput,
+    InstitutionalPositioningInput,
+    OptionsSentimentInput,
+    RetailSentimentInput,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -40,15 +40,15 @@ class SentimentPositioningEngine:
         self.crowding_analyzer = CrowdingAnalyzer()
         self.divergence_analyzer = DivergenceAnalyzer()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -135,7 +135,7 @@ class SentimentPositioningEngine:
 
         return report
 
-    def _parse_cot(self) -> List[COTInput]:
+    def _parse_cot(self) -> list[COTInput]:
         """Parse COT data from NDIP."""
         data = self._latest_data.get(NDIP_TOPICS["COT_DATA"], {})
         raw_items = data.get("items", [])
@@ -146,7 +146,7 @@ class SentimentPositioningEngine:
                 parsed.append(normalized)
         return parsed
 
-    def _parse_retail(self) -> List[RetailSentimentInput]:
+    def _parse_retail(self) -> list[RetailSentimentInput]:
         """Parse retail sentiment from NDIP."""
         data = self._latest_data.get(NDIP_TOPICS["RETAIL_SENTIMENT"], {})
         raw_items = data.get("items", [])
@@ -157,7 +157,7 @@ class SentimentPositioningEngine:
                 parsed.append(normalized)
         return parsed
 
-    def _parse_institutional(self) -> List[InstitutionalPositioningInput]:
+    def _parse_institutional(self) -> list[InstitutionalPositioningInput]:
         """Parse institutional positioning from NDIP."""
         data = self._latest_data.get(NDIP_TOPICS["INSTITUTIONAL_POSITIONING"], {})
         raw_items = data.get("items", [])
@@ -168,7 +168,7 @@ class SentimentPositioningEngine:
                 parsed.append(normalized)
         return parsed
 
-    def _parse_options(self) -> List[OptionsSentimentInput]:
+    def _parse_options(self) -> list[OptionsSentimentInput]:
         """Parse options sentiment from NDIP."""
         data = self._latest_data.get(NDIP_TOPICS["OPTIONS_DATA"], {})
         raw_items = data.get("items", [])
@@ -180,8 +180,8 @@ class SentimentPositioningEngine:
         return parsed
 
     def _build_core_intelligence(
-        self, sentiment: Dict, positioning: Dict, crowding: Dict, divergence: Dict
-    ) -> Dict:
+        self, sentiment: dict, positioning: dict, crowding: dict, divergence: dict
+    ) -> dict:
         """Build core intelligence report"""
         return {
             "global_sentiment": sentiment.get("sentiment_state", "NEUTRAL"),
@@ -200,7 +200,7 @@ class SentimentPositioningEngine:
             "confidence": sentiment.get("confidence", 50.0),
         }
 
-    def _determine_theme(self, sentiment: Dict, positioning: Dict) -> str:
+    def _determine_theme(self, sentiment: dict, positioning: dict) -> str:
         """Determine dominant sentiment theme"""
         sentiment_state = sentiment.get("sentiment_state", "NEUTRAL")
         positioning_bias = positioning.get("overall_bias", "NEUTRAL")
@@ -215,7 +215,7 @@ class SentimentPositioningEngine:
             return "BEARISH_SENTIMENT_BULLISH_POSITIONING"
         return "MIXED_SIGNALS"
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         """Return empty report when no data."""
         return {
             "engine_id": "GLB-008",
@@ -239,10 +239,10 @@ class SentimentPositioningEngine:
             "metadata": {"cot_count": 0, "retail_count": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-008",
             "status": "OPERATIONAL",

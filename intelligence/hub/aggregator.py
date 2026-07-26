@@ -9,9 +9,9 @@ Hardened version with:
 """
 
 import logging
-from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Any
 
 from intelligence.schemas.asset_impact import AssetImpactMatrix, Direction, ImpactStatus
 
@@ -29,8 +29,8 @@ class EngineContribution:
     weight: float
     confidence: float
     status: str
-    drivers: List[str]
-    generated_at: Optional[datetime] = None
+    drivers: list[str]
+    generated_at: datetime | None = None
 
 
 @dataclass
@@ -45,7 +45,7 @@ class AssetConsensus:
     confidence: float
 
     # Agreement metrics
-    agreement: Dict[str, int]
+    agreement: dict[str, int]
     agreement_ratio: float
 
     # Conflict detection
@@ -53,13 +53,13 @@ class AssetConsensus:
     conflict_level: str  # NONE, LOW, MEDIUM, HIGH
 
     # Contributions
-    contributions: Dict[str, EngineContribution]
+    contributions: dict[str, EngineContribution]
 
     # Metadata
-    top_drivers: List[str]
+    top_drivers: list[str]
     analyzed_engines: int
     total_engines: int
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class HubAggregator:
@@ -82,8 +82,8 @@ class HubAggregator:
     def __init__(self):
         self.engine_weights = self.DEFAULT_WEIGHTS.copy()
         self.engine_reliability = self.ENGINE_RELIABILITY.copy()
-        self.matrices: Dict[str, AssetImpactMatrix] = {}
-        self.last_aggregation: Optional[datetime] = None
+        self.matrices: dict[str, AssetImpactMatrix] = {}
+        self.last_aggregation: datetime | None = None
 
     def register_matrix(self, matrix: AssetImpactMatrix) -> None:
         """Register an engine's Asset Impact Matrix."""
@@ -100,7 +100,7 @@ class HubAggregator:
         """Set reliability score for a specific engine."""
         self.engine_reliability[engine_id] = reliability
 
-    def aggregate(self) -> Dict[str, AssetConsensus]:
+    def aggregate(self) -> dict[str, AssetConsensus]:
         """Aggregate all registered matrices into consensus for each asset."""
         if not self.matrices:
             logger.warning("No matrices registered")
@@ -323,9 +323,7 @@ class HubAggregator:
         # If there's a mix of one direction and neutral
         return "LOW"
 
-    def get_asset_map(
-        self, asset_type: Optional[str] = None
-    ) -> Dict[str, AssetConsensus]:
+    def get_asset_map(self, asset_type: str | None = None) -> dict[str, AssetConsensus]:
         """Get the Global Asset Impact Map, optionally filtered by asset type."""
         all_consensus = self.aggregate()
 
@@ -338,7 +336,7 @@ class HubAggregator:
 
         return all_consensus
 
-    def get_summary(self) -> Dict[str, Any]:
+    def get_summary(self) -> dict[str, Any]:
         """Get summary statistics of the aggregation."""
         consensus = self.aggregate()
 
@@ -401,7 +399,7 @@ class HubAggregator:
             else None,
         }
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """Check aggregator health."""
         return {
             "status": "OPERATIONAL",

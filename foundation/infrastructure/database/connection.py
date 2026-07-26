@@ -1,7 +1,7 @@
 """Database connection service."""
 
+from collections.abc import Generator
 from contextlib import contextmanager
-from typing import Generator
 
 from foundation.config import config
 

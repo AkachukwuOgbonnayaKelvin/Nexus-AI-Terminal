@@ -7,9 +7,9 @@ from .parser_factory import ParserFactory
 from .tff import TFFParser
 
 __all__ = [
-    "ParserFactory",
+    "BaseParser",
     "DisaggregatedParser",
     "LegacyParser",
+    "ParserFactory",
     "TFFParser",
-    "BaseParser",
 ]

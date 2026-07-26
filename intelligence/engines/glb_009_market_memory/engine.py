@@ -4,15 +4,15 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
-from .input.schemas import MarketSnapshot
-from .canonical_memory_connector import CanonicalMemoryConnector
 from .analogues.analogue_engine import AnalogueEngine
-from .analogues.outcome_analyzer import OutcomeAnalyzer
 from .analogues.cross_asset_confirmation import CrossAssetConfirmation
+from .analogues.outcome_analyzer import OutcomeAnalyzer
+from .canonical_memory_connector import CanonicalMemoryConnector
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.schemas import MarketSnapshot
 
 logger = logging.getLogger(__name__)
 
@@ -32,9 +32,9 @@ class MarketMemoryEngine:
         self.outcome_analyzer = OutcomeAnalyzer()
         self.cross_asset_confirmation = CrossAssetConfirmation()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
         # Load historical data
         self.historical_memory.load()
@@ -43,11 +43,11 @@ class MarketMemoryEngine:
         available_assets = self.historical_memory.get_symbols()
         self.outcome_analyzer.set_available_assets(available_assets)
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -154,13 +154,13 @@ class MarketMemoryEngine:
             asset_prices=prices,
         )
 
-    def _get_current_asset_impacts(self) -> Dict:
+    def _get_current_asset_impacts(self) -> dict:
         """Get current asset impacts from other GLB engines"""
         return {}
 
     def _build_core_intelligence(
-        self, analogue_analysis: Dict, asset_outcomes: Dict, cross_asset: Dict
-    ) -> Dict:
+        self, analogue_analysis: dict, asset_outcomes: dict, cross_asset: dict
+    ) -> dict:
         """Build core intelligence report"""
         distribution = {"BULLISH": 0, "BEARISH": 0, "NEUTRAL": 0}
         count = 0
@@ -191,7 +191,7 @@ class MarketMemoryEngine:
             "confidence": analogue_analysis.get("confidence", 50),
         }
 
-    def _determine_bias(self, asset_outcomes: Dict) -> str:
+    def _determine_bias(self, asset_outcomes: dict) -> str:
         bullish_count = 0
         bearish_count = 0
         for asset, outcome in asset_outcomes.items():
@@ -205,7 +205,7 @@ class MarketMemoryEngine:
             return "BEARISH"
         return "MIXED"
 
-    def _determine_horizon(self, asset_outcomes: Dict) -> str:
+    def _determine_horizon(self, asset_outcomes: dict) -> str:
         horizon_scores = {
             "INTRADAY": 0,
             "SHORT_TERM": 0,
@@ -219,12 +219,12 @@ class MarketMemoryEngine:
         best = max(horizon_scores.items(), key=lambda x: x[1])
         return best[0] if best[1] > 0 else "MIXED"
 
-    def _determine_environment(self, analogue_analysis: Dict) -> str:
+    def _determine_environment(self, analogue_analysis: dict) -> str:
         if analogue_analysis.get("quality") == "HIGH":
             return "RISK_OFF CONTINUATION"
         return "MIXED"
 
-    def _memory_not_ready_report(self) -> Dict:
+    def _memory_not_ready_report(self) -> dict:
         return {
             "engine_id": "GLB-009",
             "engine_name": "Market Memory & Historical Analogy Intelligence Engine",
@@ -244,7 +244,7 @@ class MarketMemoryEngine:
             "metadata": {"analogues_found": 0, "status": "COLD_START"},
         }
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         return {
             "engine_id": "GLB-009",
             "engine_name": "Market Memory & Historical Analogy Intelligence Engine",
@@ -264,10 +264,10 @@ class MarketMemoryEngine:
             "metadata": {"analogues_found": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-009",
             "status": "OPERATIONAL"

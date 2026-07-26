@@ -3,7 +3,7 @@ Global Intelligence Hub - Conflict Resolver
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class ConflictResolver:
     Resolves conflicts between conflicting intelligence reports.
     """
 
-    def resolve(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def resolve(self, reports: dict[str, Any]) -> dict[str, Any]:
         """
         Resolve conflicts between reports.
 

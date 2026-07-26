@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from fastapi import APIRouter, HTTPException
 
@@ -16,7 +15,7 @@ class MacroService:
 
     def _register_routes(self):
         @self.router.get("/today")
-        async def get_today(country: Optional[str] = None):
+        async def get_today(country: str | None = None):
             events = await self.warehouse.get_today_events(country)
             return {"status": "success", "count": len(events), "data": events}
 

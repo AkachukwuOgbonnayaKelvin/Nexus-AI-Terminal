@@ -1,14 +1,13 @@
 """Provider failover tracking."""
 
 from collections import defaultdict
-from typing import Dict
 
 
 class ProviderFailover:
     """Tracks provider failures and triggers failover."""
 
     def __init__(self):
-        self._failures: Dict[str, int] = defaultdict(int)
+        self._failures: dict[str, int] = defaultdict(int)
         self._max_failures: int = 3
 
     def record_failure(self, provider_name: str) -> None:

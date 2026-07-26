@@ -1,7 +1,6 @@
 import json
 import logging
 from datetime import datetime, timedelta
-from typing import List, Optional
 
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 from ndip.utils.db_connector import execute, fetch, fetchrow
@@ -75,7 +74,7 @@ class ConsensusWarehouse:
             return False
 
     # ... rest of the methods unchanged ...
-    async def get_today_events(self, country: str = None) -> List[dict]:
+    async def get_today_events(self, country: str = None) -> list[dict]:
         today = datetime.now().date()
         tomorrow = today + timedelta(days=1)
         query = f"SELECT * FROM {self.table} WHERE release_time_utc >= $1 AND release_time_utc < $2"
@@ -86,19 +85,19 @@ class ConsensusWarehouse:
         rows = await fetch(query, *params)
         return [dict(row) for row in rows]
 
-    async def get_upcoming_events(self, hours: int = 48) -> List[dict]:
+    async def get_upcoming_events(self, hours: int = 48) -> list[dict]:
         now = datetime.now()
         cutoff = now + timedelta(hours=hours)
         query = f"SELECT * FROM {self.table} WHERE release_time_utc >= $1 AND release_time_utc < $2 AND status != 'Released'"
         rows = await fetch(query, now, cutoff)
         return [dict(row) for row in rows]
 
-    async def get_high_impact(self) -> List[dict]:
+    async def get_high_impact(self) -> list[dict]:
         query = f"SELECT * FROM {self.table} WHERE importance = 'High' ORDER BY release_time_utc DESC LIMIT 20"
         rows = await fetch(query)
         return [dict(row) for row in rows]
 
-    async def get_event(self, event_id: str) -> Optional[dict]:
+    async def get_event(self, event_id: str) -> dict | None:
         row = await fetchrow(
             f"SELECT * FROM {self.table} WHERE event_id = $1", event_id
         )

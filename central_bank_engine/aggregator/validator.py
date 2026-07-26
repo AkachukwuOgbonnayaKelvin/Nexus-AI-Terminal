@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 class Validator:
     REQUIRED_FIELDS = ["event_id", "bank", "country", "currency", "event_type", "title"]
 
-    def validate(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def validate(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         valid_events = []
         for event in events:
             missing = [f for f in self.REQUIRED_FIELDS if not event.get(f)]

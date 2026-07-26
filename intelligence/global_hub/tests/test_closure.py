@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Global Intelligence Backend - Final Closure Test
 
@@ -18,25 +17,25 @@ Verifies all final hardening requirements:
 13. Full end-to-end feed integrity
 """
 
-import sys
 import os
+import sys
 from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../.."))
 
 from intelligence.confluence.contracts import (
-    GlobalIntelligenceOutput,
-    GlobalEntityRating,
-    AssetClassRating,
-    EntityType,
-    Direction,
     AssetClass,
+    AssetClassRating,
+    Direction,
+    EntityType,
+    GlobalEntityRating,
+    GlobalIntelligenceOutput,
 )
 from intelligence.global_hub import (
-    StateManager,
-    IngestionGateway,
     GUIPresentationFeeder,
+    IngestionGateway,
     OrchestratorFeeder,
+    StateManager,
 )
 
 
@@ -213,8 +212,8 @@ def test_closure():
 
     # Test 8: AI cannot alter deterministic values
     print("\n[8] Testing: AI cannot alter deterministic values...")
-    from intelligence.global_hub.summary.deterministic import DeterministicSummaryEngine
     from intelligence.global_hub.ai.executive_interpreter import AIExecutiveInterpreter
+    from intelligence.global_hub.summary.deterministic import DeterministicSummaryEngine
 
     summary_engine = DeterministicSummaryEngine()
     structured = summary_engine.generate_structured_summary(state)

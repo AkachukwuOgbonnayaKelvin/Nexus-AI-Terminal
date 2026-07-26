@@ -5,8 +5,7 @@ Ranks entities by score.
 Preserves direction from the rating engine.
 """
 
-from typing import List, Optional
-from ..contracts import GlobalEntityRating, EntityType
+from ..contracts import EntityType, GlobalEntityRating
 
 
 class EntityRanker:
@@ -18,8 +17,8 @@ class EntityRanker:
     """
 
     def rank_entities(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """
         Rank all entities by score (descending).
         Preserves direction from input.
@@ -40,8 +39,8 @@ class EntityRanker:
         return sorted_ratings
 
     def rank_by_type(
-        self, ratings: List[GlobalEntityRating], entity_type: EntityType
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating], entity_type: EntityType
+    ) -> list[GlobalEntityRating]:
         """
         Rank entities of a specific type by score.
         Preserves direction from input.
@@ -57,51 +56,51 @@ class EntityRanker:
         return self.rank_entities(filtered)
 
     def rank_currencies(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Rank only currency entities."""
         return self.rank_by_type(ratings, EntityType.CURRENCY)
 
     def rank_indices(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Rank only index entities."""
         return self.rank_by_type(ratings, EntityType.INDEX)
 
     def rank_commodities(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Rank only commodity entities."""
         return self.rank_by_type(ratings, EntityType.COMMODITY)
 
-    def rank_bonds(self, ratings: List[GlobalEntityRating]) -> List[GlobalEntityRating]:
+    def rank_bonds(self, ratings: list[GlobalEntityRating]) -> list[GlobalEntityRating]:
         """Rank only bond entities."""
         return self.rank_by_type(ratings, EntityType.BOND)
 
     def get_top_n(
-        self, ratings: List[GlobalEntityRating], n: int = 5
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating], n: int = 5
+    ) -> list[GlobalEntityRating]:
         """Get top N ranked entities."""
         ranked = self.rank_entities(ratings)
         return ranked[:n]
 
     def get_bottom_n(
-        self, ratings: List[GlobalEntityRating], n: int = 5
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating], n: int = 5
+    ) -> list[GlobalEntityRating]:
         """Get bottom N ranked entities."""
         ranked = self.rank_entities(ratings)
         return ranked[-n:]
 
     def get_strongest_currency(
-        self, ratings: List[GlobalEntityRating]
-    ) -> Optional[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> GlobalEntityRating | None:
         """Get the strongest currency."""
         currencies = self.rank_currencies(ratings)
         return currencies[0] if currencies else None
 
     def get_weakest_currency(
-        self, ratings: List[GlobalEntityRating]
-    ) -> Optional[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> GlobalEntityRating | None:
         """Get the weakest currency."""
         currencies = self.rank_currencies(ratings)
         return currencies[-1] if currencies else None

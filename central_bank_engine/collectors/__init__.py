@@ -11,9 +11,9 @@ from .base import (
 
 __all__ = [
     "BaseCollector",
+    "CalendarCollector",
+    "MinutesCollector",
     "RateCollector",
     "SpeechCollector",
-    "MinutesCollector",
     "StatementCollector",
-    "CalendarCollector",
 ]

@@ -4,7 +4,6 @@ This module defines the weighting system for combining multiple intelligence sou
 """
 
 from dataclasses import dataclass, field
-from typing import Dict
 
 
 @dataclass
@@ -19,7 +18,7 @@ class EngineWeights:
     intermarket_weight: float = 0.10
 
     # Adjustments based on market regime
-    regime_adjustments: Dict[str, Dict[str, float]] = field(
+    regime_adjustments: dict[str, dict[str, float]] = field(
         default_factory=lambda: {
             "trending": {
                 "technical": 1.2,
@@ -59,7 +58,7 @@ class EngineWeights:
         }
     )
 
-    def get_weights(self, regime: str = "default") -> Dict[str, float]:
+    def get_weights(self, regime: str = "default") -> dict[str, float]:
         """Get weights for a specific market regime."""
         base = {
             "technical": self.technical_weight,
@@ -76,7 +75,7 @@ class EngineWeights:
 
         return base
 
-    def normalize_weights(self, weights: Dict[str, float]) -> Dict[str, float]:
+    def normalize_weights(self, weights: dict[str, float]) -> dict[str, float]:
         """Normalize weights to sum to 1.0."""
         total = sum(weights.values())
         if total > 0:

@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Domain models for Market Price Engine"""
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, Dict, Any
 from enum import Enum
+from typing import Any
 
 
 class AssetClass(str, Enum):
@@ -54,11 +53,11 @@ class Tick:
     symbol: str
     bid: float
     ask: float
-    spread: Optional[float] = None
-    volume: Optional[float] = None
+    spread: float | None = None
+    volume: float | None = None
     source: str = "unknown"
     quality_score: float = 100.0
-    provenance: Dict[str, Any] = field(default_factory=dict)
+    provenance: dict[str, Any] = field(default_factory=dict)
 
     @property
     def mid_price(self) -> float:
@@ -76,12 +75,12 @@ class OHLCV:
     high: float
     low: float
     close: float
-    tick_volume: Optional[float] = None
-    real_volume: Optional[float] = None
-    spread: Optional[float] = None
+    tick_volume: float | None = None
+    real_volume: float | None = None
+    spread: float | None = None
     source: str = "unknown"
     quality_score: float = 100.0
-    provenance: Dict[str, Any] = field(default_factory=dict)
+    provenance: dict[str, Any] = field(default_factory=dict)
 
     def validate(self) -> bool:
         """Validate OHLCV data integrity"""
@@ -104,7 +103,7 @@ class MarketSnapshot:
     ask: float
     spread: float
     last_price: float
-    session: Optional[str] = None
+    session: str | None = None
     source: str = "unknown"
     quality_score: float = 100.0
 
@@ -116,14 +115,14 @@ class Instrument:
     symbol: str
     asset_class: AssetClass
     description: str
-    broker_symbol: Optional[str] = None
-    exchange: Optional[str] = None
-    currency: Optional[str] = None
-    contract_size: Optional[float] = None
-    pip_size: Optional[float] = None
-    min_volume: Optional[float] = None
-    max_volume: Optional[float] = None
-    margin_required: Optional[float] = None
+    broker_symbol: str | None = None
+    exchange: str | None = None
+    currency: str | None = None
+    contract_size: float | None = None
+    pip_size: float | None = None
+    min_volume: float | None = None
+    max_volume: float | None = None
+    margin_required: float | None = None
     is_active: bool = True
     source: str = "unknown"
 

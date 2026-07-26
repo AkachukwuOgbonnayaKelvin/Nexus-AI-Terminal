@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Dependency Analyzer - Analyzes engine dependencies
 """
 
-from pathlib import Path
-from typing import Dict, Any
 import ast
+from pathlib import Path
+from typing import Any
+
 import yaml
 
 
@@ -16,7 +16,7 @@ class DependencyAnalyzer:
         self.project_root = project_root
         self.imports = []
 
-    def analyze(self, engine_path: Path, engine_data: Dict) -> Dict[str, Any]:
+    def analyze(self, engine_path: Path, engine_data: dict) -> dict[str, Any]:
         """Analyze engine dependencies"""
         result = {
             "score": 100,
@@ -88,7 +88,7 @@ class DependencyAnalyzer:
 
         return result
 
-    def _scan_imports(self, file_path: Path, result: Dict) -> None:
+    def _scan_imports(self, file_path: Path, result: dict) -> None:
         """Scan Python file for imports"""
         try:
             with open(file_path, "r", encoding="utf-8") as f:
@@ -113,7 +113,7 @@ class DependencyAnalyzer:
         except Exception:
             pass
 
-    def _check_circular_dependencies(self, engine_id: str, result: Dict) -> None:
+    def _check_circular_dependencies(self, engine_id: str, result: dict) -> None:
         """Check for circular dependencies"""
         # Simple check: see if any dependency depends back on this engine
         for dep in result["dependencies"]:

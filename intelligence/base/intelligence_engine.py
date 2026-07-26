@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
 """Base Intelligence Engine - Universal lifecycle contract"""
 
-from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional, List
-from datetime import datetime
 import logging
+from abc import ABC, abstractmethod
+from datetime import datetime
+from typing import Any
 
 from intelligence.schemas.engine_report import EngineReport, ReportStatus
 from intelligence.schemas.evidence import Evidence
 from intelligence.schemas.intelligence_signal import IntelligenceSignal
 from intelligence.schemas.risk import Risk
-
 
 logger = logging.getLogger(__name__)
 
@@ -39,20 +37,20 @@ class IntelligenceEngine(ABC):
         self.engine_name = engine_name
         self.domain = domain
         self.version = "1.0.0"
-        self._signals: List[IntelligenceSignal] = []
-        self._evidence: List[Evidence] = []
-        self._risks: List[Risk] = []
-        self._top_drivers: List[Dict[str, Any]] = []
+        self._signals: list[IntelligenceSignal] = []
+        self._evidence: list[Evidence] = []
+        self._risks: list[Risk] = []
+        self._top_drivers: list[dict[str, Any]] = []
         self._overall_score: float = 50.0
         self._confidence: float = 70.0
-        self._direction: Optional[str] = None
-        self._risk_level: Optional[str] = None
-        self._regime: Optional[str] = None
+        self._direction: str | None = None
+        self._risk_level: str | None = None
+        self._regime: str | None = None
         self._summary: str = ""
-        self._recommendations: List[str] = []
+        self._recommendations: list[str] = []
 
     @abstractmethod
-    def validate_input(self, data: Dict[str, Any]) -> bool:
+    def validate_input(self, data: dict[str, Any]) -> bool:
         """
         Validate that input data is complete and correct.
 
@@ -62,10 +60,9 @@ class IntelligenceEngine(ABC):
         Returns:
             True if valid, False otherwise
         """
-        pass
 
     @abstractmethod
-    def normalize(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, data: dict[str, Any]) -> dict[str, Any]:
         """
         Normalize input data to internal format.
 
@@ -75,10 +72,9 @@ class IntelligenceEngine(ABC):
         Returns:
             Normalized data dictionary
         """
-        pass
 
     @abstractmethod
-    def analyze(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def analyze(self, data: dict[str, Any]) -> dict[str, Any]:
         """
         Perform core analysis on normalized data.
 
@@ -88,10 +84,9 @@ class IntelligenceEngine(ABC):
         Returns:
             Analysis results
         """
-        pass
 
     @abstractmethod
-    def collect_evidence(self, data: Dict[str, Any]) -> List[Evidence]:
+    def collect_evidence(self, data: dict[str, Any]) -> list[Evidence]:
         """
         Collect supporting evidence from the analysis.
 
@@ -101,10 +96,9 @@ class IntelligenceEngine(ABC):
         Returns:
             List of Evidence objects
         """
-        pass
 
     @abstractmethod
-    def calculate_score(self, data: Dict[str, Any]) -> float:
+    def calculate_score(self, data: dict[str, Any]) -> float:
         """
         Calculate overall score (0-100).
 
@@ -114,10 +108,9 @@ class IntelligenceEngine(ABC):
         Returns:
             Score between 0 and 100
         """
-        pass
 
     @abstractmethod
-    def evaluate_risk(self, data: Dict[str, Any]) -> List[Risk]:
+    def evaluate_risk(self, data: dict[str, Any]) -> list[Risk]:
         """
         Identify and assess risks.
 
@@ -127,10 +120,9 @@ class IntelligenceEngine(ABC):
         Returns:
             List of Risk objects
         """
-        pass
 
     @abstractmethod
-    def generate_signals(self, data: Dict[str, Any]) -> List[IntelligenceSignal]:
+    def generate_signals(self, data: dict[str, Any]) -> list[IntelligenceSignal]:
         """
         Generate intelligence signals from analysis.
 
@@ -140,29 +132,26 @@ class IntelligenceEngine(ABC):
         Returns:
             List of IntelligenceSignal objects
         """
-        pass
 
     @abstractmethod
-    def get_required_ndip_topics(self) -> List[str]:
+    def get_required_ndip_topics(self) -> list[str]:
         """
         Return list of NDIP topics this engine consumes.
 
         Returns:
             List of topic names
         """
-        pass
 
     @abstractmethod
-    def get_engine_scope(self) -> Dict[str, Any]:
+    def get_engine_scope(self) -> dict[str, Any]:
         """
         Return the engine's scope (region, assets, time horizon).
 
         Returns:
             Scope dictionary
         """
-        pass
 
-    def run(self, input_data: Dict[str, Any]) -> EngineReport:
+    def run(self, input_data: dict[str, Any]) -> EngineReport:
         """
         Universal engine lifecycle.
 

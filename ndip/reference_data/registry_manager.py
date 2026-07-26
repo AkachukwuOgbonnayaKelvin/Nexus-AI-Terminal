@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Optional
+from typing import Any
 
 from ndip.utils.db_connector import fetchrow
 
@@ -12,7 +12,7 @@ class RegistryManager:
 
     async def lookup(
         self, table: str, unique_field: str, value: str
-    ) -> Optional[Dict[str, Any]]:
+    ) -> dict[str, Any] | None:
         cache_key = f"{table}:{unique_field}:{value}"
         if cache_key in self.cache:
             return self.cache[cache_key]
@@ -24,7 +24,7 @@ class RegistryManager:
             return record
         return None
 
-    async def insert(self, table: str, record: Dict[str, Any]) -> Dict[str, Any]:
+    async def insert(self, table: str, record: dict[str, Any]) -> dict[str, Any]:
         pk = await self._get_primary_key(table)
         columns = list(record.keys())
         placeholders = [f"${i + 1}" for i in range(len(columns))]

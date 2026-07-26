@@ -3,8 +3,8 @@ GLB-001 Market Regime Engine - Input Normalizer
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
 from .constants import NDIP_TOPICS
 
@@ -18,16 +18,16 @@ class InputNormalizer:
     """
 
     def __init__(self):
-        self.last_consumed_at: Optional[datetime] = None
-        self.input_data: Dict[str, Any] = {}
+        self.last_consumed_at: datetime | None = None
+        self.input_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract payload."""
         self.last_consumed_at = datetime.utcnow()
         self.input_data[topic] = payload
         logger.debug(f"Consumed NDIP topic: {topic}")
 
-    def normalize(self) -> Dict[str, Any]:
+    def normalize(self) -> dict[str, Any]:
         """Normalize all consumed data into a unified structure."""
         return {
             "price": self._normalize_price(),
@@ -38,14 +38,14 @@ class InputNormalizer:
             "macro": self._normalize_macro(),
         }
 
-    def _normalize_price(self) -> Dict[str, Any]:
+    def _normalize_price(self) -> dict[str, Any]:
         price_data = self.input_data.get(NDIP_TOPICS["PRICE_SNAPSHOT"], {})
         return {
             "symbols": price_data.get("symbols", {}),
             "timestamp": price_data.get("timestamp"),
         }
 
-    def _normalize_trend(self) -> Dict[str, Any]:
+    def _normalize_trend(self) -> dict[str, Any]:
         trend_data = self.input_data.get(NDIP_TOPICS["TREND_SNAPSHOT"], {})
         return {
             "trend_direction": trend_data.get("direction"),
@@ -53,7 +53,7 @@ class InputNormalizer:
             "trend_duration": trend_data.get("duration"),
         }
 
-    def _normalize_volatility(self) -> Dict[str, Any]:
+    def _normalize_volatility(self) -> dict[str, Any]:
         vol_data = self.input_data.get(NDIP_TOPICS["VOLATILITY_SNAPSHOT"], {})
         return {
             "vix": vol_data.get("vix", 20),
@@ -62,7 +62,7 @@ class InputNormalizer:
             "volatility_rank": vol_data.get("rank", 0),
         }
 
-    def _normalize_breadth(self) -> Dict[str, Any]:
+    def _normalize_breadth(self) -> dict[str, Any]:
         breadth_data = self.input_data.get(NDIP_TOPICS["BREADTH_SNAPSHOT"], {})
         return {
             "advancers": breadth_data.get("advancers", 0),
@@ -72,7 +72,7 @@ class InputNormalizer:
             "breadth_ratio": breadth_data.get("ratio", 1.0),
         }
 
-    def _normalize_risk(self) -> Dict[str, Any]:
+    def _normalize_risk(self) -> dict[str, Any]:
         risk_data = self.input_data.get(NDIP_TOPICS["RISK_SNAPSHOT"], {})
         return {
             "risk_sentiment": risk_data.get("sentiment", 50),
@@ -80,7 +80,7 @@ class InputNormalizer:
             "risk_off_score": risk_data.get("risk_off_score", 50),
         }
 
-    def _normalize_macro(self) -> Dict[str, Any]:
+    def _normalize_macro(self) -> dict[str, Any]:
         macro_data = self.input_data.get(NDIP_TOPICS["MACRO_CONDITIONS"], {})
         return {
             "growth": macro_data.get("growth", {}),

@@ -1,7 +1,7 @@
 """Publisher – stores normalized events directly into the central bank warehouse."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from central_bank_engine.dtos import UniversalCentralBankEvent
 from central_bank_engine.warehouse.event_warehouse import CentralBankWarehouse
@@ -14,8 +14,8 @@ class Publisher:
         self.warehouse = CentralBankWarehouse()
 
     async def publish(
-        self, events: List[UniversalCentralBankEvent]
-    ) -> List[Dict[str, Any]]:
+        self, events: list[UniversalCentralBankEvent]
+    ) -> list[dict[str, Any]]:
         results = []
         for event in events:
             try:

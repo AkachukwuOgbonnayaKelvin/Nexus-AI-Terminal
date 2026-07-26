@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Phase 6: Distribution API - Integration Test
 
@@ -11,28 +10,28 @@ Tests the complete Phase 6 pipeline:
 6. Routing
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
 from intelligence.confluence.contracts import (
-    GlobalEntityRating,
-    HarmonizedResult,
-    EntityType,
-    Direction,
     ConflictLevel,
+    Direction,
+    EntityType,
+    GlobalEntityRating,
     GlobalRisk,
+    HarmonizedResult,
 )
 from intelligence.confluence.distribution import (
-    OutputAssembler,
-    OutputValidator,
-    GlobalOutputBuilder,
     AssetFeedBuilder,
-    EnvelopeFactory,
     DistributionRouter,
+    EnvelopeFactory,
+    GlobalOutputBuilder,
+    OutputAssembler,
     OutputStatus,
     OutputType,
+    OutputValidator,
 )
 
 

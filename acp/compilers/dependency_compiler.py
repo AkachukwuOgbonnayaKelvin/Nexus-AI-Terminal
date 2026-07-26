@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """
 Dependency Compiler - Validates engine dependency graph
 Checks: all dependencies exist, no circular deps, version compatibility
 """
 
-from typing import Dict, Any, List
 from pathlib import Path
+from typing import Any
 
 
 class DependencyCompiler:
@@ -16,7 +15,7 @@ class DependencyCompiler:
 
     def compile(
         self, engine, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Compile the engine's dependency layer"""
 
         result = {
@@ -100,8 +99,8 @@ class DependencyCompiler:
         return result
 
     def _check_circular_deps(
-        self, engine_id: str, dependencies: List[str]
-    ) -> Dict[str, Any]:
+        self, engine_id: str, dependencies: list[str]
+    ) -> dict[str, Any]:
         """Check for circular dependencies in the dependency graph"""
 
         # Simple circular detection - check if any dependency depends back on this engine

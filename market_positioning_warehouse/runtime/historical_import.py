@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from market_positioning_warehouse.parser import ParserFactory
 from market_positioning_warehouse.providers.cftc.historical_loader import (
@@ -23,7 +23,7 @@ class HistoricalImport:
         self.start_year = 1986
         self.end_year = datetime.now().year
 
-    async def run(self) -> Dict[str, Any]:
+    async def run(self) -> dict[str, Any]:
         """Run the historical import."""
         logger.info(
             f"Starting historical import from {self.start_year} to {self.end_year}"

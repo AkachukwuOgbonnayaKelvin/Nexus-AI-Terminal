@@ -3,7 +3,8 @@ GLB-006 Geopolitical Risk Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 from ..constants import GeopoliticalEventType
@@ -15,10 +16,10 @@ class GeopoliticalEventInput(BaseModel):
     event_id: str
     event_type: GeopoliticalEventType
     headline: str
-    description: Optional[str] = None
+    description: str | None = None
 
     # Geography
-    countries: List[str]
+    countries: list[str]
     region: str
 
     # Risk metrics
@@ -34,4 +35,4 @@ class GeopoliticalEventInput(BaseModel):
     confidence: float = Field(ge=0, le=100)
 
     # Additional context
-    context: Optional[Dict[str, Any]] = None
+    context: dict[str, Any] | None = None

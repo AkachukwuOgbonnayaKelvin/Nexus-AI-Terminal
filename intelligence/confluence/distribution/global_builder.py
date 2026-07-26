@@ -5,11 +5,11 @@ Builds the final/polished GlobalIntelligenceOutput for the Global Intelligence H
 """
 
 import logging
-from typing import List, Dict, Any
-from datetime import datetime
 from copy import deepcopy
+from datetime import datetime
+from typing import Any
 
-from ..contracts import GlobalEntityRating, AssetClassRating, GlobalIntelligenceOutput
+from ..contracts import AssetClassRating, GlobalEntityRating, GlobalIntelligenceOutput
 from .package import ConfluenceIntelligencePackage
 
 logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class GlobalOutputBuilder:
         logger.info(f"Global output built: {output}")
         return output
 
-    def _resequence_ranks(self, items: List) -> List:
+    def _resequence_ranks(self, items: list) -> list:
         """
         Resequence ranks for a specific domain.
 
@@ -92,7 +92,7 @@ class GlobalOutputBuilder:
 
     def _build_currency_rankings(
         self, package: ConfluenceIntelligencePackage
-    ) -> List[GlobalEntityRating]:
+    ) -> list[GlobalEntityRating]:
         """
         Build currency rankings with fresh resequencing.
 
@@ -116,7 +116,7 @@ class GlobalOutputBuilder:
 
     def _build_entity_rankings(
         self, package: ConfluenceIntelligencePackage
-    ) -> List[GlobalEntityRating]:
+    ) -> list[GlobalEntityRating]:
         """
         Build global entity rankings with fresh resequencing.
 
@@ -138,7 +138,7 @@ class GlobalOutputBuilder:
 
     def _build_asset_class_rankings(
         self, package: ConfluenceIntelligencePackage
-    ) -> List[AssetClassRating]:
+    ) -> list[AssetClassRating]:
         """
         Build asset-class rankings with fresh resequencing.
 
@@ -206,7 +206,7 @@ class GlobalOutputBuilder:
 
     def _build_ai_context(
         self, package: ConfluenceIntelligencePackage
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Build AI context for the Executive AI summary."""
         context = {
             "regime": package.global_regime,

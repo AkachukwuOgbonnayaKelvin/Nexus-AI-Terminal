@@ -1,7 +1,5 @@
-# ruff: noqa: E402
 import logging
 import sys
-
 from pathlib import Path
 
 from runtime.base_engine import BaseRawEngine

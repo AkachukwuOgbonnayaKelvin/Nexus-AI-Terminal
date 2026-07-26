@@ -1,7 +1,7 @@
 """Base interface for all raw data engines."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict
+from typing import Any
 
 
 class BaseRawEngine(ABC):
@@ -10,7 +10,7 @@ class BaseRawEngine(ABC):
         pass
 
     @abstractmethod
-    async def run(self) -> Dict[str, Any]:
+    async def run(self) -> dict[str, Any]:
         pass
 
     @abstractmethod
@@ -18,11 +18,11 @@ class BaseRawEngine(ABC):
         pass
 
     @abstractmethod
-    def health(self) -> Dict[str, Any]:
+    def health(self) -> dict[str, Any]:
         pass
 
     @abstractmethod
-    def metrics(self) -> Dict[str, Any]:
+    def metrics(self) -> dict[str, Any]:
         pass
 
     @property

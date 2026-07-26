@@ -4,7 +4,6 @@ Phase 6: Distribution API - Schema Versioning
 Manages schema versions for all outputs.
 """
 
-from typing import Dict
 from enum import Enum
 
 
@@ -24,7 +23,7 @@ class VersionManager:
     CURRENT_ASSET_FEED_SCHEMA = SchemaVersion.V1_0_0
 
     # Schema compatibility matrix
-    _compatibility: Dict[str, Dict[str, bool]] = {
+    _compatibility: dict[str, dict[str, bool]] = {
         "1.0.0": {"1.0.0": True, "1.1.0": True, "2.0.0": False},
         "1.1.0": {"1.0.0": True, "1.1.0": True, "2.0.0": False},
         "2.0.0": {"1.0.0": False, "1.1.0": False, "2.0.0": True},
@@ -59,7 +58,7 @@ class VersionManager:
         return version in cls._compatibility
 
     @classmethod
-    def get_version_metadata(cls, version: str) -> Dict[str, str]:
+    def get_version_metadata(cls, version: str) -> dict[str, str]:
         """Get metadata for a schema version."""
         metadata = {
             "1.0.0": {

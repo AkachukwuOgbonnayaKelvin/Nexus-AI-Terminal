@@ -10,8 +10,8 @@ from intelligence.schemas.asset_impact import (
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
 
 

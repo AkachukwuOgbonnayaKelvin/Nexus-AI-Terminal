@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 """OHLCV Repository - Stores and retrieves OHLCV data with file persistence"""
 
-from typing import List, Optional, Dict
-from datetime import datetime
-import sys
 import pickle
+import sys
+from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -15,10 +13,10 @@ from providers.base import OHLCVData
 class OHLCVRepository:
     """Repository for OHLCV data storage and retrieval with file persistence"""
 
-    def __init__(self, data_dir: Optional[Path] = None):
+    def __init__(self, data_dir: Path | None = None):
         self.data_dir = data_dir or Path(__file__).parent.parent / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
-        self._data: Dict[str, List[OHLCVData]] = {}
+        self._data: dict[str, list[OHLCVData]] = {}
         self._load_from_disk()
 
     def _get_file_path(self, key: str) -> Path:
@@ -38,7 +36,7 @@ class OHLCVRepository:
 
     def _save_to_disk(self, key: str):
         """Save data to disk"""
-        if key in self._data and self._data[key]:
+        if self._data.get(key):
             file_path = self._get_file_path(key)
             try:
                 with open(file_path, "wb") as f:
@@ -56,7 +54,7 @@ class OHLCVRepository:
         self._save_to_disk(key)
         return True
 
-    def save_many(self, bars: List[OHLCVData]) -> int:
+    def save_many(self, bars: list[OHLCVData]) -> int:
         """Save multiple bars"""
         count = 0
         for bar in bars:
@@ -64,19 +62,19 @@ class OHLCVRepository:
                 count += 1
         return count
 
-    def get_last_record(self, symbol: str, timeframe: str) -> Optional[OHLCVData]:
+    def get_last_record(self, symbol: str, timeframe: str) -> OHLCVData | None:
         """Get the last record for a symbol/timeframe"""
         key = f"{symbol}_{timeframe}"
-        if key in self._data and self._data[key]:
+        if self._data.get(key):
             return self._data[key][-1]
         return None
 
-    def get_all(self, symbol: str, timeframe: str) -> List[OHLCVData]:
+    def get_all(self, symbol: str, timeframe: str) -> list[OHLCVData]:
         """Get all records for a symbol/timeframe"""
         key = f"{symbol}_{timeframe}"
         return self._data.get(key, [])
 
-    def get_symbols(self) -> List[str]:
+    def get_symbols(self) -> list[str]:
         """Get all unique symbols in the warehouse"""
         symbols = set()
         for key in self._data.keys():
@@ -84,7 +82,7 @@ class OHLCVRepository:
             symbols.add(symbol)
         return sorted(list(symbols))
 
-    def get_timeframes(self, symbol: str) -> List[str]:
+    def get_timeframes(self, symbol: str) -> list[str]:
         """Get all timeframes available for a symbol"""
         timeframes = []
         for key in self._data.keys():
@@ -95,7 +93,7 @@ class OHLCVRepository:
 
     def get_range(
         self, symbol: str, timeframe: str, start_date: datetime, end_date: datetime
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """Get records in a date range"""
         key = f"{symbol}_{timeframe}"
         if key not in self._data:

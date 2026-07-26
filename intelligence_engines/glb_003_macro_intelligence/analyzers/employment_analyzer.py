@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """Employment Analyzer for Macro Intelligence Engine"""
 
-from typing import Dict, Any, List
+from typing import Any
 
 
 class EmploymentAnalyzer:
     """Analyzes employment data"""
 
-    def analyze(self, emp_data: List[Dict]) -> Dict[str, Any]:
+    def analyze(self, emp_data: list[dict]) -> dict[str, Any]:
         """Analyze employment data and return insights"""
         if not emp_data:
             return {

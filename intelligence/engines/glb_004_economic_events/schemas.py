@@ -3,11 +3,13 @@ GLB-004 Economic Events Engine - Schemas
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 from intelligence.schemas.asset_impact import AssetImpactMatrix
-from .constants import EventImpact, EventDirection
+
+from .constants import EventDirection, EventImpact
 
 
 class EconomicEvent(BaseModel):
@@ -20,8 +22,8 @@ class EconomicEvent(BaseModel):
     date: datetime
     forecast: float
     previous: float
-    actual: Optional[float] = None
-    deviation: Optional[float] = None
+    actual: float | None = None
+    deviation: float | None = None
     volatility_forecast: float = Field(ge=0, le=100)
     confidence: float = Field(ge=0, le=100)
 
@@ -77,17 +79,17 @@ class EventsReport(BaseModel):
     confidence: float = Field(ge=0, le=100)
 
     # Events
-    upcoming_events: List[EconomicEvent]
-    recent_events: List[EconomicEvent]
+    upcoming_events: list[EconomicEvent]
+    recent_events: list[EconomicEvent]
 
     # Signals, evidence, risks, drivers
-    signals: List[EventSignal]
-    evidence: List[EventEvidence]
-    risks: List[EventRisk]
-    drivers: List[EventDriver]
+    signals: list[EventSignal]
+    evidence: list[EventEvidence]
+    risks: list[EventRisk]
+    drivers: list[EventDriver]
 
     # Asset Impact Matrix
-    asset_impact_matrix: Optional[AssetImpactMatrix] = None
+    asset_impact_matrix: AssetImpactMatrix | None = None
 
     # Metadata
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

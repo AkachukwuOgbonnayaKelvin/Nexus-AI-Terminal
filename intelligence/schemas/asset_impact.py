@@ -8,10 +8,10 @@ Version: 1.0.0
 Status: FROZEN
 """
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
 from enum import Enum
+
+from pydantic import BaseModel, Field, field_validator
 
 
 class AssetType(str, Enum):
@@ -42,7 +42,7 @@ class ImpactDriver(BaseModel):
     strength: float = Field(ge=0, le=1)
 
     # Optional: Which engine specific factor drove this
-    factor: Optional[str] = None
+    factor: str | None = None
 
 
 class AssetImpact(BaseModel):
@@ -65,7 +65,7 @@ class AssetImpact(BaseModel):
     status: ImpactStatus = ImpactStatus.ANALYZED
 
     # Drivers explaining the impact
-    drivers: List[ImpactDriver] = Field(default_factory=list)
+    drivers: list[ImpactDriver] = Field(default_factory=list)
 
     # Relevance of this engine to this asset (0.0 = not relevant, 1.0 = highly relevant)
     relevance: float = Field(ge=0, le=1, default=0.5)
@@ -105,7 +105,7 @@ class AssetImpactMatrix(BaseModel):
     impacts: dict[str, AssetImpact]
 
     # Which assets does this engine understand well?
-    covered_assets: List[str]
+    covered_assets: list[str]
 
     # Overall confidence of this engine's asset impacts
     overall_confidence: float = Field(ge=0, le=100)
@@ -113,7 +113,7 @@ class AssetImpactMatrix(BaseModel):
     # Metadata about this engine's analysis
     metadata: dict = Field(default_factory=dict)
 
-    def get_impact(self, asset: str) -> Optional[AssetImpact]:
+    def get_impact(self, asset: str) -> AssetImpact | None:
         """Get impact for a specific asset."""
         return self.impacts.get(asset)
 

@@ -1,7 +1,5 @@
 """Authentication service."""
 
-from typing import Dict, Optional
-
 
 class User:
     """User representation."""
@@ -15,15 +13,15 @@ class AuthManager:
     """Authentication manager."""
 
     def __init__(self):
-        self._users: Dict[str, User] = {}
-        self._tokens: Dict[str, str] = {}
+        self._users: dict[str, User] = {}
+        self._tokens: dict[str, str] = {}
 
     def register_user(self, username: str, password: str) -> None:
         """Register a new user."""
         # In production, this would hash the password
         self._users[username] = User(username)
 
-    def login(self, username: str, password: str) -> Optional[str]:
+    def login(self, username: str, password: str) -> str | None:
         """Login a user."""
         if username in self._users:
             # In production, this would validate password
@@ -36,7 +34,7 @@ class AuthManager:
         """Logout a user."""
         self._tokens.pop(token, None)
 
-    def validate_token(self, token: str) -> Optional[User]:
+    def validate_token(self, token: str) -> User | None:
         """Validate an authentication token."""
         username = self._tokens.get(token)
         if username:

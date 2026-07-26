@@ -1,13 +1,13 @@
 """Deduplicator – merges duplicate events from different sources."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 
 class Deduplicator:
-    def deduplicate(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def deduplicate(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         seen = {}
         deduped = []
         for event in events:

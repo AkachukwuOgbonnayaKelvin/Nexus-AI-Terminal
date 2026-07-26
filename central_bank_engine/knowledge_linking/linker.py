@@ -1,7 +1,7 @@
 """Knowledge Linking – connects central bank events to other platform data."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class KnowledgeLinker:
             "Bank of Japan": ["JPY", "USDJPY", "JGB", "JP225"],
         }
 
-    def link(self, event: Dict[str, Any]) -> Dict[str, Any]:
+    def link(self, event: dict[str, Any]) -> dict[str, Any]:
         bank = event.get("bank", "")
         currency = self.bank_currency_map.get(bank, "USD")
         assets = self.asset_links.get(bank, [currency])

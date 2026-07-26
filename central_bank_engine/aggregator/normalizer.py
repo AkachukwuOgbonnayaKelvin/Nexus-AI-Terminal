@@ -1,7 +1,7 @@
 """Normalizer – converts to UniversalCentralBankEvent."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from central_bank_engine.dtos import UniversalCentralBankEvent
 
@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 
 class Normalizer:
     def normalize(
-        self, events: List[Dict[str, Any]]
-    ) -> List[UniversalCentralBankEvent]:
+        self, events: list[dict[str, Any]]
+    ) -> list[UniversalCentralBankEvent]:
         normalized = []
         for event in events:
             try:

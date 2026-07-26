@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -9,27 +8,27 @@ class UniversalEconomicEvent(BaseModel):
     provider: str
     provider_event_id: str
     country: str
-    region: Optional[str] = None
+    region: str | None = None
     currency: str
     title: str
     short_title: str
     category: str
-    subcategory: Optional[str] = None
-    forecast: Optional[float] = None
-    previous: Optional[float] = None
-    actual: Optional[float] = None
-    consensus: Optional[float] = None
-    revised_previous: Optional[float] = None
+    subcategory: str | None = None
+    forecast: float | None = None
+    previous: float | None = None
+    actual: float | None = None
+    consensus: float | None = None
+    revised_previous: float | None = None
     importance: str  # High, Medium, Low
     release_time_utc: datetime
-    release_time_local: Optional[datetime] = None
+    release_time_local: datetime | None = None
     timezone: str
     frequency: str
     status: str
-    source_url: Optional[str] = None
-    tags: List[str] = []
-    affected_assets: List[str] = []
-    affected_markets: List[str] = []
+    source_url: str | None = None
+    tags: list[str] = []
+    affected_assets: list[str] = []
+    affected_markets: list[str] = []
     confidence: float = 1.0
     quality_score: float = 1.0
     metadata: dict = {}

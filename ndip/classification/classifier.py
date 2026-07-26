@@ -1,26 +1,26 @@
 """NDIP Classifier implementation."""
 
-from typing import Any, Dict
+from typing import Any
 
 
 class Classifier:
     """Data classifier."""
 
     def __init__(self) -> None:
-        self._asset_classes: Dict[str, list[str]] = {
+        self._asset_classes: dict[str, list[str]] = {
             "forex": ["USD", "EUR", "JPY", "GBP", "CHF", "CAD", "AUD", "NZD"],
             "commodity": ["XAU", "XAG", "WTI", "BRENT", "NG", "COPPER"],
             "index": ["US30", "US500", "US100", "GER40", "UK100"],
         }
 
-    def classify(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def classify(self, data: dict[str, Any]) -> dict[str, Any]:
         """Classify data by type."""
         if "records" in data:
             return {"records": [self._classify_record(r) for r in data["records"]]}
 
         return {"record": self._classify_record(data.get("record", {}))}
 
-    def _classify_record(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def _classify_record(self, record: dict[str, Any]) -> dict[str, Any]:
         """Classify a single record."""
         symbol = record.get("symbol", "")
 

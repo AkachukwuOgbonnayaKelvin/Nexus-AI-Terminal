@@ -4,7 +4,7 @@ This module provides runtime settings that can be modified during execution.
 """
 
 from dataclasses import dataclass, field
-from typing import Any, Dict
+from typing import Any
 
 
 @dataclass
@@ -36,7 +36,7 @@ class Settings:
     max_workers: int = 4
 
     # Feature flags
-    features: Dict[str, bool] = field(
+    features: dict[str, bool] = field(
         default_factory=lambda: {
             "experimental_ai": False,
             "live_trading": False,
@@ -51,7 +51,7 @@ class Settings:
             if hasattr(self, key):
                 setattr(self, key, value)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert settings to dictionary."""
         return {
             "log_level": self.log_level,

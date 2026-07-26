@@ -4,19 +4,19 @@ GLB-003 Macro Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
+from .asset_impact_matrix import MacroAssetImpactMatrix
 from .constants import COMPONENT_WEIGHTS
 from .schemas import (
-    MacroReport,
     MacroComponent,
-    MacroSignal,
-    MacroEvidence,
-    MacroRisk,
     MacroDriver,
+    MacroEvidence,
+    MacroReport,
+    MacroRisk,
+    MacroSignal,
 )
-from .asset_impact_matrix import MacroAssetImpactMatrix
 
 logger = logging.getLogger(__name__)
 
@@ -31,11 +31,11 @@ class MacroIntelligenceEngine:
     """
 
     def __init__(self):
-        self.last_report: Optional[MacroReport] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: MacroReport | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
@@ -133,7 +133,7 @@ class MacroIntelligenceEngine:
 
         return report
 
-    def _analyze_components(self) -> Dict[str, MacroComponent]:
+    def _analyze_components(self) -> dict[str, MacroComponent]:
         """Analyze macro components with default values."""
         components = {}
 
@@ -175,7 +175,7 @@ class MacroIntelligenceEngine:
 
         return components
 
-    def _calculate_overall_score(self, components: Dict[str, MacroComponent]) -> float:
+    def _calculate_overall_score(self, components: dict[str, MacroComponent]) -> float:
         """Calculate overall macro score."""
         total = 0.0
         total_weight = 0.0
@@ -187,7 +187,7 @@ class MacroIntelligenceEngine:
 
         return total / total_weight if total_weight > 0 else 50.0
 
-    def _calculate_confidence(self, components: Dict[str, MacroComponent]) -> float:
+    def _calculate_confidence(self, components: dict[str, MacroComponent]) -> float:
         """Calculate confidence in macro analysis."""
         if not components:
             return 50.0
@@ -195,7 +195,7 @@ class MacroIntelligenceEngine:
         confidences = [c.confidence for c in components.values()]
         return sum(confidences) / len(confidences)
 
-    def _generate_signals(self, components: Dict[str, MacroComponent]) -> list:
+    def _generate_signals(self, components: dict[str, MacroComponent]) -> list:
         signals = []
         for name, component in components.items():
             signals.append(
@@ -207,7 +207,7 @@ class MacroIntelligenceEngine:
             )
         return signals
 
-    def _build_evidence(self, components: Dict[str, MacroComponent]) -> list:
+    def _build_evidence(self, components: dict[str, MacroComponent]) -> list:
         evidence = []
         for name, component in components.items():
             evidence.append(
@@ -220,7 +220,7 @@ class MacroIntelligenceEngine:
             )
         return evidence
 
-    def _identify_risks(self, components: Dict[str, MacroComponent]) -> list:
+    def _identify_risks(self, components: dict[str, MacroComponent]) -> list:
         risks = []
 
         growth = components.get("growth")
@@ -254,7 +254,7 @@ class MacroIntelligenceEngine:
 
         return risks
 
-    def _build_drivers(self, components: Dict[str, MacroComponent]) -> list:
+    def _build_drivers(self, components: dict[str, MacroComponent]) -> list:
         drivers = []
         for name, component in components.items():
             if component.signal != "NEUTRAL":
@@ -267,10 +267,10 @@ class MacroIntelligenceEngine:
                 )
         return drivers
 
-    def get_last_report(self) -> Optional[MacroReport]:
+    def get_last_report(self) -> MacroReport | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-003",
             "status": "OPERATIONAL",

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Nexus AI Terminal - Unified Engine Certification System
 
@@ -7,14 +6,14 @@ Certifies all Global Intelligence engines (GLB-001 through GLB-006)
 against canonical standards.
 """
 
-import sys
 import importlib
 import inspect
-from pathlib import Path
-from typing import Dict, List, Any
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from pathlib import Path
+from typing import Any
 
 # ============================================================
 # Bootstrap project root
@@ -42,8 +41,8 @@ class CertificationResult:
     status: CertStatus
     score: float = 0.0
     details: str = ""
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -54,9 +53,9 @@ class EngineCertification:
     engine_name: str
     status: CertStatus
     overall_score: float
-    results: List[CertificationResult]
+    results: list[CertificationResult]
     timestamp: str
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class EngineCertifier:
@@ -432,7 +431,7 @@ class EngineCertifier:
 
             # run() should exist
             if hasattr(engine_class, "run"):
-                run_method = getattr(engine_class, "run")
+                run_method = engine_class.run
                 sig = inspect.signature(run_method)
                 if len(sig.parameters) == 1:  # self only
                     method_checks.append(True)
@@ -641,7 +640,7 @@ class EngineCertifier:
         try:
             constants = importlib.import_module(f"{module_path}.constants")
             if hasattr(constants, "NDIP_TOPICS"):
-                ndip_topics = getattr(constants, "NDIP_TOPICS")
+                ndip_topics = constants.NDIP_TOPICS
                 if isinstance(ndip_topics, dict) and len(ndip_topics) > 0:
                     return CertificationResult(
                         name="Integration",
@@ -683,7 +682,7 @@ class EngineCertifier:
                 errors=[str(e)],
             )
 
-    def certify_all(self) -> Dict[str, EngineCertification]:
+    def certify_all(self) -> dict[str, EngineCertification]:
         """Certify all engines"""
         results = {}
 
@@ -692,7 +691,7 @@ class EngineCertifier:
 
         return results
 
-    def generate_report(self, results: Dict[str, EngineCertification]) -> str:
+    def generate_report(self, results: dict[str, EngineCertification]) -> str:
         """Generate a formatted report"""
         lines = []
         lines.append("\n" + "=" * 70)

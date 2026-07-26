@@ -4,8 +4,6 @@ Phase 4: Global Entity Intelligence - Entity Classifier
 Classifies entities by type for proper processing.
 """
 
-from typing import Dict
-
 from ..contracts import EntityType
 
 
@@ -82,7 +80,6 @@ class EntityClassifier:
         "OIL",
         "BRENT",
         "WTI",
-        "COPPER",
         "NG",
     }
 
@@ -101,7 +98,7 @@ class EntityClassifier:
     }
 
     # Symbol to entity type mapping
-    SYMBOL_TO_TYPE: Dict[str, EntityType] = {}
+    SYMBOL_TO_TYPE: dict[str, EntityType] = {}
 
     @classmethod
     def _build_map(cls) -> None:

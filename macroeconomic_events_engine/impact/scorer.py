@@ -1,5 +1,3 @@
-from typing import List
-
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 
 
@@ -35,7 +33,7 @@ class ImpactScorer:
         event.affected_assets = self._get_affected_assets(event)
         return event
 
-    def _get_affected_assets(self, event: UniversalMacroEvent) -> List[str]:
+    def _get_affected_assets(self, event: UniversalMacroEvent) -> list[str]:
         currency = event.currency
         assets = self.asset_mapping.get(currency, [currency])
         if event.category == "Inflation":

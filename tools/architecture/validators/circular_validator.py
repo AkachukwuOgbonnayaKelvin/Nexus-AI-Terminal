@@ -2,9 +2,9 @@
 
 import ast
 from pathlib import Path
-from typing import List, Dict, Set
-from tools.architecture.validators.base import BaseValidator
+
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class CircularValidator(BaseValidator):
@@ -12,12 +12,12 @@ class CircularValidator(BaseValidator):
 
     def __init__(self, root_path: Path):
         super().__init__(root_path)
-        self.imports: Dict[str, Set[str]] = {}
+        self.imports: dict[str, set[str]] = {}
 
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         self._build_import_graph()
         cycles = self._find_cycles()
 
@@ -55,11 +55,11 @@ class CircularValidator(BaseValidator):
             except Exception:
                 pass
 
-    def _find_cycles(self) -> List[List[str]]:
+    def _find_cycles(self) -> list[list[str]]:
         cycles = []
         visited = set()
 
-        def dfs(node: str, path: List[str]) -> None:
+        def dfs(node: str, path: list[str]) -> None:
             if node in path:
                 cycle_start = path.index(node)
                 cycles.append(path[cycle_start:] + [node])

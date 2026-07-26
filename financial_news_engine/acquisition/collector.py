@@ -1,5 +1,4 @@
 import logging
-from typing import List
 
 from financial_news_engine.dtos import UniversalNews
 from providers.provider_manager import ProviderManager
@@ -11,7 +10,7 @@ class NewsCollector:
     def __init__(self, provider_manager: ProviderManager):
         self.pm = provider_manager
 
-    async def collect_today(self) -> List[UniversalNews]:
+    async def collect_today(self) -> list[UniversalNews]:
         events = []
         provider_names = self.pm.get_providers(capability="news")
         logger.info(f"Found providers: {provider_names}")

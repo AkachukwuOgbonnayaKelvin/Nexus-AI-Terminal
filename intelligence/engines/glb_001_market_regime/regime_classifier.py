@@ -3,7 +3,6 @@ GLB-001 Market Regime Engine - Regime Classifier
 """
 
 import logging
-from typing import Dict, Tuple
 
 from .constants import MarketRegime, TransitionState
 from .schemas import MarketDimension
@@ -15,12 +14,12 @@ class RegimeClassifier:
     """Classifies market regime based on dimension scores."""
 
     def __init__(self):
-        self.dimensions: Dict[str, MarketDimension] = {}
-        self.regime_scores: Dict[MarketRegime, float] = {}
+        self.dimensions: dict[str, MarketDimension] = {}
+        self.regime_scores: dict[MarketRegime, float] = {}
 
     def classify(
-        self, dimensions: Dict[str, MarketDimension]
-    ) -> Tuple[MarketRegime, float, Dict[MarketRegime, float]]:
+        self, dimensions: dict[str, MarketDimension]
+    ) -> tuple[MarketRegime, float, dict[MarketRegime, float]]:
         """Classify market regime from dimensions."""
         self.dimensions = dimensions
 
@@ -47,7 +46,7 @@ class RegimeClassifier:
 
         return primary_regime, regime_score, regime_probabilities
 
-    def _calculate_risk_on_score(self, dimensions: Dict[str, MarketDimension]) -> float:
+    def _calculate_risk_on_score(self, dimensions: dict[str, MarketDimension]) -> float:
         """Calculate RISK_ON score based on evidence."""
         score = 0
         count = 0
@@ -70,7 +69,7 @@ class RegimeClassifier:
         return score
 
     def _calculate_risk_off_score(
-        self, dimensions: Dict[str, MarketDimension]
+        self, dimensions: dict[str, MarketDimension]
     ) -> float:
         """
         Calculate RISK_OFF score based on evidence intensity.
@@ -111,7 +110,7 @@ class RegimeClassifier:
         return score
 
     def _calculate_trending_score(
-        self, dimensions: Dict[str, MarketDimension]
+        self, dimensions: dict[str, MarketDimension]
     ) -> float:
         """Calculate TRENDING score based on evidence."""
         score = 0
@@ -137,7 +136,7 @@ class RegimeClassifier:
 
         return score
 
-    def _calculate_ranging_score(self, dimensions: Dict[str, MarketDimension]) -> float:
+    def _calculate_ranging_score(self, dimensions: dict[str, MarketDimension]) -> float:
         """Calculate RANGING score based on evidence."""
         score = 0
         count = 0
@@ -164,7 +163,7 @@ class RegimeClassifier:
         return score
 
     def _calculate_transition_score(
-        self, dimensions: Dict[str, MarketDimension]
+        self, dimensions: dict[str, MarketDimension]
     ) -> float:
         """Calculate TRANSITION score based on evidence."""
         score = 0
@@ -191,7 +190,7 @@ class RegimeClassifier:
         return score
 
     def _calculate_volatile_score(
-        self, dimensions: Dict[str, MarketDimension]
+        self, dimensions: dict[str, MarketDimension]
     ) -> float:
         """Calculate VOLATILE score based on evidence."""
         score = 0
@@ -220,7 +219,7 @@ class RegimeClassifier:
     def determine_transition_state(
         self,
         primary_regime: MarketRegime,
-        regime_probabilities: Dict[MarketRegime, float],
+        regime_probabilities: dict[MarketRegime, float],
     ) -> TransitionState:
         """Determine transition state based on regime probabilities."""
         transition_prob = regime_probabilities.get(MarketRegime.TRANSITION, 0)

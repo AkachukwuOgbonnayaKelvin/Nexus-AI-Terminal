@@ -1,7 +1,7 @@
 """Repair Manager – Detects and repairs missing reports."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from market_positioning_warehouse.providers.cftc.historical_loader import (
     HistoricalLoader,
@@ -20,7 +20,7 @@ class RepairManager:
         self.loader = HistoricalLoader()
         self.repository = Repository()
 
-    async def run(self) -> Dict[str, Any]:
+    async def run(self) -> dict[str, Any]:
         """Run repair process."""
         logger.info("Starting repair process...")
 

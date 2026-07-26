@@ -2,7 +2,6 @@
 """Update central bank connectors to have health checks that don't require API key."""
 
 import re
-
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent

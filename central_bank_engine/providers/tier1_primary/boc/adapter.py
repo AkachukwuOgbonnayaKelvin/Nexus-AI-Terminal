@@ -1,12 +1,12 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from central_bank_engine.dtos import UniversalCentralBankEvent
 
 
 class BOCAdapter:
     def adapt(
-        self, raw: Dict[str, Any], provider_name: str
+        self, raw: dict[str, Any], provider_name: str
     ) -> UniversalCentralBankEvent:
         release_time = (
             raw.get("release_time")

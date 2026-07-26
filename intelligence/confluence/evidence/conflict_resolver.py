@@ -5,10 +5,10 @@ Resolves conflicts between signals.
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
+from ..schemas import ConflictLevel, Direction
 from .evidence_model import EvidenceGroup
-from ..schemas import Direction, ConflictLevel
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class ConflictResolver:
     Resolves conflicts between signals.
     """
 
-    def resolve(self, group: EvidenceGroup) -> Dict[str, Any]:
+    def resolve(self, group: EvidenceGroup) -> dict[str, Any]:
         """
         Resolve conflicts within an evidence group.
 

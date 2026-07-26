@@ -5,8 +5,8 @@ Collects corporate earnings data from multiple providers.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class CorporateEarningsCollector:
         self._sources = []
         self._data = {}
 
-    def collect_earnings(self, symbol: str, quarter: int, year: int) -> Dict[str, Any]:
+    def collect_earnings(self, symbol: str, quarter: int, year: int) -> dict[str, Any]:
         """Collect earnings data for a company."""
         return {
             "symbol": symbol,
@@ -44,7 +44,7 @@ class CorporateEarningsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def collect_guidance(self, symbol: str, quarter: int, year: int) -> Dict[str, Any]:
+    def collect_guidance(self, symbol: str, quarter: int, year: int) -> dict[str, Any]:
         """Collect earnings guidance for a company."""
         return {
             "symbol": symbol,
@@ -56,7 +56,7 @@ class CorporateEarningsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def get_full_earnings(self, symbol: str, quarter: int, year: int) -> Dict[str, Any]:
+    def get_full_earnings(self, symbol: str, quarter: int, year: int) -> dict[str, Any]:
         """Get full earnings data for a company."""
         return {
             "symbol": symbol,

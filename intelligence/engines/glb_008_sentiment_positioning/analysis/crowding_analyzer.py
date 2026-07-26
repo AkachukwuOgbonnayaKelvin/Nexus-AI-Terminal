@@ -3,9 +3,9 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Crowding Analyzer
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
-from ..constants import CrowdingState, EXTREME_THRESHOLDS
+from ..constants import EXTREME_THRESHOLDS, CrowdingState
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 class CrowdingAnalyzer:
     """Analyze market crowding"""
 
-    def analyze_crowding(self, positionings: Dict[str, Any]) -> Dict[str, Any]:
+    def analyze_crowding(self, positionings: dict[str, Any]) -> dict[str, Any]:
         """
         Analyze crowding across assets.
 

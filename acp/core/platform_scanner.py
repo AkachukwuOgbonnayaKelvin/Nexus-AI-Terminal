@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 """
 Platform Scanner - Discovers and analyzes the entire Nexus AI Terminal platform
 """
 
-import yaml
-from pathlib import Path
-from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+import yaml
 
 
 @dataclass
@@ -16,9 +16,9 @@ class EngineMetadata:
     path: Path
     status: str  # Production, Development, Testing, Prototype
     stage: str  # production, staging, testing, development
-    engine_yaml: Optional[Dict] = None
-    contract_yaml: Optional[Dict] = None
-    architecture_yaml: Optional[Dict] = None
+    engine_yaml: dict | None = None
+    contract_yaml: dict | None = None
+    architecture_yaml: dict | None = None
     readme_exists: bool = False
     doc_folder_exists: bool = False
     test_folder_exists: bool = False
@@ -44,7 +44,7 @@ class EngineMetadata:
     def has_acquisition(self) -> bool:
         return (self.path / "acquisition").exists()
 
-    def get_engine_yaml(self) -> Dict:
+    def get_engine_yaml(self) -> dict:
         if self.engine_yaml:
             return self.engine_yaml
         path = self.path / "engine.yaml"
@@ -54,7 +54,7 @@ class EngineMetadata:
             return self.engine_yaml
         return {}
 
-    def get_contract_yaml(self) -> Dict:
+    def get_contract_yaml(self) -> dict:
         if self.contract_yaml:
             return self.contract_yaml
         path = self.path / "contract.yaml"
@@ -70,12 +70,12 @@ class PlatformScanner:
 
     def __init__(self, root_path: str = "."):
         self.root_path = Path(root_path).resolve()
-        self.engines: List[EngineMetadata] = []
-        self.ndip_domains: List[str] = []
-        self.dar_registrations: List[str] = []
-        self.warehouse_domains: List[str] = []
+        self.engines: list[EngineMetadata] = []
+        self.ndip_domains: list[str] = []
+        self.dar_registrations: list[str] = []
+        self.warehouse_domains: list[str] = []
 
-    def scan(self) -> Dict[str, Any]:
+    def scan(self) -> dict[str, Any]:
         """Scan the entire platform"""
         result = {
             "root_path": str(self.root_path),
@@ -234,7 +234,7 @@ class PlatformScanner:
                 count += 1
         return count
 
-    def _engine_to_dict(self, engine: EngineMetadata) -> Dict:
+    def _engine_to_dict(self, engine: EngineMetadata) -> dict:
         """Convert engine to dictionary"""
         return {
             "id": engine.id,

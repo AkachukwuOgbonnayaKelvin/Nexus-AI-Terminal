@@ -1,7 +1,7 @@
 """Universal Position DTO – Stores all CFTC fields."""
 
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -11,100 +11,100 @@ class UniversalPosition(BaseModel):
 
     # Core Identity
     market_name: str
-    market_code: Optional[str] = None
+    market_code: str | None = None
     report_date: datetime
     report_type: str = "unknown"
 
     # Market Classification
-    asset_class: Optional[str] = None
-    exchange: Optional[str] = None
-    currency: Optional[str] = None
+    asset_class: str | None = None
+    exchange: str | None = None
+    currency: str | None = None
 
     # Open Interest
-    open_interest: Optional[int] = None
-    total_traders: Optional[int] = None
+    open_interest: int | None = None
+    total_traders: int | None = None
 
     # Dealer/Intermediary
-    dealer_long: Optional[int] = None
-    dealer_short: Optional[int] = None
-    dealer_spread: Optional[int] = None
-    dealer_change_long: Optional[int] = None
-    dealer_change_short: Optional[int] = None
-    dealer_pct_oi: Optional[float] = None
-    dealer_traders: Optional[int] = None
+    dealer_long: int | None = None
+    dealer_short: int | None = None
+    dealer_spread: int | None = None
+    dealer_change_long: int | None = None
+    dealer_change_short: int | None = None
+    dealer_pct_oi: float | None = None
+    dealer_traders: int | None = None
 
     # Asset Manager/Institutional
-    asset_manager_long: Optional[int] = None
-    asset_manager_short: Optional[int] = None
-    asset_manager_spread: Optional[int] = None
-    asset_manager_change_long: Optional[int] = None
-    asset_manager_change_short: Optional[int] = None
-    asset_manager_pct_oi: Optional[float] = None
-    asset_manager_traders: Optional[int] = None
+    asset_manager_long: int | None = None
+    asset_manager_short: int | None = None
+    asset_manager_spread: int | None = None
+    asset_manager_change_long: int | None = None
+    asset_manager_change_short: int | None = None
+    asset_manager_pct_oi: float | None = None
+    asset_manager_traders: int | None = None
 
     # Leveraged Funds
-    leveraged_long: Optional[int] = None
-    leveraged_short: Optional[int] = None
-    leveraged_spread: Optional[int] = None
-    leveraged_change_long: Optional[int] = None
-    leveraged_change_short: Optional[int] = None
-    leveraged_pct_oi: Optional[float] = None
-    leveraged_traders: Optional[int] = None
+    leveraged_long: int | None = None
+    leveraged_short: int | None = None
+    leveraged_spread: int | None = None
+    leveraged_change_long: int | None = None
+    leveraged_change_short: int | None = None
+    leveraged_pct_oi: float | None = None
+    leveraged_traders: int | None = None
 
     # Producer/Merchant/Processor/User
-    producer_long: Optional[int] = None
-    producer_short: Optional[int] = None
-    producer_spread: Optional[int] = None
-    producer_change_long: Optional[int] = None
-    producer_change_short: Optional[int] = None
-    producer_pct_oi: Optional[float] = None
-    producer_traders: Optional[int] = None
+    producer_long: int | None = None
+    producer_short: int | None = None
+    producer_spread: int | None = None
+    producer_change_long: int | None = None
+    producer_change_short: int | None = None
+    producer_pct_oi: float | None = None
+    producer_traders: int | None = None
 
     # Swap Dealers
-    swap_long: Optional[int] = None
-    swap_short: Optional[int] = None
-    swap_spread: Optional[int] = None
-    swap_change_long: Optional[int] = None
-    swap_change_short: Optional[int] = None
-    swap_pct_oi: Optional[float] = None
-    swap_traders: Optional[int] = None
+    swap_long: int | None = None
+    swap_short: int | None = None
+    swap_spread: int | None = None
+    swap_change_long: int | None = None
+    swap_change_short: int | None = None
+    swap_pct_oi: float | None = None
+    swap_traders: int | None = None
 
     # Other Reportables
-    other_reportable_long: Optional[int] = None
-    other_reportable_short: Optional[int] = None
-    other_reportable_change_long: Optional[int] = None
-    other_reportable_change_short: Optional[int] = None
-    other_reportable_pct_oi: Optional[float] = None
-    other_reportable_traders: Optional[int] = None
+    other_reportable_long: int | None = None
+    other_reportable_short: int | None = None
+    other_reportable_change_long: int | None = None
+    other_reportable_change_short: int | None = None
+    other_reportable_pct_oi: float | None = None
+    other_reportable_traders: int | None = None
 
     # Non-Reportables
-    nonreportable_long: Optional[int] = None
-    nonreportable_short: Optional[int] = None
-    nonreportable_change_long: Optional[int] = None
-    nonreportable_change_short: Optional[int] = None
-    nonreportable_pct_oi: Optional[float] = None
-    nonreportable_traders: Optional[int] = None
+    nonreportable_long: int | None = None
+    nonreportable_short: int | None = None
+    nonreportable_change_long: int | None = None
+    nonreportable_change_short: int | None = None
+    nonreportable_pct_oi: float | None = None
+    nonreportable_traders: int | None = None
 
     # Concentration Ratios
-    concentration_4_long: Optional[float] = None
-    concentration_4_short: Optional[float] = None
-    concentration_8_long: Optional[float] = None
-    concentration_8_short: Optional[float] = None
-    concentration_4_net: Optional[float] = None
-    concentration_8_net: Optional[float] = None
+    concentration_4_long: float | None = None
+    concentration_4_short: float | None = None
+    concentration_8_long: float | None = None
+    concentration_8_short: float | None = None
+    concentration_4_net: float | None = None
+    concentration_8_net: float | None = None
 
     # Contract Information
-    contract_size: Optional[str] = None
-    crop_year: Optional[str] = None
+    contract_size: str | None = None
+    crop_year: str | None = None
 
     # Metadata
     source: str = "unknown"
-    source_url: Optional[str] = None
-    checksum: Optional[str] = None
+    source_url: str | None = None
+    checksum: str | None = None
     version: int = 1
     confidence: float = 1.0
     ingested_at: datetime = Field(default_factory=datetime.now)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary."""
         return self.model_dump(exclude={"raw_data"})

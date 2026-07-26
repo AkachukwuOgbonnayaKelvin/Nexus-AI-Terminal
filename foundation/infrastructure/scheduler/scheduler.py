@@ -1,14 +1,15 @@
 """Scheduler implementation."""
 
+from collections.abc import Callable
 from datetime import datetime
-from typing import Any, Callable, Dict
+from typing import Any
 
 
 class Scheduler:
     """Task scheduler."""
 
     def __init__(self):
-        self._tasks: Dict[str, Dict[str, Any]] = {}
+        self._tasks: dict[str, dict[str, Any]] = {}
 
     def add_task(self, name: str, callback: Callable, interval: int) -> None:
         """Add a scheduled task."""
@@ -26,8 +27,7 @@ class Scheduler:
     def run_pending(self) -> None:
         """Run all pending tasks."""
         # In production, this would check and run tasks
-        pass
 
-    def get_tasks(self) -> Dict[str, Any]:
+    def get_tasks(self) -> dict[str, Any]:
         """Get all scheduled tasks."""
         return self._tasks

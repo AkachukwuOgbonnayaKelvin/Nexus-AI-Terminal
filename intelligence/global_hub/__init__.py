@@ -13,22 +13,22 @@ Two Final Feeders:
 2. Orchestrator Feeder → Master Orchestrator (decision context)
 """
 
+from .ai.executive_interpreter import AIExecutiveInterpreter
+from .ingestion.gateway import IngestionGateway
+from .orchestration.orchestrator_feeder import OrchestratorFeeder
+from .presentation.gui_feeder import GUIPresentationFeeder
 from .state.manager import StateManager
 from .state.state import GlobalHubState
-from .ingestion.gateway import IngestionGateway
 from .summary.deterministic import DeterministicSummaryEngine
-from .ai.executive_interpreter import AIExecutiveInterpreter
 from .view_models.overview import OverviewViewModel
-from .presentation.gui_feeder import GUIPresentationFeeder
-from .orchestration.orchestrator_feeder import OrchestratorFeeder
 
 __all__ = [
-    "StateManager",
+    "AIExecutiveInterpreter",
+    "DeterministicSummaryEngine",
+    "GUIPresentationFeeder",
     "GlobalHubState",
     "IngestionGateway",
-    "DeterministicSummaryEngine",
-    "AIExecutiveInterpreter",
-    "OverviewViewModel",
-    "GUIPresentationFeeder",
     "OrchestratorFeeder",
+    "OverviewViewModel",
+    "StateManager",
 ]

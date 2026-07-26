@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Architecture Compiler - Validates engine architecture layer
 Checks: folder structure, required files, naming conventions
 """
 
-from typing import Dict, Any
+from typing import Any
 
 
 class ArchitectureCompiler:
@@ -12,7 +11,7 @@ class ArchitectureCompiler:
 
     def compile(
         self, engine, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Compile the engine's architecture layer"""
 
         result = {

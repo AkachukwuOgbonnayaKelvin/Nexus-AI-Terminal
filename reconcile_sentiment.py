@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sqlite3
 
 db_path = "nexus_sentiment.db"
@@ -58,7 +57,7 @@ def migrate(conn):
         WHERE entity_name IS NOT NULL AND entity_name != ''
     """)
     entities = cursor.fetchall()
-    print("Found {} unique entity name/type combinations.".format(len(entities)))
+    print(f"Found {len(entities)} unique entity name/type combinations.")
 
     entity_cache = {}
     for name, etype in entities:
@@ -83,7 +82,7 @@ def migrate(conn):
             entity_cache[name] = row[0]
 
     conn.commit()
-    print("Inserted/updated {} entities into dim_entity.".format(len(entity_cache)))
+    print(f"Inserted/updated {len(entity_cache)} entities into dim_entity.")
 
     # 5. Get content_id, entity_name, sentiment_score from ndip_entities + ndip_sentiment_scores
     cursor.execute("""
@@ -98,7 +97,7 @@ def migrate(conn):
         WHERE ss.sentiment_score IS NOT NULL
     """)
     rows = cursor.fetchall()
-    print("Found {} content-entity-sentiment records to migrate.".format(len(rows)))
+    print(f"Found {len(rows)} content-entity-sentiment records to migrate.")
 
     inserted = 0
     for content_id, entity_name, score, conf, ts in rows:
@@ -148,11 +147,7 @@ def migrate(conn):
             inserted += 1
 
     conn.commit()
-    print(
-        "Inserted {} entity sentiment records into fact_entity_sentiment.".format(
-            inserted
-        )
-    )
+    print(f"Inserted {inserted} entity sentiment records into fact_entity_sentiment.")
 
     # 6. Final counts
     cursor.execute("SELECT COUNT(*) FROM dim_entity")
@@ -160,8 +155,8 @@ def migrate(conn):
     cursor.execute("SELECT COUNT(*) FROM fact_entity_sentiment")
     fact_count = cursor.fetchone()[0]
     print("\nFINAL COUNTS:")
-    print("  dim_entity: {}".format(dim_count))
-    print("  fact_entity_sentiment: {}".format(fact_count))
+    print(f"  dim_entity: {dim_count}")
+    print(f"  fact_entity_sentiment: {fact_count}")
 
 
 if __name__ == "__main__":
@@ -173,4 +168,4 @@ if __name__ == "__main__":
         conn.close()
         print("\nReconciliation complete.")
     except Exception as e:
-        print("Error: {}".format(e))
+        print(f"Error: {e}")

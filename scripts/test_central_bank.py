@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 import sys
-
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import asyncio  # noqa: E402
+import asyncio
 
 from central_bank_engine.acquisition import CentralBankCollector
 from central_bank_engine.dtos import UniversalCentralBankEvent
@@ -25,7 +24,7 @@ from central_bank_engine.providers.tier1_primary.rbnz import RBNZAdapter, RBNZCo
 from central_bank_engine.providers.tier1_primary.snb import SNBAdapter, SNBConnector
 from central_bank_engine.warehouse import CentralBankWarehouse
 from ndip.utils.db_connector import close_pool
-from providers.provider_manager import ProviderManager  # noqa: E402
+from providers.provider_manager import ProviderManager
 
 
 async def main():

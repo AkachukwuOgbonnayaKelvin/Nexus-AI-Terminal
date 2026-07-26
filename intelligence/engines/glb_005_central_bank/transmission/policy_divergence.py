@@ -3,7 +3,6 @@ GLB-005 Central Bank Intelligence Engine - Policy Divergence
 """
 
 import logging
-from typing import Dict, List
 
 from ..input.schemas import CentralBankInput
 
@@ -17,7 +16,7 @@ class PolicyDivergenceEngine:
     This is critical for FX analysis and asset impact.
     """
 
-    def calculate_divergence(self, banks: List[CentralBankInput]) -> Dict:
+    def calculate_divergence(self, banks: list[CentralBankInput]) -> dict:
         """
         Calculate policy divergence between all central banks.
 

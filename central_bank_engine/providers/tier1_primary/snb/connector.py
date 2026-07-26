@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import feedparser
 
@@ -21,28 +21,28 @@ class SNBConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return []
 
     def health_check(self) -> bool:
         return True
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"central_bank": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_second": 10, "requests_per_minute": 600}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return []
 
     def supports_symbol(self, symbol: str) -> bool:
         return True
 
-    def get_policy_rate(self) -> Optional[Dict[str, Any]]:
+    def get_policy_rate(self) -> dict[str, Any] | None:
         return {
             "bank": "Swiss National Bank",
             "country": "CH",
@@ -53,7 +53,7 @@ class SNBConnector(BaseProvider):
             "event_id": "snb_rate_latest",
         }
 
-    def get_today_events(self) -> List[Dict[str, Any]]:
+    def get_today_events(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)

@@ -1,7 +1,7 @@
 """Dataset Discovery – Finds actual CFTC dataset IDs."""
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -15,7 +15,7 @@ class DatasetDiscovery:
         self.base_url = "https://publicreporting.cftc.gov"
         self.discovered_datasets = {}
 
-    def discover_all(self) -> Dict[str, str]:
+    def discover_all(self) -> dict[str, str]:
         """Discover all COT dataset IDs."""
         # Common known dataset IDs from CFTC PRE
         # These are the actual IDs used by the CFTC
@@ -40,7 +40,7 @@ class DatasetDiscovery:
         logger.info(f"Using {len(known_datasets)} known dataset IDs")
         return known_datasets
 
-    def _fetch_catalog(self) -> Optional[List[Dict]]:
+    def _fetch_catalog(self) -> list[dict] | None:
         """Fetch the dataset catalog."""
         # Try different catalog endpoints
         urls = [
@@ -58,7 +58,7 @@ class DatasetDiscovery:
                 continue
         return None
 
-    def _extract_cot_datasets(self, catalog: List[Dict]) -> Dict[str, str]:
+    def _extract_cot_datasets(self, catalog: list[dict]) -> dict[str, str]:
         """Extract COT datasets from catalog."""
         datasets = {}
         for item in catalog:
@@ -70,7 +70,7 @@ class DatasetDiscovery:
                     datasets[name] = dataset_id
         return datasets
 
-    def _extract_id(self, item: Any) -> Optional[str]:
+    def _extract_id(self, item: Any) -> str | None:
         """Extract dataset ID from catalog item."""
         if isinstance(item, dict):
             if "id" in item:

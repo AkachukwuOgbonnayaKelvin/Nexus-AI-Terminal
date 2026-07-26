@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 
 
 class TradingEconomicsAdapter:
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> UniversalMacroEvent:
+    def adapt(self, raw: dict[str, Any], provider_name: str) -> UniversalMacroEvent:
         release_time = raw.get("DateTime")
         if isinstance(release_time, str):
             release_time = datetime.fromisoformat(release_time.replace("Z", "+00:00"))

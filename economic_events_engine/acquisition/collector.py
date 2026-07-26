@@ -1,5 +1,4 @@
 import logging
-from typing import List
 
 from economic_events_engine.dtos import UniversalEconomicEvent
 from economic_events_engine.providers.interfaces.base_economic_provider import (
@@ -14,7 +13,7 @@ class EconomicCollector:
     def __init__(self, provider_manager: ProviderManager):
         self.pm = provider_manager
 
-    def collect_today(self) -> List[UniversalEconomicEvent]:
+    def collect_today(self) -> list[UniversalEconomicEvent]:
         events = []
         provider_names = self.pm.get_providers(capability="economic")
         for name in provider_names:

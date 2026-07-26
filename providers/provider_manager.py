@@ -1,7 +1,5 @@
 """Provider Manager – orchestrates provider selection with failover."""
 
-from typing import Dict, List, Optional
-
 from providers.dtos.transport import UniversalTransport
 from providers.interfaces.base_adapter import BaseAdapter
 from providers.interfaces.base_provider import BaseProvider
@@ -14,19 +12,19 @@ class ProviderManager:
     """Orchestrates all providers."""
 
     def __init__(self):
-        self.providers: Dict[str, BaseProvider] = {}
-        self.adapters: Dict[str, BaseAdapter] = {}
+        self.providers: dict[str, BaseProvider] = {}
+        self.adapters: dict[str, BaseAdapter] = {}
         self.health = ProviderHealth()
         self.failover = ProviderFailover()
         self.metrics = ProviderMetrics()
-        self._capabilities: Dict[str, List[str]] = {}
+        self._capabilities: dict[str, list[str]] = {}
 
     def register_provider(
         self,
         name: str,
         provider: BaseProvider,
         adapter: BaseAdapter,
-        capabilities: List[str] = None,
+        capabilities: list[str] = None,
     ) -> None:
         """Register a provider with its adapter."""
         self.providers[name] = provider
@@ -45,18 +43,18 @@ class ProviderManager:
             self.health.set_status(name, False)
             print(f"⚠️ Provider {name} connection error: {e}")
 
-    def get_provider(self, name: str) -> Optional[BaseProvider]:
+    def get_provider(self, name: str) -> BaseProvider | None:
         return self.providers.get(name)
 
-    def get_adapter(self, name: str) -> Optional[BaseAdapter]:
+    def get_adapter(self, name: str) -> BaseAdapter | None:
         return self.adapters.get(name)
 
-    def get_providers(self, capability: str) -> List[str]:
+    def get_providers(self, capability: str) -> list[str]:
         return [name for name, caps in self._capabilities.items() if capability in caps]
 
     def get_price(
-        self, symbol: str, asset_class: Optional[str] = None
-    ) -> Optional[UniversalTransport]:
+        self, symbol: str, asset_class: str | None = None
+    ) -> UniversalTransport | None:
         priority_order = self.health.get_priority_order(asset_class)
 
         for provider_name in priority_order:
@@ -86,7 +84,7 @@ class ProviderManager:
         self.metrics.record_error("all_providers_failed", symbol)
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[UniversalTransport]:
+    def get_multiple(self, symbols: list[str]) -> list[UniversalTransport]:
         results = []
         for symbol in symbols:
             data = self.get_price(symbol)
@@ -94,7 +92,7 @@ class ProviderManager:
                 results.append(data)
         return results
 
-    def health_check_all(self) -> Dict[str, bool]:
+    def health_check_all(self) -> dict[str, bool]:
         results = {}
         for name, provider in self.providers.items():
             results[name] = self.health.is_healthy(name)

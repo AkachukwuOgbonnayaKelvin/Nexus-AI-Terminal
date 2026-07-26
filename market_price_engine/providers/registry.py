@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
 """Provider Registry - Manages all market data providers with priority hierarchy"""
 
-from typing import Dict, List, Optional, Any
-from enum import Enum
 import os
-import yaml
+from enum import Enum
 from pathlib import Path
+from typing import Any
 
+import yaml
+from providers.alpha_vantage.provider import AlphaVantageProvider
 from providers.base import MarketDataProvider
 from providers.mt5.provider import MT5Provider
 from providers.yahoo.provider import YahooFinanceProvider
-from providers.alpha_vantage.provider import AlphaVantageProvider
 
 
 class ProviderPriority(Enum):
@@ -21,10 +20,10 @@ class ProviderPriority(Enum):
 
 
 class ProviderRegistry:
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
-        self.providers: Dict[str, MarketDataProvider] = {}
-        self.priorities: Dict[str, ProviderPriority] = {}
+        self.providers: dict[str, MarketDataProvider] = {}
+        self.priorities: dict[str, ProviderPriority] = {}
         self._load_mt5_config()
         self._initialize_providers()
 
@@ -87,10 +86,10 @@ class ProviderRegistry:
         self.priorities["alpha_vantage"] = ProviderPriority.TERTIARY
         print("[REGISTRY] Alpha Vantage TERTIARY")
 
-    def get_provider(self, name: str) -> Optional[MarketDataProvider]:
+    def get_provider(self, name: str) -> MarketDataProvider | None:
         return self.providers.get(name)
 
-    def get_primary_provider(self) -> Optional[MarketDataProvider]:
+    def get_primary_provider(self) -> MarketDataProvider | None:
         provider = self.providers.get("mt5")
         if provider and provider.is_available():
             print("[REGISTRY] Using MT5 primary")
@@ -98,19 +97,19 @@ class ProviderRegistry:
         print("[REGISTRY] MT5 unavailable, falling back to secondary")
         return self.get_secondary_provider()
 
-    def get_secondary_provider(self) -> Optional[MarketDataProvider]:
+    def get_secondary_provider(self) -> MarketDataProvider | None:
         provider = self.providers.get("yahoo")
         if provider and provider.is_available():
             return provider
         return self.get_tertiary_provider()
 
-    def get_tertiary_provider(self) -> Optional[MarketDataProvider]:
+    def get_tertiary_provider(self) -> MarketDataProvider | None:
         provider = self.providers.get("alpha_vantage")
         if provider and provider.is_available():
             return provider
         return None
 
-    def get_priority_order(self) -> List[str]:
+    def get_priority_order(self) -> list[str]:
         priority_map = {
             ProviderPriority.PRIMARY: 0,
             ProviderPriority.SECONDARY: 1,
@@ -124,7 +123,7 @@ class ProviderRegistry:
             ),
         )
 
-    def get_health_status(self) -> Dict[str, Any]:
+    def get_health_status(self) -> dict[str, Any]:
         status = {}
         for name, provider in self.providers.items():
             health = provider.get_health()
@@ -134,7 +133,7 @@ class ProviderRegistry:
             status[name] = health
         return status
 
-    def get_best_available_provider(self) -> Optional[MarketDataProvider]:
+    def get_best_available_provider(self) -> MarketDataProvider | None:
         for name in self.get_priority_order():
             provider = self.providers.get(name)
             if provider and provider.is_available():

@@ -3,11 +3,11 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Analogue Engine
 """
 
 import logging
-from typing import Dict, Any, List
+from typing import Any
 
-from ..constants import AnalogueQuality
-from ..input.schemas import MarketSnapshot, HistoricalWindow
 from ..analysis.similarity_engine import SimilarityEngine
+from ..constants import AnalogueQuality
+from ..input.schemas import HistoricalWindow, MarketSnapshot
 
 logger = logging.getLogger(__name__)
 
@@ -23,9 +23,9 @@ class AnalogueEngine:
     def find_analogues(
         self,
         current: MarketSnapshot,
-        historical_windows: List[HistoricalWindow],
+        historical_windows: list[HistoricalWindow],
         min_similarity: float = 0.60,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Find historical analogues matching current environment.
 
@@ -123,7 +123,7 @@ class AnalogueEngine:
             return AnalogueQuality.LOW
         return AnalogueQuality.INSUFFICIENT
 
-    def _calculate_feature_consistency(self, analogues: List[Dict]) -> Dict[str, float]:
+    def _calculate_feature_consistency(self, analogues: list[dict]) -> dict[str, float]:
         if not analogues:
             return {}
 

@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 import feedparser
 import requests
@@ -26,7 +26,7 @@ class ECBRateCollector(RateCollector):
         self.series_id = "None"
         self.rate_placeholder = 3.0
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         if self.api_key and self.series_id:
             url = f"{self.fred_url}/series/observations?series_id={self.series_id}&api_key={self.api_key}&limit=1&sort_order=desc"
@@ -76,7 +76,7 @@ class ECBSpeechCollector(SpeechCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.ecb.europa.eu/rss/"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -116,7 +116,7 @@ class ECBMinutesCollector(MinutesCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.ecb.europa.eu/rss/"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -155,7 +155,7 @@ class ECBStatementCollector(StatementCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.ecb.europa.eu/rss/"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -195,7 +195,7 @@ class ECBCalendarCollector(CalendarCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.ecb.europa.eu/rss/"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)

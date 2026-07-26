@@ -3,7 +3,7 @@
 import json
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from ndip.utils.db_connector import fetch, fetchrow
 from ndip.warehouses.base import BaseWarehouse
@@ -31,7 +31,7 @@ class PriceWarehouse(BaseWarehouse):
             raise ValueError(f"Unknown asset class: {asset_class}")
         return table
 
-    async def store(self, record: Dict[str, Any], source: str) -> Dict[str, Any]:
+    async def store(self, record: dict[str, Any], source: str) -> dict[str, Any]:
         """Store a price record."""
         asset_class = record.get("asset_class", "unknown")
         table = self._get_table(asset_class)
@@ -78,7 +78,7 @@ class PriceWarehouse(BaseWarehouse):
         )
         return {"stored": True, "table": table, "symbol": symbol, "time": time_val}
 
-    async def query(self, symbol: str, limit: int = 100) -> List[Dict[str, Any]]:
+    async def query(self, symbol: str, limit: int = 100) -> list[dict[str, Any]]:
         results = []
         for table in self.TABLE_MAP.values():
             query = (
@@ -89,7 +89,7 @@ class PriceWarehouse(BaseWarehouse):
         results.sort(key=lambda x: x["time"], reverse=True)
         return results[:limit]
 
-    async def get_stats(self) -> Dict[str, Any]:
+    async def get_stats(self) -> dict[str, Any]:
         stats = {}
         for table in self.TABLE_MAP.values():
             count = await fetchrow(f"SELECT COUNT(*) FROM {table}")

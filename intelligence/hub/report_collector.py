@@ -3,8 +3,8 @@ Global Intelligence Hub - Report Collector
 """
 
 import logging
-from typing import Dict, Optional, Any
 from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ class ReportCollector:
     """
 
     def __init__(self):
-        self.reports: Dict[str, Dict[str, Any]] = {
+        self.reports: dict[str, dict[str, Any]] = {
             "GLB-001": {"report": None, "collected_at": None},
             "GLB-002": {"report": None, "collected_at": None},
             "GLB-003": {"report": None, "collected_at": None},
@@ -56,17 +56,17 @@ class ReportCollector:
             self.reports[engine_id]["report"] is not None for engine_id in self.reports
         )
 
-    def get_report(self, engine_id: str) -> Optional[Any]:
+    def get_report(self, engine_id: str) -> Any | None:
         """Get a specific report."""
         if engine_id not in self.reports:
             return None
         return self.reports[engine_id]["report"]
 
-    def get_all_reports(self) -> Dict[str, Optional[Any]]:
+    def get_all_reports(self) -> dict[str, Any | None]:
         """Get all collected reports."""
         return {engine_id: data["report"] for engine_id, data in self.reports.items()}
 
-    def get_collection_status(self) -> Dict[str, Any]:
+    def get_collection_status(self) -> dict[str, Any]:
         """Get the status of report collection."""
         return {
             "all_collected": self.all_collected,

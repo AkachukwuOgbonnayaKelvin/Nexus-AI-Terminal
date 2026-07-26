@@ -4,10 +4,9 @@ Phase 4: Global Entity Intelligence - Entity Aggregator
 Aggregates harmonized results by entity.
 """
 
-from typing import Dict, List
 from collections import defaultdict
 
-from ..contracts import HarmonizedResult, EntityType
+from ..contracts import EntityType, HarmonizedResult
 from .classifier import EntityClassifier
 
 
@@ -20,8 +19,8 @@ class EntityAggregator:
     """
 
     def aggregate(
-        self, results: List[HarmonizedResult]
-    ) -> Dict[str, List[HarmonizedResult]]:
+        self, results: list[HarmonizedResult]
+    ) -> dict[str, list[HarmonizedResult]]:
         """
         Aggregate harmonized results by entity.
 
@@ -31,7 +30,7 @@ class EntityAggregator:
         Returns:
             Dict mapping entity name to list of results
         """
-        grouped: Dict[str, List[HarmonizedResult]] = defaultdict(list)
+        grouped: dict[str, list[HarmonizedResult]] = defaultdict(list)
 
         for result in results:
             grouped[result.entity].append(result)
@@ -39,8 +38,8 @@ class EntityAggregator:
         return dict(grouped)
 
     def aggregate_by_type(
-        self, results: List[HarmonizedResult]
-    ) -> Dict[EntityType, List[HarmonizedResult]]:
+        self, results: list[HarmonizedResult]
+    ) -> dict[EntityType, list[HarmonizedResult]]:
         """
         Aggregate harmonized results by entity type.
 
@@ -50,7 +49,7 @@ class EntityAggregator:
         Returns:
             Dict mapping EntityType to list of results
         """
-        grouped: Dict[EntityType, List[HarmonizedResult]] = defaultdict(list)
+        grouped: dict[EntityType, list[HarmonizedResult]] = defaultdict(list)
 
         for result in results:
             entity_type = EntityClassifier.classify(result.entity)
@@ -59,32 +58,32 @@ class EntityAggregator:
         return dict(grouped)
 
     def get_currency_results(
-        self, results: List[HarmonizedResult]
-    ) -> List[HarmonizedResult]:
+        self, results: list[HarmonizedResult]
+    ) -> list[HarmonizedResult]:
         """Get only currency results."""
         return [r for r in results if EntityClassifier.is_currency(r.entity)]
 
     def get_index_results(
-        self, results: List[HarmonizedResult]
-    ) -> List[HarmonizedResult]:
+        self, results: list[HarmonizedResult]
+    ) -> list[HarmonizedResult]:
         """Get only index results."""
         return [r for r in results if EntityClassifier.is_index(r.entity)]
 
     def get_commodity_results(
-        self, results: List[HarmonizedResult]
-    ) -> List[HarmonizedResult]:
+        self, results: list[HarmonizedResult]
+    ) -> list[HarmonizedResult]:
         """Get only commodity results."""
         return [r for r in results if EntityClassifier.is_commodity(r.entity)]
 
     def get_bond_results(
-        self, results: List[HarmonizedResult]
-    ) -> List[HarmonizedResult]:
+        self, results: list[HarmonizedResult]
+    ) -> list[HarmonizedResult]:
         """Get only bond results."""
         return [r for r in results if EntityClassifier.is_bond(r.entity)]
 
     def get_entity_types(
-        self, results: List[HarmonizedResult]
-    ) -> Dict[str, EntityType]:
+        self, results: list[HarmonizedResult]
+    ) -> dict[str, EntityType]:
         """
         Get entity types for all results.
 

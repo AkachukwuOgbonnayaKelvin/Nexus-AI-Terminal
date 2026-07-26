@@ -5,8 +5,8 @@ Collects macroeconomic statistics from multiple providers.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ class MacroStatisticsCollector:
         self._sources = []
         self._data = {}
 
-    def collect_gdp(self, country: str, year: int) -> Dict[str, Any]:
+    def collect_gdp(self, country: str, year: int) -> dict[str, Any]:
         """Collect GDP data for a country."""
         return {
             "country": country,
@@ -41,7 +41,7 @@ class MacroStatisticsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def collect_cpi(self, country: str, year: int) -> Dict[str, Any]:
+    def collect_cpi(self, country: str, year: int) -> dict[str, Any]:
         """Collect CPI data for a country."""
         return {
             "country": country,
@@ -52,7 +52,7 @@ class MacroStatisticsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def collect_employment(self, country: str, month: int, year: int) -> Dict[str, Any]:
+    def collect_employment(self, country: str, month: int, year: int) -> dict[str, Any]:
         """Collect employment data for a country."""
         return {
             "country": country,
@@ -65,7 +65,7 @@ class MacroStatisticsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def collect_pmi(self, country: str, month: int, year: int) -> Dict[str, Any]:
+    def collect_pmi(self, country: str, month: int, year: int) -> dict[str, Any]:
         """Collect PMI data for a country."""
         return {
             "country": country,
@@ -77,7 +77,7 @@ class MacroStatisticsCollector:
             "collected_at": datetime.utcnow().isoformat(),
         }
 
-    def get_all_statistics(self, country: str, year: int) -> Dict[str, Any]:
+    def get_all_statistics(self, country: str, year: int) -> dict[str, Any]:
         """Get all macroeconomic statistics for a country."""
         return {
             "country": country,

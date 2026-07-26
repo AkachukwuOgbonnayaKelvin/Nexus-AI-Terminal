@@ -6,7 +6,7 @@ Uses ConflictDetector for accurate conflict classification.
 """
 
 import logging
-from typing import Dict, Any, List
+from typing import Any
 
 from ..evidence.evidence_model import EvidenceGroup
 from ..schemas import Direction
@@ -33,8 +33,8 @@ class ConfluenceScore:
         self.detector = ConflictDetector()
 
     def calculate_score(
-        self, group: EvidenceGroup, consensus: Dict[str, Any]
-    ) -> Dict[str, Any]:
+        self, group: EvidenceGroup, consensus: dict[str, Any]
+    ) -> dict[str, Any]:
         """
         Calculate final confluence score with conflict penalty.
         Uses ConflictDetector for accurate conflict classification.
@@ -132,11 +132,16 @@ class ConfluenceScore:
             return "BULLISH"
         elif bearish > bullish and bearish >= neutral:
             return "BEARISH"
-        elif bullish > 0 and bearish > 0 and bullish == bearish:
-            return "NEUTRAL"
-        elif neutral > 0 and bullish == 0 and bearish == 0:
-            return "NEUTRAL"
-        elif neutral > 0 and bullish == bearish:
+        elif (
+            bullish > 0
+            and bearish > 0
+            and bullish == bearish
+            or neutral > 0
+            and bullish == 0
+            and bearish == 0
+            or neutral > 0
+            and bullish == bearish
+        ):
             return "NEUTRAL"
         elif bullish > bearish:
             return "BULLISH"
@@ -145,7 +150,7 @@ class ConfluenceScore:
 
         return "NEUTRAL"
 
-    def calculate_scores(self, groups: List[EvidenceGroup]) -> Dict[str, Any]:
+    def calculate_scores(self, groups: list[EvidenceGroup]) -> dict[str, Any]:
         """
         Calculate scores for multiple groups.
         """

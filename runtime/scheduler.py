@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import time
-from typing import List
 
 from runtime.base_engine import BaseRawEngine
 from runtime.dispatcher import Dispatcher
@@ -25,7 +24,7 @@ class Scheduler:
                 logger.warning(f"{engine.name} failed, will retry next cycle")
             await asyncio.sleep(engine.interval_seconds)
 
-    async def run_all(self, engines: List[BaseRawEngine]):
+    async def run_all(self, engines: list[BaseRawEngine]):
         tasks = []
         for engine in engines:
             if engine.enabled:

@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 """Provider Diagnostics - Detailed provider status per symbol"""
 
-from typing import Dict, Any, List
-from pathlib import Path
 import sys
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -16,7 +15,7 @@ class ProviderDiagnostics:
     def __init__(self):
         self.router = ProviderRouter()
 
-    def diagnose_symbol(self, symbol: str) -> Dict[str, Any]:
+    def diagnose_symbol(self, symbol: str) -> dict[str, Any]:
         """Get detailed diagnostics for a symbol"""
 
         result = {
@@ -62,7 +61,7 @@ class ProviderDiagnostics:
 
         return result
 
-    def diagnose_regions(self, symbols: Dict[str, List[str]]) -> Dict[str, Any]:
+    def diagnose_regions(self, symbols: dict[str, list[str]]) -> dict[str, Any]:
         """Diagnose multiple regions"""
 
         results = {}

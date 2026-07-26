@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from market_positioning_warehouse.runtime.historical_import import HistoricalImport
 from market_positioning_warehouse.runtime.repair_manager import RepairManager
@@ -21,7 +21,7 @@ class LifecycleManager:
         self.weekly = WeeklyScheduler()
         self.repair = RepairManager()
 
-    async def run(self) -> Dict[str, Any]:
+    async def run(self) -> dict[str, Any]:
         """Run the appropriate lifecycle stage."""
         logger.info("Checking warehouse state...")
 

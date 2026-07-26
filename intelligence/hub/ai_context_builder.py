@@ -3,7 +3,7 @@ Global Intelligence Hub - AI Context Builder
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -16,8 +16,8 @@ class AIContextBuilder:
         regime_report: Any,
         asset_report: Any,
         macro_report: Any,
-        consensus: Dict[str, Any],
-    ) -> Dict[str, Any]:
+        consensus: dict[str, Any],
+    ) -> dict[str, Any]:
         """Build AI context."""
         return {
             "regime_context": self._build_regime_context(regime_report),
@@ -29,7 +29,7 @@ class AIContextBuilder:
             "available": bool(regime_report or asset_report or macro_report),
         }
 
-    def _build_regime_context(self, report: Any) -> Dict[str, Any]:
+    def _build_regime_context(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"available": False}
         return {
@@ -41,7 +41,7 @@ class AIContextBuilder:
             "confidence": report.confidence if hasattr(report, "confidence") else 0,
         }
 
-    def _build_asset_context(self, report: Any) -> Dict[str, Any]:
+    def _build_asset_context(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"available": False}
         return {
@@ -51,7 +51,7 @@ class AIContextBuilder:
             else 0,
         }
 
-    def _build_macro_context(self, report: Any) -> Dict[str, Any]:
+    def _build_macro_context(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"available": False}
         return {

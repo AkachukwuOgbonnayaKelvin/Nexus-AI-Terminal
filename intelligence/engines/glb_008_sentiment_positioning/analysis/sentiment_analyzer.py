@@ -3,10 +3,10 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Sentiment Analyzer
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
 from ..constants import SentimentState
-from ..input.schemas import RetailSentimentInput, OptionsSentimentInput
+from ..input.schemas import OptionsSentimentInput, RetailSentimentInput
 
 logger = logging.getLogger(__name__)
 
@@ -16,9 +16,9 @@ class SentimentAnalyzer:
 
     def analyze_sentiment(
         self,
-        retail_data: List[RetailSentimentInput],
-        options_data: List[OptionsSentimentInput],
-    ) -> Dict[str, Any]:
+        retail_data: list[RetailSentimentInput],
+        options_data: list[OptionsSentimentInput],
+    ) -> dict[str, Any]:
         """
         Analyze sentiment from retail and options data.
 

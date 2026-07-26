@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """Event-driven policy - For ECO-002, CENT-001"""
 
+from collections.abc import Callable
 from datetime import datetime
-from typing import Optional, Callable
 
 from orchestrator.policies.base import SchedulerPolicy
 
@@ -10,9 +9,9 @@ from orchestrator.policies.base import SchedulerPolicy
 class EventDrivenPolicy(SchedulerPolicy):
     """Event-driven execution policy"""
 
-    def __init__(self, event_check_fn: Optional[Callable] = None):
+    def __init__(self, event_check_fn: Callable | None = None):
         self.event_check_fn = event_check_fn
-        self.last_check: Optional[datetime] = None
+        self.last_check: datetime | None = None
         self.pending_events: dict = {}
 
     def is_due(self, dataset_id: str) -> bool:
@@ -30,7 +29,7 @@ class EventDrivenPolicy(SchedulerPolicy):
 
         return False
 
-    def get_next_run_time(self, dataset_id: str) -> Optional[datetime]:
+    def get_next_run_time(self, dataset_id: str) -> datetime | None:
         return datetime.now() if self.is_due(dataset_id) else None
 
     def mark_event_processed(self, dataset_id: str):

@@ -1,7 +1,7 @@
 """Parser Factory – Routes to the correct parser based on report type."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.parser.disaggregated import DisaggregatedParser
 from institutional_positioning_engine.parser.legacy import LegacyParser
@@ -30,8 +30,8 @@ class ParserFactory:
         return parser
 
     def parse(
-        self, report_type: str, data: List[Dict[str, Any]]
-    ) -> List[Dict[str, Any]]:
+        self, report_type: str, data: list[dict[str, Any]]
+    ) -> list[dict[str, Any]]:
         """Parse data using the correct parser."""
         parser = self.get_parser(report_type)
         logger.info(
@@ -39,6 +39,6 @@ class ParserFactory:
         )
         return parser.parse(data)
 
-    def get_supported_types(self) -> List[str]:
+    def get_supported_types(self) -> list[str]:
         """Get list of supported report types."""
         return list(self.parsers.keys())

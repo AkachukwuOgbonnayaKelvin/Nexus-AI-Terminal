@@ -3,8 +3,9 @@ GLB-004 Economic Events Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
-from typing import Optional
+
 from pydantic import BaseModel
+
 from ..constants import EventCategory, EventImpact, EventStatus
 
 
@@ -23,13 +24,13 @@ class EconomicEventInput(BaseModel):
 
     category: EventCategory
 
-    previous: Optional[float] = None
-    forecast: Optional[float] = None
-    actual: Optional[float] = None
+    previous: float | None = None
+    forecast: float | None = None
+    actual: float | None = None
 
-    unit: Optional[str] = None
+    unit: str | None = None
 
-    revision: Optional[float] = None
+    revision: float | None = None
 
     source: str
 

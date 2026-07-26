@@ -4,12 +4,11 @@ Phase 5: Asset-Class Intelligence - Asset-Class Rating Engine
 Calculates ratings for asset classes from entity ratings.
 """
 
-from typing import Dict, List
 from statistics import mean
 
-from ..contracts import GlobalEntityRating, AssetClassRating, AssetClass, Direction
-from .mapper import AssetClassMapper
+from ..contracts import AssetClass, AssetClassRating, Direction, GlobalEntityRating
 from ..entity.direction import classify_direction
+from .mapper import AssetClassMapper
 
 
 class AssetClassRatingEngine:
@@ -24,7 +23,7 @@ class AssetClassRatingEngine:
     """
 
     def rate_asset_class(
-        self, asset_class: AssetClass, ratings: List[GlobalEntityRating]
+        self, asset_class: AssetClass, ratings: list[GlobalEntityRating]
     ) -> AssetClassRating:
         """
         Rate a single asset class from its entity ratings.
@@ -86,8 +85,8 @@ class AssetClassRatingEngine:
         )
 
     def rate_asset_classes(
-        self, grouped: Dict[AssetClass, List[GlobalEntityRating]]
-    ) -> List[AssetClassRating]:
+        self, grouped: dict[AssetClass, list[GlobalEntityRating]]
+    ) -> list[AssetClassRating]:
         """
         Rate multiple asset classes from grouped ratings.
 
@@ -105,9 +104,9 @@ class AssetClassRatingEngine:
 
         return ratings
 
-    def _extract_drivers(self, ratings: List[GlobalEntityRating]) -> List[str]:
+    def _extract_drivers(self, ratings: list[GlobalEntityRating]) -> list[str]:
         """Extract drivers from entity ratings."""
-        driver_map: Dict[str, float] = {}
+        driver_map: dict[str, float] = {}
 
         for r in ratings:
             for driver in r.drivers:
@@ -119,9 +118,9 @@ class AssetClassRatingEngine:
         sorted_drivers = sorted(driver_map.items(), key=lambda x: x[1], reverse=True)
         return [d[0] for d in sorted_drivers[:5]]
 
-    def _extract_risks(self, ratings: List[GlobalEntityRating]) -> List[str]:
+    def _extract_risks(self, ratings: list[GlobalEntityRating]) -> list[str]:
         """Extract risks from entity ratings."""
-        risk_map: Dict[str, float] = {}
+        risk_map: dict[str, float] = {}
 
         for r in ratings:
             for risk in r.risks:
@@ -134,7 +133,7 @@ class AssetClassRatingEngine:
         return [r[0] for r in sorted_risks[:5]]
 
     def _calculate_regime_compatibility(
-        self, ratings: List[GlobalEntityRating]
+        self, ratings: list[GlobalEntityRating]
     ) -> float:
         """Calculate regime compatibility from entity ratings."""
         if not ratings:

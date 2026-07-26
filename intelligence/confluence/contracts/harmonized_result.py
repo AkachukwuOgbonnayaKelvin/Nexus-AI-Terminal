@@ -8,10 +8,9 @@ Represents the synthesized intelligence for a single entity.
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import List, Dict
 
-from .normalized_signal import Direction
 from .evidence import EvidenceRecord
+from .normalized_signal import Direction
 
 
 class ConflictLevel(str, Enum):
@@ -44,12 +43,12 @@ class HarmonizedResult:
     evidence_count: int
 
     # OPTIONAL FIELDS (with defaults)
-    supporting_engines: List[str] = field(default_factory=list)
-    contradicting_engines: List[str] = field(default_factory=list)
-    evidence_records: List[EvidenceRecord] = field(default_factory=list)
-    drivers: List[str] = field(default_factory=list)
-    risks: List[str] = field(default_factory=list)
-    weighted_contributions: Dict[str, float] = field(default_factory=dict)
+    supporting_engines: list[str] = field(default_factory=list)
+    contradicting_engines: list[str] = field(default_factory=list)
+    evidence_records: list[EvidenceRecord] = field(default_factory=list)
+    drivers: list[str] = field(default_factory=list)
+    risks: list[str] = field(default_factory=list)
+    weighted_contributions: dict[str, float] = field(default_factory=dict)
     timestamp: datetime = field(default_factory=datetime.utcnow)
     version: str = "1.0"
 

@@ -1,7 +1,7 @@
 """CFTC PRE API Client – Uses actual dataset IDs."""
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -23,7 +23,7 @@ class PREAPIClient:
 
     def get_latest_report(
         self, report_type: str = "disaggregated"
-    ) -> Optional[List[Dict[str, Any]]]:
+    ) -> list[dict[str, Any]] | None:
         """Get the latest report for a specific type."""
         dataset_id = self.datasets.get(report_type)
         if not dataset_id:

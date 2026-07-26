@@ -1,7 +1,6 @@
 """Universal COT Record DTO."""
 
 from datetime import datetime
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -18,41 +17,41 @@ class UniversalCOTRecord(BaseModel):
     open_interest: int
 
     # Dealer positions
-    dealer_long: Optional[int] = None
-    dealer_short: Optional[int] = None
-    dealer_spreading: Optional[int] = None
+    dealer_long: int | None = None
+    dealer_short: int | None = None
+    dealer_spreading: int | None = None
 
     # Commercial positions
-    commercial_long: Optional[int] = None
-    commercial_short: Optional[int] = None
-    commercial_spreading: Optional[int] = None
+    commercial_long: int | None = None
+    commercial_short: int | None = None
+    commercial_spreading: int | None = None
 
     # Asset Manager positions
-    asset_manager_long: Optional[int] = None
-    asset_manager_short: Optional[int] = None
-    asset_manager_spreading: Optional[int] = None
+    asset_manager_long: int | None = None
+    asset_manager_short: int | None = None
+    asset_manager_spreading: int | None = None
 
     # Leveraged Fund positions
-    leveraged_long: Optional[int] = None
-    leveraged_short: Optional[int] = None
-    leveraged_spreading: Optional[int] = None
+    leveraged_long: int | None = None
+    leveraged_short: int | None = None
+    leveraged_spreading: int | None = None
 
     # Other Reportables
-    other_reportable_long: Optional[int] = None
-    other_reportable_short: Optional[int] = None
+    other_reportable_long: int | None = None
+    other_reportable_short: int | None = None
 
     # Nonreportables
-    nonreportable_long: Optional[int] = None
-    nonreportable_short: Optional[int] = None
+    nonreportable_long: int | None = None
+    nonreportable_short: int | None = None
 
     # Changes (calculated later)
-    change_open_interest: Optional[int] = None
-    change_dealer_long: Optional[int] = None
-    change_dealer_short: Optional[int] = None
-    change_asset_manager_long: Optional[int] = None
-    change_asset_manager_short: Optional[int] = None
-    change_leveraged_long: Optional[int] = None
-    change_leveraged_short: Optional[int] = None
+    change_open_interest: int | None = None
+    change_dealer_long: int | None = None
+    change_dealer_short: int | None = None
+    change_asset_manager_long: int | None = None
+    change_asset_manager_short: int | None = None
+    change_leveraged_long: int | None = None
+    change_leveraged_short: int | None = None
 
     confidence: float = 1.0
     metadata: dict = {}

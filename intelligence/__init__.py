@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Intelligence Layer - Universal Intelligence Contract
 
@@ -16,17 +15,17 @@ Core Components:
 - BaseEngine: Universal lifecycle for all intelligence engines
 """
 
+from intelligence.base.intelligence_engine import IntelligenceEngine
+from intelligence.schemas.engine_report import EngineReport, ReportStatus
 from intelligence.schemas.evidence import Evidence, EvidenceDirection, EvidenceStrength
 from intelligence.schemas.intelligence_signal import (
     IntelligenceSignal,
-    SignalType,
     SignalConfidence,
+    SignalType,
 )
-from intelligence.schemas.risk import Risk, RiskSeverity, RiskProbability
-from intelligence.schemas.engine_report import EngineReport, ReportStatus
-from intelligence.schemas.workspace_snapshot import WorkspaceSnapshot
+from intelligence.schemas.risk import Risk, RiskProbability, RiskSeverity
 from intelligence.schemas.standard_report import StandardReport
-from intelligence.base.intelligence_engine import IntelligenceEngine
+from intelligence.schemas.workspace_snapshot import WorkspaceSnapshot
 
 __version__ = "1.0.0"
 __all__ = [

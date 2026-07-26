@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Phase 7.7 & 7.8: GUI & Orchestrator Feeders - Integration Test
 
@@ -7,25 +6,25 @@ Tests the final two feeders:
 2. Orchestrator Feeder -> Master Orchestrator
 """
 
-import sys
 import os
+import sys
 from datetime import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../../.."))
 
 from intelligence.confluence.contracts import (
-    GlobalIntelligenceOutput,
-    GlobalEntityRating,
-    AssetClassRating,
-    EntityType,
-    Direction,
     AssetClass,
+    AssetClassRating,
+    Direction,
+    EntityType,
+    GlobalEntityRating,
+    GlobalIntelligenceOutput,
 )
 from intelligence.global_hub import (
-    StateManager,
-    IngestionGateway,
     GUIPresentationFeeder,
+    IngestionGateway,
     OrchestratorFeeder,
+    StateManager,
 )
 
 

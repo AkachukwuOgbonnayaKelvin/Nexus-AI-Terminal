@@ -1,9 +1,9 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 
 class CentralBankValidator:
-    def validate(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def validate(self, record: dict[str, Any]) -> dict[str, Any]:
         required = [
             "event_id",
             "bank",

@@ -1,9 +1,8 @@
 """Report Downloader – downloads reports from the catalog."""
 
 import logging
-from typing import Any, Dict
-
 from pathlib import Path
+from typing import Any
 
 from institutional_positioning_engine.discovery.catalog import ReportCatalog
 from institutional_positioning_engine.providers.cftc.connector import CFTCConnector
@@ -20,7 +19,7 @@ class ReportDownloader:
         self.archive_dir.mkdir(parents=True, exist_ok=True)
         self.catalog = ReportCatalog()
 
-    def download_report(self, report: Dict[str, Any]) -> bool:
+    def download_report(self, report: dict[str, Any]) -> bool:
         """Download a single report from the catalog."""
         url = report.get("url")
         if not url:

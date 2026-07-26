@@ -1,7 +1,7 @@
 """Legacy COT Report Parser."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.parser.base_parser import BaseParser
 
@@ -14,7 +14,7 @@ class LegacyParser(BaseParser):
     def get_report_type(self) -> str:
         return "legacy"
 
-    def parse(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def parse(self, data: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Parse legacy COT data."""
         records = []
 

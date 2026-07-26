@@ -2,14 +2,15 @@
 GLB-004 Economic Events Engine - Asset Impact Matrix
 """
 
-from typing import Dict, List, Any
+from typing import Any
+
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
 
 
@@ -36,7 +37,7 @@ class EventsAssetImpactMatrix:
 
     @classmethod
     def generate(
-        cls, events: List[Dict[str, Any]], confidence: float
+        cls, events: list[dict[str, Any]], confidence: float
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from events"""
         impacts = {}
@@ -65,7 +66,7 @@ class EventsAssetImpactMatrix:
         )
 
     @classmethod
-    def _group_events_by_currency(cls, events: List[Dict]) -> Dict[str, List[Dict]]:
+    def _group_events_by_currency(cls, events: list[dict]) -> dict[str, list[dict]]:
         """Group events by currency"""
         grouped = {}
         for event in events:
@@ -77,7 +78,7 @@ class EventsAssetImpactMatrix:
 
     @classmethod
     def _calculate_asset_impact(
-        cls, asset: str, events_by_currency: Dict, confidence: float
+        cls, asset: str, events_by_currency: dict, confidence: float
     ) -> AssetImpact:
         """Calculate impact for a single asset"""
         # Determine currency exposure
@@ -128,7 +129,7 @@ class EventsAssetImpactMatrix:
 
     @classmethod
     def _calculate_currency_score(
-        cls, currency: str, events_by_currency: Dict, confidence: float
+        cls, currency: str, events_by_currency: dict, confidence: float
     ) -> float:
         """Calculate score for a currency based on events"""
         events = events_by_currency.get(currency, [])
@@ -200,7 +201,7 @@ class EventsAssetImpactMatrix:
         return Direction.NEUTRAL
 
     @classmethod
-    def _get_drivers(cls, base: str, quote: str, events_by_currency: Dict) -> List[str]:
+    def _get_drivers(cls, base: str, quote: str, events_by_currency: dict) -> list[str]:
         """Get drivers for the asset"""
         drivers = []
         base_events = events_by_currency.get(base, [])

@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """
 LCV Gate - Logic Confirmation Validation
 Verifies that the engine's business logic is correct
 """
 
-from pathlib import Path
-from typing import Dict, Any, List, Tuple
 import importlib.util
 import sys
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from resolver import get_resolver
@@ -21,7 +20,7 @@ class LCVGate:
         self.description = "Logic Confirmation Validation"
         self.resolver = get_resolver()
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         result = {
             "name": self.name,
             "description": self.description,
@@ -88,7 +87,7 @@ class LCVGate:
 
     def _get_logic_checks(
         self, identity, engine_path: Path
-    ) -> List[Tuple[str, callable]]:
+    ) -> list[tuple[str, callable]]:
         """Get logic checks for engine type"""
         checks = []
 
@@ -142,7 +141,7 @@ class LCVGate:
 
         return checks
 
-    def _check_imports(self, engine_path: Path) -> Dict[str, Any]:
+    def _check_imports(self, engine_path: Path) -> dict[str, Any]:
         try:
             engine_parent = str(engine_path.parent)
             if engine_parent not in sys.path:
@@ -164,7 +163,7 @@ class LCVGate:
         except Exception as e:
             return {"status": "WARN", "message": f"Import check failed: {e}"}
 
-    def _check_net_position_calculation(self) -> Dict[str, Any]:
+    def _check_net_position_calculation(self) -> dict[str, Any]:
         long, short = 100000, 40000
         expected = 60000
         actual = long - short
@@ -175,7 +174,7 @@ class LCVGate:
             "message": f"Net position failed: got {actual}, expected {expected}",
         }
 
-    def _check_long_short_ratio(self) -> Dict[str, Any]:
+    def _check_long_short_ratio(self) -> dict[str, Any]:
         long, short = 100000, 40000
         expected = 2.5
         actual = long / short
@@ -186,7 +185,7 @@ class LCVGate:
             "message": f"Ratio failed: got {actual}, expected {expected}",
         }
 
-    def _check_bias_detection(self) -> Dict[str, Any]:
+    def _check_bias_detection(self) -> dict[str, Any]:
         long, short = 100000, 40000
         bias = "Bullish" if long > short else "Bearish"
         expected = "Bullish"
@@ -197,26 +196,26 @@ class LCVGate:
             "message": f"Bias failed: got {bias}, expected {expected}",
         }
 
-    def _check_policy_detection(self) -> Dict[str, Any]:
+    def _check_policy_detection(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Policy detection passed"}
 
-    def _check_hawkish_dovish(self) -> Dict[str, Any]:
+    def _check_hawkish_dovish(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Hawkish/Dovish classification passed"}
 
-    def _check_sentiment_analysis(self) -> Dict[str, Any]:
+    def _check_sentiment_analysis(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Sentiment analysis passed"}
 
-    def _check_entity_extraction(self) -> Dict[str, Any]:
+    def _check_entity_extraction(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Entity extraction passed"}
 
-    def _check_impact_scoring(self) -> Dict[str, Any]:
+    def _check_impact_scoring(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Impact scoring passed"}
 
-    def _check_surprise_analysis(self) -> Dict[str, Any]:
+    def _check_surprise_analysis(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Surprise analysis passed"}
 
-    def _check_indicator_tracking(self) -> Dict[str, Any]:
+    def _check_indicator_tracking(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Indicator tracking passed"}
 
-    def _check_trend_analysis(self) -> Dict[str, Any]:
+    def _check_trend_analysis(self) -> dict[str, Any]:
         return {"status": "PASS", "message": "Trend analysis passed"}

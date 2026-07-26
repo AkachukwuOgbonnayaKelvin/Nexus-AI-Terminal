@@ -1,7 +1,7 @@
 """CFTC Provider Manager – Orchestrates multiple data sources."""
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from institutional_positioning_engine.providers.cftc.historical import (
     HistoricalArchiveClient,
@@ -22,7 +22,7 @@ class CFTCProviderManager:
             "historical": self.historical,
         }
 
-    def get_latest_report(self) -> Optional[List[Dict[str, Any]]]:
+    def get_latest_report(self) -> list[dict[str, Any]] | None:
         """Get the latest report from the best available source."""
         # Try PRE API first
         try:
@@ -46,7 +46,7 @@ class CFTCProviderManager:
 
         return None
 
-    def get_historical_report(self, year: int) -> Optional[List[Dict[str, Any]]]:
+    def get_historical_report(self, year: int) -> list[dict[str, Any]] | None:
         """Get historical reports from the best available source."""
         try:
             data = self.historical.get_year(year)
@@ -58,7 +58,7 @@ class CFTCProviderManager:
 
         return None
 
-    def health_check(self) -> Dict[str, bool]:
+    def health_check(self) -> dict[str, bool]:
         """Check health of all sources."""
         return {
             "pre_api": self.pre_api.health_check(),

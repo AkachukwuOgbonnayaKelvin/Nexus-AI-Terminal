@@ -3,4 +3,4 @@
 from .adapter import SNBAdapter
 from .connector import SNBConnector
 
-__all__ = ["SNBConnector", "SNBAdapter"]
+__all__ = ["SNBAdapter", "SNBConnector"]

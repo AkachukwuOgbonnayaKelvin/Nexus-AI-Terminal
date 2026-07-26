@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from providers.interfaces.base_provider import BaseProvider
 
@@ -16,28 +16,28 @@ class InvestingConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return []
 
     def health_check(self) -> bool:
         return True
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"macroeconomic_events": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_minute": 10}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return []
 
     def supports_symbol(self, symbol: str) -> bool:
         return True
 
-    def get_today_events(self) -> List[Dict[str, Any]]:
+    def get_today_events(self) -> list[dict[str, Any]]:
         today = datetime.now().strftime("%Y-%m-%d")
         return [
             {

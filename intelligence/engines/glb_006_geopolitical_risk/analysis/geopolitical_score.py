@@ -3,7 +3,6 @@ GLB-006 Geopolitical Risk Intelligence Engine - Geopolitical Score
 """
 
 import logging
-from typing import Dict, List
 
 from ..input.schemas import GeopoliticalEventInput
 from .severity_analyzer import SeverityAnalyzer
@@ -44,7 +43,7 @@ class GeopoliticalScoreEngine:
 
         return min(100, risk_score)
 
-    def calculate_global_state(self, events: List[GeopoliticalEventInput]) -> Dict:
+    def calculate_global_state(self, events: list[GeopoliticalEventInput]) -> dict:
         """
         Calculate global geopolitical state from multiple events.
 

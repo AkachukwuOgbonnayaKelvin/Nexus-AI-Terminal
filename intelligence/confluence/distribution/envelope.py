@@ -7,8 +7,8 @@ Wraps outputs with metadata for routing and tracking.
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from typing import Optional, Generic, TypeVar
 from enum import Enum
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -53,10 +53,10 @@ class OutputEnvelope(Generic[T]):
 
     # Timestamps
     generated_at: datetime = field(default_factory=datetime.utcnow)
-    valid_until: Optional[datetime] = None
+    valid_until: datetime | None = None
 
     # Payload
-    payload: Optional[T] = None
+    payload: T | None = None
 
     # Additional metadata
     metadata: dict = field(default_factory=dict)
@@ -97,7 +97,7 @@ class EnvelopeFactory:
 
     @staticmethod
     def create_global_envelope(
-        payload: T, metadata: Optional[dict] = None
+        payload: T, metadata: dict | None = None
     ) -> OutputEnvelope[T]:
         """
         Create a FINAL global intelligence envelope.
@@ -118,7 +118,7 @@ class EnvelopeFactory:
 
     @staticmethod
     def create_asset_feed_envelope(
-        payload: T, symbol: str, metadata: Optional[dict] = None
+        payload: T, symbol: str, metadata: dict | None = None
     ) -> OutputEnvelope[T]:
         """
         Create a SEMI_FINISHED asset feed envelope.
@@ -143,7 +143,7 @@ class EnvelopeFactory:
 
     @staticmethod
     def create_asset_feeds_envelope(
-        payloads: list, metadata: Optional[dict] = None
+        payloads: list, metadata: dict | None = None
     ) -> list:
         """
         Create multiple asset feed envelopes.

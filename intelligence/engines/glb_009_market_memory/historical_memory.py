@@ -9,7 +9,6 @@ import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List
 
 import numpy as np
 
@@ -32,8 +31,8 @@ class HistoricalMemory(BaseEngine):
 
     def __init__(self):
         super().__init__()
-        self.historical_windows: List[Dict] = []
-        self.analogues: List[Dict] = []
+        self.historical_windows: list[dict] = []
+        self.analogues: list[dict] = []
         self._load_historical_data()
 
     def _load_historical_data(self) -> None:
@@ -109,7 +108,7 @@ class HistoricalMemory(BaseEngine):
             logger.error(f"GLB-009 processing error: {e}")
             return self._error_output(str(e))
 
-    def find_analogues(self, current_state: Dict) -> List[Dict]:
+    def find_analogues(self, current_state: dict) -> list[dict]:
         """
         Find historical windows similar to current state.
         """
@@ -136,7 +135,7 @@ class HistoricalMemory(BaseEngine):
 
         return analogues[:10]
 
-    def calculate_forward_bias(self, analogues: List[Dict], asset: str) -> Dict:
+    def calculate_forward_bias(self, analogues: list[dict], asset: str) -> dict:
         """
         Calculate forward bias from analogues.
         """
@@ -183,7 +182,7 @@ class HistoricalMemory(BaseEngine):
             "risks": [],
         }
 
-    def _calculate_similarity(self, current: Dict, window: Dict) -> float:
+    def _calculate_similarity(self, current: dict, window: dict) -> float:
         """
         Calculate similarity between current state and historical window.
         """

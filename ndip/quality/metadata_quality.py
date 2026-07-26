@@ -1,10 +1,10 @@
 """Metadata Quality Controller – scores and assesses metadata quality."""
 
-from typing import Any, Dict
+from typing import Any
 
 
 class MetadataQualityController:
-    def score(self, record: Dict[str, Any], provider: str) -> float:
+    def score(self, record: dict[str, Any], provider: str) -> float:
         """Calculate quality score based on completeness and provider."""
         score = 1.0
         # Reduce score for missing fields

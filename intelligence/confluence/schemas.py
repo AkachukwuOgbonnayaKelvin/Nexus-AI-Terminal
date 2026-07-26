@@ -5,9 +5,10 @@ All GLB engines must eventually speak this common language.
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
-from pydantic import BaseModel, Field
 from enum import Enum
+from typing import Any
+
+from pydantic import BaseModel, Field
 
 
 class SignalType(str, Enum):
@@ -66,12 +67,12 @@ class NormalizedSignal(BaseModel):
     freshness: float = Field(ge=0, le=1, default=0.9)
 
     # Drivers and evidence
-    drivers: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
     evidence_quality: float = Field(ge=0, le=1, default=0.7)
     reliability: float = Field(ge=0, le=1, default=0.7)
 
     # Source details
-    raw_report: Optional[Dict[str, Any]] = None
+    raw_report: dict[str, Any] | None = None
 
     def is_fresh(self, max_age_seconds: int = 3600) -> bool:
         """Check if signal is fresh."""
@@ -97,7 +98,7 @@ class Evidence(BaseModel):
     confidence: float = Field(ge=0, le=100)
 
     # Source engines
-    source_engines: List[str]
+    source_engines: list[str]
     source_count: int
 
     # Quality metrics
@@ -110,10 +111,10 @@ class Evidence(BaseModel):
     conflict_level: ConflictLevel
 
     # Drivers
-    drivers: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
 
     # Raw signals
-    raw_signals: List[NormalizedSignal] = Field(default_factory=list)
+    raw_signals: list[NormalizedSignal] = Field(default_factory=list)
 
 
 # ============================================================
@@ -130,10 +131,10 @@ class CurrencyRating(BaseModel):
     rank: int
     confidence: float = Field(ge=0, le=100)
 
-    supporting_engines: List[str] = Field(default_factory=list)
-    contradicting_engines: List[str] = Field(default_factory=list)
+    supporting_engines: list[str] = Field(default_factory=list)
+    contradicting_engines: list[str] = Field(default_factory=list)
 
-    drivers: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
     conflict_level: ConflictLevel
 
     evidence_count: int
@@ -153,8 +154,8 @@ class AssetClassRating(BaseModel):
     direction: Direction
     confidence: float = Field(ge=0, le=100)
 
-    drivers: List[str] = Field(default_factory=list)
-    supporting_engines: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
+    supporting_engines: list[str] = Field(default_factory=list)
 
     evidence_count: int
 
@@ -174,13 +175,13 @@ class AssetRating(BaseModel):
     confidence: float = Field(ge=0, le=100)
 
     # Currency breakdown for FX pairs
-    base_currency_score: Optional[float] = None
-    quote_currency_score: Optional[float] = None
+    base_currency_score: float | None = None
+    quote_currency_score: float | None = None
 
-    supporting_engines: List[str] = Field(default_factory=list)
-    conflicts: List[str] = Field(default_factory=list)
+    supporting_engines: list[str] = Field(default_factory=list)
+    conflicts: list[str] = Field(default_factory=list)
 
-    drivers: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
     evidence_count: int
 
 
@@ -196,7 +197,7 @@ class Opportunity(BaseModel):
     action: str  # BUY, SELL, HOLD
     score: float = Field(ge=-100, le=100)
     confidence: float = Field(ge=0, le=100)
-    drivers: List[str] = Field(default_factory=list)
+    drivers: list[str] = Field(default_factory=list)
 
 
 class Risk(BaseModel):
@@ -206,7 +207,7 @@ class Risk(BaseModel):
     category: str
     severity: str  # HIGH, MEDIUM, LOW
     probability: float = Field(ge=0, le=1)
-    affected_assets: List[str] = Field(default_factory=list)
+    affected_assets: list[str] = Field(default_factory=list)
 
 
 class ConfluenceReport(BaseModel):
@@ -219,23 +220,23 @@ class ConfluenceReport(BaseModel):
     generated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Global State
-    global_regime: Optional[str] = None
+    global_regime: str | None = None
     global_risk_score: float = Field(ge=0, le=100, default=50)
     dominant_theme: str = "UNKNOWN"
     global_confidence: float = Field(ge=0, le=100, default=50)
 
     # Rankings
-    currency_rankings: List[CurrencyRating] = Field(default_factory=list)
-    asset_class_rankings: List[AssetClassRating] = Field(default_factory=list)
-    asset_ratings: List[AssetRating] = Field(default_factory=list)
+    currency_rankings: list[CurrencyRating] = Field(default_factory=list)
+    asset_class_rankings: list[AssetClassRating] = Field(default_factory=list)
+    asset_ratings: list[AssetRating] = Field(default_factory=list)
 
     # Opportunities and Risks
-    top_opportunities: List[Opportunity] = Field(default_factory=list)
-    top_risks: List[Risk] = Field(default_factory=list)
+    top_opportunities: list[Opportunity] = Field(default_factory=list)
+    top_risks: list[Risk] = Field(default_factory=list)
 
     # Engine Status
-    engines_processed: List[str] = Field(default_factory=list)
-    engines_missing: List[str] = Field(default_factory=list)
+    engines_processed: list[str] = Field(default_factory=list)
+    engines_missing: list[str] = Field(default_factory=list)
 
     # Metadata
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

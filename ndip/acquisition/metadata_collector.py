@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 from ndip.normalization.metadata_normalizer import MetadataNormalizer
 from ndip.reference_data.manager import ReferenceDataManager
@@ -17,7 +17,7 @@ class MetadataAcquisitionCollector:
         self.normalizer = MetadataNormalizer()
         self.rdm = ReferenceDataManager()
 
-    async def collect(self, symbols: List[str]) -> Dict[str, Any]:
+    async def collect(self, symbols: list[str]) -> dict[str, Any]:
         results = {}
         for symbol in symbols:
             found = False

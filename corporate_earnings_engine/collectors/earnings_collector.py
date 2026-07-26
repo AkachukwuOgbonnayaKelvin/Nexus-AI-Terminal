@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Earnings Collector - Collects earnings data from multiple sources"""
 
-from typing import List, Dict, Any, Optional
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-import sys
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
@@ -15,12 +14,12 @@ from corporate_earnings_engine.providers.registry import ProviderRegistry
 class EarningsCollector:
     """Collects earnings data from primary and secondary sources"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.registry = ProviderRegistry(config)
-        self._observations: List[EarningsObservation] = []
+        self._observations: list[EarningsObservation] = []
 
-    def collect(self, symbols: Optional[List[str]] = None) -> List[EarningsObservation]:
+    def collect(self, symbols: list[str] | None = None) -> list[EarningsObservation]:
         """Collect earnings data for symbols"""
         self._observations = []
 
@@ -39,7 +38,7 @@ class EarningsCollector:
 
         return self._observations
 
-    def _collect_for_symbol(self, symbol: str) -> List[EarningsObservation]:
+    def _collect_for_symbol(self, symbol: str) -> list[EarningsObservation]:
         """Collect earnings for a single symbol with failover"""
 
         end_date = datetime.now()
@@ -63,5 +62,5 @@ class EarningsCollector:
 
         return []
 
-    def get_observations(self) -> List[EarningsObservation]:
+    def get_observations(self) -> list[EarningsObservation]:
         return self._observations

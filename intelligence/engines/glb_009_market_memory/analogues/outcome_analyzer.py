@@ -3,8 +3,8 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Outcome Analyze
 """
 
 import logging
-from typing import Dict, Any, List
-from statistics import median, mean, stdev
+from statistics import mean, median, stdev
+from typing import Any
 
 from ..constants import TimeHorizon
 
@@ -17,11 +17,11 @@ class OutcomeAnalyzer:
     def __init__(self):
         self._available_assets = None
 
-    def set_available_assets(self, assets: List[str]) -> None:
+    def set_available_assets(self, assets: list[str]) -> None:
         """Set the list of assets available in the historical windows"""
         self._available_assets = assets
 
-    def analyze_outcomes(self, analogues: List[Dict], asset: str) -> Dict[str, Any]:
+    def analyze_outcomes(self, analogues: list[dict], asset: str) -> dict[str, Any]:
         """
         Analyze historical outcomes for a specific asset.
         """
@@ -139,7 +139,7 @@ class OutcomeAnalyzer:
             "confidence": min(95, 50 + len(analogues) * 1.5),
         }
 
-    def _compute_horizon_stats(self, returns: List[float]) -> Dict[str, Any]:
+    def _compute_horizon_stats(self, returns: list[float]) -> dict[str, Any]:
         if not returns:
             return {
                 "returns": [],

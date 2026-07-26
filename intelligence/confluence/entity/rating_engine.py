@@ -4,16 +4,15 @@ Phase 4: Global Entity Intelligence - Entity Rating Engine
 Calculates entity ratings from harmonized results.
 """
 
-from typing import List, Dict
 from statistics import mean
 
 from ..contracts import (
-    HarmonizedResult,
-    GlobalEntityRating,
+    ConflictLevel,
     Direction,
     EntityDriver,
     EntityRisk,
-    ConflictLevel,
+    GlobalEntityRating,
+    HarmonizedResult,
 )
 from .classifier import EntityClassifier
 from .direction import classify_direction
@@ -35,7 +34,7 @@ class EntityRatingEngine:
         self._driver_extractor = None
         self._risk_detector = None
 
-    def rate_entity(self, results: List[HarmonizedResult]) -> GlobalEntityRating:
+    def rate_entity(self, results: list[HarmonizedResult]) -> GlobalEntityRating:
         """
         Rate a single entity from its harmonized results.
 
@@ -100,8 +99,8 @@ class EntityRatingEngine:
         )
 
     def rate_entities(
-        self, grouped_results: Dict[str, List[HarmonizedResult]]
-    ) -> List[GlobalEntityRating]:
+        self, grouped_results: dict[str, list[HarmonizedResult]]
+    ) -> list[GlobalEntityRating]:
         """
         Rate multiple entities from grouped results.
 
@@ -121,7 +120,7 @@ class EntityRatingEngine:
 
         return ratings
 
-    def _calculate_weighted_confidence(self, results: List[HarmonizedResult]) -> float:
+    def _calculate_weighted_confidence(self, results: list[HarmonizedResult]) -> float:
         """Calculate weighted confidence from results."""
         if not results:
             return 0.0
@@ -141,7 +140,7 @@ class EntityRatingEngine:
         return weighted_sum / total_weight
 
     def _determine_conflict_level(
-        self, results: List[HarmonizedResult]
+        self, results: list[HarmonizedResult]
     ) -> ConflictLevel:
         """Determine overall conflict level."""
         if not results:
@@ -157,9 +156,9 @@ class EntityRatingEngine:
             return ConflictLevel.LOW
         return ConflictLevel.NONE
 
-    def _extract_drivers(self, results: List[HarmonizedResult]) -> List[EntityDriver]:
+    def _extract_drivers(self, results: list[HarmonizedResult]) -> list[EntityDriver]:
         """Extract drivers from results."""
-        driver_map: Dict[str, List[float]] = {}
+        driver_map: dict[str, list[float]] = {}
 
         for r in results:
             for driver in r.drivers:
@@ -185,9 +184,9 @@ class EntityRatingEngine:
         drivers.sort(key=lambda d: d.strength, reverse=True)
         return drivers[:5]
 
-    def _detect_risks(self, results: List[HarmonizedResult]) -> List[EntityRisk]:
+    def _detect_risks(self, results: list[HarmonizedResult]) -> list[EntityRisk]:
         """Detect risks from results."""
-        risk_map: Dict[str, List[float]] = {}
+        risk_map: dict[str, list[float]] = {}
 
         for r in results:
             for risk in r.risks:
@@ -208,7 +207,7 @@ class EntityRatingEngine:
         risks.sort(key=lambda r: r.severity, reverse=True)
         return risks[:5]
 
-    def _calculate_regime_compatibility(self, results: List[HarmonizedResult]) -> float:
+    def _calculate_regime_compatibility(self, results: list[HarmonizedResult]) -> float:
         """Calculate regime compatibility."""
         if not results:
             return 0.5

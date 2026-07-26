@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """DQV Gate - Data Quality Validation"""
 
-from typing import Dict, Any
+from typing import Any
 
 
 class DQVGate:
@@ -11,7 +10,7 @@ class DQVGate:
         self.name = "DQV"
         self.description = "Data Quality Validation"
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         result = {
             "name": self.name,
             "description": self.description,

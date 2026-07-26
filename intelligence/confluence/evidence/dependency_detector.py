@@ -5,8 +5,8 @@ Detects dependencies between evidence signals from different engines.
 """
 
 import logging
-from typing import Dict, List, Set, Any
 from collections import defaultdict
+from typing import Any
 
 from ..schemas import NormalizedSignal
 
@@ -19,7 +19,7 @@ class DependencyDetector:
     """
 
     def __init__(self):
-        self._dependency_map: Dict[str, Set[str]] = defaultdict(set)
+        self._dependency_map: dict[str, set[str]] = defaultdict(set)
         self._register_default_dependencies()
 
     def _register_default_dependencies(self) -> None:
@@ -53,7 +53,7 @@ class DependencyDetector:
         self._dependency_map[engine1].add(engine2)
         self._dependency_map[engine2].add(engine1)
 
-    def register_dependencies(self, dependencies: List[tuple]) -> None:
+    def register_dependencies(self, dependencies: list[tuple]) -> None:
         """
         Register multiple dependencies.
         """
@@ -66,13 +66,13 @@ class DependencyDetector:
         """
         return engine2 in self._dependency_map.get(engine1, set())
 
-    def get_dependencies(self, engine: str) -> List[str]:
+    def get_dependencies(self, engine: str) -> list[str]:
         """
         Get all engines dependent on the given engine.
         """
         return list(self._dependency_map.get(engine, set()))
 
-    def detect_dependencies(self, signals: List[NormalizedSignal]) -> Dict[str, Any]:
+    def detect_dependencies(self, signals: list[NormalizedSignal]) -> dict[str, Any]:
         """
         Detect dependencies among signals.
         """
@@ -116,7 +116,7 @@ class DependencyDetector:
             else 1.0,
         }
 
-    def get_independence_factor(self, engine: str, other_engines: List[str]) -> float:
+    def get_independence_factor(self, engine: str, other_engines: list[str]) -> float:
         """
         Calculate independence factor for an engine against others.
         """
@@ -129,8 +129,8 @@ class DependencyDetector:
         return 1.0 - (dependent_count / total) if total > 0 else 1.0
 
     def get_evidence_independence(
-        self, signals: List[NormalizedSignal]
-    ) -> Dict[str, float]:
+        self, signals: list[NormalizedSignal]
+    ) -> dict[str, float]:
         """
         Get independence factor for each signal.
         """

@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """ACP v2.0: Architecture Compiler – Nexus Platform Guardian."""
 
-import sys
-from pathlib import Path
-import yaml
 import logging
-from typing import Dict, List, Set
+import sys
 from dataclasses import dataclass
+from pathlib import Path
+
+import yaml
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
@@ -27,18 +26,18 @@ class EngineSpec:
     version: str
     maturity: str
     type: str
-    components: Dict[str, bool]  # component -> required/optional
+    components: dict[str, bool]  # component -> required/optional
 
 
 @dataclass
 class ContractSpec:
     """Contract specification from contract.yaml."""
 
-    publishes: List[Dict[str, str]]
-    consumes: List[Dict[str, str]]
-    interfaces: Dict[str, List[str]]
-    dependencies: Dict[str, List[str]]
-    workflow: List[str]
+    publishes: list[dict[str, str]]
+    consumes: list[dict[str, str]]
+    interfaces: dict[str, list[str]]
+    dependencies: dict[str, list[str]]
+    workflow: list[str]
 
 
 class ACPCompiler:
@@ -46,11 +45,11 @@ class ACPCompiler:
 
     def __init__(self, root_path: str = "."):
         self.root = Path(root_path).resolve()
-        self.engines: Dict[str, EngineSpec] = {}
-        self.contracts: Dict[str, ContractSpec] = {}
-        self.graph: Dict[str, Set[str]] = {}
-        self.errors: List[Dict] = []
-        self.warnings: List[Dict] = []
+        self.engines: dict[str, EngineSpec] = {}
+        self.contracts: dict[str, ContractSpec] = {}
+        self.graph: dict[str, set[str]] = {}
+        self.errors: list[dict] = []
+        self.warnings: list[dict] = []
 
     def compile(self) -> bool:
         """Compile the entire platform architecture."""
@@ -127,7 +126,7 @@ class ACPCompiler:
         logger.info(f"Loaded {len(self.engines)} engine specifications")
         logger.info(f"Loaded {len(self.contracts)} contract specifications")
 
-    def _find_engines(self) -> List[Path]:
+    def _find_engines(self) -> list[Path]:
         """Find all engine directories."""
         engines = []
         for path in self.root.glob("**/*_engine"):
@@ -249,7 +248,6 @@ class ACPCompiler:
         # This would compare current state against historical state
         # For now, we check for direct imports that bypass NDIP
         # Implementation would require historical tracking
-        pass
 
     def _print_report(self) -> None:
         """Print the compilation report."""

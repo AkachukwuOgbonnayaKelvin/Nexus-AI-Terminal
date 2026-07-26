@@ -7,11 +7,11 @@ from .industry_loader import IndustryLoader
 from .sector_loader import SectorLoader
 
 __all__ = [
-    "ExchangeLoader",
-    "CurrencyLoader",
-    "CountryLoader",
-    "SectorLoader",
-    "IndustryLoader",
-    "CompanyLoader",
     "AssetTypeLoader",
+    "CompanyLoader",
+    "CountryLoader",
+    "CurrencyLoader",
+    "ExchangeLoader",
+    "IndustryLoader",
+    "SectorLoader",
 ]

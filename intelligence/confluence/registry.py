@@ -4,7 +4,7 @@ Confluence Engine - Engine Registry
 Maps engine IDs to their reliability scores and normalizer functions.
 """
 
-from typing import Dict, Optional, Callable, List
+from collections.abc import Callable
 from dataclasses import dataclass
 
 
@@ -16,7 +16,7 @@ class EngineEntry:
     name: str
     domain: str
     reliability: float = 0.80
-    normalizer: Optional[Callable] = None
+    normalizer: Callable | None = None
     is_available: bool = True
 
 
@@ -24,7 +24,7 @@ class EngineRegistry:
     """Registry of all GLB engines"""
 
     def __init__(self):
-        self._engines: Dict[str, EngineEntry] = {}
+        self._engines: dict[str, EngineEntry] = {}
         self._register_defaults()
 
     def _register_defaults(self):
@@ -90,7 +90,7 @@ class EngineRegistry:
         name: str,
         domain: str,
         reliability: float = 0.80,
-        normalizer: Optional[Callable] = None,
+        normalizer: Callable | None = None,
     ):
         """Register an engine"""
         self._engines[engine_id] = EngineEntry(
@@ -101,15 +101,15 @@ class EngineRegistry:
             normalizer=normalizer,
         )
 
-    def get(self, engine_id: str) -> Optional[EngineEntry]:
+    def get(self, engine_id: str) -> EngineEntry | None:
         """Get an engine entry"""
         return self._engines.get(engine_id)
 
-    def get_all(self) -> Dict[str, EngineEntry]:
+    def get_all(self) -> dict[str, EngineEntry]:
         """Get all engine entries"""
         return self._engines.copy()
 
-    def get_engine_ids(self) -> List[str]:
+    def get_engine_ids(self) -> list[str]:
         """Get all engine IDs"""
         return list(self._engines.keys())
 
@@ -123,7 +123,7 @@ class EngineRegistry:
         if engine_id in self._engines:
             self._engines[engine_id].is_available = is_available
 
-    def get_available_engines(self) -> Dict[str, EngineEntry]:
+    def get_available_engines(self) -> dict[str, EngineEntry]:
         """Get all available engines"""
         return {
             eid: entry for eid, entry in self._engines.items() if entry.is_available

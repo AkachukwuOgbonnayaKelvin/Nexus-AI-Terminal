@@ -3,9 +3,8 @@ GLB-005 Central Bank Intelligence Engine - Policy Analyzer
 """
 
 import logging
-from typing import Dict, List
 
-from ..constants import PolicyStance, CENTRAL_BANK_METADATA
+from ..constants import CENTRAL_BANK_METADATA, PolicyStance
 from ..input.schemas import CentralBankInput
 
 logger = logging.getLogger(__name__)
@@ -17,7 +16,7 @@ class PolicyAnalyzer:
     def __init__(self):
         self._metadata = CENTRAL_BANK_METADATA
 
-    def analyze_bank(self, bank_data: CentralBankInput) -> Dict:
+    def analyze_bank(self, bank_data: CentralBankInput) -> dict:
         """
         Analyze a single central bank's policy stance.
 
@@ -43,7 +42,7 @@ class PolicyAnalyzer:
             "has_balance_sheet": bank_data.balance_sheet is not None,
         }
 
-    def analyze_all_banks(self, banks: List[CentralBankInput]) -> Dict:
+    def analyze_all_banks(self, banks: list[CentralBankInput]) -> dict:
         """
         Analyze all central banks and derive global policy conditions.
 
@@ -117,7 +116,7 @@ class PolicyAnalyzer:
             return PolicyStance.DOVISH.value
         return PolicyStance.NEUTRAL.value
 
-    def _calculate_divergence(self, scores: Dict[str, float]) -> float:
+    def _calculate_divergence(self, scores: dict[str, float]) -> float:
         """Calculate policy divergence score"""
         if len(scores) < 2:
             return 0.0

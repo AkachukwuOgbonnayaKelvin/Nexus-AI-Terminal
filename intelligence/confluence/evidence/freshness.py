@@ -4,8 +4,8 @@ Confluence Engine - Freshness Checker
 Checks the freshness of evidence signals.
 """
 
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 from ..schemas import NormalizedSignal
 
@@ -54,7 +54,7 @@ class FreshnessChecker:
         """
         return self.is_fresh(signal.timestamp, threshold)
 
-    def get_freshness_summary(self, signals: list) -> Dict[str, Any]:
+    def get_freshness_summary(self, signals: list) -> dict[str, Any]:
         """
         Get freshness summary for a list of signals.
         """
@@ -84,7 +84,7 @@ class FreshnessChecker:
             return float("inf")
         return (datetime.utcnow() - signal.timestamp).total_seconds()
 
-    def get_freshness_report(self, signals: list) -> Dict[str, Any]:
+    def get_freshness_report(self, signals: list) -> dict[str, Any]:
         """
         Generate a detailed freshness report.
         """

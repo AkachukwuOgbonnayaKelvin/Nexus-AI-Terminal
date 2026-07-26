@@ -3,7 +3,6 @@ GLB-005 Central Bank Intelligence Engine - Rate Forecaster
 """
 
 import logging
-from typing import Dict, List, Optional
 
 from ..input.schemas import CentralBankInput
 
@@ -16,7 +15,7 @@ class RateForecaster:
     def __init__(self):
         self._forecast_horizons = ["3m", "6m", "12m"]
 
-    def forecast_rates(self, bank_data: CentralBankInput) -> Dict:
+    def forecast_rates(self, bank_data: CentralBankInput) -> dict:
         """
         Forecast rate path for a central bank.
 
@@ -40,7 +39,7 @@ class RateForecaster:
             "confidence": expectations.confidence,
         }
 
-    def forecast_all_banks(self, banks: List[CentralBankInput]) -> Dict:
+    def forecast_all_banks(self, banks: list[CentralBankInput]) -> dict:
         """
         Forecast rates for all central banks.
 
@@ -97,8 +96,8 @@ class RateForecaster:
         return "NEUTRAL"
 
     def _find_most_aggressive(
-        self, changes: List[float], forecasts: Dict, direction: str
-    ) -> Optional[str]:
+        self, changes: list[float], forecasts: dict, direction: str
+    ) -> str | None:
         """Find the most aggressive bank in a direction"""
         if not changes:
             return None
@@ -107,9 +106,12 @@ class RateForecaster:
         filtered = []
         for bank, forecast in forecasts.items():
             change = forecast["expected_change_12m"]
-            if direction == "negative" and change < 0:
-                filtered.append((bank, change))
-            elif direction == "positive" and change > 0:
+            if (
+                direction == "negative"
+                and change < 0
+                or direction == "positive"
+                and change > 0
+            ):
                 filtered.append((bank, change))
 
         if not filtered:

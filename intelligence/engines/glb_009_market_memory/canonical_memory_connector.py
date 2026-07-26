@@ -6,7 +6,7 @@ Loads and provides access to canonical global windows.
 
 import json
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Any
 
 from intelligence.memory.historical.schemas import HistoricalWindow
 
@@ -16,12 +16,12 @@ logger = logging.getLogger(__name__)
 class CanonicalMemoryConnector:
     """Connects GLB-009 to canonical historical memory"""
 
-    def __init__(self, data_file: Optional[str] = None):
+    def __init__(self, data_file: str | None = None):
         self.data_file = data_file
-        self.windows: List[HistoricalWindow] = []
+        self.windows: list[HistoricalWindow] = []
         self._loaded = False
 
-    def load(self, data_file: Optional[str] = None) -> bool:
+    def load(self, data_file: str | None = None) -> bool:
         """Load canonical windows from JSON file"""
         if data_file:
             self.data_file = data_file
@@ -55,13 +55,13 @@ class CanonicalMemoryConnector:
             logger.error(f"Error loading data: {e}")
             return False
 
-    def get_windows(self) -> List[HistoricalWindow]:
+    def get_windows(self) -> list[HistoricalWindow]:
         """Get all canonical windows"""
         if not self._loaded:
             self.load()
         return self.windows
 
-    def get_symbols(self) -> List[str]:
+    def get_symbols(self) -> list[str]:
         """Get all available symbols"""
         if not self._loaded:
             self.load()
@@ -71,7 +71,7 @@ class CanonicalMemoryConnector:
             symbols.update(w.assets.keys())
         return list(symbols)
 
-    def get_window_by_id(self, window_id: str) -> Optional[HistoricalWindow]:
+    def get_window_by_id(self, window_id: str) -> HistoricalWindow | None:
         """Get a specific window by ID"""
         if not self._loaded:
             self.load()
@@ -85,7 +85,7 @@ class CanonicalMemoryConnector:
         """Check if data is loaded"""
         return self._loaded and len(self.windows) > 0
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get statistics about the loaded data"""
         if not self._loaded:
             return {"status": "NOT_LOADED"}

@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Yahoo Finance Provider - Historical market data"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -22,7 +21,7 @@ from providers.base import MarketDataProvider, OHLCVData
 class YahooFinanceProvider(MarketDataProvider):
     """Yahoo Finance historical data provider"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "yahoo_finance"
         self._cache = {}
@@ -33,7 +32,7 @@ class YahooFinanceProvider(MarketDataProvider):
     def is_available(self) -> bool:
         return YF_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         return {
             "provider": self.name,
             "available": self.is_available(),
@@ -41,7 +40,7 @@ class YahooFinanceProvider(MarketDataProvider):
             "status": "healthy" if self.is_available() else "unavailable",
         }
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         """Return common symbols available on Yahoo Finance"""
         return [
             "EURUSD=X",
@@ -64,7 +63,7 @@ class YahooFinanceProvider(MarketDataProvider):
             "ETH-USD",
         ]
 
-    def get_current_quote(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_current_quote(self, symbol: str) -> dict[str, Any] | None:
         """Get current quote from Yahoo Finance"""
         if not self.is_available():
             return None
@@ -86,7 +85,7 @@ class YahooFinanceProvider(MarketDataProvider):
 
     def get_historical_bars(
         self, symbol: str, timeframe: str, start_date: datetime, end_date: datetime
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """Get historical OHLCV data from Yahoo Finance"""
         if not self.is_available():
             return []

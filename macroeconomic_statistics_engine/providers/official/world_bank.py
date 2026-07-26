@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """World Bank Provider - Full historical series with proper pagination"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
 import sys
-from pathlib import Path
 import time
+from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
@@ -17,8 +16,8 @@ except ImportError:
     REQUESTS_AVAILABLE = False
 
 from macroeconomic_statistics_engine.providers.base import (
-    MacroProvider,
     MacroObservation,
+    MacroProvider,
 )
 
 
@@ -90,7 +89,7 @@ class WorldBankProvider(MacroProvider):
         },
     }
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "world_bank"
         self.base_url = "https://api.worldbank.org/v2"
@@ -105,17 +104,17 @@ class WorldBankProvider(MacroProvider):
     def is_available(self) -> bool:
         return REQUESTS_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         return {
             "provider": self.name,
             "available": self.is_available(),
             "status": "healthy" if self.is_available() else "unavailable",
         }
 
-    def get_available_countries(self) -> List[str]:
+    def get_available_countries(self) -> list[str]:
         return list(self.COUNTRY_CODES.keys())
 
-    def get_available_indicators(self, country: str) -> List[str]:
+    def get_available_indicators(self, country: str) -> list[str]:
         return list(self.INDICATOR_MAP.keys())
 
     def get_currency(self, country: str) -> str:
@@ -125,9 +124,9 @@ class WorldBankProvider(MacroProvider):
         self,
         indicator: str,
         country: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[MacroObservation]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[MacroObservation]:
         """Get full historical indicator data from World Bank API"""
         if not self.is_available():
             return []

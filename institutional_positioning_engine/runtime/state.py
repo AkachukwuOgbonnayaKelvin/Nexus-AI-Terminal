@@ -3,8 +3,6 @@
 import json
 import logging
 from datetime import datetime
-from typing import Optional
-
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -36,7 +34,7 @@ class COTRuntimeState:
         except Exception as e:
             logger.error(f"Failed to save state: {e}")
 
-    async def get_last_run(self) -> Optional[datetime]:
+    async def get_last_run(self) -> datetime | None:
         """Get the last run time."""
         last_run = self._state.get("last_run")
         if last_run:
@@ -48,7 +46,7 @@ class COTRuntimeState:
         self._state["last_run"] = timestamp.isoformat()
         self._save_state()
 
-    async def get_last_report(self) -> Optional[str]:
+    async def get_last_report(self) -> str | None:
         """Get the last processed report ID."""
         return self._state.get("last_report")
 

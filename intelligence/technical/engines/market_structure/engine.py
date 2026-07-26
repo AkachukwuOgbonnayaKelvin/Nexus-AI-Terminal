@@ -1,10 +1,14 @@
+from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
 from datetime import datetime
 
 import pandas as pd
+import numpy as np
 
 from intelligence.technical.contracts import EngineBias, MarketRegime, TechnicalSignal
 from intelligence.technical.data_access import TechnicalDataPlatform
+from intelligence.technical.engines.market_structure.regime_classifier import classify_regime
+from intelligence.technical.engines.market_structure.pullback_analyzer import detect_pullback, calculate_pullback_zone
 
 
 @dataclass
@@ -57,11 +61,7 @@ class MarketStructureEngine:
             timeframe=timeframe,
             timestamp=datetime.now(),
             bias=bias,
-            direction="long"
-            if bias == EngineBias.BULLISH
-            else "short"
-            if bias == EngineBias.BEARISH
-            else "neutral",
+            direction="long" if bias == EngineBias.BULLISH else "short" if bias == EngineBias.BEARISH else "neutral",
             confidence=confidence,
             regime=structure.get("regime", MarketRegime.UNKNOWN),
             regime_confidence=structure.get("regime_confidence", 0.5),
@@ -81,12 +81,12 @@ class MarketStructureEngine:
             },
         )
 
-    def _detect_swings(self, df: pd.DataFrame) -> list[SwingPoint]:
+    def _detect_swings(self, df: pd.DataFrame) -> List[SwingPoint]:
         if len(df) < self.config["swing_lookback"] * 2:
             return []
         highs = df["high"].values
         lows = df["low"].values
-        times = df["time"].values  # numpy datetime64
+        times = df["time"].values
         lookback = self.config["swing_lookback"]
         swings = []
 
@@ -96,7 +96,6 @@ class MarketStructureEngine:
                 right_high = max(highs[i + 1 : i + lookback + 1])
                 if highs[i] > left_high and highs[i] > right_high:
                     strength = self._calc_strength(df, i, "high")
-                    # Convert numpy datetime64 to Python datetime
                     swing_time = pd.to_datetime(times[i]).to_pydatetime()
                     swings.append(
                         SwingPoint(
@@ -208,7 +207,6 @@ class MarketStructureEngine:
                     }
                 )
 
-        # CHoCH detection
         if len(swings) >= 6:
             last_two_highs = [s for s in swings if s.type == "high"][-2:]
             last_two_lows = [s for s in swings if s.type == "low"][-2:]
@@ -240,9 +238,7 @@ class MarketStructureEngine:
             return EngineBias.BEARISH, conf
         else:
             recent = [
-                e
-                for e in events
-                if e["type"] in ["bos_bullish", "bos_bearish", "choch"]
+                e for e in events if e["type"] in ["bos_bullish", "bos_bearish", "choch"]
             ]
             if recent:
                 last_event = recent[-1]
@@ -349,3 +345,230 @@ class MarketStructureEngine:
             data_quality=0.0,
             extras={"data_status": "UNAVAILABLE", "reason": reason},
         )
+
+    # ---------- MTF METHOD ----------
+    def analyze_mtf(self, symbol: str, timeframes: List[str] = None,
+                    lookback_bars: int = 200) -> Dict:
+        if timeframes is None:
+            timeframes = ['D1', 'H4', 'H1', 'M15']
+
+        from intelligence.technical.engines.market_structure.mtf_aggregator import MTFAggregator
+        from intelligence.technical.engines.market_structure.swing_hierarchy import classify_swings
+        from datetime import datetime
+
+        aggregator = MTFAggregator(self)
+        aggregated = aggregator.aggregate(symbol, timeframes, lookback_bars)
+
+        # ---- 1. Regime classification per timeframe ----
+        timeframe_regimes = {}
+        for tf, signal in aggregated['signals'].items():
+            df = self.data.get_last_bars(symbol, tf, lookback_bars)
+            swings = signal.extras.get('swings', [])
+            regime_info = classify_regime(df, swings)
+            timeframe_regimes[tf] = regime_info
+
+        # ---- 2. Determine Macro, Context, Execution biases ----
+        def get_bias(tf):
+            sig = aggregated['signals'].get(tf)
+            return sig.bias.value if sig else None
+
+        macro_bias = get_bias('D1')
+        context_bias = get_bias('H4')
+        exec_bias = get_bias('H1') or get_bias('M15')
+
+        # ---- 3. Weighted confidence ----
+        weights = {'D1': 0.4, 'H4': 0.3, 'H1': 0.2, 'M15': 0.1}
+        weighted_conf = 0.0
+        for tf, w in weights.items():
+            sig = aggregated['signals'].get(tf)
+            if sig:
+                weighted_conf += sig.confidence * w
+        weighted_conf = round(min(1.0, weighted_conf), 3)
+
+        # ---- 4. Alignment classification ----
+        all_biases = [get_bias(tf) for tf in timeframes if get_bias(tf)]
+        all_same = len(set(all_biases)) == 1
+
+        regime_values = []
+        for tf in timeframes:
+            if tf in timeframe_regimes:
+                r = timeframe_regimes[tf].get('regime')
+                if r:
+                    regime_values.append(r.value if hasattr(r, 'value') else r)
+        trending_count = sum(1 for r in regime_values if r in ['trending_up', 'trending_down'])
+        ranging_count = sum(1 for r in regime_values if r == 'ranging')
+
+        if all_same and trending_count == len(timeframes):
+            alignment_state = 'fully_aligned'
+        elif all_same and ranging_count > 0:
+            alignment_state = 'aligned_with_consolidation'
+        elif macro_bias == 'bullish' and exec_bias == 'bearish':
+            alignment_state = 'bullish_pullback'
+        elif macro_bias == 'bearish' and exec_bias == 'bullish':
+            alignment_state = 'bearish_pullback'
+        elif macro_bias == 'bearish' and context_bias == 'bullish' and exec_bias == 'bullish':
+            alignment_state = 'counter_trend_rally'
+        elif macro_bias == 'bullish' and context_bias == 'bearish' and exec_bias == 'bearish':
+            alignment_state = 'counter_trend_decline'
+        else:
+            alignment_state = 'divergent'
+
+        # ---- 5. Structural interpretation ----
+        interpretation = self._interpret_mtf(macro_bias, context_bias, exec_bias, alignment_state)
+
+        # ---- 6. Pullback detection ----
+        mtf_structure = {
+            'timeframes': {
+                tf: {'bias': sig.bias.value}
+                for tf, sig in aggregated['signals'].items()
+            },
+            'primary_bias': aggregated['primary_bias'].value
+        }
+        pullback = detect_pullback(mtf_structure)
+
+        pullback_zone = None
+        if pullback:
+            primary_df = self.data.get_last_bars(symbol, 'D1', 100)
+            if not primary_df.empty:
+                # ---- CORRECT TRUE RANGE ATR ----
+                high = primary_df['high']
+                low = primary_df['low']
+                close = primary_df['close'].shift(1)
+                tr1 = high - low
+                tr2 = (high - close).abs()
+                tr3 = (low - close).abs()
+                tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+                atr = tr.rolling(14).mean().iloc[-1]
+                current_price = primary_df['close'].iloc[-1]
+                pullback_zone = calculate_pullback_zone(primary_df, atr, current_price, aggregated['primary_bias'].value)
+
+        # ---- 7. Swing hierarchy ----
+        swing_hierarchy = {}
+        for tf, signal in aggregated['signals'].items():
+            swings = signal.extras.get('swings', [])
+            swing_hierarchy[tf] = classify_swings(swings, tf)
+
+        # ---- 8. Build final result ----
+        result = {
+            'symbol': symbol,
+            'timestamp': datetime.now(),
+            'macro_bias': macro_bias,
+            'context_bias': context_bias,
+            'execution_bias': exec_bias,
+            'primary_bias': aggregated['primary_bias'].value,
+            'alignment_state': alignment_state,
+            'alignment': 'aligned' if aggregated['aligned'] else 'divergent',
+            'weighted_confidence': weighted_conf,
+            'timeframes': {
+                tf: {
+                    'bias': sig.bias.value,
+                    'confidence': sig.confidence,
+                    'regime': sig.regime.value,
+                    'phase': timeframe_regimes[tf].get('phase', 'unknown'),
+                    'regime_confidence': timeframe_regimes[tf].get('confidence', 0.0)
+                }
+                for tf, sig in aggregated['signals'].items()
+            },
+            'swing_hierarchy': swing_hierarchy,
+            'events': {
+                tf: sig.events
+                for tf, sig in aggregated['signals'].items()
+            },
+            'pullback': pullback,
+            'pullback_zone': pullback_zone,
+            'interpretation': interpretation
+        }
+        return result
+
+    def _interpret_mtf(self, macro_bias, context_bias, exec_bias, alignment_state):
+        """Generate human-readable interpretation."""
+        lines = []
+        if alignment_state == 'fully_aligned':
+            lines.append(f"Strong {macro_bias.upper()} alignment across all timeframes.")
+            lines.append("All timeframes confirm the same directional bias.")
+            lines.append("Continuation expected.")
+        elif alignment_state == 'aligned_with_consolidation':
+            lines.append(f"{macro_bias.upper()} structural alignment with short-term consolidation.")
+            lines.append("Higher timeframes are trending; lower timeframes are ranging.")
+            lines.append("Expect continuation after consolidation.")
+        elif alignment_state == 'bullish_pullback':
+            lines.append(f"{macro_bias.upper()} macro structure, bearish short-term pullback.")
+            lines.append("The current decline is likely a correction within a larger uptrend.")
+            lines.append("Look for bullish reversal signals in lower timeframes.")
+        elif alignment_state == 'bearish_pullback':
+            lines.append(f"{macro_bias.upper()} macro structure, bullish short-term recovery.")
+            lines.append("The current rally is likely a correction within a larger downtrend.")
+            lines.append("Look for bearish reversal signals in lower timeframes.")
+        elif alignment_state == 'counter_trend_rally':
+            lines.append(f"{macro_bias.upper()} macro structure, bullish counter-trend rally.")
+            lines.append("The H4 and lower timeframes are recovering upward.")
+            lines.append("This is a counter-trend move; macro reversal is not confirmed.")
+        elif alignment_state == 'counter_trend_decline':
+            lines.append(f"{macro_bias.upper()} macro structure, bearish counter-trend decline.")
+            lines.append("The H4 and lower timeframes are declining against the macro trend.")
+            lines.append("This is a counter-trend move; macro reversal is not confirmed.")
+        else:
+            lines.append("Mixed signals across timeframes.")
+            lines.append("No clear consensus; exercise caution.")
+        return "\n".join(lines)
+
+    # ---------- STRUCTURE WATCH ----------
+    def watch(self, symbol: str, timeframes: List[str] = None,
+              lookback_bars: int = 200) -> 'StructureWatch':
+        """
+        Generate a structured watch object that includes conditions, status, and zones.
+        """
+        from intelligence.technical.engines.market_structure.structure_watch import generate_structure_watch
+
+        mtf_result = self.analyze_mtf(symbol, timeframes, lookback_bars)
+        watch = generate_structure_watch(symbol, mtf_result)
+        return watch
+
+    def watch(self, symbol: str, timeframes: List[str] = None,
+              lookback_bars: int = 200) -> 'StructureWatch':
+        """
+        Generate a structured watch object that includes conditions, status, and zones.
+        """
+        from intelligence.technical.engines.market_structure.structure_watch import generate_structure_watch
+
+        # Get current price from the most recent bar (D1 or H1)
+        current_price = None
+        try:
+            # Try D1 first, then H1
+            df = self.data.get_last_bars(symbol, 'D1', 1)
+            if df.empty:
+                df = self.data.get_last_bars(symbol, 'H1', 1)
+            if not df.empty:
+                current_price = df['close'].iloc[-1]
+        except Exception:
+            pass
+
+        mtf_result = self.analyze_mtf(symbol, timeframes, lookback_bars)
+        # Add current_price to mtf_result for use in watch generator
+        mtf_result['current_price'] = current_price
+        watch = generate_structure_watch(symbol, mtf_result, current_price)
+        return watch
+
+    def get_atr(self, symbol: str, period: int = 14, fallback_timeframes: list = None) -> float:
+        """
+        Get ATR by trying multiple timeframes in order.
+        """
+        if fallback_timeframes is None:
+            fallback_timeframes = ['M15', 'H1', 'H4', 'D1']
+        for tf in fallback_timeframes:
+            try:
+                df = self.data.get_last_bars(symbol, tf, period + 10)
+                if len(df) > period:
+                    high = df['high']
+                    low = df['low']
+                    close = df['close'].shift(1)
+                    tr1 = high - low
+                    tr2 = (high - close).abs()
+                    tr3 = (low - close).abs()
+                    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+                    atr = tr.rolling(period).mean().iloc[-1]
+                    if atr is not None and atr > 0:
+                        return atr
+            except Exception:
+                continue
+        return None

@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Engine Identity Resolver - Central engine identity management
 """
 
-from pathlib import Path
-from typing import Optional, Dict, Any
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
 import yaml
 
 
@@ -20,14 +20,14 @@ class EngineIdentity:
     domain: str
     version: str
     stage: str
-    engine_yaml: Dict[str, Any]
-    contract_yaml: Dict[str, Any]
+    engine_yaml: dict[str, Any]
+    contract_yaml: dict[str, Any]
 
 
 class EngineIdentityResolver:
     """Resolves engine IDs to full engine identities"""
 
-    def __init__(self, project_root: Optional[Path] = None):
+    def __init__(self, project_root: Path | None = None):
         self.project_root = project_root or Path(__file__).parent.parent.parent
         self._cache = {}
 
@@ -65,7 +65,7 @@ class EngineIdentityResolver:
         # Reverse mapping: directory -> short ID
         self.reverse_map = {v: k for k, v in self.id_map.items() if len(k) <= 10}
 
-    def resolve(self, engine_id: str) -> Optional[EngineIdentity]:
+    def resolve(self, engine_id: str) -> EngineIdentity | None:
         """Resolve an engine ID to a full identity"""
         print(f"[RESOLVER] Resolving: {engine_id}")
 
@@ -138,7 +138,7 @@ class EngineIdentityResolver:
 
         return identity
 
-    def _find_engine_path(self, dir_name: str) -> Optional[Path]:
+    def _find_engine_path(self, dir_name: str) -> Path | None:
         """Find the engine directory path"""
         # Try direct path
         direct_path = self.project_root / dir_name

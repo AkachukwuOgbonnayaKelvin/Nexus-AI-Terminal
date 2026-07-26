@@ -1,17 +1,17 @@
 """NDIP Warehouse implementation."""
 
 from collections import defaultdict
-from typing import Any, Dict, List
+from typing import Any
 
 
 class Warehouse:
     """Data warehouse."""
 
     def __init__(self) -> None:
-        self._data: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-        self._indices: Dict[str, Dict[str, int]] = defaultdict(dict)
+        self._data: dict[str, list[dict[str, Any]]] = defaultdict(list)
+        self._indices: dict[str, dict[str, int]] = defaultdict(dict)
 
-    def store(self, data: Dict[str, Any], source: str) -> Dict[str, Any]:
+    def store(self, data: dict[str, Any], source: str) -> dict[str, Any]:
         """Store data in the warehouse."""
         if "records" in data:
             stored_count = 0
@@ -26,7 +26,7 @@ class Warehouse:
 
         return {"stored": 0, "source": source}
 
-    def _store_record(self, record: Dict[str, Any], source: str) -> None:
+    def _store_record(self, record: dict[str, Any], source: str) -> None:
         """Store a single record."""
         symbol = record.get("symbol", "unknown")
         self._data[symbol].append(record)
@@ -36,12 +36,12 @@ class Warehouse:
             self._indices[symbol] = {}
         self._indices[symbol][source] = len(self._data[symbol]) - 1
 
-    def query(self, symbol: str, limit: int = 100) -> List[Dict[str, Any]]:
+    def query(self, symbol: str, limit: int = 100) -> list[dict[str, Any]]:
         """Query data by symbol."""
         records = self._data.get(symbol, [])
         return records[-limit:] if limit > 0 else records
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get warehouse statistics."""
         return {
             "total_symbols": len(self._data),

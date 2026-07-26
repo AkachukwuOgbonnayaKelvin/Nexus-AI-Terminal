@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -22,7 +22,7 @@ class AlphaVantageConnector(BaseProvider):
     def disconnect(self) -> None:
         self._connected = False
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         if not self._connected:
             return None
         if len(symbol) == 6 and symbol.isalpha():
@@ -65,19 +65,19 @@ class AlphaVantageConnector(BaseProvider):
         except Exception:
             return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return [self.get_price(s) for s in symbols if self.get_price(s)]
 
     def health_check(self) -> bool:
         return self.get_price("EURUSD") is not None
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"realtime": False, "historical": True, "forex": True, "equities": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_minute": 5}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return ["EURUSD", "AAPL", "MSFT"]
 
     def supports_symbol(self, symbol: str) -> bool:

@@ -11,9 +11,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from datetime import datetime  # noqa: E402
-from intelligence.engines.glb_006_geopolitical_risk.engine import GeopoliticalRiskEngine  # noqa: E402
-from intelligence.engines.glb_006_geopolitical_risk.constants import NDIP_TOPICS  # noqa: E402
+from datetime import datetime
+
+from intelligence.engines.glb_006_geopolitical_risk.constants import (
+    NDIP_TOPICS,
+)
+from intelligence.engines.glb_006_geopolitical_risk.engine import (
+    GeopoliticalRiskEngine,
+)
 
 
 def run_certification():

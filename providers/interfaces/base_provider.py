@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class ProviderStatus(Enum):
@@ -20,27 +20,22 @@ class BaseProvider(ABC):
     @abstractmethod
     def connect(self) -> bool:
         """Establish connection to the external source."""
-        pass
 
     @abstractmethod
     def disconnect(self) -> None:
         """Close connection."""
-        pass
 
     @abstractmethod
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         """Fetch raw price data for a symbol."""
-        pass
 
     @abstractmethod
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         """Fetch raw price data for multiple symbols."""
-        pass
 
     @abstractmethod
     def health_check(self) -> bool:
         """Check if provider is healthy."""
-        pass
 
     def get_status(self) -> ProviderStatus:
         """Return current provider status."""
@@ -49,23 +44,20 @@ class BaseProvider(ABC):
         return ProviderStatus.OFFLINE
 
     @abstractmethod
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         """Return capabilities (realtime, historical, websocket, etc.)."""
-        pass
 
     @abstractmethod
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         """Return rate limit info (requests per second/minute)."""
-        pass
 
     def supports_symbol(self, symbol: str) -> bool:
         """Check if provider supports a symbol."""
         return symbol in self.get_available_symbols()
 
     @abstractmethod
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         """Return list of available symbols."""
-        pass
 
     @property
     def name(self) -> str:

@@ -1,16 +1,15 @@
 """Provider metrics tracking."""
 
 from collections import defaultdict
-from typing import Dict, List
 
 
 class ProviderMetrics:
     """Tracks latency, success rate, errors per provider."""
 
     def __init__(self):
-        self._success: Dict[str, int] = defaultdict(int)
-        self._errors: Dict[str, int] = defaultdict(int)
-        self._latency: Dict[str, List[float]] = defaultdict(list)
+        self._success: dict[str, int] = defaultdict(int)
+        self._errors: dict[str, int] = defaultdict(int)
+        self._latency: dict[str, list[float]] = defaultdict(list)
 
     def register(self, name: str) -> None:
         pass
@@ -21,7 +20,7 @@ class ProviderMetrics:
     def record_error(self, provider_name: str, symbol: str) -> None:
         self._errors[provider_name] += 1
 
-    def get_stats(self) -> Dict[str, Dict]:
+    def get_stats(self) -> dict[str, dict]:
         stats = {}
         for name in set(list(self._success.keys()) + list(self._errors.keys())):
             stats[name] = {

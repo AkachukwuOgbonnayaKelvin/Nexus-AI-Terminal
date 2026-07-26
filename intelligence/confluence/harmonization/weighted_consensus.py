@@ -5,7 +5,7 @@ Calculates weighted consensus from evidence groups.
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
 from ..evidence.evidence_model import EvidenceGroup
 
@@ -30,7 +30,7 @@ class WeightedConsensus:
             "GLB-009": 0.8,
         }
 
-    def calculate_consensus(self, group: EvidenceGroup) -> Dict[str, Any]:
+    def calculate_consensus(self, group: EvidenceGroup) -> dict[str, Any]:
         """
         Calculate weighted consensus for an evidence group.
         """
@@ -105,7 +105,7 @@ class WeightedConsensus:
             "weighted_contributions": weighted_contributions,
         }
 
-    def calculate_multi_consensus(self, groups: List[EvidenceGroup]) -> Dict[str, Any]:
+    def calculate_multi_consensus(self, groups: list[EvidenceGroup]) -> dict[str, Any]:
         """
         Calculate consensus across multiple evidence groups.
         """

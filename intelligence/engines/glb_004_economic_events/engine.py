@@ -4,18 +4,18 @@ GLB-004 Economic Events Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional, List
 from datetime import datetime
+from typing import Any
 
-from .constants import NDIP_TOPICS
-from .input.schemas import EconomicEventInput
-from .input.event_normalizer import EventNormalizer
+from .analysis.surprise_analyzer import SurpriseAnalyzer
 from .classification.event_classifier import EventClassifier
 from .classification.event_importance import EventImportanceEngine
-from .analysis.surprise_analyzer import SurpriseAnalyzer
-from .transmission.macro_transmission import MacroTransmissionEngine
+from .constants import NDIP_TOPICS
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.event_normalizer import EventNormalizer
+from .input.schemas import EconomicEventInput
 from .output.core_report import CoreReportBuilder
+from .transmission.macro_transmission import MacroTransmissionEngine
 
 logger = logging.getLogger(__name__)
 
@@ -37,15 +37,15 @@ class EconomicEventsEngine:
         self.macro_transmission = MacroTransmissionEngine()
         self.report_builder = CoreReportBuilder()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -123,12 +123,12 @@ class EconomicEventsEngine:
 
         return report
 
-    def _parse_events(self) -> List[Dict]:
+    def _parse_events(self) -> list[dict]:
         """Parse events from NDIP data."""
         events_data = self._latest_data.get(NDIP_TOPICS["ECONOMIC_EVENTS"], {})
         return events_data.get("events", [])
 
-    def _normalize_events(self, raw_events: List[Dict]) -> List[EconomicEventInput]:
+    def _normalize_events(self, raw_events: list[dict]) -> list[EconomicEventInput]:
         """Normalize raw events."""
         normalized = []
         for raw in raw_events:
@@ -137,7 +137,7 @@ class EconomicEventsEngine:
                 normalized.append(event)
         return normalized
 
-    def _classify_events(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def _classify_events(self, events: list[EconomicEventInput]) -> list[dict]:
         """Classify events."""
         return self.event_classifier.classify_events(events)
 
@@ -147,7 +147,7 @@ class EconomicEventsEngine:
             return event.actual - event.forecast
         return 0.0
 
-    def _calculate_confidence(self, events: List[EconomicEventInput]) -> float:
+    def _calculate_confidence(self, events: list[EconomicEventInput]) -> float:
         """Calculate overall confidence."""
         if not events:
             return 0.0
@@ -162,7 +162,7 @@ class EconomicEventsEngine:
         avg_confidence = sum(confidences) / len(confidences)
         return min(95, avg_confidence * 100)
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         """Return empty report when no events."""
         return {
             "engine_id": "GLB-004",
@@ -180,10 +180,10 @@ class EconomicEventsEngine:
             "metadata": {"event_count": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-004",
             "status": "OPERATIONAL",

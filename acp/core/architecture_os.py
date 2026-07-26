@@ -1,12 +1,12 @@
-# -*- coding: utf-8 -*-
 """
 Architecture OS - Core Engine
 """
 
-from typing import Dict, List, Optional, Any
-from pathlib import Path
-import yaml
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+import yaml
 
 
 @dataclass
@@ -25,7 +25,7 @@ class EngineInfo:
     def has_engine_yaml(self) -> bool:
         return (self.path / "engine.yaml").exists()
 
-    def load_engine_yaml(self) -> Dict:
+    def load_engine_yaml(self) -> dict:
         path = self.path / "engine.yaml"
         if path.exists():
             with open(path) as f:
@@ -39,13 +39,13 @@ class ArchitectureOS:
     def __init__(self, engines_path: str = "engines"):
         self.engines_path = Path(engines_path)
         self.compilers = {}
-        self.engines: List[EngineInfo] = []
+        self.engines: list[EngineInfo] = []
 
     def register_compiler(self, name: str, compiler) -> None:
         """Register a compiler with the OS"""
         self.compilers[name] = compiler
 
-    def discover_engines(self) -> List[EngineInfo]:
+    def discover_engines(self) -> list[EngineInfo]:
         """Discover all engines in the engines directory"""
         engines = []
         if not self.engines_path.exists():
@@ -76,8 +76,8 @@ class ArchitectureOS:
         return engines
 
     def compile(
-        self, engine_id: Optional[str] = None, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+        self, engine_id: str | None = None, verbose: bool = False, fix: bool = False
+    ) -> dict[str, Any]:
         """Run the compilation process"""
 
         engines = self.discover_engines()

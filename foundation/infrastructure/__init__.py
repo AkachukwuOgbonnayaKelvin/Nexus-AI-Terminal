@@ -11,11 +11,11 @@ This package provides platform infrastructure services:
 """
 
 __all__ = [
-    "database",
-    "cache",
-    "websocket",
-    "message_bus",
-    "scheduler",
     "authentication",
+    "cache",
+    "database",
+    "message_bus",
     "monitoring",
+    "scheduler",
+    "websocket",
 ]

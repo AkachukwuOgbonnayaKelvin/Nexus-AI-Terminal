@@ -25,7 +25,7 @@ except ImportError:
 
 __all__ = [
     "CentralBankCollector",
-    "CentralBankWarehouse",
     "CentralBankGateway",
     "CentralBankPublisher",
+    "CentralBankWarehouse",
 ]

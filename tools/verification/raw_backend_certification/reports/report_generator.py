@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """Report Generator for Raw Backend Certification"""
 
-from typing import Dict, Any
+from typing import Any
 
 
 class ReportGenerator:
     """Generates certification reports"""
 
-    def __init__(self, results: Dict[str, Any]):
+    def __init__(self, results: dict[str, Any]):
         self.results = results
 
     def print_summary(self):
@@ -15,7 +14,7 @@ class ReportGenerator:
         print("\n" + "=" * 70)
         print("  RAW BACKEND CERTIFICATION SUMMARY")
         print("=" * 70)
-        print("")
+        print()
 
         if not self.results:
             print("  No results to display.")
@@ -38,11 +37,11 @@ class ReportGenerator:
             )
 
         print("└──────────┴─────────────────────────────────┴────────────┘")
-        print("")
+        print()
 
         # Detailed results
         for engine_id, result in self.results.items():
-            print("")
+            print()
             print("-" * 70)
             print(f"  {engine_id}: {result.engine_name}")
             print(f"  Status: {result.status}")
@@ -64,7 +63,7 @@ class ReportGenerator:
                         else:
                             print(f"      {key}: {value}")
 
-            print("")
+            print()
 
         print("=" * 70)
 
@@ -81,4 +80,4 @@ class ReportGenerator:
             print("  ⚠️ Some warnings found. Review the report above.")
 
         print("=" * 70)
-        print("")
+        print()

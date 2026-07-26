@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import feedparser
 
@@ -23,10 +23,10 @@ class RSSConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return []
 
     def health_check(self) -> bool:
@@ -40,19 +40,19 @@ class RSSConnector(BaseProvider):
                 continue
         return False
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"news": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_minute": 10}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return []
 
     def supports_symbol(self, symbol: str) -> bool:
         return True
 
-    def get_today_news(self) -> List[Dict[str, Any]]:
+    def get_today_news(self) -> list[dict[str, Any]]:
         results = []
         for feed_url in self.feeds:
             try:

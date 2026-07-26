@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from economic_events_engine.dtos import UniversalEconomicEvent
 
@@ -248,7 +248,7 @@ class FredAdapter:
         },
     }
 
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> UniversalEconomicEvent:
+    def adapt(self, raw: dict[str, Any], provider_name: str) -> UniversalEconomicEvent:
         series_id = raw.get("series_id")
         meta = self.SERIES_MAPPING.get(
             series_id,

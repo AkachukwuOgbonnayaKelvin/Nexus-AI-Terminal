@@ -3,10 +3,10 @@ GLB-004 Economic Events Intelligence Engine - Core Report Builder
 """
 
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Any
 
-from ..input.schemas import EconomicEventInput
 from ..constants import EventImpact
+from ..input.schemas import EconomicEventInput
 
 logger = logging.getLogger(__name__)
 
@@ -16,14 +16,14 @@ class CoreReportBuilder:
 
     def build(
         self,
-        events: List[EconomicEventInput],
-        classified: List[Dict],
+        events: list[EconomicEventInput],
+        classified: list[dict],
         event_risk: float,
-        next_major: Optional[Dict],
-        surprise_analyses: List[Dict],
-        transmissions: List[Dict],
+        next_major: dict | None,
+        surprise_analyses: list[dict],
+        transmissions: list[dict],
         confidence: float,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Build core intelligence report"""
 
         # Separate upcoming and released events
@@ -68,7 +68,7 @@ class CoreReportBuilder:
         else:
             return "LOW"
 
-    def _determine_dominant_theme(self, events: List[EconomicEventInput]) -> str:
+    def _determine_dominant_theme(self, events: list[EconomicEventInput]) -> str:
         """Determine dominant event theme"""
         if not events:
             return "UNKNOWN"
@@ -84,7 +84,7 @@ class CoreReportBuilder:
         sorted_categories = sorted(categories.items(), key=lambda x: x[1], reverse=True)
         return sorted_categories[0][0]
 
-    def _generate_scenarios(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def _generate_scenarios(self, events: list[EconomicEventInput]) -> list[dict]:
         """Generate event scenarios"""
         if not events:
             return []
@@ -130,7 +130,7 @@ class CoreReportBuilder:
 
         return scenarios
 
-    def _format_upcoming_events(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def _format_upcoming_events(self, events: list[EconomicEventInput]) -> list[dict]:
         """Format upcoming events for output"""
         result = []
         for e in events:
@@ -149,7 +149,7 @@ class CoreReportBuilder:
             )
         return result[:10]
 
-    def _format_recent_events(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def _format_recent_events(self, events: list[EconomicEventInput]) -> list[dict]:
         """Format recent events for output"""
         result = []
         for e in events:
@@ -170,7 +170,7 @@ class CoreReportBuilder:
             )
         return result[:5]
 
-    def _format_released_events(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def _format_released_events(self, events: list[EconomicEventInput]) -> list[dict]:
         """Format released events with context"""
         result = []
         for e in events:

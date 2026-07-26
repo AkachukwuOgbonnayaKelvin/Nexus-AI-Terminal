@@ -3,13 +3,13 @@
 ARC-001 Architecture Compliance Engine
 """
 
-import os
-import sys
 import json
 import logging
-from pathlib import Path
+import os
+import sys
 from datetime import datetime
-from typing import Dict, Any, Optional
+from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -49,9 +49,9 @@ class ArchitectureEngine:
 
     def __init__(self, project_root: str):
         self.project_root = Path(project_root)
-        self.report: Optional[Report] = None
+        self.report: Report | None = None
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run all architecture checks"""
         self.report = Report()
 

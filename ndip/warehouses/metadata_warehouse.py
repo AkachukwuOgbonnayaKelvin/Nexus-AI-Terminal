@@ -3,7 +3,7 @@
 import json
 import uuid
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from ndip.utils.db_connector import execute, fetch, fetchrow
 
@@ -93,14 +93,14 @@ class MetadataWarehouse:
             "asset_type_id",
         ]
 
-    def _get_insertable_fields(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def _get_insertable_fields(self, record: dict[str, Any]) -> dict[str, Any]:
         return {
             k: v
             for k, v in record.items()
             if k in self.allowed_fields and v is not None
         }
 
-    async def store_asset(self, record: Dict[str, Any], source: str) -> Dict[str, Any]:
+    async def store_asset(self, record: dict[str, Any], source: str) -> dict[str, Any]:
         symbol = record.get("symbol")
         if not symbol:
             return {"error": "Missing symbol"}
@@ -185,7 +185,7 @@ class MetadataWarehouse:
             }
 
     async def _record_version(
-        self, asset_id: str, version: int, record: Dict[str, Any]
+        self, asset_id: str, version: int, record: dict[str, Any]
     ):
         """Log version history with proper JSON serialization."""
         # Convert UUIDs and other non-serializable types to strings
@@ -193,9 +193,7 @@ class MetadataWarehouse:
         for k, v in record.items():
             if isinstance(v, uuid.UUID):
                 serializable[k] = str(v)
-            elif isinstance(v, datetime):
-                serializable[k] = v.isoformat()
-            elif hasattr(v, "isoformat"):  # for date/datetime objects
+            elif isinstance(v, datetime) or hasattr(v, "isoformat"):
                 serializable[k] = v.isoformat()
             else:
                 serializable[k] = v
@@ -211,13 +209,13 @@ class MetadataWarehouse:
             "metadata_engine",
         )
 
-    async def get_asset(self, symbol: str) -> Optional[Dict[str, Any]]:
+    async def get_asset(self, symbol: str) -> dict[str, Any] | None:
         row = await fetchrow(
             f"SELECT * FROM {self.schema}.asset_registry WHERE symbol = $1", symbol
         )
         return dict(row) if row else None
 
-    async def get_asset_by_uuid(self, asset_id: str) -> Optional[Dict[str, Any]]:
+    async def get_asset_by_uuid(self, asset_id: str) -> dict[str, Any] | None:
         row = await fetchrow(
             f"SELECT * FROM {self.schema}.asset_registry WHERE asset_id = $1", asset_id
         )
@@ -225,7 +223,7 @@ class MetadataWarehouse:
 
     async def search_assets(
         self, query: str, asset_class: str = None, limit: int = 20
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         sql = f"SELECT * FROM {self.schema}.asset_registry WHERE symbol ILIKE $1 OR long_name ILIKE $1"
         params = [f"%{query}%"]
         if asset_class:
@@ -235,6 +233,6 @@ class MetadataWarehouse:
         rows = await fetch(sql, *params)
         return [dict(row) for row in rows]
 
-    async def get_stats(self) -> Dict[str, Any]:
+    async def get_stats(self) -> dict[str, Any]:
         count = await fetchrow(f"SELECT COUNT(*) FROM {self.schema}.asset_registry")
         return {"total_assets": count[0] if count else 0}

@@ -1,7 +1,7 @@
 """NDIP Validator implementation."""
 
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 
 class Validator:
@@ -10,14 +10,14 @@ class Validator:
     def __init__(self) -> None:
         self._required_fields: list[str] = ["timestamp", "asset", "value"]
 
-    def validate(self, data: Any) -> Dict[str, Any]:
+    def validate(self, data: Any) -> dict[str, Any]:
         """Validate incoming data."""
         if isinstance(data, list):
             return {"records": [self._validate_record(r) for r in data]}
 
         return {"record": self._validate_record(data)}
 
-    def _validate_record(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def _validate_record(self, record: dict[str, Any]) -> dict[str, Any]:
         """Validate a single record."""
         # Check required fields
         for field in self._required_fields:

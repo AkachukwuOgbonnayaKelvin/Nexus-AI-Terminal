@@ -3,16 +3,17 @@ GLB-005 Central Bank Intelligence Engine - Asset Impact Matrix Generator
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
+
 from ..constants import ASSET_CLASS_EXPOSURE
 
 logger = logging.getLogger(__name__)
@@ -54,9 +55,9 @@ class AssetImpactMatrixGenerator:
     @classmethod
     def generate(
         cls,
-        banks: List[Any],
-        divergence: Dict,
-        rate_environment: Dict,
+        banks: list[Any],
+        divergence: dict,
+        rate_environment: dict,
         confidence: float,
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from central bank policy"""
@@ -81,7 +82,7 @@ class AssetImpactMatrixGenerator:
         )
 
     @classmethod
-    def _build_policy_profiles(cls, banks: List[Any]) -> Dict:
+    def _build_policy_profiles(cls, banks: list[Any]) -> dict:
         """Build policy profiles from bank data"""
         profiles = {}
         for bank_data in banks:
@@ -100,9 +101,9 @@ class AssetImpactMatrixGenerator:
     def _calculate_asset_impact(
         cls,
         asset: str,
-        profiles: Dict,
-        divergence: Dict,
-        rate_env: Dict,
+        profiles: dict,
+        divergence: dict,
+        rate_env: dict,
         confidence: float,
     ) -> AssetImpact:
         """Calculate impact for a single asset"""
@@ -129,8 +130,8 @@ class AssetImpactMatrixGenerator:
         asset: str,
         base: str,
         quote: str,
-        profiles: Dict,
-        divergence: Dict,
+        profiles: dict,
+        divergence: dict,
         confidence: float,
     ) -> AssetImpact:
         """Calculate FX pair impact from policy divergence"""
@@ -193,9 +194,9 @@ class AssetImpactMatrixGenerator:
     def _calculate_other_impact(
         cls,
         asset: str,
-        currencies: List[str],
-        profiles: Dict,
-        rate_env: Dict,
+        currencies: list[str],
+        profiles: dict,
+        rate_env: dict,
         confidence: float,
     ) -> AssetImpact:
         """Calculate impact for non-FX assets"""
@@ -255,7 +256,7 @@ class AssetImpactMatrixGenerator:
         )
 
     @classmethod
-    def _get_currencies_in_asset(cls, asset: str) -> List[str]:
+    def _get_currencies_in_asset(cls, asset: str) -> list[str]:
         """Get currencies in an asset"""
         currencies = []
         for currency in ["USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD"]:

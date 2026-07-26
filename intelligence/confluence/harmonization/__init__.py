@@ -5,14 +5,14 @@ The Harmonization Core calculates weighted consensus, confluence scores,
 detects conflicts, and deduplicates evidence.
 """
 
-from .weighted_consensus import WeightedConsensus
-from .confluence_score import ConfluenceScore
 from .conflict_detector import ConflictDetector
+from .confluence_score import ConfluenceScore
 from .evidence_deduplicator import EvidenceDeduplicator
+from .weighted_consensus import WeightedConsensus
 
 __all__ = [
-    "WeightedConsensus",
-    "ConfluenceScore",
     "ConflictDetector",
+    "ConfluenceScore",
     "EvidenceDeduplicator",
+    "WeightedConsensus",
 ]

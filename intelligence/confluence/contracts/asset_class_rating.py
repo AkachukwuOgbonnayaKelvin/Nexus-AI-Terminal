@@ -8,10 +8,9 @@ Represents the intelligence rating for a global asset class.
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
 
-from .normalized_signal import Direction
 from .entity_rating import GlobalEntityRating
+from .normalized_signal import Direction
 
 
 class AssetClass(str, Enum):
@@ -44,11 +43,11 @@ class AssetClassRating:
     confidence: float  # 0-100
 
     # OPTIONAL FIELDS (with defaults)
-    rank: Optional[int] = None
-    supporting_entities: List[str] = field(default_factory=list)
-    supporting_ratings: List[GlobalEntityRating] = field(default_factory=list)
-    drivers: List[str] = field(default_factory=list)
-    risks: List[str] = field(default_factory=list)
+    rank: int | None = None
+    supporting_entities: list[str] = field(default_factory=list)
+    supporting_ratings: list[GlobalEntityRating] = field(default_factory=list)
+    drivers: list[str] = field(default_factory=list)
+    risks: list[str] = field(default_factory=list)
     regime_compatibility: float = 0.5
     timestamp: datetime = field(default_factory=datetime.utcnow)
     version: str = "1.0"

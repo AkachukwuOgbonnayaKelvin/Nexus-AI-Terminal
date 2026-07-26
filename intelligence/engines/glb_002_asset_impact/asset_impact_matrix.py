@@ -5,14 +5,13 @@ Converts currency strengths and pair differentials into canonical asset impacts.
 Uses internal -100 to +100 scale.
 """
 
-from typing import Dict
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
 
 
@@ -78,7 +77,7 @@ class AssetImpactMatrixGenerator:
 
     @classmethod
     def generate(
-        cls, currency_strengths: Dict, pair_analyses: Dict, confidence: float
+        cls, currency_strengths: dict, pair_analyses: dict, confidence: float
     ) -> AssetImpactMatrix:
         """Generate canonical asset impact matrix"""
         impacts = {}
@@ -110,8 +109,8 @@ class AssetImpactMatrixGenerator:
     def _generate_impact(
         cls,
         asset: str,
-        currency_strengths: Dict,
-        pair_analyses: Dict,
+        currency_strengths: dict,
+        pair_analyses: dict,
         confidence: float,
     ) -> AssetImpact:
         """Generate impact for a single asset"""

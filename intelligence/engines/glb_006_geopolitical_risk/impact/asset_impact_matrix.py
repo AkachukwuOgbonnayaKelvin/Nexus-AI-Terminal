@@ -3,15 +3,15 @@ GLB-006 Geopolitical Risk Intelligence Engine - Asset Impact Matrix Generator
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
 
 logger = logging.getLogger(__name__)
@@ -73,9 +73,9 @@ class AssetImpactMatrixGenerator:
     @classmethod
     def generate(
         cls,
-        events: List[Any],
-        global_state: Dict,
-        transmission: Dict,
+        events: list[Any],
+        global_state: dict,
+        transmission: dict,
         confidence: float,
         diagnostic: bool = False,
     ) -> AssetImpactMatrix:

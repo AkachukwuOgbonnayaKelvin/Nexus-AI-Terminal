@@ -1,7 +1,6 @@
 """COT Acquisition Collector – orchestrates historical and incremental collection."""
 
 import logging
-from typing import List
 
 from institutional_positioning_engine.collectors.historical import HistoricalCollector
 from institutional_positioning_engine.collectors.incremental import IncrementalCollector
@@ -19,7 +18,7 @@ class COTCollector:
         self.incremental = IncrementalCollector(provider_manager)
         self.warehouse = COTWarehouse()
 
-    async def collect_historical(self) -> List[UniversalCOTRecord]:
+    async def collect_historical(self) -> list[UniversalCOTRecord]:
         """Collect all historical COT reports."""
         logger.info("Starting historical COT collection")
         raw_reports = await self.historical.collect_all()
@@ -27,7 +26,7 @@ class COTCollector:
         logger.info(f"Collected {len(records)} historical records")
         return records
 
-    async def collect_latest(self) -> List[UniversalCOTRecord]:
+    async def collect_latest(self) -> list[UniversalCOTRecord]:
         """Collect the latest COT report."""
         logger.info("Starting incremental COT collection")
         raw_reports = await self.incremental.collect_latest()
@@ -51,7 +50,7 @@ class COTCollector:
         stored = await self._store_records(records)
         return {"historical": 0, "incremental": stored}
 
-    def _adapt_reports(self, reports: List) -> List[UniversalCOTRecord]:
+    def _adapt_reports(self, reports: list) -> list[UniversalCOTRecord]:
         """Adapt raw reports to UniversalCOTRecord."""
         records = []
         for report in reports:
@@ -66,7 +65,7 @@ class COTCollector:
             records.extend(adapted)
         return records
 
-    async def _store_records(self, records: List[UniversalCOTRecord]) -> int:
+    async def _store_records(self, records: list[UniversalCOTRecord]) -> int:
         """Store records in the warehouse."""
         stored = 0
         for record in records:

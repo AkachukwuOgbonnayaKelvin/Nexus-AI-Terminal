@@ -4,15 +4,15 @@ GLB-006 Geopolitical Risk Intelligence Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional, List
 from datetime import datetime
+from typing import Any
 
-from .constants import NDIP_TOPICS, GeopoliticalEventType
-from .input.schemas import GeopoliticalEventInput
-from .analysis.severity_analyzer import SeverityAnalyzer
 from .analysis.geopolitical_score import GeopoliticalScoreEngine
-from .transmission.risk_transmission import RiskTransmissionEngine
+from .analysis.severity_analyzer import SeverityAnalyzer
+from .constants import NDIP_TOPICS, GeopoliticalEventType
 from .impact.asset_impact_matrix import AssetImpactMatrixGenerator
+from .input.schemas import GeopoliticalEventInput
+from .transmission.risk_transmission import RiskTransmissionEngine
 
 logger = logging.getLogger(__name__)
 
@@ -25,15 +25,15 @@ class GeopoliticalRiskEngine:
         self.score_engine = GeopoliticalScoreEngine()
         self.transmission_engine = RiskTransmissionEngine()
 
-        self.last_report: Optional[Dict] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Dict[str, Any] = {}
+        self.last_report: dict | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] = {}
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data[topic] = payload
 
-    def run(self) -> Dict[str, Any]:
+    def run(self) -> dict[str, Any]:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -85,7 +85,7 @@ class GeopoliticalRiskEngine:
 
         return report
 
-    def _parse_events(self) -> List[GeopoliticalEventInput]:
+    def _parse_events(self) -> list[GeopoliticalEventInput]:
         """Parse events from NDIP data."""
         events_data = self._latest_data.get(NDIP_TOPICS["GEOPOLITICAL_EVENTS"], {})
         raw_events = events_data.get("events", [])
@@ -123,7 +123,7 @@ class GeopoliticalRiskEngine:
 
         return parsed
 
-    def _build_core_intelligence(self, global_state: Dict, transmission: Dict) -> Dict:
+    def _build_core_intelligence(self, global_state: dict, transmission: dict) -> dict:
         """Build core intelligence report"""
         return {
             "global_geopolitical_risk": global_state.get("global_risk_score", 0),
@@ -142,7 +142,7 @@ class GeopoliticalRiskEngine:
             "confidence": global_state.get("confidence", 50.0),
         }
 
-    def _empty_report(self) -> Dict:
+    def _empty_report(self) -> dict:
         """Return empty report when no events."""
         return {
             "engine_id": "GLB-006",
@@ -165,11 +165,11 @@ class GeopoliticalRiskEngine:
             "metadata": {"event_count": 0},
         }
 
-    def get_last_report(self) -> Optional[Dict]:
+    def get_last_report(self) -> dict | None:
         """Get the last generated report."""
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """Check engine health."""
         return {
             "engine_id": "GLB-006",

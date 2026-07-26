@@ -32,7 +32,6 @@ class RedisClient:
 
     def set(self, key: str, value: str, ttl: int = 300) -> None:
         """Set a value in Redis."""
-        pass
 
 
 _redis = RedisClient()

@@ -1,7 +1,7 @@
 """Confidence Engine – assigns confidence scores based on source."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ class ConfidenceEngine:
         "unknown": 0.7,
     }
 
-    def score(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def score(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         for event in events:
             source = event.get("source", "unknown")
             base_score = self.SOURCE_SCORES.get(source, 0.7)

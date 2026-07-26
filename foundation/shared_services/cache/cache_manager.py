@@ -1,7 +1,7 @@
 """Cache service implementation."""
 
 import time
-from typing import Any, Dict, Optional
+from typing import Any
 
 from foundation.settings import settings
 
@@ -10,10 +10,10 @@ class CacheManager:
     """Simple in-memory cache with TTL."""
 
     def __init__(self) -> None:
-        self._cache: Dict[str, Dict[str, Any]] = {}
+        self._cache: dict[str, dict[str, Any]] = {}
         self._ttl = settings.cache_ttl_seconds
 
-    def set(self, key: str, value: Any, ttl: Optional[int] = None) -> None:
+    def set(self, key: str, value: Any, ttl: int | None = None) -> None:
         """Set a value in the cache."""
         if ttl is None:
             ttl = self._ttl
@@ -22,7 +22,7 @@ class CacheManager:
             "expires_at": time.time() + ttl,
         }
 
-    def get(self, key: str) -> Optional[Any]:
+    def get(self, key: str) -> Any | None:
         """Get a value from the cache."""
         entry = self._cache.get(key)
         if not entry:

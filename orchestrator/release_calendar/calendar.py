@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 """Release Calendar - Tracks official data release schedules"""
 
-from typing import Dict, Optional
-from datetime import datetime, timedelta
-from dataclasses import dataclass
 import json
+from dataclasses import dataclass
+from datetime import datetime, timedelta
 from pathlib import Path
 
 
@@ -14,8 +12,8 @@ class ReleaseSchedule:
 
     dataset_id: str
     frequency: str  # daily, weekly, monthly, quarterly, annual, event
-    day_of_week: Optional[int] = None  # 0=Monday, 6=Sunday
-    day_of_month: Optional[int] = None
+    day_of_week: int | None = None  # 0=Monday, 6=Sunday
+    day_of_month: int | None = None
     time_of_day: str = "00:00"
     timezone: str = "UTC"
     release_delay: int = 0  # minutes after scheduled time
@@ -26,11 +24,11 @@ class ReleaseSchedule:
 class ReleaseCalendar:
     """Manages release schedules for all datasets"""
 
-    def __init__(self, calendar_file: Optional[Path] = None):
+    def __init__(self, calendar_file: Path | None = None):
         self.calendar_file = calendar_file or Path(
             "orchestrator/release_calendar/schedules.json"
         )
-        self.schedules: Dict[str, ReleaseSchedule] = {}
+        self.schedules: dict[str, ReleaseSchedule] = {}
         self._load()
 
     def _load(self):
@@ -77,7 +75,7 @@ class ReleaseCalendar:
         self.schedules[schedule.dataset_id] = schedule
         self.save()
 
-    def get_next_release(self, dataset_id: str) -> Optional[datetime]:
+    def get_next_release(self, dataset_id: str) -> datetime | None:
         """Get the next expected release time for a dataset"""
         schedule = self.schedules.get(dataset_id)
         if not schedule:

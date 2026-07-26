@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Intelligence Signal Schema - Derived from evidence"""
 
-from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Any
 
 from intelligence.schemas.evidence import Evidence
 
@@ -61,13 +60,13 @@ class IntelligenceSignal:
     confidence_level: SignalConfidence = SignalConfidence.MEDIUM
 
     # OPTIONAL fields with None default
-    description: Optional[str] = None
+    description: str | None = None
 
     # FACTORY defaults
-    supporting_evidence: List[Evidence] = field(default_factory=list)
+    supporting_evidence: list[Evidence] = field(default_factory=list)
     timestamp: datetime = field(default_factory=datetime.now)
     time_horizon: str = "daily"
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""

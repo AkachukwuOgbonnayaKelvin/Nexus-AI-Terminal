@@ -6,8 +6,8 @@ This is a compact, decision-ready output — NOT a presentation feed.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 from ..state.state import GlobalHubState
 
@@ -22,7 +22,7 @@ class OrchestratorFeeder:
     It contains only what the Orchestrator needs to make cross-domain decisions.
     """
 
-    def prepare_feed(self, state: GlobalHubState) -> Dict[str, Any]:
+    def prepare_feed(self, state: GlobalHubState) -> dict[str, Any]:
         """
         Prepare the Orchestrator decision feed.
 
@@ -43,7 +43,7 @@ class OrchestratorFeeder:
             "timestamp": datetime.utcnow().isoformat(),
         }
 
-    def _prepare_meta(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_meta(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare metadata."""
         return {
             "state_id": state.state_id,
@@ -55,7 +55,7 @@ class OrchestratorFeeder:
             "confidence": state.global_regime_confidence,
         }
 
-    def _prepare_global_context(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_global_context(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare global context."""
         return {
             "regime": state.global_regime,
@@ -75,7 +75,7 @@ class OrchestratorFeeder:
                 return sorted_themes[0].get("name", "Unknown theme")
         return "No dominant theme identified"
 
-    def _prepare_currency_context(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_currency_context(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare currency context."""
         currencies = []
         for c in state.currency_rankings:
@@ -100,7 +100,7 @@ class OrchestratorFeeder:
             else None,
         }
 
-    def _prepare_asset_class_context(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_asset_class_context(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare asset-class context."""
         asset_classes = []
         for a in state.asset_class_rankings:
@@ -126,7 +126,7 @@ class OrchestratorFeeder:
             else None,
         }
 
-    def _prepare_decision_context(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_decision_context(self, state: GlobalHubState) -> dict[str, Any]:
         """
         Prepare the compact decision context.
 
@@ -151,7 +151,7 @@ class OrchestratorFeeder:
             "consensus_confidence": state.global_regime_confidence,
         }
 
-    def _get_regime_signal(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _get_regime_signal(self, state: GlobalHubState) -> dict[str, Any]:
         """Get regime signal for orchestrator."""
         return {
             "regime": state.global_regime,
@@ -172,11 +172,11 @@ class OrchestratorFeeder:
         else:
             return "UNCERTAIN"
 
-    def _get_risk_signal(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _get_risk_signal(self, state: GlobalHubState) -> dict[str, Any]:
         """Get risk signal for orchestrator."""
         return {"level": state.global_risk_level, "score": state.global_risk_score}
 
-    def _get_currency_bias(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _get_currency_bias(self, state: GlobalHubState) -> dict[str, Any]:
         """Get currency bias summary."""
         bullish = [
             c.entity for c in state.currency_rankings if c.direction.value == "BULLISH"
@@ -197,7 +197,7 @@ class OrchestratorFeeder:
             "neutral_count": len(neutral),
         }
 
-    def _get_asset_class_bias(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _get_asset_class_bias(self, state: GlobalHubState) -> dict[str, Any]:
         """Get asset-class bias summary."""
         bullish = [
             a.name for a in state.asset_class_rankings if a.direction.value == "BULLISH"

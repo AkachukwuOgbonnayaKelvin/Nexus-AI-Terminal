@@ -3,7 +3,7 @@
 import logging
 import re
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 from urllib.parse import urljoin
 
 import requests
@@ -25,7 +25,7 @@ class CFTCWebCrawler:
             }
         )
 
-    def discover_reports(self) -> List[Dict[str, Any]]:
+    def discover_reports(self) -> list[dict[str, Any]]:
         """Discover all COT reports from the CFTC historical data page."""
         logger.info(f"Crawling CFTC historical data: {self.historical_url}")
         reports = []
@@ -73,7 +73,7 @@ class CFTCWebCrawler:
 
         return is_file and is_cot
 
-    def _parse_report_link(self, href: str, text: str) -> Optional[Dict[str, Any]]:
+    def _parse_report_link(self, href: str, text: str) -> dict[str, Any] | None:
         """Parse a report link into a structured record."""
         try:
             # Build absolute URL
@@ -117,7 +117,7 @@ class CFTCWebCrawler:
         else:
             return "unknown"
 
-    def _extract_date(self, filename: str, text: str) -> Optional[str]:
+    def _extract_date(self, filename: str, text: str) -> str | None:
         """Extract date from filename or text."""
         combined = f"{filename} {text}"
 

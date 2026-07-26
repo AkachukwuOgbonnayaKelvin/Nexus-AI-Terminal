@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -20,7 +20,7 @@ class WeeklyLoader:
             ("https://www.cftc.gov/dea/newcot/c_disagg.txt", "disaggregated_combined"),
         ]
 
-    def load_current_week(self) -> List[Dict[str, Any]]:
+    def load_current_week(self) -> list[dict[str, Any]]:
         """Load the current week's reports from all sources."""
         all_records = []
         for url, source_name in self.sources:
@@ -33,7 +33,7 @@ class WeeklyLoader:
                 logger.warning(f"Failed to load {source_name}: {e}")
         return all_records
 
-    def _fetch_txt(self, url: str, source_name: str) -> List[Dict[str, Any]]:
+    def _fetch_txt(self, url: str, source_name: str) -> list[dict[str, Any]]:
         """Fetch and parse a TXT file from CFTC."""
         response = requests.get(url, timeout=30)
         if response.status_code != 200:
@@ -65,7 +65,7 @@ class WeeklyLoader:
 
         return records
 
-    def _safe_int(self, value: Any) -> Optional[int]:
+    def _safe_int(self, value: Any) -> int | None:
         """Safely convert to int."""
         if value is None:
             return None

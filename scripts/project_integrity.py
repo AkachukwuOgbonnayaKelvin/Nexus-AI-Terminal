@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Project Integrity Tool – Scans the entire repository for issues."""
 
 import ast
 import json
 from collections import defaultdict
-from typing import Dict, List, Optional, Set
+from pathlib import Path
 
 import chardet
-from pathlib import Path
 
 
 class ProjectIntegrity:
@@ -26,12 +24,12 @@ class ProjectIntegrity:
             "orphan_modules": [],
             "duplicate_modules": [],
         }
-        self.modules: Dict[str, Path] = {}
-        self.classes: Dict[str, Set[str]] = defaultdict(set)
-        self.imports: Dict[str, Set[str]] = defaultdict(set)
-        self.all_exports: Set[str] = set()
+        self.modules: dict[str, Path] = {}
+        self.classes: dict[str, set[str]] = defaultdict(set)
+        self.imports: dict[str, set[str]] = defaultdict(set)
+        self.all_exports: set[str] = set()
 
-    def _read_file_safe(self, file_path: Path) -> Optional[str]:
+    def _read_file_safe(self, file_path: Path) -> str | None:
         """Read a file with automatic encoding detection."""
         try:
             with open(file_path, "r", encoding="utf-8") as f:
@@ -60,7 +58,7 @@ class ProjectIntegrity:
         except Exception:
             return None
 
-    def run(self) -> Dict[str, List]:
+    def run(self) -> dict[str, list]:
         """Run all checks."""
         self._discover_modules()
         self._check_encoding()
@@ -194,7 +192,7 @@ class ProjectIntegrity:
                         )
                         break
 
-    def _get_stdlib(self) -> Set[str]:
+    def _get_stdlib(self) -> set[str]:
         """Get standard library modules."""
         return {
             "typing",

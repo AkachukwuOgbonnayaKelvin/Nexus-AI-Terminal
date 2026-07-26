@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -19,7 +19,7 @@ class BinanceConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         binance_symbol = symbol.replace("-", "").upper()
         url = f"{self.base_url}/ticker/price?symbol={binance_symbol}"
         try:
@@ -37,19 +37,19 @@ class BinanceConnector(BaseProvider):
         except Exception:
             return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return [self.get_price(s) for s in symbols if self.get_price(s)]
 
     def health_check(self) -> bool:
         return self.get_price("BTCUSDT") is not None
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"realtime": True, "historical": True, "crypto": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_minute": 1200}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return ["BTCUSDT", "ETHUSDT"]
 
     def supports_symbol(self, symbol: str) -> bool:

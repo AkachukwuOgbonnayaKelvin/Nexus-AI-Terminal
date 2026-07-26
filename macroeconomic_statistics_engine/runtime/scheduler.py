@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """MAC-001 Runtime Scheduler - Called by Central Scheduler"""
 
 import sys
@@ -12,11 +11,11 @@ def run_mac001():
     print("[MAC-001] Running macro statistics acquisition...")
 
     try:
-        from macroeconomic_statistics_engine.collectors.gdp_collector import (
-            GDPCollector,
-        )
         from macroeconomic_statistics_engine.collectors.cpi_collector import (
             CPICollector,
+        )
+        from macroeconomic_statistics_engine.collectors.gdp_collector import (
+            GDPCollector,
         )
         from macroeconomic_statistics_engine.collectors.unemployment_collector import (
             UnemploymentCollector,

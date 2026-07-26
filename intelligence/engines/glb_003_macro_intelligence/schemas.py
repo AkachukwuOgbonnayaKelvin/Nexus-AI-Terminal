@@ -3,7 +3,8 @@ GLB-003 Macro Intelligence Engine - Schemas
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 from intelligence.schemas.asset_impact import AssetImpactMatrix
@@ -65,12 +66,12 @@ class MacroReport(BaseModel):
     overall_score: float = Field(ge=0, le=100)
     confidence: float = Field(ge=0, le=100)
 
-    macro_components: Dict[str, MacroComponent]
-    signals: List[MacroSignal]
-    evidence: List[MacroEvidence]
-    risks: List[MacroRisk]
-    drivers: List[MacroDriver]
+    macro_components: dict[str, MacroComponent]
+    signals: list[MacroSignal]
+    evidence: list[MacroEvidence]
+    risks: list[MacroRisk]
+    drivers: list[MacroDriver]
 
-    asset_impact_matrix: Optional[AssetImpactMatrix] = None
+    asset_impact_matrix: AssetImpactMatrix | None = None
 
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

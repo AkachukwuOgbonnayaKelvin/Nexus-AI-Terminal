@@ -2,10 +2,10 @@
 Unit tests for GLB-001 regime classifier
 """
 
+from intelligence.engines.glb_001_market_regime.constants import MarketRegime
 from intelligence.engines.glb_001_market_regime.regime_classifier import (
     RegimeClassifier,
 )
-from intelligence.engines.glb_001_market_regime.constants import MarketRegime
 from intelligence.engines.glb_001_market_regime.schemas import MarketDimension
 
 

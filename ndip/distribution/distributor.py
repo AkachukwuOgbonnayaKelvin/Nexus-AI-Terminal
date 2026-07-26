@@ -1,14 +1,14 @@
 """NDIP Distributor implementation."""
 
-from typing import Any, Dict, List
+from typing import Any
 
 
 class Distributor:
     """Data distributor."""
 
     def __init__(self) -> None:
-        self._consumers: Dict[str, Any] = {}
-        self._subscriptions: Dict[str, List[str]] = {}
+        self._consumers: dict[str, Any] = {}
+        self._subscriptions: dict[str, list[str]] = {}
 
     def register_consumer(self, name: str, consumer: Any) -> None:
         """Register a data consumer."""
@@ -20,10 +20,10 @@ class Distributor:
             self._subscriptions[consumer] = []
         self._subscriptions[consumer].append(symbol)
 
-    def distribute(self, symbol: str, data: Any) -> Dict[str, Any]:
+    def distribute(self, symbol: str, data: Any) -> dict[str, Any]:
         """Distribute data to consumers."""
         distributed = 0
-        errors: List[Dict[str, str]] = []
+        errors: list[dict[str, str]] = []
 
         for consumer_name, symbols in self._subscriptions.items():
             if symbol in symbols:

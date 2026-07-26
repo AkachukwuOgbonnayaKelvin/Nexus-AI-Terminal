@@ -1,7 +1,7 @@
 """COT Warehouse – institutional-grade storage."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from ndip.utils.db_connector import execute, fetchrow
 
@@ -14,7 +14,7 @@ class COTWarehouse:
         self.report_table = "cot_reports"
         self.position_table = "cot_positions"
 
-    def store(self, record: Dict[str, Any]) -> bool:
+    def store(self, record: dict[str, Any]) -> bool:
         """Store a parsed COT record."""
         try:
             query = f"""
@@ -64,7 +64,7 @@ class COTWarehouse:
             logger.error(f"Failed to store record: {e}")
             return False
 
-    def register_market(self, market: Dict[str, Any]) -> None:
+    def register_market(self, market: dict[str, Any]) -> None:
         """Register a discovered market."""
         try:
             query = f"""

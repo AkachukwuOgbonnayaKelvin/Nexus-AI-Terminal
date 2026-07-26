@@ -5,19 +5,19 @@ The Evidence Layer collects, validates, and scores evidence from all GLB engines
 It determines signal quality, freshness, independence, and resolves conflicts.
 """
 
-from .evidence_model import EvidenceGroup, EvidenceEntry
+from .conflict_resolver import ConflictResolver
+from .dependency_detector import DependencyDetector
+from .evidence_collector import EvidenceCollector
+from .evidence_model import EvidenceEntry, EvidenceGroup
 from .evidence_quality import EvidenceQuality
 from .freshness import FreshnessChecker
-from .evidence_collector import EvidenceCollector
-from .dependency_detector import DependencyDetector
-from .conflict_resolver import ConflictResolver
 
 __all__ = [
-    "EvidenceGroup",
+    "ConflictResolver",
+    "DependencyDetector",
+    "EvidenceCollector",
     "EvidenceEntry",
+    "EvidenceGroup",
     "EvidenceQuality",
     "FreshnessChecker",
-    "EvidenceCollector",
-    "DependencyDetector",
-    "ConflictResolver",
 ]

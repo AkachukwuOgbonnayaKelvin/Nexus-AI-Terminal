@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from market_positioning_warehouse.dtos import UniversalPosition
 
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class ParserFactory:
     """Factory for creating parsers."""
 
-    def parse(self, data: List[Dict[str, Any]]) -> List[UniversalPosition]:
+    def parse(self, data: list[dict[str, Any]]) -> list[UniversalPosition]:
         """Parse raw data into UniversalPosition objects."""
         positions = []
         for item in data:

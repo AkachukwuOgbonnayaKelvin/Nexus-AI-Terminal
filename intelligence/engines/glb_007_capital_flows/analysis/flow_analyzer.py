@@ -3,8 +3,8 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Flow Analyzer
 """
 
 import logging
-from typing import Dict, List, Any
 from collections import defaultdict
+from typing import Any
 
 from ..constants import FlowDirection, FlowMomentum
 from ..input.schemas import CapitalFlowInput
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class FlowAnalyzer:
     """Analyze capital flows"""
 
-    def analyze_flows(self, flows: List[CapitalFlowInput]) -> Dict[str, Any]:
+    def analyze_flows(self, flows: list[CapitalFlowInput]) -> dict[str, Any]:
         """
         Analyze capital flows and produce flow intelligence.
 
@@ -95,7 +95,7 @@ class FlowAnalyzer:
             "confidence": avg_confidence,
         }
 
-    def _calculate_momentum(self, flows: List[CapitalFlowInput]) -> FlowMomentum:
+    def _calculate_momentum(self, flows: list[CapitalFlowInput]) -> FlowMomentum:
         """Calculate flow momentum"""
         if len(flows) < 2:
             return FlowMomentum.STABLE
@@ -120,7 +120,7 @@ class FlowAnalyzer:
             return FlowMomentum.REVERSING
         return FlowMomentum.STABLE
 
-    def _group_by_asset_class(self, flows: List[CapitalFlowInput]) -> Dict[str, float]:
+    def _group_by_asset_class(self, flows: list[CapitalFlowInput]) -> dict[str, float]:
         """Group flows by asset class"""
         asset_classes = {
             "XAUUSD": "COMMODITY",

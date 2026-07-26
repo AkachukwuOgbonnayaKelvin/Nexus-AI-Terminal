@@ -6,14 +6,13 @@ Acts as the final quality gate.
 """
 
 import logging
-from typing import List
 
 from ..contracts import (
-    GlobalEntityRating,
     AssetClassRating,
-    GlobalIntelligenceOutput,
     AssetIntelligenceFeed,
     Direction,
+    GlobalEntityRating,
+    GlobalIntelligenceOutput,
 )
 from ..entity.direction import classify_direction
 
@@ -25,8 +24,8 @@ class ValidationResult:
 
     def __init__(self):
         self.valid = True
-        self.errors: List[str] = []
-        self.warnings: List[str] = []
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
 
     def add_error(self, message: str) -> None:
         self.valid = False
@@ -56,7 +55,7 @@ class OutputValidator:
     """
 
     def validate_entity_ratings(
-        self, ratings: List[GlobalEntityRating]
+        self, ratings: list[GlobalEntityRating]
     ) -> ValidationResult:
         """Validate entity ratings."""
         result = ValidationResult()
@@ -114,7 +113,7 @@ class OutputValidator:
         return result
 
     def validate_asset_class_ratings(
-        self, ratings: List[AssetClassRating]
+        self, ratings: list[AssetClassRating]
     ) -> ValidationResult:
         """Validate asset-class ratings."""
         result = ValidationResult()
@@ -230,7 +229,7 @@ class OutputValidator:
         return result
 
     def validate_asset_feeds(
-        self, feeds: List[AssetIntelligenceFeed]
+        self, feeds: list[AssetIntelligenceFeed]
     ) -> ValidationResult:
         """Validate multiple asset feeds."""
         result = ValidationResult()

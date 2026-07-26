@@ -19,8 +19,8 @@ except ImportError:
     MacroService = None
 
 __all__ = [
-    "MacroCollector",
-    "RawWarehouse",
     "ConsensusWarehouse",
+    "MacroCollector",
     "MacroService",
+    "RawWarehouse",
 ]

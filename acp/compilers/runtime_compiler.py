@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Runtime Compiler - Validates DAR runtime compliance
 Checks: scheduler, health, metrics, lifecycle declared
 """
 
-from typing import Dict, Any
+from typing import Any
 
 
 class RuntimeCompiler:
@@ -12,7 +11,7 @@ class RuntimeCompiler:
 
     def compile(
         self, engine, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Compile the engine's runtime layer"""
 
         result = {

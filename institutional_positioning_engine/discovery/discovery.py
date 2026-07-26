@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime, timedelta
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.providers.cftc.connector import CFTCConnector
 
@@ -22,7 +22,7 @@ class ReportDiscovery:
             "supplemental",
         ]
 
-    def discover_all(self) -> List[Dict[str, Any]]:
+    def discover_all(self) -> list[dict[str, Any]]:
         """Discover all available reports."""
         reports = []
         # In production, this would query CFTC's directory

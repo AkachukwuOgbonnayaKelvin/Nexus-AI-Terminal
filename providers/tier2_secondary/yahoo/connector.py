@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import yfinance as yf
 
@@ -19,7 +19,7 @@ class YahooConnector(BaseProvider):
     def disconnect(self) -> None:
         self._connected = False
 
-    def _map_symbol(self, symbol: str) -> List[str]:
+    def _map_symbol(self, symbol: str) -> list[str]:
         """Return a list of possible Yahoo tickers for an internal symbol."""
         mapping = {
             "XAUUSD": ["GC=F", "XAUUSD=X"],
@@ -42,7 +42,7 @@ class YahooConnector(BaseProvider):
         }
         return mapping.get(symbol, [symbol])
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         if not self._connected:
             return None
         # For forex (6 letters, all alpha), try with =X suffix first
@@ -72,7 +72,7 @@ class YahooConnector(BaseProvider):
                 continue
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         results = []
         for sym in symbols:
             data = self.get_price(sym)
@@ -83,7 +83,7 @@ class YahooConnector(BaseProvider):
     def health_check(self) -> bool:
         return self.get_price("EURUSD") is not None
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {
             "realtime": False,
             "historical": True,
@@ -92,10 +92,10 @@ class YahooConnector(BaseProvider):
             "crypto": True,
         }
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_second": 5, "requests_per_minute": 300}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return ["EURUSD", "GBPUSD", "AAPL", "MSFT", "GC=F", "^GSPC"]
 
     def supports_symbol(self, symbol: str) -> bool:

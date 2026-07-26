@@ -3,9 +3,9 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Positioning Analyzer
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
-from ..constants import PositioningBias, CrowdingState
+from ..constants import CrowdingState, PositioningBias
 from ..input.schemas import COTInput, InstitutionalPositioningInput
 
 logger = logging.getLogger(__name__)
@@ -16,9 +16,9 @@ class PositioningAnalyzer:
 
     def analyze_positioning(
         self,
-        cot_data: List[COTInput],
-        institutional_data: List[InstitutionalPositioningInput],
-    ) -> Dict[str, Any]:
+        cot_data: list[COTInput],
+        institutional_data: list[InstitutionalPositioningInput],
+    ) -> dict[str, Any]:
         """
         Analyze positioning from COT and institutional data.
 

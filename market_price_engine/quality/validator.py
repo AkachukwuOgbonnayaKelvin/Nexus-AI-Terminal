@@ -1,14 +1,12 @@
-# -*- coding: utf-8 -*-
 """OHLCV Validator - Validates OHLCV data quality"""
 
-from typing import Tuple, Optional
 from providers.base import OHLCVData
 
 
 class OHLCVValidator:
     """Validates OHLCV data quality"""
 
-    def validate(self, bar: OHLCVData) -> Tuple[bool, Optional[str]]:
+    def validate(self, bar: OHLCVData) -> tuple[bool, str | None]:
         """
         Validate an OHLCV bar.
 

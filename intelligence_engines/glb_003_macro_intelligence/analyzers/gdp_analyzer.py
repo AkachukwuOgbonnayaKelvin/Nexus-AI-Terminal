@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """GDP Analyzer for Macro Intelligence Engine"""
 
-from typing import Dict, Any, List
+from typing import Any
 
 
 class GDPAnalyzer:
     """Analyzes GDP data"""
 
-    def analyze(self, gdp_data: List[Dict]) -> Dict[str, Any]:
+    def analyze(self, gdp_data: list[dict]) -> dict[str, Any]:
         """Analyze GDP data and return insights"""
         if not gdp_data:
             return {

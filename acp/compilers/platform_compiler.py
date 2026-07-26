@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Platform Compiler - Validates overall platform health
 Checks: all engines healthy, no critical failures, production readiness
 """
 
-from typing import Dict, Any
+from typing import Any
 
 
 class PlatformCompiler:
@@ -12,7 +11,7 @@ class PlatformCompiler:
 
     def compile(
         self, engine, verbose: bool = False, fix: bool = False
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Compile the platform layer for an engine"""
 
         result = {

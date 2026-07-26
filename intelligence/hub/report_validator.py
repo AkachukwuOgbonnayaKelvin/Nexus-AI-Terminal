@@ -3,7 +3,7 @@ Global Intelligence Hub - Report Validator
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +13,7 @@ class ReportValidator:
     Validates intelligence reports before they enter the hub.
     """
 
-    def validate(self, report: Any) -> Dict[str, Any]:
+    def validate(self, report: Any) -> dict[str, Any]:
         """
         Validate a single report.
 
@@ -35,7 +35,7 @@ class ReportValidator:
 
         return {"valid": True, "reason": "OK"}
 
-    def validate_all(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def validate_all(self, reports: dict[str, Any]) -> dict[str, Any]:
         """
         Validate all reports.
 

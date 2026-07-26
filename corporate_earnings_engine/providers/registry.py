@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Provider Registry - Manages earnings providers with hierarchy"""
 
-from typing import Dict, List, Optional, Any
+import os
+import sys
 from enum import IntEnum
 from pathlib import Path
-import sys
-import os
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -31,10 +30,10 @@ class ProviderTier(IntEnum):
 
 
 class ProviderRegistry:
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
-        self.providers: Dict[str, EarningsProvider] = {}
-        self.tiers: Dict[str, ProviderTier] = {}
+        self.providers: dict[str, EarningsProvider] = {}
+        self.tiers: dict[str, ProviderTier] = {}
         self._load_from_env()
         self._initialize_providers()
         self._print_status()
@@ -87,27 +86,27 @@ class ProviderRegistry:
             tier = self.tiers.get(name, ProviderTier.TIER_3_FALLBACK).value
             print(f"  {name}: Tier {tier}, Available: {available}")
 
-    def get_provider(self, name: str) -> Optional[EarningsProvider]:
+    def get_provider(self, name: str) -> EarningsProvider | None:
         return self.providers.get(name)
 
-    def get_primary_provider(self) -> Optional[EarningsProvider]:
+    def get_primary_provider(self) -> EarningsProvider | None:
         for name, provider in self.providers.items():
             if self.tiers.get(name) == ProviderTier.TIER_1_PRIMARY:
                 if provider.is_available():
                     return provider
         return None
 
-    def get_providers_by_tier(self, tier: int) -> List[EarningsProvider]:
+    def get_providers_by_tier(self, tier: int) -> list[EarningsProvider]:
         return [
             p
             for n, p in self.providers.items()
             if self.tiers.get(n) == ProviderTier(tier)
         ]
 
-    def get_all_providers(self) -> List[EarningsProvider]:
+    def get_all_providers(self) -> list[EarningsProvider]:
         return list(self.providers.values())
 
-    def get_health_status(self) -> Dict[str, Any]:
+    def get_health_status(self) -> dict[str, Any]:
         status = {}
         for name, provider in self.providers.items():
             health = provider.get_health()

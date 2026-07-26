@@ -1,7 +1,7 @@
 """Central Bank Engine – orchestrates collectors and aggregator."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from central_bank_engine.aggregator import (
     CollectorRouter,
@@ -152,7 +152,7 @@ class CentralBankEngine:
 
         logger.info(f"Registered {len(self.provider_manager.collectors)} collectors")
 
-    async def run(self) -> Dict[str, Any]:
+    async def run(self) -> dict[str, Any]:
         """Run the entire pipeline: collect → aggregate → publish."""
         logger.info("Starting Central Bank Intelligence Engine run")
 
@@ -199,7 +199,7 @@ class CentralBankEngine:
             "collector_status": self.provider_manager.get_collector_statuses(),
         }
 
-    def get_status(self) -> Dict[str, Any]:
+    def get_status(self) -> dict[str, Any]:
         """Get status of all collectors."""
         return {
             "collectors": self.provider_manager.get_collector_statuses(),

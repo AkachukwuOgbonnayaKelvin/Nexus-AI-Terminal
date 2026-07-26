@@ -1,7 +1,7 @@
 """Knowledge Linker – maps events to affected assets."""
 
 import logging
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class KnowledgeLinker:
         "Reserve Bank of New Zealand": ["NZD", "NZDUSD", "Dairy"],
     }
 
-    def link(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def link(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         for event in events:
             bank = event.get("bank")
             assets = self.ASSET_MAP.get(bank, [])

@@ -1,9 +1,9 @@
 """Warehouse Validator – Checks warehouse structure."""
 
 from pathlib import Path
-from typing import List
-from tools.architecture.validators.base import BaseValidator
+
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class WarehouseValidator(BaseValidator):
@@ -12,7 +12,7 @@ class WarehouseValidator(BaseValidator):
     def get_severity(self) -> str:
         return "high"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
         engines = self._find_engines()
 
@@ -41,7 +41,7 @@ class WarehouseValidator(BaseValidator):
             results.append(self.result(True, "All engines have warehouse layer"))
         return results
 
-    def _find_engines(self) -> List[Path]:
+    def _find_engines(self) -> list[Path]:
         engines = []
         for path in self.root.glob("**/*_engine"):
             if path.is_dir() and not any(

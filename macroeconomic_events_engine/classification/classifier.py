@@ -1,7 +1,6 @@
-from typing import Dict, List
+from pathlib import Path
 
 import yaml
-from pathlib import Path
 
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 
@@ -28,5 +27,5 @@ class MacroClassifier:
             event.category = "Other"
         return event
 
-    def get_keywords(self) -> Dict[str, List[str]]:
+    def get_keywords(self) -> dict[str, list[str]]:
         return self.ontology

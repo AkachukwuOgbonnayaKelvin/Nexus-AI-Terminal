@@ -2,9 +2,9 @@
 
 import ast
 from pathlib import Path
-from typing import List, Dict
-from tools.architecture.validators.base import BaseValidator
+
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class ImportValidator(BaseValidator):
@@ -12,13 +12,13 @@ class ImportValidator(BaseValidator):
 
     def __init__(self, root_path: Path):
         super().__init__(root_path)
-        self.modules: Dict[str, Path] = {}
-        self.broken_imports: List[Dict] = []
+        self.modules: dict[str, Path] = {}
+        self.broken_imports: list[dict] = []
 
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         self._discover_modules()
         self._check_imports()
 

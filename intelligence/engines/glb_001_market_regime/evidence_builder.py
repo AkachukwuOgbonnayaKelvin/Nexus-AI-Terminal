@@ -3,9 +3,9 @@ GLB-001 Market Regime Engine - Evidence Builder
 """
 
 import logging
-from typing import Dict, List, Any, Union
+from typing import Any
 
-from .schemas import RegimeEvidence, MarketDimension
+from .schemas import MarketDimension, RegimeEvidence
 
 logger = logging.getLogger(__name__)
 
@@ -17,8 +17,8 @@ class EvidenceBuilder:
         self.direction_resolver = DirectionResolver()
 
     def build_evidence(
-        self, dimensions: Dict[str, MarketDimension], normalized_data: Dict[str, Any]
-    ) -> List[RegimeEvidence]:
+        self, dimensions: dict[str, MarketDimension], normalized_data: dict[str, Any]
+    ) -> list[RegimeEvidence]:
         """Build evidence list from dimensions and raw data."""
         evidence = []
         evidence.extend(self._build_market_evidence(dimensions, normalized_data))
@@ -26,8 +26,8 @@ class EvidenceBuilder:
         return evidence
 
     def _build_market_evidence(
-        self, dimensions: Dict[str, MarketDimension], data: Dict[str, Any]
-    ) -> List[RegimeEvidence]:
+        self, dimensions: dict[str, MarketDimension], data: dict[str, Any]
+    ) -> list[RegimeEvidence]:
         evidence = []
 
         # 1. Trend Direction
@@ -112,8 +112,8 @@ class EvidenceBuilder:
         return evidence
 
     def _build_macro_evidence(
-        self, dimensions: Dict[str, MarketDimension], data: Dict[str, Any]
-    ) -> List[RegimeEvidence]:
+        self, dimensions: dict[str, MarketDimension], data: dict[str, Any]
+    ) -> list[RegimeEvidence]:
         evidence = []
         macro = data.get("macro", {})
 
@@ -244,7 +244,7 @@ class DirectionResolver:
         "FLAT": NEUTRAL,
     }
 
-    def resolve(self, value: Union[str, float, int, None], indicator: str = "") -> str:
+    def resolve(self, value: str | float | None, indicator: str = "") -> str:
         """
         Resolve a raw value into a standardized direction.
 

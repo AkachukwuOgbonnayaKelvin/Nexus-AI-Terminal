@@ -3,11 +3,11 @@ GLB-004 Economic Events Intelligence Engine - Event Normalizer
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
+from ..constants import EVENT_TAXONOMY, EventCategory, EventImpact, EventStatus
 from .schemas import EconomicEventInput
-from ..constants import EventCategory, EventImpact, EventStatus, EVENT_TAXONOMY
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class EventNormalizer:
     def __init__(self):
         self._taxonomy = EVENT_TAXONOMY
 
-    def normalize(self, raw_event: Dict[str, Any]) -> Optional[EconomicEventInput]:
+    def normalize(self, raw_event: dict[str, Any]) -> EconomicEventInput | None:
         """
         Normalize a raw event into canonical EconomicEventInput.
 
@@ -70,14 +70,14 @@ class EventNormalizer:
             logger.error(f"Error normalizing event: {e}")
             return None
 
-    def _extract_event_name(self, raw: Dict) -> Optional[str]:
+    def _extract_event_name(self, raw: dict) -> str | None:
         """Extract event name from raw data"""
         name = raw.get("event") or raw.get("name") or raw.get("title")
         if name:
             return name.strip()
         return None
 
-    def _get_taxonomy(self, event_name: str) -> Optional[Dict]:
+    def _get_taxonomy(self, event_name: str) -> dict | None:
         """Get taxonomy for an event name"""
         for category, events in self._taxonomy.items():
             for name, taxonomy in events.items():
@@ -88,7 +88,7 @@ class EventNormalizer:
                     return taxonomy
         return None
 
-    def _infer_taxonomy(self, raw: Dict) -> Optional[Dict]:
+    def _infer_taxonomy(self, raw: dict) -> dict | None:
         """Infer taxonomy from raw data"""
         currency = raw.get("currency", "")
         if currency == "USD":
@@ -101,7 +101,7 @@ class EventNormalizer:
             return {"currency": "JPY", "category": EventCategory.GROWTH}
         return {"currency": "USD", "category": EventCategory.GROWTH}
 
-    def _determine_impact(self, raw: Dict, taxonomy: Dict) -> EventImpact:
+    def _determine_impact(self, raw: dict, taxonomy: dict) -> EventImpact:
         """Determine event impact level"""
         # Check raw impact
         if "impact" in raw:
@@ -122,7 +122,7 @@ class EventNormalizer:
         else:
             return EventImpact.LOW
 
-    def _determine_status(self, raw: Dict) -> EventStatus:
+    def _determine_status(self, raw: dict) -> EventStatus:
         """Determine event status"""
         if "actual" in raw and raw["actual"] is not None:
             return EventStatus.RELEASED

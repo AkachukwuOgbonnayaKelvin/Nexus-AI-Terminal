@@ -1,6 +1,5 @@
 import json
 import logging
-from typing import List, Optional
 
 from central_bank_engine.dtos import UniversalCentralBankEvent
 from ndip.utils.db_connector import execute, fetch, fetchrow
@@ -79,7 +78,7 @@ class CentralBankWarehouse:
             logger.error(f"Central Bank store error: {e}")
             return False
 
-    async def get_latest_rate(self, bank: str = "Federal Reserve") -> Optional[dict]:
+    async def get_latest_rate(self, bank: str = "Federal Reserve") -> dict | None:
         query = f"""
             SELECT * FROM {self.table}
             WHERE bank = $1 AND event_type = 'RateDecision'
@@ -88,9 +87,7 @@ class CentralBankWarehouse:
         row = await fetchrow(query, bank)
         return dict(row) if row else None
 
-    async def get_latest_statement(
-        self, bank: str = "Federal Reserve"
-    ) -> Optional[dict]:
+    async def get_latest_statement(self, bank: str = "Federal Reserve") -> dict | None:
         query = f"""
             SELECT * FROM {self.table}
             WHERE bank = $1 AND event_type IN ('Statement', 'Minutes')
@@ -99,7 +96,7 @@ class CentralBankWarehouse:
         row = await fetchrow(query, bank)
         return dict(row) if row else None
 
-    async def get_meeting_calendar(self, bank: str = "Federal Reserve") -> List[dict]:
+    async def get_meeting_calendar(self, bank: str = "Federal Reserve") -> list[dict]:
         query = f"""
             SELECT * FROM {self.table}
             WHERE bank = $1 AND event_type = 'MeetingCalendar'
@@ -108,12 +105,12 @@ class CentralBankWarehouse:
         rows = await fetch(query, bank)
         return [dict(row) for row in rows]
 
-    async def get_latest(self, limit: int = 20) -> List[dict]:
+    async def get_latest(self, limit: int = 20) -> list[dict]:
         query = f"SELECT * FROM {self.table} ORDER BY release_time DESC LIMIT $1"
         rows = await fetch(query, limit)
         return [dict(row) for row in rows]
 
-    async def get_by_importance(self, importance: str, limit: int = 20) -> List[dict]:
+    async def get_by_importance(self, importance: str, limit: int = 20) -> list[dict]:
         query = f"""
             SELECT * FROM {self.table}
             WHERE importance = $1

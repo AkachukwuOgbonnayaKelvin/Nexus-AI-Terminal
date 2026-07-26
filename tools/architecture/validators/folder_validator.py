@@ -1,8 +1,7 @@
 """Folder Validator – Checks required top-level folders."""
 
-from typing import List
-from tools.architecture.validators.base import BaseValidator
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class FolderValidator(BaseValidator):
@@ -13,7 +12,7 @@ class FolderValidator(BaseValidator):
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
         missing = [f for f in self.REQUIRED_FOLDERS if not (self.root / f).exists()]
 

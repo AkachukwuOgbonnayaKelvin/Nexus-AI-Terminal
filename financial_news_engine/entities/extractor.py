@@ -1,5 +1,4 @@
 import re
-from typing import Dict, List
 
 
 class EntityExtractor:
@@ -14,7 +13,7 @@ class EntityExtractor:
             r"\b(Fed|Federal Reserve|ECB|BOE|BOJ|SNB|RBA|BOC)\b"
         )
 
-    def extract(self, text: str) -> Dict[str, List[str]]:
+    def extract(self, text: str) -> dict[str, list[str]]:
         if not text:
             return {"currencies": [], "assets": [], "central_banks": []}
         return {

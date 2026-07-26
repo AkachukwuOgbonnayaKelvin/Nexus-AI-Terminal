@@ -9,11 +9,11 @@ from .registry_manager import RegistryManager
 from .version_manager import VersionManager
 
 __all__ = [
+    "AuditManager",
+    "ConflictManager",
+    "DependencyManager",
+    "QualityManager",
     "ReferenceDataManager",
     "RegistryManager",
-    "DependencyManager",
-    "ConflictManager",
     "VersionManager",
-    "QualityManager",
-    "AuditManager",
 ]

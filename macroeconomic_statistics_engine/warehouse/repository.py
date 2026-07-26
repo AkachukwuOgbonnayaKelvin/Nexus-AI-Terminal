@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 """MAC-001 Warehouse Repository with File Persistence"""
 
 import json
-from pathlib import Path
-from typing import List, Optional
 from datetime import datetime
+from pathlib import Path
 
 
 class GDPObservation:
@@ -90,7 +88,7 @@ class GDPRepository:
             return True
         return False
 
-    def save_many(self, observations: List) -> int:
+    def save_many(self, observations: list) -> int:
         count = 0
         for obs in observations:
             if hasattr(obs, "record_id"):
@@ -105,7 +103,7 @@ class GDPRepository:
     def exists(self, record_id: str) -> bool:
         return any(o.record_id == record_id for o in self._observations)
 
-    def get_latest(self, country: str = None) -> Optional[GDPObservation]:
+    def get_latest(self, country: str = None) -> GDPObservation | None:
         if not self._observations:
             return None
         if country:
@@ -115,19 +113,19 @@ class GDPRepository:
             return max(filtered, key=lambda x: x.period)
         return max(self._observations, key=lambda x: x.period)
 
-    def get_all(self) -> List[GDPObservation]:
+    def get_all(self) -> list[GDPObservation]:
         return self._observations.copy()
 
     def get_count(self) -> int:
         return len(self._observations)
 
-    def get_by_id(self, record_id: str) -> Optional[GDPObservation]:
+    def get_by_id(self, record_id: str) -> GDPObservation | None:
         for obs in self._observations:
             if obs.record_id == record_id:
                 return obs
         return None
 
-    def get_by_country(self, country: str) -> List[GDPObservation]:
+    def get_by_country(self, country: str) -> list[GDPObservation]:
         return [o for o in self._observations if o.country == country]
 
     def clear(self):

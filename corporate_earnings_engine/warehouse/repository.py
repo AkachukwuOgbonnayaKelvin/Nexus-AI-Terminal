@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 """ECO-002 Warehouse Repository with File Persistence"""
 
 import json
-from pathlib import Path
-from typing import List, Optional
 from datetime import datetime
+from pathlib import Path
 
 
 class EarningsObservation:
@@ -95,7 +93,7 @@ class EarningsRepository:
             return True
         return False
 
-    def save_many(self, observations: List) -> int:
+    def save_many(self, observations: list) -> int:
         count = 0
         for obs in observations:
             if hasattr(obs, "record_id"):
@@ -109,7 +107,7 @@ class EarningsRepository:
     def exists(self, record_id: str) -> bool:
         return any(o.record_id == record_id for o in self._observations)
 
-    def get_latest(self, symbol: str = None) -> Optional[EarningsObservation]:
+    def get_latest(self, symbol: str = None) -> EarningsObservation | None:
         if not self._observations:
             return None
         if symbol:
@@ -119,19 +117,19 @@ class EarningsRepository:
             return max(filtered, key=lambda x: x.period)
         return max(self._observations, key=lambda x: x.period)
 
-    def get_all(self) -> List[EarningsObservation]:
+    def get_all(self) -> list[EarningsObservation]:
         return self._observations.copy()
 
     def get_count(self) -> int:
         return len(self._observations)
 
-    def get_by_id(self, record_id: str) -> Optional[EarningsObservation]:
+    def get_by_id(self, record_id: str) -> EarningsObservation | None:
         for obs in self._observations:
             if obs.record_id == record_id:
                 return obs
         return None
 
-    def get_by_symbol(self, symbol: str) -> List[EarningsObservation]:
+    def get_by_symbol(self, symbol: str) -> list[EarningsObservation]:
         return [o for o in self._observations if o.symbol == symbol]
 
     def clear(self):

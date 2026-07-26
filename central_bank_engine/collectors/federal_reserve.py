@@ -2,7 +2,7 @@
 
 import os
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 import feedparser
 import requests
@@ -25,7 +25,7 @@ class FedRateCollector(RateCollector):
         self.fred_url = "https://api.stlouisfed.org/fred"
         self.series_id = "FEDFUNDS"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         if self.api_key:
             url = f"{self.fred_url}/series/observations?series_id={self.series_id}&api_key={self.api_key}&limit=1&sort_order=desc"
@@ -76,7 +76,7 @@ class FedSpeechCollector(SpeechCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.federalreserve.gov/feeds/press_all.xml"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -116,7 +116,7 @@ class FedMinutesCollector(MinutesCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.federalreserve.gov/feeds/press_all.xml"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -155,7 +155,7 @@ class FedStatementCollector(StatementCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.federalreserve.gov/feeds/press_all.xml"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         try:
             feed = feedparser.parse(self.rss_url)
@@ -196,7 +196,7 @@ class FedCalendarCollector(CalendarCollector):
         super().__init__(bank_id)
         self.rss_url = "https://www.federalreserve.gov/feeds/press_all.xml"
 
-    async def collect(self) -> List[Dict[str, Any]]:
+    async def collect(self) -> list[dict[str, Any]]:
         events = []
         # Try to extract from RSS; fallback to a static list of known meeting dates
         try:

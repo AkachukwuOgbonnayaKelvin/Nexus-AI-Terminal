@@ -1,9 +1,9 @@
 """Dependency Graph Validator – Builds and validates the dependency graph."""
 
 import ast
-from pathlib import Path
-from typing import List, Dict, Set
 from collections import defaultdict
+from pathlib import Path
+
 from tools.architecture.models import ARCResult
 from tools.architecture.validators.base import BaseValidator
 
@@ -13,12 +13,12 @@ class DependencyGraphValidator(BaseValidator):
 
     def __init__(self, root_path: Path):
         super().__init__(root_path)
-        self.graph: Dict[str, Set[str]] = defaultdict(set)
+        self.graph: dict[str, set[str]] = defaultdict(set)
 
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
 
         self._build_graph()
@@ -65,12 +65,12 @@ class DependencyGraphValidator(BaseValidator):
             except Exception:
                 pass
 
-    def _find_cycles(self) -> List[List[str]]:
+    def _find_cycles(self) -> list[list[str]]:
         """Find circular dependencies."""
         cycles = []
         visited = set()
 
-        def dfs(node: str, path: List[str]) -> None:
+        def dfs(node: str, path: list[str]) -> None:
             if node in path:
                 cycle_start = path.index(node)
                 cycles.append(path[cycle_start:] + [node])

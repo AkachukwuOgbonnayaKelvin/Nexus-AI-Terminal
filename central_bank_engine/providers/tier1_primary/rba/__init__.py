@@ -3,4 +3,4 @@
 from .adapter import RBAAdapter
 from .connector import RBAConnector
 
-__all__ = ["RBAConnector", "RBAAdapter"]
+__all__ = ["RBAAdapter", "RBAConnector"]

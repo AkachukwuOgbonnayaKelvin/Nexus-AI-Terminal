@@ -5,4 +5,4 @@ Provides validation utilities for data cleaning and validation.
 
 from .validator import ValidationError, is_valid, validate
 
-__all__ = ["validate", "is_valid", "ValidationError"]
+__all__ = ["ValidationError", "is_valid", "validate"]

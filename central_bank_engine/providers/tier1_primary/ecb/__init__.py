@@ -3,4 +3,4 @@
 from .adapter import ECBAdapter
 from .connector import ECBConnector
 
-__all__ = ["ECBConnector", "ECBAdapter"]
+__all__ = ["ECBAdapter", "ECBConnector"]

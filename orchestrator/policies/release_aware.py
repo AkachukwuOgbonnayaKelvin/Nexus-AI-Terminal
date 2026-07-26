@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 """Release-aware policy - For MAC-001, COT-001"""
 
 from datetime import datetime, timedelta
-from typing import Optional
 
 from orchestrator.policies.base import SchedulerPolicy
 from orchestrator.release_calendar.calendar import ReleaseCalendar
@@ -44,7 +42,7 @@ class ReleaseAwarePolicy(SchedulerPolicy):
 
         return False
 
-    def get_next_run_time(self, dataset_id: str) -> Optional[datetime]:
+    def get_next_run_time(self, dataset_id: str) -> datetime | None:
         """Get the next expected release time"""
         return self.calendar.get_next_release(dataset_id)
 

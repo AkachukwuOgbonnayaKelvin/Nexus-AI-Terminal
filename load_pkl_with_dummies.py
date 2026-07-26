@@ -3,10 +3,10 @@
 Load PKL files with dummy classes
 """
 
+import os
+import pickle
 import sys
 import types
-import pickle
-import os
 
 print("=" * 70)
 print("LOADING PKL WITH DUMMY CLASSES")

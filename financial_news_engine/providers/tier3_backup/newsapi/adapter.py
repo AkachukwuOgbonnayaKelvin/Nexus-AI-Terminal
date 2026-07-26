@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from financial_news_engine.dtos import UniversalNews
 
 
 class NewsAPIAdapter:
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> UniversalNews:
+    def adapt(self, raw: dict[str, Any], provider_name: str) -> UniversalNews:
         published_at = raw.get("publishedAt")
         if published_at:
             published_at = datetime.fromisoformat(published_at.replace("Z", "+00:00"))

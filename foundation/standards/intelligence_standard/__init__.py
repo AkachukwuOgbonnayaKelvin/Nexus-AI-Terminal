@@ -26,11 +26,11 @@ from .schemas import (
 )
 
 __all__ = [
-    "UniversalIntelligence",
     "ConfidenceScore",
     "EvidenceItem",
-    "RiskAssessment",
-    "Recommendation",
-    "IntelligenceMetadata",
     "IntelligenceHealth",
+    "IntelligenceMetadata",
+    "Recommendation",
+    "RiskAssessment",
+    "UniversalIntelligence",
 ]

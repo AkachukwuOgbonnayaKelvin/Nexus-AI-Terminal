@@ -3,7 +3,7 @@ Global Intelligence Hub - Executive Summary Generator
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ class ExecutiveSummaryGenerator:
         regime_report: Any,
         asset_report: Any,
         macro_report: Any,
-        consensus: Dict[str, Any],
+        consensus: dict[str, Any],
     ) -> str:
         """Generate executive summary."""
         summary_parts = []

@@ -16,6 +16,6 @@ Required Components:
 
 __all__ = [
     "HubConfig",
-    "HubStatus",
     "HubHealth",
+    "HubStatus",
 ]

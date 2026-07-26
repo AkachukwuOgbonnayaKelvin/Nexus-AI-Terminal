@@ -1,7 +1,7 @@
 """Yahoo Finance Connector - Fetches real market data."""
 
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 import yfinance as yf
 
@@ -19,7 +19,7 @@ class YahooConnector:
     def disconnect(self) -> None:
         self._connected = False
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         """Get current price for a symbol."""
         try:
             # Format symbol for Yahoo Finance

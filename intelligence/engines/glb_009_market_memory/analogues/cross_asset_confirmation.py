@@ -3,8 +3,7 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Cross-Asset Con
 """
 
 import logging
-from typing import Dict, Any, List
-
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -21,8 +20,8 @@ class CrossAssetConfirmation:
         }
 
     def analyze_confirmation(
-        self, analogues: List[Dict], current_environment: Dict
-    ) -> Dict[str, Any]:
+        self, analogues: list[dict], current_environment: dict
+    ) -> dict[str, Any]:
         """
         Analyze cross-asset confirmation.
 
@@ -75,7 +74,7 @@ class CrossAssetConfirmation:
             "confidence": min(95, 60 + agreement_ratio * 30),
         }
 
-    def _get_current_directions(self, environment: Dict) -> Dict[str, str]:
+    def _get_current_directions(self, environment: dict) -> dict[str, str]:
         """Get current asset directions from environment"""
         directions = {}
         asset_impacts = environment.get("asset_impacts", {})
@@ -90,7 +89,7 @@ class CrossAssetConfirmation:
                     directions[asset] = "NEUTRAL"
         return directions
 
-    def _get_historical_directions(self, analogues: List[Dict]) -> Dict[str, str]:
+    def _get_historical_directions(self, analogues: list[dict]) -> dict[str, str]:
         """Get historical asset directions from analogues"""
         directions = {}
         asset_returns = {}

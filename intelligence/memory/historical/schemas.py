@@ -5,7 +5,8 @@ This defines the global time-indexed format for historical memory.
 """
 
 from datetime import datetime
-from typing import Dict, Optional, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -26,9 +27,9 @@ class AssetPrice(BaseModel):
     """Price data for a single asset at a point in time"""
 
     close: float
-    open: Optional[float] = None
-    high: Optional[float] = None
-    low: Optional[float] = None
+    open: float | None = None
+    high: float | None = None
+    low: float | None = None
 
 
 class ForwardReturn(BaseModel):
@@ -45,7 +46,7 @@ class AssetOutcome(BaseModel):
 
     symbol: str
     price: AssetPrice
-    forward_returns: Dict[str, ForwardReturn]  # horizon -> ForwardReturn
+    forward_returns: dict[str, ForwardReturn]  # horizon -> ForwardReturn
 
 
 class HistoricalWindow(BaseModel):
@@ -58,7 +59,7 @@ class HistoricalWindow(BaseModel):
     market_state: MarketState
 
     # All assets at this timestamp
-    assets: Dict[str, AssetOutcome]
+    assets: dict[str, AssetOutcome]
 
     # Coverage metrics
     total_assets: int
@@ -67,7 +68,7 @@ class HistoricalWindow(BaseModel):
 
     # Validation
     is_valid: bool = True
-    rejection_reason: Optional[str] = None
+    rejection_reason: str | None = None
 
     # Metadata
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

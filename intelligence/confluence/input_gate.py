@@ -5,8 +5,8 @@ Validates, timestamps, and checks incoming GLB reports.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
 from .registry import EngineRegistry
 
@@ -22,7 +22,7 @@ class InputGate:
         self.max_age_seconds = max_age_seconds
         self.registry = EngineRegistry()
 
-    def validate_report(self, engine_id: str, report: Dict[str, Any]) -> Dict[str, Any]:
+    def validate_report(self, engine_id: str, report: dict[str, Any]) -> dict[str, Any]:
         """
         Validate a single engine report.
 
@@ -77,7 +77,7 @@ class InputGate:
 
         return result
 
-    def validate_reports(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def validate_reports(self, reports: dict[str, Any]) -> dict[str, Any]:
         """
         Validate multiple engine reports.
 
@@ -116,7 +116,7 @@ class InputGate:
             "timestamp": datetime.utcnow().isoformat(),
         }
 
-    def get_freshness(self, report: Dict[str, Any]) -> float:
+    def get_freshness(self, report: dict[str, Any]) -> float:
         """
         Get freshness score (0-1) for a report.
         """

@@ -9,9 +9,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from datetime import datetime  # noqa: E402
-from intelligence.engines.glb_007_capital_flows.engine import CapitalFlowsEngine  # noqa: E402
-from intelligence.engines.glb_007_capital_flows.constants import NDIP_TOPICS  # noqa: E402
+from datetime import datetime
+
+from intelligence.engines.glb_007_capital_flows.constants import (
+    NDIP_TOPICS,
+)
+from intelligence.engines.glb_007_capital_flows.engine import (
+    CapitalFlowsEngine,
+)
 
 
 def test_engine_initialization():

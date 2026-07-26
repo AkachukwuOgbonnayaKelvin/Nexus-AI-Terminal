@@ -4,9 +4,7 @@ Phase 5: Asset-Class Intelligence - Asset-Class Mapper
 Maps entities to their asset classes.
 """
 
-from typing import Dict, List, Optional
-
-from ..contracts import GlobalEntityRating, AssetClass
+from ..contracts import AssetClass, GlobalEntityRating
 
 
 class AssetClassMapper:
@@ -23,7 +21,7 @@ class AssetClassMapper:
     """
 
     # Entity to Asset Class mapping
-    ENTITY_TO_ASSET_CLASS: Dict[str, AssetClass] = {}
+    ENTITY_TO_ASSET_CLASS: dict[str, AssetClass] = {}
 
     # Currency mapping
     CURRENCY_LIST = [
@@ -106,7 +104,7 @@ class AssetClassMapper:
             cls.ENTITY_TO_ASSET_CLASS[entity] = AssetClass.ENERGY
 
     @classmethod
-    def map_entity(cls, entity: str) -> Optional[AssetClass]:
+    def map_entity(cls, entity: str) -> AssetClass | None:
         """
         Map a single entity to its asset class.
 
@@ -120,7 +118,7 @@ class AssetClassMapper:
         return cls.ENTITY_TO_ASSET_CLASS.get(entity)
 
     @classmethod
-    def map_rating(cls, rating: GlobalEntityRating) -> Optional[AssetClass]:
+    def map_rating(cls, rating: GlobalEntityRating) -> AssetClass | None:
         """
         Map a rating's entity to its asset class.
 
@@ -134,8 +132,8 @@ class AssetClassMapper:
 
     @classmethod
     def map_ratings(
-        cls, ratings: List[GlobalEntityRating]
-    ) -> Dict[AssetClass, List[GlobalEntityRating]]:
+        cls, ratings: list[GlobalEntityRating]
+    ) -> dict[AssetClass, list[GlobalEntityRating]]:
         """
         Map multiple ratings to asset classes.
 
@@ -147,7 +145,7 @@ class AssetClassMapper:
         """
         cls._build_map()
 
-        grouped: Dict[AssetClass, List[GlobalEntityRating]] = {}
+        grouped: dict[AssetClass, list[GlobalEntityRating]] = {}
 
         for rating in ratings:
             asset_class = cls.map_entity(rating.entity)
@@ -159,7 +157,7 @@ class AssetClassMapper:
         return grouped
 
     @classmethod
-    def get_asset_classes(cls) -> List[AssetClass]:
+    def get_asset_classes(cls) -> list[AssetClass]:
         """Get all supported asset classes."""
         return [
             AssetClass.FX,
@@ -187,7 +185,7 @@ class AssetClassMapper:
         return names.get(asset_class, asset_class.value)
 
     @classmethod
-    def get_entities_for_class(cls, asset_class: AssetClass) -> List[str]:
+    def get_entities_for_class(cls, asset_class: AssetClass) -> list[str]:
         """Get all entities that belong to an asset class."""
         cls._build_map()
         return [e for e, ac in cls.ENTITY_TO_ASSET_CLASS.items() if ac == asset_class]

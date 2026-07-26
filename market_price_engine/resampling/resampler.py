@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """Timeframe Resampler - Converts OHLCV to higher timeframes"""
 
-from typing import List, Dict, Optional
 from datetime import datetime
+
 from providers.base import OHLCVData
 
 
@@ -29,7 +28,7 @@ class TimeframeResampler:
     def __init__(self):
         self._cache = {}
 
-    def resample(self, bars: List[OHLCVData], target_timeframe: str) -> List[OHLCVData]:
+    def resample(self, bars: list[OHLCVData], target_timeframe: str) -> list[OHLCVData]:
         """
         Resample OHLCV data to a higher timeframe.
 
@@ -107,8 +106,8 @@ class TimeframeResampler:
         )
 
     def _resample_group(
-        self, group: List[OHLCVData], timestamp: datetime, timeframe: str
-    ) -> Optional[OHLCVData]:
+        self, group: list[OHLCVData], timestamp: datetime, timeframe: str
+    ) -> OHLCVData | None:
         """Resample a group of bars into a single bar"""
         if not group:
             return None
@@ -137,8 +136,8 @@ class TimeframeResampler:
         )
 
     def resample_all_timeframes(
-        self, bars: List[OHLCVData]
-    ) -> Dict[str, List[OHLCVData]]:
+        self, bars: list[OHLCVData]
+    ) -> dict[str, list[OHLCVData]]:
         """Resample bars to all higher timeframes"""
         result = {}
 

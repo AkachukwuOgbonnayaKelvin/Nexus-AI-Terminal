@@ -1,6 +1,6 @@
 import os
 from datetime import datetime, timedelta
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -21,10 +21,10 @@ class TradingEconomicsConnector(BaseProvider):
     def disconnect(self) -> None:
         pass
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         return None
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return []
 
     def health_check(self) -> bool:
@@ -37,13 +37,13 @@ class TradingEconomicsConnector(BaseProvider):
         except Exception:
             return False
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"macroeconomic_events": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_minute": 60}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return []
 
     def supports_symbol(self, symbol: str) -> bool:
@@ -51,7 +51,7 @@ class TradingEconomicsConnector(BaseProvider):
 
     def get_calendar(
         self, country: str = None, start_date: str = None, end_date: str = None
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         if not self.api_key:
             return []
         url = f"{self.base_url}/calendar"
@@ -68,11 +68,11 @@ class TradingEconomicsConnector(BaseProvider):
         except Exception:
             return []
 
-    def get_today_events(self) -> List[Dict[str, Any]]:
+    def get_today_events(self) -> list[dict[str, Any]]:
         today = datetime.now().strftime("%Y-%m-%d")
         return self.get_calendar(start_date=today, end_date=today)
 
-    def get_upcoming_events(self, days: int = 7) -> List[Dict[str, Any]]:
+    def get_upcoming_events(self, days: int = 7) -> list[dict[str, Any]]:
         today = datetime.now().strftime("%Y-%m-%d")
         end = (datetime.now() + timedelta(days=days)).strftime("%Y-%m-%d")
         return self.get_calendar(start_date=today, end_date=end)

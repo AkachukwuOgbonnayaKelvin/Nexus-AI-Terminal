@@ -7,12 +7,12 @@ NO RECALCULATION happens in the GUI.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
+from ..ai.executive_interpreter import AIExecutiveInterpreter
 from ..state.state import GlobalHubState
 from ..summary.deterministic import DeterministicSummaryEngine
-from ..ai.executive_interpreter import AIExecutiveInterpreter
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ class GUIPresentationFeeder:
         self.summary_engine = DeterministicSummaryEngine()
         self.ai_interpreter = AIExecutiveInterpreter(use_llm=False)
 
-    def prepare_feed(self, state: GlobalHubState) -> Dict[str, Any]:
+    def prepare_feed(self, state: GlobalHubState) -> dict[str, Any]:
         """
         Prepare the complete GUI presentation feed.
 
@@ -63,7 +63,7 @@ class GUIPresentationFeeder:
             "timestamp": datetime.utcnow().isoformat(),
         }
 
-    def _prepare_meta(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_meta(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare metadata with lineage."""
         return {
             "state_id": state.state_id,
@@ -91,7 +91,7 @@ class GUIPresentationFeeder:
         else:
             return "EXPIRED"
 
-    def _prepare_overview(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_overview(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare overview data."""
         strongest_curr = state.get_strongest_currency()
         weakest_curr = state.get_weakest_currency()
@@ -140,8 +140,8 @@ class GUIPresentationFeeder:
         }
 
     def _prepare_executive_summary(
-        self, state: GlobalHubState, structured: Dict[str, Any]
-    ) -> Dict[str, Any]:
+        self, state: GlobalHubState, structured: dict[str, Any]
+    ) -> dict[str, Any]:
         """Prepare executive summary."""
         return {
             "text": structured.get("summary_text", state.executive_summary),
@@ -157,7 +157,7 @@ class GUIPresentationFeeder:
             "themes": structured.get("themes", []),
         }
 
-    def _prepare_ai_summary(self, interpretation: Dict[str, Any]) -> Dict[str, Any]:
+    def _prepare_ai_summary(self, interpretation: dict[str, Any]) -> dict[str, Any]:
         """Prepare AI executive summary."""
         return {
             "narrative": interpretation.get("narrative", ""),
@@ -173,7 +173,7 @@ class GUIPresentationFeeder:
             "evidence_references": interpretation.get("evidence_references", []),
         }
 
-    def _prepare_currency_intelligence(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_currency_intelligence(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare currency intelligence with lineage."""
         return {
             "rankings": [
@@ -206,7 +206,7 @@ class GUIPresentationFeeder:
 
     def _prepare_asset_class_intelligence(
         self, state: GlobalHubState
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Prepare asset-class intelligence."""
         return {
             "rankings": [
@@ -229,7 +229,7 @@ class GUIPresentationFeeder:
             else None,
         }
 
-    def _prepare_regime(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_regime(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare regime data."""
         return {
             "regime": state.global_regime,
@@ -251,7 +251,7 @@ class GUIPresentationFeeder:
         }
         return interpretations.get(regime, "Regime classification unknown.")
 
-    def _prepare_risk(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_risk(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare risk data."""
         return {
             "level": state.global_risk_level,
@@ -267,11 +267,11 @@ class GUIPresentationFeeder:
             ],
         }
 
-    def _prepare_drivers(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_drivers(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare drivers data."""
         return {"drivers": state.global_drivers, "count": len(state.global_drivers)}
 
-    def _prepare_themes(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_themes(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare themes data."""
         return {
             "themes": [
@@ -285,14 +285,14 @@ class GUIPresentationFeeder:
             "count": len(state.global_themes),
         }
 
-    def _prepare_opportunities(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_opportunities(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare opportunities data."""
         return {
             "opportunities": state.top_opportunities[:5],
             "count": len(state.top_opportunities),
         }
 
-    def _prepare_risks(self, state: GlobalHubState) -> Dict[str, Any]:
+    def _prepare_risks(self, state: GlobalHubState) -> dict[str, Any]:
         """Prepare risks data."""
         return {
             "risks": [

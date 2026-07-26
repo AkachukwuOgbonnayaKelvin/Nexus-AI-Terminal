@@ -4,7 +4,7 @@ import csv
 import io
 import logging
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import requests
 
@@ -18,7 +18,7 @@ class HistoricalArchiveClient:
         self.base_url = "https://www.cftc.gov/files/dea/history"
         self._cache = {}
 
-    def get_latest_report(self) -> Optional[List[Dict[str, Any]]]:
+    def get_latest_report(self) -> list[dict[str, Any]] | None:
         """Get the latest report from historical archives."""
         # Get the current year
         year = datetime.now().year
@@ -31,7 +31,7 @@ class HistoricalArchiveClient:
             logger.error(f"Failed to get latest from historical: {e}")
         return None
 
-    def get_year(self, year: int) -> Optional[List[Dict[str, Any]]]:
+    def get_year(self, year: int) -> list[dict[str, Any]] | None:
         """Get all reports for a specific year."""
         cache_key = f"year_{year}"
         if cache_key in self._cache:
@@ -62,7 +62,7 @@ class HistoricalArchiveClient:
 
         return records
 
-    def _parse_content(self, content: bytes) -> List[Dict[str, Any]]:
+    def _parse_content(self, content: bytes) -> list[dict[str, Any]]:
         """Parse content from ZIP or CSV."""
         # Simple CSV parsing for now
         try:

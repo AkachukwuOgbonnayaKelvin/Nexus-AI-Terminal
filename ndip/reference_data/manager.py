@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from ndip.reference_data.audit_manager import AuditManager
 from ndip.reference_data.conflict_manager import ConflictManager
@@ -39,8 +39,8 @@ class ReferenceDataManager:
         }
 
     async def resolve_asset(
-        self, metadata: Dict[str, Any], source: str
-    ) -> Dict[str, Any]:
+        self, metadata: dict[str, Any], source: str
+    ) -> dict[str, Any]:
         refs = self._extract_references(metadata)
         resolved = {}
         for ref_type in self.dependency_manager.get_order():

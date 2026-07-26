@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.collectors.base import BaseCollector
 
@@ -15,19 +15,19 @@ class IncrementalCollector(BaseCollector):
     def __init__(self, provider_manager):
         super().__init__(provider_manager)
 
-    async def collect_all(self) -> List[Dict[str, Any]]:
+    async def collect_all(self) -> list[dict[str, Any]]:
         """Collect all historical (not used for incremental)."""
         logger.warning("IncrementalCollector does not support collect_all")
         return []
 
-    async def collect_latest(self) -> List[Dict[str, Any]]:
+    async def collect_latest(self) -> list[dict[str, Any]]:
         """Collect the latest COT report."""
         logger.info("Collecting latest COT report")
         report = self._generate_stub_report()
         logger.info(f"Collected latest report: {report['report_date']}")
         return [report]
 
-    def _generate_stub_report(self) -> Dict[str, Any]:
+    def _generate_stub_report(self) -> dict[str, Any]:
         """Generate a stub report for the current week."""
         today = datetime.now().date().isoformat()
         return {

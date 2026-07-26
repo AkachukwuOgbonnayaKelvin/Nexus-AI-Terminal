@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 @dataclass
@@ -15,27 +15,27 @@ class UniversalTransport:
     timestamp: datetime
 
     # Price fields (optional)
-    open: Optional[float] = None
-    high: Optional[float] = None
-    low: Optional[float] = None
-    close: Optional[float] = None
-    volume: Optional[int] = None
+    open: float | None = None
+    high: float | None = None
+    low: float | None = None
+    close: float | None = None
+    volume: int | None = None
 
     # Metadata
     source: str = "unknown"
     provider: str = "unknown"
-    symbol_provider: Optional[str] = None  # Original symbol from provider
+    symbol_provider: str | None = None  # Original symbol from provider
 
     # Classification (to be filled by adapter)
     asset_class: str = "unknown"
 
     # Raw data for audit
-    raw_data: Dict[str, Any] = field(default_factory=dict)
+    raw_data: dict[str, Any] = field(default_factory=dict)
 
     # Extra fields
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for NDIP ingestion."""
         return {
             "asset": self.asset,

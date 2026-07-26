@@ -5,12 +5,12 @@ Exposes the Global Intelligence Hub data to the dashboard.
 """
 
 import logging
-from typing import Optional
+
 from fastapi import APIRouter, HTTPException, Query
 
+from ..ai.executive_interpreter import AIExecutiveInterpreter
 from ..state.manager import StateManager
 from ..summary.deterministic import DeterministicSummaryEngine
-from ..ai.executive_interpreter import AIExecutiveInterpreter
 from ..view_models.overview import OverviewViewModel
 
 logger = logging.getLogger(__name__)
@@ -18,9 +18,9 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/v1/global", tags=["global-intelligence"])
 
 # Singleton instances
-_state_manager: Optional[StateManager] = None
-_summary_engine: Optional[DeterministicSummaryEngine] = None
-_ai_interpreter: Optional[AIExecutiveInterpreter] = None
+_state_manager: StateManager | None = None
+_summary_engine: DeterministicSummaryEngine | None = None
+_ai_interpreter: AIExecutiveInterpreter | None = None
 
 
 def get_state_manager() -> StateManager:

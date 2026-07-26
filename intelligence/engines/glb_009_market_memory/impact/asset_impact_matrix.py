@@ -3,15 +3,14 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Asset Impact Ma
 """
 
 import logging
-from typing import Dict, List
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
 
 logger = logging.getLogger(__name__)
@@ -23,11 +22,11 @@ class AssetImpactMatrixGenerator:
     @classmethod
     def generate(
         cls,
-        outcome_analyses: Dict,
-        cross_asset_confirmation: Dict,
-        analogue_quality: Dict,
+        outcome_analyses: dict,
+        cross_asset_confirmation: dict,
+        analogue_quality: dict,
         confidence: float,
-        available_assets: List[str] = None,
+        available_assets: list[str] = None,
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from historical analogues"""
         impacts = {}
@@ -100,7 +99,7 @@ class AssetImpactMatrixGenerator:
     def _calculate_asset_impact(
         cls,
         asset: str,
-        asset_outcome: Dict,
+        asset_outcome: dict,
         quality: str,
         best_match: float,
         match_confidence: float,

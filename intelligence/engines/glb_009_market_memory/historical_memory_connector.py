@@ -4,10 +4,10 @@ GLB-009 Historical Memory Connector
 
 import json
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Any
 
-from .input.schemas import HistoricalWindow
 from .converters import WindowConverter
+from .input.schemas import HistoricalWindow
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ class HistoricalMemoryConnector:
 
     def __init__(self, data_file: str = "historical_windows_glb009.json"):
         self.data_file = data_file
-        self.windows: List[HistoricalWindow] = []
+        self.windows: list[HistoricalWindow] = []
         self._raw_windows = []
         self._loaded = False
         self.converter = WindowConverter()
@@ -43,7 +43,7 @@ class HistoricalMemoryConnector:
             logger.error(f"Error loading data: {e}")
             return False
 
-    def get_windows(self, symbol: Optional[str] = None) -> List[HistoricalWindow]:
+    def get_windows(self, symbol: str | None = None) -> list[HistoricalWindow]:
         """Get historical windows, optionally filtered by symbol"""
         if not self._loaded:
             self.load()
@@ -52,7 +52,7 @@ class HistoricalMemoryConnector:
             return [w for w in self.windows if w.symbol == symbol]
         return self.windows
 
-    def get_symbols(self) -> List[str]:
+    def get_symbols(self) -> list[str]:
         """Get all available symbols"""
         if not self._loaded:
             self.load()
@@ -63,7 +63,7 @@ class HistoricalMemoryConnector:
         """Check if data is loaded"""
         return self._loaded and len(self.windows) > 0
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get statistics about the loaded data"""
         if not self._loaded:
             return {"status": "NOT_LOADED"}

@@ -7,11 +7,10 @@ Builds and manages the canonical global intelligence state.
 import logging
 import uuid
 from datetime import datetime, timedelta
-from typing import Optional, Dict, List
 
 from ...confluence.contracts import GlobalIntelligenceOutput
-from .state import GlobalHubState
 from .snapshot import GlobalSnapshot
+from .state import GlobalHubState
 
 logger = logging.getLogger(__name__)
 
@@ -25,9 +24,9 @@ class StateManager:
     """
 
     def __init__(self):
-        self._current_state: Optional[GlobalHubState] = None
-        self._state_history: Dict[str, GlobalHubState] = {}
-        self._snapshots: Dict[str, GlobalSnapshot] = {}
+        self._current_state: GlobalHubState | None = None
+        self._state_history: dict[str, GlobalHubState] = {}
+        self._snapshots: dict[str, GlobalSnapshot] = {}
 
     def build_state(self, output: GlobalIntelligenceOutput) -> GlobalHubState:
         """
@@ -98,25 +97,25 @@ class StateManager:
         logger.info(f"State built: {state_id} (regime={state.global_regime})")
         return state
 
-    def get_current_state(self) -> Optional[GlobalHubState]:
+    def get_current_state(self) -> GlobalHubState | None:
         """Get the current canonical state."""
         return self._current_state
 
-    def get_snapshot(self, state_id: str) -> Optional[GlobalSnapshot]:
+    def get_snapshot(self, state_id: str) -> GlobalSnapshot | None:
         """Get an immutable snapshot by state ID."""
         return self._snapshots.get(state_id)
 
-    def get_state(self, state_id: str) -> Optional[GlobalHubState]:
+    def get_state(self, state_id: str) -> GlobalHubState | None:
         """Get a specific state by ID."""
         return self._state_history.get(state_id)
 
-    def get_state_history(self, limit: int = 100) -> List[GlobalHubState]:
+    def get_state_history(self, limit: int = 100) -> list[GlobalHubState]:
         """Get recent state history."""
         states = list(self._state_history.values())
         states.sort(key=lambda s: s.generated_at, reverse=True)
         return states[:limit]
 
-    def get_snapshot_history(self, limit: int = 100) -> List[GlobalSnapshot]:
+    def get_snapshot_history(self, limit: int = 100) -> list[GlobalSnapshot]:
         """Get recent snapshot history."""
         snapshots = list(self._snapshots.values())
         snapshots.sort(key=lambda s: s.generated_at, reverse=True)

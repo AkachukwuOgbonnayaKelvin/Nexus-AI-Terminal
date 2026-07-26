@@ -5,4 +5,4 @@ Provides event-driven communication between components.
 
 from .bus import Event, EventBus
 
-__all__ = ["EventBus", "Event"]
+__all__ = ["Event", "EventBus"]

@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from providers.interfaces.base_provider import BaseProvider
 
@@ -48,7 +48,7 @@ class MT5Connector(BaseProvider):
             self._mt5.shutdown()
             self._connected = False
 
-    def get_price(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_price(self, symbol: str) -> dict[str, Any] | None:
         if not self._connected:
             return None
         tick = self._mt5.symbol_info_tick(symbol)
@@ -69,19 +69,19 @@ class MT5Connector(BaseProvider):
             "raw_info": info,
         }
 
-    def get_multiple(self, symbols: List[str]) -> List[Dict[str, Any]]:
+    def get_multiple(self, symbols: list[str]) -> list[dict[str, Any]]:
         return [self.get_price(s) for s in symbols if self.get_price(s)]
 
     def health_check(self) -> bool:
         return self.get_price("EURUSD") is not None
 
-    def get_capabilities(self) -> Dict[str, bool]:
+    def get_capabilities(self) -> dict[str, bool]:
         return {"realtime": True, "historical": True, "forex": True, "cfd": True}
 
-    def get_rate_limit(self) -> Dict[str, int]:
+    def get_rate_limit(self) -> dict[str, int]:
         return {"requests_per_second": 100, "requests_per_minute": 6000}
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         if not self._connected:
             return []
         symbols = self._mt5.symbols_get()

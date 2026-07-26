@@ -2,18 +2,18 @@
 Historical Memory Builder - Constructs Canonical Global Windows
 """
 
-import logging
 import json
-from typing import Dict, List, Any, Optional
-from datetime import datetime
+import logging
 from collections import defaultdict
+from datetime import datetime
+from typing import Any
 
 from .schemas import (
-    HistoricalWindow,
-    MarketState,
     AssetOutcome,
     AssetPrice,
     ForwardReturn,
+    HistoricalWindow,
+    MarketState,
 )
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ class HistoricalMemoryBuilder:
         self._symbols = []
         self._timestamps = []
 
-    def load_raw_windows(self, raw_windows: List[Dict]) -> None:
+    def load_raw_windows(self, raw_windows: list[dict]) -> None:
         """Load raw per-symbol windows"""
         self.raw_windows = raw_windows
         self._extract_symbols_and_timestamps()
@@ -62,7 +62,7 @@ class HistoricalMemoryBuilder:
             f"Found {len(self._symbols)} symbols and {len(self._timestamps)} timestamps"
         )
 
-    def build_canonical_windows(self) -> List[HistoricalWindow]:
+    def build_canonical_windows(self) -> list[HistoricalWindow]:
         """Build canonical global windows from raw data"""
         if not self.raw_windows:
             logger.warning("No raw windows loaded")
@@ -93,8 +93,8 @@ class HistoricalMemoryBuilder:
         return canonical_windows
 
     def _build_single_window(
-        self, timestamp: Any, raw_windows: List[Dict]
-    ) -> Optional[HistoricalWindow]:
+        self, timestamp: Any, raw_windows: list[dict]
+    ) -> HistoricalWindow | None:
         """Build a single canonical window from raw windows at a timestamp"""
         try:
             # Convert timestamp to string if needed
@@ -155,7 +155,7 @@ class HistoricalMemoryBuilder:
             logger.warning(f"Failed to build window for {timestamp}: {e}")
             return None
 
-    def _build_market_state(self, raw_windows: List[Dict]) -> MarketState:
+    def _build_market_state(self, raw_windows: list[dict]) -> MarketState:
         """Build market state from raw windows"""
         # Aggregate across windows
         regimes = []
@@ -216,7 +216,7 @@ class HistoricalMemoryBuilder:
             volatility_score=avg_volatility,
         )
 
-    def _extract_price_data(self, w: Dict) -> Optional[AssetPrice]:
+    def _extract_price_data(self, w: dict) -> AssetPrice | None:
         """Extract price data from raw window"""
         prices = w.get("window_prices", [])
         if prices:
@@ -230,7 +230,7 @@ class HistoricalMemoryBuilder:
             )
         return None
 
-    def _extract_forward_returns(self, w: Dict) -> Dict[str, ForwardReturn]:
+    def _extract_forward_returns(self, w: dict) -> dict[str, ForwardReturn]:
         """Extract forward returns from raw window"""
         forward_returns = {}
         raw_forward = w.get("forward_returns", {})
@@ -249,7 +249,7 @@ class HistoricalMemoryBuilder:
 
         return forward_returns
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """Get statistics about the built windows"""
         if not self.canonical_windows:
             return {"status": "NO_WINDOWS"}
@@ -293,6 +293,6 @@ class HistoricalMemoryBuilder:
 
         logger.info(f"Saved {len(data)} canonical windows to {filepath}")
 
-    def get_canonical_windows(self) -> List[HistoricalWindow]:
+    def get_canonical_windows(self) -> list[HistoricalWindow]:
         """Get the built canonical windows"""
         return self.canonical_windows

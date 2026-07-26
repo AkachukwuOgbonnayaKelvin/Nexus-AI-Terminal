@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 """MT5 Provider Client - Primary execution-market feed"""
 
-from typing import Optional, Dict, Any, List
 from datetime import datetime
+from typing import Any
 
 # Try to import MetaTrader5
 try:
@@ -17,7 +16,7 @@ except ImportError:
 class MT5Client:
     """MT5 client for Pepperstone integration"""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
         self.connected = False
         self.terminal_path = config.get("terminal_path", None)
@@ -60,7 +59,7 @@ class MT5Client:
             mt5.shutdown()
             self.connected = False
 
-    def get_symbols(self) -> List[str]:
+    def get_symbols(self) -> list[str]:
         """Get all available symbols"""
         if not self.connected or not MT5_AVAILABLE:
             return []
@@ -72,7 +71,7 @@ class MT5Client:
             print(f"Error getting symbols: {e}")
             return []
 
-    def get_tick(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_tick(self, symbol: str) -> dict[str, Any] | None:
         """Get current tick for symbol"""
         if not self.connected or not MT5_AVAILABLE:
             return None
@@ -97,7 +96,7 @@ class MT5Client:
 
     def get_rates(
         self, symbol: str, timeframe: int, count: int
-    ) -> Optional[List[Dict[str, Any]]]:
+    ) -> list[dict[str, Any]] | None:
         """Get OHLCV rates"""
         if not self.connected or not MT5_AVAILABLE:
             return None
@@ -124,7 +123,7 @@ class MT5Client:
 
     def get_historical_rates(
         self, symbol: str, timeframe: int, start_date: datetime, end_date: datetime
-    ) -> Optional[List[Dict[str, Any]]]:
+    ) -> list[dict[str, Any]] | None:
         """Get historical rates for date range"""
         if not self.connected or not MT5_AVAILABLE:
             return None
@@ -153,7 +152,7 @@ class MT5Client:
         """Check if MT5 is connected"""
         return self.connected and MT5_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         """Get MT5 health status"""
         return {
             "connected": self.connected,

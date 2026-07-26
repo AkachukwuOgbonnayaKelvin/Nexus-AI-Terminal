@@ -5,7 +5,7 @@ Produces fact-based, auditable executive summaries.
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 from ..state.state import GlobalHubState
 
@@ -23,7 +23,7 @@ class DeterministicSummaryEngine:
     def __init__(self):
         self._templates = self._load_templates()
 
-    def _load_templates(self) -> Dict[str, str]:
+    def _load_templates(self) -> dict[str, str]:
         """Load summary templates."""
         return {
             "regime": "The current global environment is {regime}.",
@@ -131,7 +131,7 @@ class DeterministicSummaryEngine:
         logger.info(f"Generated deterministic summary ({len(summary)} chars)")
         return summary
 
-    def generate_structured_summary(self, state: GlobalHubState) -> Dict[str, Any]:
+    def generate_structured_summary(self, state: GlobalHubState) -> dict[str, Any]:
         """
         Generate a structured executive summary.
 

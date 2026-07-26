@@ -4,11 +4,10 @@ Confluence Engine - Evidence Model
 Defines how evidence is collected, validated, and scored.
 """
 
-from typing import List, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from ..schemas import NormalizedSignal, Evidence, ConflictLevel, Direction, SignalType
+from ..schemas import ConflictLevel, Direction, Evidence, NormalizedSignal, SignalType
 
 
 @dataclass
@@ -18,7 +17,7 @@ class EvidenceEntry:
     signal: NormalizedSignal
     quality_score: float = 0.0
     is_duplicate: bool = False
-    duplicate_of: Optional[str] = None
+    duplicate_of: str | None = None
 
     def calculate_quality(self) -> float:
         """Calculate overall quality score"""
@@ -43,7 +42,7 @@ class EvidenceGroup:
 
     entity: str
     signal_type: str
-    evidence: List[EvidenceEntry] = field(default_factory=list)
+    evidence: list[EvidenceEntry] = field(default_factory=list)
 
     def add_evidence(self, signal: NormalizedSignal) -> None:
         """Add evidence to the group"""
@@ -122,7 +121,7 @@ class EvidenceGroup:
         else:
             return ConflictLevel.HIGH
 
-    def get_supporting_engines(self) -> List[str]:
+    def get_supporting_engines(self) -> list[str]:
         """Get engines supporting the consensus direction"""
         if not self.evidence:
             return []
@@ -134,7 +133,7 @@ class EvidenceGroup:
             if e.signal.direction.value == consensus
         ]
 
-    def get_contradicting_engines(self) -> List[str]:
+    def get_contradicting_engines(self) -> list[str]:
         """Get engines contradicting the consensus direction"""
         if not self.evidence:
             return []
@@ -147,7 +146,7 @@ class EvidenceGroup:
             and e.signal.direction.value != "NEUTRAL"
         ]
 
-    def get_drivers(self) -> List[str]:
+    def get_drivers(self) -> list[str]:
         """Get aggregated drivers from all evidence"""
         driver_freq = {}
         for entry in self.evidence:

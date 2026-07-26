@@ -6,11 +6,11 @@ The single source of truth for the Global Intelligence Dashboard.
 
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
 
 from ...confluence.contracts import (
-    GlobalEntityRating,
     AssetClassRating,
+    GlobalEntityRating,
     GlobalIntelligenceOutput,
 )
 
@@ -48,15 +48,15 @@ class GlobalHubState:
     global_output: GlobalIntelligenceOutput
 
     # Rankings
-    currency_rankings: List[GlobalEntityRating]
-    asset_class_rankings: List[AssetClassRating]
-    entity_rankings: List[GlobalEntityRating]
+    currency_rankings: list[GlobalEntityRating]
+    asset_class_rankings: list[AssetClassRating]
+    entity_rankings: list[GlobalEntityRating]
 
     # Drivers & Risks
-    global_drivers: List[str]
-    global_risks: List[Dict[str, Any]]
-    global_themes: List[Dict[str, Any]]
-    top_opportunities: List[Dict[str, Any]]
+    global_drivers: list[str]
+    global_risks: list[dict[str, Any]]
+    global_themes: list[dict[str, Any]]
+    top_opportunities: list[dict[str, Any]]
 
     # Summaries
     executive_summary: str
@@ -66,30 +66,30 @@ class GlobalHubState:
     # ============================================================
 
     schema_version: str = "1.0.0"
-    ai_executive_summary: Optional[str] = None
-    previous_state_id: Optional[str] = None
+    ai_executive_summary: str | None = None
+    previous_state_id: str | None = None
     is_valid: bool = True
 
     # ============================================================
     # METHODS
     # ============================================================
 
-    def get_strongest_currency(self) -> Optional[GlobalEntityRating]:
+    def get_strongest_currency(self) -> GlobalEntityRating | None:
         if not self.currency_rankings:
             return None
         return self.currency_rankings[0]
 
-    def get_weakest_currency(self) -> Optional[GlobalEntityRating]:
+    def get_weakest_currency(self) -> GlobalEntityRating | None:
         if not self.currency_rankings:
             return None
         return self.currency_rankings[-1]
 
-    def get_strongest_asset_class(self) -> Optional[AssetClassRating]:
+    def get_strongest_asset_class(self) -> AssetClassRating | None:
         if not self.asset_class_rankings:
             return None
         return self.asset_class_rankings[0]
 
-    def get_weakest_asset_class(self) -> Optional[AssetClassRating]:
+    def get_weakest_asset_class(self) -> AssetClassRating | None:
         if not self.asset_class_rankings:
             return None
         return self.asset_class_rankings[-1]

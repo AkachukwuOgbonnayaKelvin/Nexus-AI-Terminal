@@ -1,7 +1,6 @@
 """NDIP Transformer – Creates asset-specific position collections."""
 
 import logging
-from typing import Dict
 
 from market_positioning_warehouse.classification import AssetClassifier
 from market_positioning_warehouse.publication import NDIPPublisher
@@ -18,7 +17,7 @@ class NDIPTransformer:
         self.classifier = AssetClassifier()
         self.publisher = NDIPPublisher()
 
-    async def transform_and_publish(self, limit: int = 1000) -> Dict[str, int]:
+    async def transform_and_publish(self, limit: int = 1000) -> dict[str, int]:
         """Transform raw positions and publish to NDIP."""
         positions = await self.repository.get_unprocessed(limit)
 

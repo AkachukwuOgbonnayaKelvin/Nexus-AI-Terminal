@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Scheduler for Central Bank Engine"""
 
 
@@ -14,4 +13,3 @@ class CentralBankScheduler:
 
     def run(self):
         """Execute central bank data collection"""
-        pass

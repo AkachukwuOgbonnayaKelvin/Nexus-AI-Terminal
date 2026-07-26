@@ -2,8 +2,7 @@
 
 import csv
 import logging
-from typing import Any, Dict, List, Optional
-
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +64,7 @@ class CFTCOTParser:
 
     def parse_file(
         self, file_path: str, report_type: str = "disaggregated"
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """Parse a CFTC COT file."""
         records = []
         try:
@@ -83,7 +82,7 @@ class CFTCOTParser:
             logger.error(f"Failed to parse {file_path}: {e}")
             return []
 
-    def _parse_row(self, row: List[str], report_type: str) -> Optional[Dict[str, Any]]:
+    def _parse_row(self, row: list[str], report_type: str) -> dict[str, Any] | None:
         """Parse a single row."""
         try:
             # Extract market name (quoted)
@@ -106,7 +105,7 @@ class CFTCOTParser:
             logger.warning(f"Failed to parse row: {e}")
             return None
 
-    def _parse_disaggregated(self, row: List[str]) -> Dict[str, Any]:
+    def _parse_disaggregated(self, row: list[str]) -> dict[str, Any]:
         """Parse Disaggregated report format."""
         return {
             # Producer/Merchant/Processor/User
@@ -131,7 +130,7 @@ class CFTCOTParser:
             "chg_oi": self._safe_int(row[20]) if len(row) > 20 else None,
         }
 
-    def _parse_legacy(self, row: List[str]) -> Dict[str, Any]:
+    def _parse_legacy(self, row: list[str]) -> dict[str, Any]:
         """Parse Legacy report format."""
         return {
             "commercial_long": self._safe_int(row[7]) if len(row) > 7 else None,
@@ -142,7 +141,7 @@ class CFTCOTParser:
             "non_commercial_spread": self._safe_int(row[12]) if len(row) > 12 else None,
         }
 
-    def _safe_int(self, value: Optional[str]) -> Optional[int]:
+    def _safe_int(self, value: str | None) -> int | None:
         """Safely convert a string to int."""
         if not value:
             return None

@@ -1,6 +1,6 @@
 """Validation service implementation."""
 
-from typing import Any, Optional, Type, TypeVar
+from typing import Any, TypeVar
 
 T = TypeVar("T")
 
@@ -8,10 +8,8 @@ T = TypeVar("T")
 class ValidationError(Exception):
     """Exception raised for validation errors."""
 
-    pass
 
-
-def validate(value: Any, expected_type: Optional[Type[T]] = None) -> bool:
+def validate(value: Any, expected_type: type[T] | None = None) -> bool:
     """Validate a value."""
     if expected_type and not isinstance(value, expected_type):
         raise ValidationError(f"Expected {expected_type}, got {type(value)}")

@@ -1,6 +1,5 @@
 import logging
 from statistics import mean, stdev
-from typing import List, Optional
 
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 
@@ -8,9 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 class ConsensusResolver:
-    def resolve(
-        self, events: List[UniversalMacroEvent]
-    ) -> Optional[UniversalMacroEvent]:
+    def resolve(self, events: list[UniversalMacroEvent]) -> UniversalMacroEvent | None:
         if not events:
             return None
         # Group by event ID (assuming same event from different providers)

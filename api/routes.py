@@ -5,11 +5,12 @@ Exposes endpoints for the workspace.
 """
 
 import logging
-from typing import Dict, Any
 from datetime import datetime
+from typing import Any
 
-from .schemas import SnapshotResponse, HealthResponse
 from workspace.snapshot_service import SnapshotService
+
+from .schemas import HealthResponse, SnapshotResponse
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,7 @@ class Router:
     """Mock router for demonstration."""
 
     @staticmethod
-    def get_snapshot() -> Dict[str, Any]:
+    def get_snapshot() -> dict[str, Any]:
         """
         GET /api/global-intelligence/snapshot
         """
@@ -49,7 +50,7 @@ class Router:
         ).dict()
 
     @staticmethod
-    def get_health() -> Dict[str, Any]:
+    def get_health() -> dict[str, Any]:
         """
         GET /api/health
         """
@@ -64,7 +65,7 @@ class Router:
         ).dict()
 
     @staticmethod
-    def get_regime() -> Dict[str, Any]:
+    def get_regime() -> dict[str, Any]:
         """
         GET /api/global-intelligence/regime
         """
@@ -81,7 +82,7 @@ class Router:
         }
 
     @staticmethod
-    def get_assets() -> Dict[str, Any]:
+    def get_assets() -> dict[str, Any]:
         """
         GET /api/global-intelligence/assets
         """
@@ -98,7 +99,7 @@ class Router:
         }
 
     @staticmethod
-    def get_macro() -> Dict[str, Any]:
+    def get_macro() -> dict[str, Any]:
         """
         GET /api/global-intelligence/macro
         """

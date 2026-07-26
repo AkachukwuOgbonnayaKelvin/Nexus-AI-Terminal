@@ -3,7 +3,6 @@ GLB-004 Economic Events Intelligence Engine - Event Classifier
 """
 
 import logging
-from typing import Dict, List
 
 from ..constants import EventCategory, EventImpact
 from ..input.schemas import EconomicEventInput
@@ -26,7 +25,7 @@ class EventClassifier:
             EventCategory.TRADE: 0.4,
         }
 
-    def classify_event(self, event: EconomicEventInput) -> Dict:
+    def classify_event(self, event: EconomicEventInput) -> dict:
         """
         Classify an event and return enriched metadata.
 
@@ -42,7 +41,7 @@ class EventClassifier:
             in [EventImpact.HIGH, EventImpact.CRITICAL],
         }
 
-    def classify_events(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def classify_events(self, events: list[EconomicEventInput]) -> list[dict]:
         """Classify multiple events"""
         return [self.classify_event(e) for e in events]
 

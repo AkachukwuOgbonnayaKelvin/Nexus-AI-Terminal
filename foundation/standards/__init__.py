@@ -11,9 +11,9 @@ These standards ensure consistency across all platform components.
 """
 
 __all__ = [
-    "intelligence_standard",
-    "hub_standard",
-    "publish_cache_standard",
     "domain_client_standard",
+    "hub_standard",
+    "intelligence_standard",
+    "publish_cache_standard",
     "workspace_manual",
 ]

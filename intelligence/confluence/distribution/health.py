@@ -7,7 +7,7 @@ Monitors the health of the distribution pipeline.
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -28,13 +28,13 @@ class DistributionHealth:
 
     # Metrics
     total_outputs_published: int = 0
-    last_publish_time: Optional[datetime] = None
+    last_publish_time: datetime | None = None
     validation_errors: int = 0
     validation_warnings: int = 0
 
     # Errors
-    errors: List[str] = field(default_factory=list)
-    warnings: List[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+    warnings: list[str] = field(default_factory=list)
 
     # Timestamp
     checked_at: datetime = field(default_factory=datetime.utcnow)
@@ -123,7 +123,7 @@ class DistributionHealthMonitor:
         if envelopes_created == 0:
             self.health.record_error("No envelopes created")
 
-    def get_status(self) -> Dict[str, Any]:
+    def get_status(self) -> dict[str, Any]:
         """Get current health status."""
         return {
             "healthy": self.health.is_healthy(),

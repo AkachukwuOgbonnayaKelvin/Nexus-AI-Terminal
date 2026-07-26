@@ -3,8 +3,9 @@ Unit tests for GLB-001 Market Regime Engine
 """
 
 from datetime import datetime
-from intelligence.engines.glb_001_market_regime.engine import MarketRegimeEngine
+
 from intelligence.engines.glb_001_market_regime.constants import NDIP_TOPICS
+from intelligence.engines.glb_001_market_regime.engine import MarketRegimeEngine
 
 
 def test_engine_initialization():

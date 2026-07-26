@@ -5,11 +5,11 @@ Collects and organizes normalized signals into evidence groups.
 """
 
 import logging
-from typing import Dict, List, Optional, Any
 from collections import defaultdict
+from typing import Any
 
-from .evidence_model import EvidenceGroup
 from ..schemas import NormalizedSignal
+from .evidence_model import EvidenceGroup
 
 logger = logging.getLogger(__name__)
 
@@ -20,10 +20,10 @@ class EvidenceCollector:
     """
 
     def __init__(self):
-        self.groups: Dict[str, Dict[str, EvidenceGroup]] = defaultdict(
+        self.groups: dict[str, dict[str, EvidenceGroup]] = defaultdict(
             lambda: defaultdict(EvidenceGroup)
         )
-        self._signals: List[NormalizedSignal] = []
+        self._signals: list[NormalizedSignal] = []
 
     def add_signal(self, signal: NormalizedSignal) -> None:
         """
@@ -49,14 +49,14 @@ class EvidenceCollector:
             f"Added signal: {signal.engine_id} -> {signal.entity} ({signal.signal_type.value})"
         )
 
-    def add_signals(self, signals: List[NormalizedSignal]) -> None:
+    def add_signals(self, signals: list[NormalizedSignal]) -> None:
         """
         Add multiple signals.
         """
         for signal in signals:
             self.add_signal(signal)
 
-    def get_group(self, entity: str, signal_type: str) -> Optional[EvidenceGroup]:
+    def get_group(self, entity: str, signal_type: str) -> EvidenceGroup | None:
         """
         Get an evidence group by entity and signal type.
         """
@@ -64,19 +64,19 @@ class EvidenceCollector:
             return self.groups[entity][signal_type]
         return None
 
-    def get_groups(self) -> Dict[str, Dict[str, EvidenceGroup]]:
+    def get_groups(self) -> dict[str, dict[str, EvidenceGroup]]:
         """
         Get all evidence groups.
         """
         return self.groups
 
-    def get_entities(self) -> List[str]:
+    def get_entities(self) -> list[str]:
         """
         Get all entities with evidence.
         """
         return list(self.groups.keys())
 
-    def get_signal_types_for_entity(self, entity: str) -> List[str]:
+    def get_signal_types_for_entity(self, entity: str) -> list[str]:
         """
         Get all signal types for an entity.
         """
@@ -84,7 +84,7 @@ class EvidenceCollector:
             return list(self.groups[entity].keys())
         return []
 
-    def get_all_evidence(self) -> List[EvidenceGroup]:
+    def get_all_evidence(self) -> list[EvidenceGroup]:
         """
         Get all evidence groups as a flat list.
         """
@@ -94,7 +94,7 @@ class EvidenceCollector:
                 all_groups.append(group)
         return all_groups
 
-    def get_evidence_for_entity(self, entity: str) -> List[EvidenceGroup]:
+    def get_evidence_for_entity(self, entity: str) -> list[EvidenceGroup]:
         """
         Get all evidence groups for an entity.
         """
@@ -102,7 +102,7 @@ class EvidenceCollector:
             return list(self.groups[entity].values())
         return []
 
-    def get_consensus(self, entity: str, signal_type: str) -> Optional[Dict[str, Any]]:
+    def get_consensus(self, entity: str, signal_type: str) -> dict[str, Any] | None:
         """
         Get consensus for a specific entity and signal type.
         """
@@ -130,7 +130,7 @@ class EvidenceCollector:
         self._signals = []
         self.groups = defaultdict(lambda: defaultdict(EvidenceGroup))
 
-    def get_stats(self) -> Dict[str, Any]:
+    def get_stats(self) -> dict[str, Any]:
         """
         Get statistics about collected evidence.
         """

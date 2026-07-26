@@ -1,24 +1,23 @@
-# -*- coding: utf-8 -*-
 """
 Direction Classification Tests
 
 Tests the centralized direction classification logic.
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
+from intelligence.confluence.contracts import Direction
 from intelligence.confluence.entity.direction import (
     classify_direction,
-    is_bullish,
     is_bearish,
+    is_bullish,
     is_neutral,
-    is_strong_bullish,
     is_strong_bearish,
+    is_strong_bullish,
 )
-from intelligence.confluence.contracts import Direction
 
 
 def test_direction_classification():

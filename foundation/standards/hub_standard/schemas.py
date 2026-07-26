@@ -4,7 +4,6 @@ This module defines the required structure for workspace hubs.
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -27,9 +26,9 @@ class HubStatus(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     status: str = Field(..., description="Status: 'running', 'stopped', 'error'")
-    last_update: Optional[datetime] = Field(None, description="Last successful update")
-    next_update: Optional[datetime] = Field(None, description="Next scheduled update")
-    message: Optional[str] = Field(None, description="Status message")
+    last_update: datetime | None = Field(None, description="Last successful update")
+    next_update: datetime | None = Field(None, description="Next scheduled update")
+    message: str | None = Field(None, description="Status message")
 
 
 class HubHealth(BaseModel):
@@ -38,8 +37,8 @@ class HubHealth(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     healthy: bool = Field(..., description="Whether the hub is healthy")
-    engine_health: Dict[str, bool] = Field(
+    engine_health: dict[str, bool] = Field(
         default_factory=dict, description="Health status of individual engines"
     )
     data_freshness: float = Field(..., description="Age of data in seconds")
-    errors: List[str] = Field(default_factory=list, description="Recent errors")
+    errors: list[str] = Field(default_factory=list, description="Recent errors")

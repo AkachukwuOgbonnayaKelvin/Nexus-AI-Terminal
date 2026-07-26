@@ -1,4 +1,4 @@
 from .adapter import FredAdapter
 from .connector import FredConnector
 
-__all__ = ["FredConnector", "FredAdapter"]
+__all__ = ["FredAdapter", "FredConnector"]

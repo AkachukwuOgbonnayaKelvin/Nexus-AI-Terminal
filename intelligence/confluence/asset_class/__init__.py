@@ -10,14 +10,14 @@ into asset-class ratings for:
 - Energy
 """
 
-from .mapper import AssetClassMapper
 from .aggregator import AssetClassAggregator
-from .rating_engine import AssetClassRatingEngine
+from .mapper import AssetClassMapper
 from .ranker import AssetClassRanker
+from .rating_engine import AssetClassRatingEngine
 
 __all__ = [
-    "AssetClassMapper",
     "AssetClassAggregator",
-    "AssetClassRatingEngine",
+    "AssetClassMapper",
     "AssetClassRanker",
+    "AssetClassRatingEngine",
 ]

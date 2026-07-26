@@ -6,15 +6,15 @@ ConfluenceIntelligencePackage.
 """
 
 import logging
-from typing import List, Optional, Dict, Any
 from datetime import datetime
+from typing import Any
 
 from ..contracts import (
-    GlobalEntityRating,
     AssetClassRating,
-    HarmonizedResult,
+    GlobalEntityRating,
     GlobalRisk,
     GlobalTheme,
+    HarmonizedResult,
 )
 from .package import ConfluenceIntelligencePackage
 
@@ -30,17 +30,17 @@ class OutputAssembler:
 
     def assemble(
         self,
-        entity_ratings: List[GlobalEntityRating],
-        asset_class_ratings: List[AssetClassRating],
-        harmonized_results: List[HarmonizedResult],
+        entity_ratings: list[GlobalEntityRating],
+        asset_class_ratings: list[AssetClassRating],
+        harmonized_results: list[HarmonizedResult],
         global_regime: str = "UNKNOWN",
         global_regime_confidence: float = 0.0,
         global_risk_level: str = "UNKNOWN",
         global_risk_score: float = 0.0,
-        key_drivers: Optional[List[str]] = None,
-        global_risks: Optional[List[GlobalRisk]] = None,
-        global_themes: Optional[List[GlobalTheme]] = None,
-        top_opportunities: Optional[List[Dict[str, Any]]] = None,
+        key_drivers: list[str] | None = None,
+        global_risks: list[GlobalRisk] | None = None,
+        global_themes: list[GlobalTheme] | None = None,
+        top_opportunities: list[dict[str, Any]] | None = None,
     ) -> ConfluenceIntelligencePackage:
         """
         Assemble all components into a ConfluenceIntelligencePackage.
@@ -104,9 +104,9 @@ class OutputAssembler:
         logger.info(f"Package assembled: {package}")
         return package
 
-    def _extract_drivers(self, entity_ratings: List[GlobalEntityRating]) -> List[str]:
+    def _extract_drivers(self, entity_ratings: list[GlobalEntityRating]) -> list[str]:
         """Extract top drivers from entity ratings."""
-        driver_map: Dict[str, float] = {}
+        driver_map: dict[str, float] = {}
 
         for rating in entity_ratings:
             for driver in rating.drivers:
@@ -119,10 +119,10 @@ class OutputAssembler:
         return [d[0] for d in sorted_drivers[:5]]
 
     def _extract_global_risks(
-        self, entity_ratings: List[GlobalEntityRating]
-    ) -> List[GlobalRisk]:
+        self, entity_ratings: list[GlobalEntityRating]
+    ) -> list[GlobalRisk]:
         """Extract global risks from entity ratings."""
-        risk_map: Dict[str, float] = {}
+        risk_map: dict[str, float] = {}
 
         for rating in entity_ratings:
             for risk in rating.risks:
@@ -148,10 +148,10 @@ class OutputAssembler:
 
     def _derive_themes(
         self,
-        entity_ratings: List[GlobalEntityRating],
-        asset_class_ratings: List[AssetClassRating],
+        entity_ratings: list[GlobalEntityRating],
+        asset_class_ratings: list[AssetClassRating],
         global_regime: str,
-    ) -> List[GlobalTheme]:
+    ) -> list[GlobalTheme]:
         """Derive global themes from intelligence."""
         themes = []
 
@@ -219,9 +219,9 @@ class OutputAssembler:
 
     def _derive_opportunities(
         self,
-        entity_ratings: List[GlobalEntityRating],
-        asset_class_ratings: List[AssetClassRating],
-    ) -> List[Dict[str, Any]]:
+        entity_ratings: list[GlobalEntityRating],
+        asset_class_ratings: list[AssetClassRating],
+    ) -> list[dict[str, Any]]:
         """Derive top opportunities from intelligence."""
         opportunities = []
 

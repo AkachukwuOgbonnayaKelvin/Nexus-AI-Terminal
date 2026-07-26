@@ -3,12 +3,13 @@ GLB-001 Market Regime Engine - Pydantic Schemas
 """
 
 from datetime import datetime
-from typing import List, Optional, Dict, Any, Literal
+from typing import Any, Literal
+
 from pydantic import BaseModel, Field
 
-from .constants import MarketRegime, TransitionState, RegimeAlignment
 from intelligence.schemas.asset_impact import AssetImpactMatrix
 
+from .constants import MarketRegime, RegimeAlignment, TransitionState
 
 # Standard direction types for the Universal Intelligence Contract
 Direction = Literal["BULLISH", "BEARISH", "NEUTRAL"]
@@ -80,22 +81,22 @@ class RegimeReport(BaseModel):
     generated_at: datetime = Field(default_factory=datetime.utcnow)
 
     primary_regime: MarketRegime
-    secondary_regime: Optional[MarketRegime] = None
+    secondary_regime: MarketRegime | None = None
     transition_state: TransitionState = TransitionState.STABLE
 
     regime_score: float = Field(ge=0, le=100)
     confidence: float = Field(ge=0, le=100)
 
-    dimensions: List[MarketDimension]
-    regime_probabilities: Dict[str, float]
-    signals: List[RegimeSignal]
-    evidence: List[RegimeEvidence]
-    risks: List[RegimeRisk]
-    drivers: List[RegimeDriver]
+    dimensions: list[MarketDimension]
+    regime_probabilities: dict[str, float]
+    signals: list[RegimeSignal]
+    evidence: list[RegimeEvidence]
+    risks: list[RegimeRisk]
+    drivers: list[RegimeDriver]
 
-    asset_context: Dict[str, AssetRegimeContext]
+    asset_context: dict[str, AssetRegimeContext]
 
     # Asset Impact Matrix (for Global Intelligence Hub)
-    asset_impact_matrix: Optional[AssetImpactMatrix] = None
+    asset_impact_matrix: AssetImpactMatrix | None = None
 
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

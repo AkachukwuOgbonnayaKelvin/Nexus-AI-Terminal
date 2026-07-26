@@ -3,9 +3,9 @@ GLB-002 Asset Impact Engine - Pair Comparison
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
-from .constants import Bias, FX_PAIRS
+from .constants import FX_PAIRS, Bias
 from .schemas import CurrencyStrength, PairComparison
 
 logger = logging.getLogger(__name__)
@@ -17,8 +17,8 @@ class PairComparisonEngine:
     """
 
     def compare_pairs(
-        self, strengths: Dict[str, CurrencyStrength], global_factors: Dict[str, Any]
-    ) -> Dict[str, PairComparison]:
+        self, strengths: dict[str, CurrencyStrength], global_factors: dict[str, Any]
+    ) -> dict[str, PairComparison]:
         """
         Compare all FX pairs.
 
@@ -54,7 +54,7 @@ class PairComparisonEngine:
         quote: str,
         base_strength: CurrencyStrength,
         quote_strength: CurrencyStrength,
-        global_factors: Dict[str, Any],
+        global_factors: dict[str, Any],
     ) -> PairComparison:
         """
         Compare a single pair.
@@ -126,8 +126,8 @@ class PairComparisonEngine:
         quote: str,
         base_strength: CurrencyStrength,
         quote_strength: CurrencyStrength,
-        global_factors: Dict[str, Any],
-    ) -> List[Dict[str, Any]]:
+        global_factors: dict[str, Any],
+    ) -> list[dict[str, Any]]:
         """Build drivers for the pair comparison."""
         drivers = []
 
@@ -165,7 +165,7 @@ class PairComparisonEngine:
         quote: str,
         base_strength: CurrencyStrength,
         quote_strength: CurrencyStrength,
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """Build evidence for the pair comparison."""
         evidence = []
 
@@ -197,7 +197,7 @@ class PairComparisonEngine:
         quote: str,
         base_strength: CurrencyStrength,
         quote_strength: CurrencyStrength,
-    ) -> List[str]:
+    ) -> list[str]:
         """Identify risks for the pair."""
         risks = []
 

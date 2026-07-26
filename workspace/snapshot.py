@@ -6,7 +6,8 @@ and the frontend GUI. The GUI should only consume this snapshot.
 """
 
 from datetime import datetime
-from typing import Dict, Any
+from typing import Any
+
 from pydantic import BaseModel
 
 
@@ -22,22 +23,22 @@ class WorkspaceSnapshot(BaseModel):
     generated_at: datetime
 
     # Core Intelligence
-    market_regime: Dict[str, Any]
-    macro_intelligence: Dict[str, Any]
-    asset_intelligence: Dict[str, Any]
+    market_regime: dict[str, Any]
+    macro_intelligence: dict[str, Any]
+    asset_intelligence: dict[str, Any]
 
     # Consensus & Confidence
-    consensus: Dict[str, Any]
-    confidence: Dict[str, Any]
+    consensus: dict[str, Any]
+    confidence: dict[str, Any]
 
     # Evidence & Risk
-    evidence_matrix: Dict[str, Any]
-    risk_matrix: Dict[str, Any]
+    evidence_matrix: dict[str, Any]
+    risk_matrix: dict[str, Any]
 
     # Summary
     executive_summary: str
-    ai_context: Dict[str, Any]
+    ai_context: dict[str, Any]
 
     # Health
-    health: Dict[str, Any]
-    metadata: Dict[str, Any]
+    health: dict[str, Any]
+    metadata: dict[str, Any]

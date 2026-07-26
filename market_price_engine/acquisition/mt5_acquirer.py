@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
 """MT5 data acquisition module for MKT-001"""
 
-from typing import Dict, Any, Optional, List
-from datetime import datetime
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from domain.models import OHLCV, Tick
 from providers.mt5.client import MT5Client
-from domain.models import Tick, OHLCV
 
 
 class MT5Acquirer:
     """Acquires market data from MT5 terminal"""
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: dict[str, Any]):
         self.config = config
         self.client = None
         self._initialize_client()
@@ -27,7 +26,7 @@ class MT5Acquirer:
             self.client = MT5Client(self.config)
             self.client.connect()
 
-    def acquire_tick(self, symbol: str) -> Optional[Tick]:
+    def acquire_tick(self, symbol: str) -> Tick | None:
         """Acquire current tick data"""
         if not self.client or not self.client.is_connected():
             return None
@@ -47,7 +46,7 @@ class MT5Acquirer:
 
     def acquire_ohlcv(
         self, symbol: str, timeframe: str, count: int = 100
-    ) -> List[OHLCV]:
+    ) -> list[OHLCV]:
         """Acquire OHLCV data"""
         if not self.client or not self.client.is_connected():
             return []

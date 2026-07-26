@@ -4,7 +4,7 @@ This module defines the required structure for domain clients.
 """
 
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -16,7 +16,7 @@ class ClientRequest(BaseModel):
 
     client_id: str = Field(..., description="Client identifier")
     request_type: str = Field(..., description="Request type")
-    parameters: Dict[str, Any] = Field(
+    parameters: dict[str, Any] = Field(
         default_factory=dict, description="Request parameters"
     )
     timestamp: datetime = Field(default_factory=datetime.now)
@@ -28,8 +28,8 @@ class ClientResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     success: bool = Field(..., description="Whether the request succeeded")
-    data: Optional[Dict[str, Any]] = Field(None, description="Response data")
-    error: Optional[str] = Field(None, description="Error message if failed")
+    data: dict[str, Any] | None = Field(None, description="Response data")
+    error: str | None = Field(None, description="Error message if failed")
     timestamp: datetime = Field(default_factory=datetime.now)
 
 

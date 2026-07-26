@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Yahoo Finance Provider - Tier 3 Fallback with multiple records"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
@@ -17,8 +16,8 @@ except ImportError:
     print("Warning: yfinance not installed. Install with: pip install yfinance")
 
 from corporate_earnings_engine.providers.base import (
-    EarningsProvider,
     EarningsObservation,
+    EarningsProvider,
     FinancialStatement,
 )
 
@@ -26,7 +25,7 @@ from corporate_earnings_engine.providers.base import (
 class YahooFinanceProvider(EarningsProvider):
     """Yahoo Finance as fallback provider using modern API"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "yahoo_finance"
         self._cache = {}
@@ -40,14 +39,14 @@ class YahooFinanceProvider(EarningsProvider):
     def is_available(self) -> bool:
         return YF_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         return {
             "provider": self.name,
             "available": self.is_available(),
             "status": "healthy" if self.is_available() else "unavailable",
         }
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return [
             "AAPL",
             "MSFT",
@@ -75,7 +74,7 @@ class YahooFinanceProvider(EarningsProvider):
 
     def _get_eps_from_income_stmt(
         self, ticker, period: str = "quarterly"
-    ) -> List[Dict]:
+    ) -> list[dict]:
         """Extract EPS from income statement for multiple periods"""
         results = []
 
@@ -149,9 +148,9 @@ class YahooFinanceProvider(EarningsProvider):
     def get_earnings(
         self,
         symbol: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[EarningsObservation]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[EarningsObservation]:
         """Get earnings data using modern Yahoo Finance API"""
         if not self.is_available():
             return []
@@ -227,7 +226,7 @@ class YahooFinanceProvider(EarningsProvider):
     def get_financial_statements(
         self,
         symbol: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[FinancialStatement]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[FinancialStatement]:
         return []

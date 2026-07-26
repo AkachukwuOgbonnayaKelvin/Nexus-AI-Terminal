@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """API gateway for ECO-002"""
 
 

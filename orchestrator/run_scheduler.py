@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Run the Central Scheduler"""
 
-import sys
 import logging
+import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from orchestrator.scheduler.core import CentralScheduler
 from orchestrator.registry.engine_registry import register_all_engines
+from orchestrator.scheduler.core import CentralScheduler
 
 
 def main():

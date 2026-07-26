@@ -5,7 +5,7 @@ GUI-ready data for the Global Intelligence Overview.
 """
 
 from dataclasses import dataclass
-from typing import List, Optional, Dict, Any
+from typing import Any
 
 from ..state.state import GlobalHubState
 
@@ -25,18 +25,18 @@ class OverviewViewModel:
     risk_score: float
 
     # Top Entities
-    strongest_currency: Optional[Dict[str, Any]]
-    weakest_currency: Optional[Dict[str, Any]]
-    strongest_asset_class: Optional[Dict[str, Any]]
-    weakest_asset_class: Optional[Dict[str, Any]]
+    strongest_currency: dict[str, Any] | None
+    weakest_currency: dict[str, Any] | None
+    strongest_asset_class: dict[str, Any] | None
+    weakest_asset_class: dict[str, Any] | None
 
     # Rankings (top 5)
-    top_currencies: List[Dict[str, Any]]
-    top_asset_classes: List[Dict[str, Any]]
+    top_currencies: list[dict[str, Any]]
+    top_asset_classes: list[dict[str, Any]]
 
     # Drivers & Risks
-    top_drivers: List[str]
-    top_risks: List[Dict[str, Any]]
+    top_drivers: list[str]
+    top_risks: list[dict[str, Any]]
 
     # Summary
     executive_summary: str

@@ -1,8 +1,7 @@
 """Runtime Validator – Checks DAR integration."""
 
-from typing import List
-from tools.architecture.validators.base import BaseValidator
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class RuntimeValidator(BaseValidator):
@@ -11,7 +10,7 @@ class RuntimeValidator(BaseValidator):
     def get_severity(self) -> str:
         return "critical"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
         runtime_file = self.root / "runtime" / "runtime.py"
         if not runtime_file.exists():

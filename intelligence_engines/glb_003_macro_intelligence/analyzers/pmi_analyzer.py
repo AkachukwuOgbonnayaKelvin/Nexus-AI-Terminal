@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """PMI Analyzer for Macro Intelligence Engine"""
 
-from typing import Dict, Any, List
+from typing import Any
 
 
 class PMIAnalyzer:
     """Analyzes PMI data"""
 
-    def analyze(self, pmi_data: List[Dict]) -> Dict[str, Any]:
+    def analyze(self, pmi_data: list[dict]) -> dict[str, Any]:
         """Analyze PMI data and return insights"""
         if not pmi_data:
             return {

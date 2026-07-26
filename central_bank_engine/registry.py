@@ -1,7 +1,6 @@
 """Central Bank Registry – defines all 8 major central banks."""
 
 from dataclasses import dataclass
-from typing import List, Optional
 
 
 @dataclass
@@ -11,13 +10,13 @@ class CentralBank:
     country: str
     currency: str
     timezone: str
-    official_api: Optional[str] = None
-    rss_url: Optional[str] = None
+    official_api: str | None = None
+    rss_url: str | None = None
     website: str = ""
     governor: str = ""
     meeting_frequency: str = ""  # e.g., "monthly", "quarterly"
-    next_meeting: Optional[str] = None
-    last_rate: Optional[float] = None
+    next_meeting: str | None = None
+    last_rate: float | None = None
     priority: int = 50
 
 
@@ -130,7 +129,7 @@ CENTRAL_BANKS = [
 ]
 
 
-def get_bank(bank_id: str) -> Optional[CentralBank]:
+def get_bank(bank_id: str) -> CentralBank | None:
     """Get a central bank by its ID."""
     for bank in CENTRAL_BANKS:
         if bank.id == bank_id:
@@ -138,6 +137,6 @@ def get_bank(bank_id: str) -> Optional[CentralBank]:
     return None
 
 
-def get_all_banks() -> List[CentralBank]:
+def get_all_banks() -> list[CentralBank]:
     """Return all banks."""
     return CENTRAL_BANKS

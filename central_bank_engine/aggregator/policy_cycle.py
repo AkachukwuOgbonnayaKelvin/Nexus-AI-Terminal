@@ -2,13 +2,13 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 
 class PolicyCycleBuilder:
-    def build(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def build(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if not events:
             return events
         # Group events by bank and approximate month

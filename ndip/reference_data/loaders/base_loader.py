@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from ndip.reference_data.registry_manager import RegistryManager
 
@@ -14,7 +13,7 @@ class BaseLoader:
         self.table = table
         self.unique_field = unique_field
 
-    async def ensure(self, value: str, source: str, metadata: dict) -> Optional[str]:
+    async def ensure(self, value: str, source: str, metadata: dict) -> str | None:
         if not value:
             return None
         existing = await self.registry.lookup(self.table, self.unique_field, value)

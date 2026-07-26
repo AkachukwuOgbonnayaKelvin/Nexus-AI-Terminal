@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 """Incremental Loader - Only loads new records after first run"""
 
-from typing import List, Dict, Any, Optional
+import json
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-import sys
-import json
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from providers.registry import ProviderRegistry
-from providers.base import OHLCVData
 from acquisition.historical_loader import HistoricalDataLoader
+from providers.base import OHLCVData
+from providers.registry import ProviderRegistry
 from warehouse.ohlcv_repository import OHLCVRepository
 
 
@@ -24,7 +23,7 @@ class IncrementalLoader:
     Old data is NEVER deleted - only appended to.
     """
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.provider_registry = ProviderRegistry(config)
         self.historical_loader = HistoricalDataLoader(config)
@@ -32,7 +31,7 @@ class IncrementalLoader:
         self._state_file = Path(__file__).parent.parent / "data" / "load_state.json"
         self._load_state = self._load_state_from_file()
 
-    def _load_state_from_file(self) -> Dict[str, Any]:
+    def _load_state_from_file(self) -> dict[str, Any]:
         """Load the last load state from file"""
         if self._state_file.exists():
             try:
@@ -67,7 +66,7 @@ class IncrementalLoader:
         timeframe: str = "D1",
         days_back: int = 90,
         force_full: bool = False,
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """
         Load data for a symbol.
 
@@ -133,6 +132,6 @@ class IncrementalLoader:
 
             return bars
 
-    def get_load_status(self) -> Dict[str, Any]:
+    def get_load_status(self) -> dict[str, Any]:
         """Get the current load status for all symbols/timeframes"""
         return self._load_state

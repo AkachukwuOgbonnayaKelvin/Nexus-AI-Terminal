@@ -1,5 +1,4 @@
 import logging
-from typing import List, Optional
 
 from central_bank_engine.dtos import UniversalCentralBankEvent
 from providers.provider_manager import ProviderManager
@@ -11,7 +10,7 @@ class CentralBankCollector:
     def __init__(self, provider_manager: ProviderManager):
         self.pm = provider_manager
 
-    async def collect_today(self) -> List[UniversalCentralBankEvent]:
+    async def collect_today(self) -> list[UniversalCentralBankEvent]:
         events = []
         provider_names = self.pm.get_providers(capability="central_bank")
         logger.info(f"Found providers: {provider_names}")
@@ -41,7 +40,7 @@ class CentralBankCollector:
 
     async def get_latest_rate(
         self, bank: str = "Federal Reserve"
-    ) -> Optional[UniversalCentralBankEvent]:
+    ) -> UniversalCentralBankEvent | None:
         provider_names = self.pm.get_providers(capability="central_bank")
         for name in provider_names:
             provider = self.pm.get_provider(name)

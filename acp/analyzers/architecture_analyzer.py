@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """
 Architecture Analyzer - Analyzes engine architecture compliance
 """
 
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 
 class ArchitectureAnalyzer:
@@ -19,7 +18,7 @@ class ArchitectureAnalyzer:
 
         self.optional_files = ["architecture.yaml", "README.md"]
 
-    def analyze(self, engine_path: Path, engine_data: Dict) -> Dict[str, Any]:
+    def analyze(self, engine_path: Path, engine_data: dict) -> dict[str, Any]:
         """Analyze engine architecture - returns compliance and maturity separately"""
         result = {
             "compliance_score": 0,  # Required components only
@@ -132,9 +131,7 @@ class ArchitectureAnalyzer:
         # Determine status
         if result["issues"]:
             result["status"] = "Critical"
-        elif result["compliance_score"] < 80:
-            result["status"] = "Warning"
-        elif result["maturity_score"] < 50:
+        elif result["compliance_score"] < 80 or result["maturity_score"] < 50:
             result["status"] = "Warning"
         else:
             result["status"] = "Healthy"

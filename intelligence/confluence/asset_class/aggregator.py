@@ -4,9 +4,7 @@ Phase 5: Asset-Class Intelligence - Asset-Class Aggregator
 Aggregates entity ratings into asset-class groups.
 """
 
-from typing import Dict, List
-
-from ..contracts import GlobalEntityRating, AssetClass
+from ..contracts import AssetClass, GlobalEntityRating
 from .mapper import AssetClassMapper
 
 
@@ -16,8 +14,8 @@ class AssetClassAggregator:
     """
 
     def aggregate(
-        self, ratings: List[GlobalEntityRating]
-    ) -> Dict[AssetClass, List[GlobalEntityRating]]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> dict[AssetClass, list[GlobalEntityRating]]:
         """
         Aggregate ratings by asset class.
 
@@ -30,43 +28,43 @@ class AssetClassAggregator:
         return AssetClassMapper.map_ratings(ratings)
 
     def get_fx_ratings(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Get ratings for FX asset class."""
         grouped = self.aggregate(ratings)
         return grouped.get(AssetClass.FX, [])
 
     def get_metals_ratings(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Get ratings for Metals asset class."""
         grouped = self.aggregate(ratings)
         return grouped.get(AssetClass.METALS, [])
 
     def get_equities_ratings(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Get ratings for Equities asset class."""
         grouped = self.aggregate(ratings)
         return grouped.get(AssetClass.EQUITIES, [])
 
     def get_bonds_ratings(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Get ratings for Bonds asset class."""
         grouped = self.aggregate(ratings)
         return grouped.get(AssetClass.BONDS, [])
 
     def get_energy_ratings(
-        self, ratings: List[GlobalEntityRating]
-    ) -> List[GlobalEntityRating]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> list[GlobalEntityRating]:
         """Get ratings for Energy asset class."""
         grouped = self.aggregate(ratings)
         return grouped.get(AssetClass.ENERGY, [])
 
     def get_asset_class_summary(
-        self, ratings: List[GlobalEntityRating]
-    ) -> Dict[AssetClass, Dict[str, any]]:
+        self, ratings: list[GlobalEntityRating]
+    ) -> dict[AssetClass, dict[str, any]]:
         """
         Get a summary of each asset class.
 

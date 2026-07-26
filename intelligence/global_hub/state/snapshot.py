@@ -6,7 +6,7 @@ Snapshots are immutable records of the global state at a point in time.
 
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Any
 
 
 @dataclass(frozen=True)
@@ -30,7 +30,7 @@ class GlobalSnapshot:
     _state_items: tuple
 
     # Lineage
-    previous_snapshot_id: Optional[str] = None
+    previous_snapshot_id: str | None = None
     source: str = "GLOBAL_INTELLIGENCE_HUB"
 
     # Version
@@ -50,7 +50,7 @@ class GlobalSnapshot:
             previous_snapshot_id=getattr(state, "previous_state_id", None),
         )
 
-    def get_state_data(self) -> Dict[str, Any]:
+    def get_state_data(self) -> dict[str, Any]:
         """Get state data as a dictionary (read-only copy)."""
         return dict(self._state_items)
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 GLB-003: Macro Intelligence Engine
 
@@ -6,20 +5,19 @@ This engine consumes macroeconomic data from MAC-001 and produces
 standardized intelligence reports about the macro environment.
 """
 
-from typing import Dict, Any, List
-from datetime import datetime
 import logging
+from datetime import datetime
+from typing import Any
 
 from intelligence.base.intelligence_engine import IntelligenceEngine
-
-from intelligence_engines.glb_003_macro_intelligence.analyzers.gdp_analyzer import (
-    GDPAnalyzer,
-)
 from intelligence_engines.glb_003_macro_intelligence.analyzers.cpi_analyzer import (
     CPIAnalyzer,
 )
 from intelligence_engines.glb_003_macro_intelligence.analyzers.employment_analyzer import (
     EmploymentAnalyzer,
+)
+from intelligence_engines.glb_003_macro_intelligence.analyzers.gdp_analyzer import (
+    GDPAnalyzer,
 )
 from intelligence_engines.glb_003_macro_intelligence.analyzers.pmi_analyzer import (
     PMIAnalyzer,
@@ -27,7 +25,6 @@ from intelligence_engines.glb_003_macro_intelligence.analyzers.pmi_analyzer impo
 from intelligence_engines.glb_003_macro_intelligence.asset_impact_matrix import (
     MacroAssetImpactMatrix,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +47,7 @@ class MacroIntelligenceEngine(IntelligenceEngine):
         self._analysis_results = {}
         self._last_impact_matrix = None
 
-    def get_required_ndip_topics(self) -> List[str]:
+    def get_required_ndip_topics(self) -> list[str]:
         return [
             "macro.statistics.gdp",
             "macro.statistics.cpi",
@@ -58,7 +55,7 @@ class MacroIntelligenceEngine(IntelligenceEngine):
             "macro.statistics.pmi",
         ]
 
-    def analyze(self, ndip_data: Dict[str, Any]) -> Dict[str, Any]:
+    def analyze(self, ndip_data: dict[str, Any]) -> dict[str, Any]:
         """
         Run macro intelligence analysis.
         """
@@ -130,7 +127,7 @@ class MacroIntelligenceEngine(IntelligenceEngine):
 
         return sum(confidences) / len(confidences)
 
-    def _build_report(self) -> Dict[str, Any]:
+    def _build_report(self) -> dict[str, Any]:
         """Build the engine report."""
         overall_score = self._calculate_overall_score()
         confidence = self._calculate_overall_confidence()
@@ -154,7 +151,7 @@ class MacroIntelligenceEngine(IntelligenceEngine):
         """Get the last generated asset impact matrix."""
         return self._last_impact_matrix
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-003",
             "status": "OPERATIONAL",

@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
 """CPI Analyzer for Macro Intelligence Engine"""
 
-from typing import Dict, Any, List
+from typing import Any
 
 
 class CPIAnalyzer:
     """Analyzes CPI data"""
 
-    def analyze(self, cpi_data: List[Dict]) -> Dict[str, Any]:
+    def analyze(self, cpi_data: list[dict]) -> dict[str, Any]:
         """Analyze CPI data and return insights"""
         if not cpi_data:
             return {

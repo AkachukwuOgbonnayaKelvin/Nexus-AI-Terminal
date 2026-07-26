@@ -3,17 +3,17 @@ GLB-001 Market Regime Engine - Report Generator
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
-from .constants import MarketRegime, TransitionState, RegimeAlignment, SUPPORTED_ASSETS
+from .constants import SUPPORTED_ASSETS, MarketRegime, RegimeAlignment, TransitionState
 from .schemas import (
-    RegimeReport,
-    RegimeSignal,
-    RegimeEvidence,
-    RegimeRisk,
-    RegimeDriver,
-    MarketDimension,
     AssetRegimeContext,
+    MarketDimension,
+    RegimeDriver,
+    RegimeEvidence,
+    RegimeReport,
+    RegimeRisk,
+    RegimeSignal,
 )
 
 logger = logging.getLogger(__name__)
@@ -29,13 +29,13 @@ class ReportGenerator:
         transition_state: TransitionState,
         regime_score: float,
         confidence: float,
-        dimensions: List[MarketDimension],
-        regime_probabilities: Dict[str, float],
-        signals: List[RegimeSignal],
-        evidence: List[RegimeEvidence],
-        risks: List[RegimeRisk],
-        drivers: List[RegimeDriver],
-        normalized_data: Dict[str, Any],
+        dimensions: list[MarketDimension],
+        regime_probabilities: dict[str, float],
+        signals: list[RegimeSignal],
+        evidence: list[RegimeEvidence],
+        risks: list[RegimeRisk],
+        drivers: list[RegimeDriver],
+        normalized_data: dict[str, Any],
     ) -> RegimeReport:
         asset_context = self._build_asset_context(
             primary_regime, dimensions, normalized_data
@@ -70,9 +70,9 @@ class ReportGenerator:
     def _build_asset_context(
         self,
         primary_regime: MarketRegime,
-        dimensions: List[MarketDimension],
-        normalized_data: Dict[str, Any],
-    ) -> Dict[str, AssetRegimeContext]:
+        dimensions: list[MarketDimension],
+        normalized_data: dict[str, Any],
+    ) -> dict[str, AssetRegimeContext]:
         context = {}
         dimension_dict = {d.name: d for d in dimensions}
         for asset in SUPPORTED_ASSETS:
@@ -85,8 +85,8 @@ class ReportGenerator:
         self,
         asset: str,
         primary_regime: MarketRegime,
-        dimensions: Dict[str, MarketDimension],
-        normalized_data: Dict[str, Any],
+        dimensions: dict[str, MarketDimension],
+        normalized_data: dict[str, Any],
     ) -> AssetRegimeContext:
         alignment = self._determine_alignment(asset, primary_regime, dimensions)
         score = self._calculate_asset_score(asset, dimensions)
@@ -102,7 +102,7 @@ class ReportGenerator:
         )
 
     def _determine_alignment(
-        self, asset: str, regime: MarketRegime, dimensions: Dict[str, MarketDimension]
+        self, asset: str, regime: MarketRegime, dimensions: dict[str, MarketDimension]
     ) -> RegimeAlignment:
         if regime == MarketRegime.RISK_ON:
             if asset in ["XAUUSD", "XAGUSD", "USDJPY"]:
@@ -138,7 +138,7 @@ class ReportGenerator:
         return RegimeAlignment.NEUTRAL
 
     def _calculate_asset_score(
-        self, asset: str, dimensions: Dict[str, MarketDimension]
+        self, asset: str, dimensions: dict[str, MarketDimension]
     ) -> float:
         relevant_scores = []
 
@@ -168,7 +168,7 @@ class ReportGenerator:
         return 50
 
     def _determine_primary_factor(
-        self, asset: str, dimensions: Dict[str, MarketDimension]
+        self, asset: str, dimensions: dict[str, MarketDimension]
     ) -> str:
         factors = {
             "EURUSD": "Rate Differential",
@@ -192,7 +192,7 @@ class ReportGenerator:
         return factors.get(asset, "Market Sentiment")
 
     def _calculate_asset_confidence(
-        self, asset: str, normalized_data: Dict[str, Any]
+        self, asset: str, normalized_data: dict[str, Any]
     ) -> float:
         price_data = normalized_data.get("price", {})
         symbols = price_data.get("symbols", {})
@@ -200,5 +200,5 @@ class ReportGenerator:
             return 85.0
         return 60.0
 
-    def _determine_freshness(self, normalized_data: Dict[str, Any]) -> str:
+    def _determine_freshness(self, normalized_data: dict[str, Any]) -> str:
         return "LIVE"

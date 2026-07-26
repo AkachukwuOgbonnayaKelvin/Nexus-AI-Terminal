@@ -7,7 +7,7 @@ Receives and validates Confluence output.
 
 import logging
 from datetime import datetime, timedelta
-from typing import Optional, Dict, Any
+from typing import Any
 
 from ...confluence.contracts import GlobalIntelligenceOutput
 from ...confluence.distribution.validator import OutputValidator
@@ -33,10 +33,10 @@ class IngestionGateway:
     def __init__(self, strict_validation: bool = True):
         self.validator = OutputValidator()
         self._processed_ids: set = set()
-        self._last_ingestion: Optional[datetime] = None
+        self._last_ingestion: datetime | None = None
         self.strict_validation = strict_validation
 
-    def ingest(self, output: GlobalIntelligenceOutput) -> Dict[str, Any]:
+    def ingest(self, output: GlobalIntelligenceOutput) -> dict[str, Any]:
         """
         Ingest a GlobalIntelligenceOutput.
 
@@ -111,7 +111,7 @@ class IngestionGateway:
 
     def _validate_rank_integrity(
         self, output: GlobalIntelligenceOutput
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Validate that all rankings have sequential ranks starting from 1.
 
@@ -158,7 +158,7 @@ class IngestionGateway:
 
         return {"valid": len(errors) == 0, "errors": errors, "details": details}
 
-    def get_last_ingestion(self) -> Optional[datetime]:
+    def get_last_ingestion(self) -> datetime | None:
         """Get the last successful ingestion time."""
         return self._last_ingestion
 

@@ -3,10 +3,10 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Similarity Engi
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 from ..constants import FEATURE_WEIGHTS
-from ..input.schemas import MarketSnapshot, HistoricalWindow, EnvironmentState
+from ..input.schemas import EnvironmentState, HistoricalWindow, MarketSnapshot
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ class SimilarityEngine:
 
     def calculate_similarity(
         self, current: MarketSnapshot, historical: HistoricalWindow
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Calculate similarity between current and historical environment.
 

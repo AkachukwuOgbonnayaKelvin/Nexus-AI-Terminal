@@ -1,9 +1,9 @@
 """Init Validator – Checks __init__.py exports."""
 
 import ast
-from typing import List
-from tools.architecture.validators.base import BaseValidator
+
 from tools.architecture.models import ARCResult
+from tools.architecture.validators.base import BaseValidator
 
 
 class InitValidator(BaseValidator):
@@ -12,7 +12,7 @@ class InitValidator(BaseValidator):
     def get_severity(self) -> str:
         return "high"
 
-    def validate(self) -> List[ARCResult]:
+    def validate(self) -> list[ARCResult]:
         results = []
         for init_file in self.root.rglob("__init__.py"):
             if any(e in str(init_file) for e in [".venv", "__pycache__", "tools"]):

@@ -3,11 +3,13 @@ GLB-002 Asset Impact Engine - Schemas
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
 
-from .constants import AssetType, Bias
 from intelligence.schemas.asset_impact import AssetImpactMatrix
+
+from .constants import AssetType, Bias
 
 
 class CurrencyStrength(BaseModel):
@@ -16,9 +18,9 @@ class CurrencyStrength(BaseModel):
     currency: str
     score: float = Field(ge=0, le=100)
     confidence: float = Field(ge=0, le=100)
-    factors: Dict[str, float]
-    drivers: List[str]
-    risks: List[str]
+    factors: dict[str, float]
+    drivers: list[str]
+    risks: list[str]
 
 
 class PairComparison(BaseModel):
@@ -36,9 +38,9 @@ class PairComparison(BaseModel):
     bias: Bias
     confidence: float = Field(ge=0, le=100)
 
-    drivers: List[Dict[str, Any]]
-    risks: List[str]
-    evidence: List[Dict[str, Any]]
+    drivers: list[dict[str, Any]]
+    risks: list[str]
+    evidence: list[dict[str, Any]]
 
 
 class AssetImpactReport(BaseModel):
@@ -51,16 +53,16 @@ class AssetImpactReport(BaseModel):
     generated_at: datetime = Field(default_factory=datetime.utcnow)
 
     # Individual currency strengths
-    currency_strengths: Dict[str, CurrencyStrength]
+    currency_strengths: dict[str, CurrencyStrength]
 
     # Pair comparisons
-    pair_analyses: Dict[str, PairComparison]
+    pair_analyses: dict[str, PairComparison]
 
     # Asset Impact Matrix (for Global Intelligence Hub)
-    asset_impact_matrix: Optional[AssetImpactMatrix] = None
+    asset_impact_matrix: AssetImpactMatrix | None = None
 
     # Summary
-    summary: Dict[str, Any]
+    summary: dict[str, Any]
 
     # Metadata
-    metadata: Dict[str, Any] = Field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

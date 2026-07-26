@@ -1,7 +1,6 @@
 """Universal News DTO – used across all providers and layers."""
 
 from datetime import datetime
-from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -11,26 +10,26 @@ class UniversalNews(BaseModel):
     provider: str
     provider_article_id: str
     headline: str
-    summary: Optional[str] = None
-    body: Optional[str] = None
-    url: Optional[str] = None
-    author: Optional[str] = None
-    country: Optional[str] = None
-    region: Optional[str] = None
+    summary: str | None = None
+    body: str | None = None
+    url: str | None = None
+    author: str | None = None
+    country: str | None = None
+    region: str | None = None
     language: str = "en"
     published_at: datetime
-    updated_at: Optional[datetime] = None
+    updated_at: datetime | None = None
     category: str
-    subcategory: Optional[str] = None
+    subcategory: str | None = None
     importance: str  # Critical, High, Medium, Low, Informational
-    entities: List[str] = []
-    assets: List[str] = []
-    currencies: List[str] = []
-    commodities: List[str] = []
-    central_banks: List[str] = []
-    governments: List[str] = []
-    companies: List[str] = []
-    tags: List[str] = []
+    entities: list[str] = []
+    assets: list[str] = []
+    currencies: list[str] = []
+    commodities: list[str] = []
+    central_banks: list[str] = []
+    governments: list[str] = []
+    companies: list[str] = []
+    tags: list[str] = []
     raw_payload: dict = {}
     confidence: float = 1.0
     metadata: dict = {}

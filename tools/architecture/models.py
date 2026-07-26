@@ -1,8 +1,8 @@
 """ACP-001: Architecture Compliance Platform – Shared Models."""
 
 from dataclasses import dataclass, field
-from typing import Any, Optional, List
 from datetime import datetime
+from typing import Any
 
 
 @dataclass
@@ -14,9 +14,9 @@ class ARCResult:
     message: str
     details: Any = None
     severity: str = "medium"  # low, medium, high, critical
-    suggested_fix: Optional[str] = None
-    file_path: Optional[str] = None
-    line_number: Optional[int] = None
+    suggested_fix: str | None = None
+    file_path: str | None = None
+    line_number: int | None = None
 
 
 @dataclass
@@ -31,7 +31,7 @@ class ARCReport:
     high: int = 0
     medium: int = 0
     low: int = 0
-    results: List[ARCResult] = field(default_factory=list)
+    results: list[ARCResult] = field(default_factory=list)
     architecture_score: float = 0.0
     certified: bool = False
 

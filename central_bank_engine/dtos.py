@@ -1,7 +1,6 @@
 """Universal Central Bank Event DTO."""
 
 from datetime import datetime
-from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -14,25 +13,25 @@ class UniversalCentralBankEvent(BaseModel):
     currency: str
     event_type: str  # RateDecision, Minutes, Speech, PressConference, etc.
     title: str
-    summary: Optional[str] = None
-    statement: Optional[str] = None
+    summary: str | None = None
+    statement: str | None = None
     release_time: datetime
-    meeting_date: Optional[datetime] = None
-    effective_date: Optional[datetime] = None
-    old_rate: Optional[float] = None
-    new_rate: Optional[float] = None
-    rate_change: Optional[float] = None
-    vote_split: Optional[str] = None
-    governor: Optional[str] = None
+    meeting_date: datetime | None = None
+    effective_date: datetime | None = None
+    old_rate: float | None = None
+    new_rate: float | None = None
+    rate_change: float | None = None
+    vote_split: str | None = None
+    governor: str | None = None
     importance: str  # Critical, High, Medium, Low
-    policy_bias: Optional[str] = None  # Hawkish, Neutral, Dovish, Unknown
-    hawkish_dovish_score: Optional[float] = None
+    policy_bias: str | None = None  # Hawkish, Neutral, Dovish, Unknown
+    hawkish_dovish_score: float | None = None
     communication_type: (
         str  # Speech, Statement, Minutes, PressConference, Interview, Testimony
     )
-    source_url: Optional[str] = None
-    attachments: List[str] = []
-    document_hash: Optional[str] = None
+    source_url: str | None = None
+    attachments: list[str] = []
+    document_hash: str | None = None
     confidence: float = 1.0
     metadata: dict = {}
 

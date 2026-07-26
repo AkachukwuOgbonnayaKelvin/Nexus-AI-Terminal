@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Phase 5: Asset-Class Intelligence - Integration Test
 
@@ -9,22 +8,22 @@ Tests the complete Phase 5 pipeline:
 4. Asset-Class Ranking
 """
 
-import sys
 import os
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
-from intelligence.confluence.contracts import (
-    GlobalEntityRating,
-    AssetClass,
-    EntityType,
-    Direction,
-)
 from intelligence.confluence.asset_class import (
-    AssetClassMapper,
     AssetClassAggregator,
-    AssetClassRatingEngine,
+    AssetClassMapper,
     AssetClassRanker,
+    AssetClassRatingEngine,
+)
+from intelligence.confluence.contracts import (
+    AssetClass,
+    Direction,
+    EntityType,
+    GlobalEntityRating,
 )
 
 

@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 """
 ACP Gate - Architecture Compliance Validation
 Verifies that the engine is structurally correct
 """
 
+import re
 import subprocess
 import sys
-import re
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any
 
 # Add parent to path for resolver
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -24,7 +23,7 @@ class ACPGate:
         self.project_root = Path(__file__).parent.parent.parent.parent
         self.resolver = get_resolver()
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         """Run ACP validation on the engine"""
         result = {
             "name": self.name,

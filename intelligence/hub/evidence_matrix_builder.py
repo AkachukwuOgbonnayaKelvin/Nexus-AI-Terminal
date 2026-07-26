@@ -3,7 +3,7 @@ Global Intelligence Hub - Evidence Matrix Builder
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class EvidenceMatrixBuilder:
     """Builds evidence matrix from all reports."""
 
-    def build_matrix(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def build_matrix(self, reports: dict[str, Any]) -> dict[str, Any]:
         """Build evidence matrix."""
         evidence = []
 

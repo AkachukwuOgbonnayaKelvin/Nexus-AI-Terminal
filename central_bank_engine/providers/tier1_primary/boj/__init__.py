@@ -3,4 +3,4 @@
 from .adapter import BOJAdapter
 from .connector import BOJConnector
 
-__all__ = ["BOJConnector", "BOJAdapter"]
+__all__ = ["BOJAdapter", "BOJConnector"]

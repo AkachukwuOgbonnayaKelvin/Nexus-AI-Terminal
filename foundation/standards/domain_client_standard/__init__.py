@@ -11,7 +11,7 @@ Each client type has specific requirements:
 """
 
 __all__ = [
+    "ClientConfig",
     "ClientRequest",
     "ClientResponse",
-    "ClientConfig",
 ]

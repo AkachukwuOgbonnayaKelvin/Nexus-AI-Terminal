@@ -1,6 +1,7 @@
 """Message bus implementation."""
 
-from typing import Any, Callable, Dict, List
+from collections.abc import Callable
+from typing import Any
 
 
 class Event:
@@ -15,7 +16,7 @@ class EventBus:
     """Event bus for publish-subscribe communication."""
 
     def __init__(self):
-        self._subscribers: Dict[str, List[Callable]] = {}
+        self._subscribers: dict[str, list[Callable]] = {}
 
     def subscribe(self, event_name: str, callback: Callable) -> None:
         """Subscribe to an event."""

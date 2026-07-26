@@ -3,9 +3,8 @@ GLB-006 Geopolitical Risk Intelligence Engine - Severity Analyzer
 """
 
 import logging
-from typing import Dict, List
 
-from ..constants import RiskSeverity, EVENT_SEVERITY_BASE
+from ..constants import EVENT_SEVERITY_BASE, RiskSeverity
 from ..input.schemas import GeopoliticalEventInput
 
 logger = logging.getLogger(__name__)
@@ -17,7 +16,7 @@ class SeverityAnalyzer:
     def __init__(self):
         self._severity_base = EVENT_SEVERITY_BASE
 
-    def analyze_severity(self, event: GeopoliticalEventInput) -> Dict:
+    def analyze_severity(self, event: GeopoliticalEventInput) -> dict:
         """
         Analyze severity of a geopolitical event.
 
@@ -48,7 +47,7 @@ class SeverityAnalyzer:
             "confidence": event.confidence,
         }
 
-    def analyze_multiple(self, events: List[GeopoliticalEventInput]) -> List[Dict]:
+    def analyze_multiple(self, events: list[GeopoliticalEventInput]) -> list[dict]:
         """Analyze severity for multiple events"""
         return [self.analyze_severity(e) for e in events]
 

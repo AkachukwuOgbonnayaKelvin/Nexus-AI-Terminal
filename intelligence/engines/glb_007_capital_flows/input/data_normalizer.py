@@ -3,11 +3,11 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Data Normalizer
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
-from .schemas import CapitalFlowInput, LiquidityInput
 from ..constants import CapitalFlowType, FlowDirection
+from .schemas import CapitalFlowInput, LiquidityInput
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class DataNormalizer:
     """Normalize raw NDIP data into canonical format"""
 
-    def normalize_flow(self, raw: Dict[str, Any]) -> Optional[CapitalFlowInput]:
+    def normalize_flow(self, raw: dict[str, Any]) -> CapitalFlowInput | None:
         """Normalize a raw flow record"""
         try:
             return CapitalFlowInput(
@@ -38,7 +38,7 @@ class DataNormalizer:
             logger.warning(f"Failed to normalize flow: {e}")
             return None
 
-    def normalize_liquidity(self, raw: Dict[str, Any]) -> Optional[LiquidityInput]:
+    def normalize_liquidity(self, raw: dict[str, Any]) -> LiquidityInput | None:
         """Normalize raw liquidity data"""
         try:
             return LiquidityInput(

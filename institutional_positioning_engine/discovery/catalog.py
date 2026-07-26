@@ -3,9 +3,8 @@
 import json
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
-
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +17,7 @@ class ReportCatalog:
         self.catalog_path.parent.mkdir(parents=True, exist_ok=True)
         self.reports = self._load_catalog()
 
-    def _load_catalog(self) -> List[Dict[str, Any]]:
+    def _load_catalog(self) -> list[dict[str, Any]]:
         """Load catalog from file."""
         if self.catalog_path.exists():
             try:
@@ -37,7 +36,7 @@ class ReportCatalog:
         except Exception as e:
             logger.error(f"Failed to save catalog: {e}")
 
-    def add_report(self, report: Dict[str, Any]) -> None:
+    def add_report(self, report: dict[str, Any]) -> None:
         """Add a report to the catalog."""
         for existing in self.reports:
             if existing.get("url") == report.get("url"):
@@ -45,16 +44,16 @@ class ReportCatalog:
         self.reports.append(report)
         self._save_catalog()
 
-    def add_reports(self, reports: List[Dict[str, Any]]) -> None:
+    def add_reports(self, reports: list[dict[str, Any]]) -> None:
         """Add multiple reports to the catalog."""
         for report in reports:
             self.add_report(report)
 
-    def get_pending_downloads(self) -> List[Dict[str, Any]]:
+    def get_pending_downloads(self) -> list[dict[str, Any]]:
         """Get reports that haven't been downloaded yet."""
         return [r for r in self.reports if not r.get("downloaded")]
 
-    def get_pending_parses(self) -> List[Dict[str, Any]]:
+    def get_pending_parses(self) -> list[dict[str, Any]]:
         """Get reports that have been downloaded but not parsed."""
         return [r for r in self.reports if r.get("downloaded") and not r.get("parsed")]
 
@@ -76,19 +75,19 @@ class ReportCatalog:
                 self._save_catalog()
                 break
 
-    def get_all(self) -> List[Dict[str, Any]]:
+    def get_all(self) -> list[dict[str, Any]]:
         """Get all reports."""
         return self.reports
 
-    def get_by_report_type(self, report_type: str) -> List[Dict[str, Any]]:
+    def get_by_report_type(self, report_type: str) -> list[dict[str, Any]]:
         """Get reports by type."""
         return [r for r in self.reports if r.get("report_type") == report_type]
 
-    def get_by_date(self, date: str) -> List[Dict[str, Any]]:
+    def get_by_date(self, date: str) -> list[dict[str, Any]]:
         """Get reports by date."""
         return [r for r in self.reports if r.get("date") == date]
 
-    def get_counts(self) -> Dict[str, int]:
+    def get_counts(self) -> dict[str, int]:
         """Get catalog statistics."""
         return {
             "total": len(self.reports),

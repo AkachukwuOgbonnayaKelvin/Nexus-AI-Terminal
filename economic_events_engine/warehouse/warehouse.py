@@ -1,6 +1,5 @@
 import json
 import logging
-from typing import Optional
 
 from economic_events_engine.dtos import UniversalEconomicEvent
 from ndip.utils.db_connector import execute, fetchrow
@@ -92,7 +91,7 @@ class EconomicWarehouse:
 
     # ... rest of the query methods (unchanged) ...
 
-    async def get_latest_value(self, series_id: str) -> Optional[dict]:
+    async def get_latest_value(self, series_id: str) -> dict | None:
         """Get the latest value for a series."""
         query = f"SELECT * FROM {self.table} WHERE provider_event_id = $1 ORDER BY release_time_utc DESC LIMIT 1"
         row = await fetchrow(query, series_id)

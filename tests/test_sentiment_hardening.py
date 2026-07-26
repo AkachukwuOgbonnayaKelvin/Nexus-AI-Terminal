@@ -2,22 +2,23 @@
 Comprehensive tests for the hardened Sentiment Engine.
 """
 
-import pytest
 from datetime import datetime
+
+import pytest
 from sqlalchemy import create_engine
 
 from intelligence.data.sentiment.contracts.extracted_entity import (
-    ExtractedEntity,
     EntitySentiment,
-    EntityType,
     EntitySentimentLabel,
+    EntityType,
+    ExtractedEntity,
 )
+from intelligence.data.sentiment.feeds.sentiment_feed import SentimentFeed
 from intelligence.data.sentiment.persistence.entity_writer import (
-    EntityWriter,
     EntityCanonicalizer,
+    EntityWriter,
 )
 from intelligence.data.sentiment.pipeline.sentiment_pipeline import SentimentPipeline
-from intelligence.data.sentiment.feeds.sentiment_feed import SentimentFeed
 
 
 class TestEntityCanonicalizer:

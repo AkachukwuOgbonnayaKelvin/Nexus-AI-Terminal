@@ -1,8 +1,8 @@
-from typing import Any, Dict
+from typing import Any
 
 
 class NewsNormalizer:
-    def normalize(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, record: dict[str, Any]) -> dict[str, Any]:
         """Normalize field names and values."""
         # Ensure article_id is present
         if "article_id" not in record:

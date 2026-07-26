@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Base provider interface for macroeconomic data sources"""
 
 from abc import ABC, abstractmethod
-from typing import Optional, List, Dict, Any
-from datetime import datetime
 from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Any
 
 
 @dataclass
@@ -23,11 +22,11 @@ class MacroObservation:
     release_date: datetime = None
     vintage_date: datetime = None
     revision_number: int = 0
-    previous: Optional[float] = None
-    forecast: Optional[float] = None
+    previous: float | None = None
+    forecast: float | None = None
     quality_score: float = 100.0
     status: str = "official"
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class MacroProvider(ABC):
@@ -38,38 +37,31 @@ class MacroProvider(ABC):
         self,
         indicator: str,
         country: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[MacroObservation]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[MacroObservation]:
         """Get a specific indicator for a country"""
-        pass
 
     @abstractmethod
-    def get_available_indicators(self, country: str) -> List[str]:
+    def get_available_indicators(self, country: str) -> list[str]:
         """Get all available indicators for a country"""
-        pass
 
     @abstractmethod
-    def get_available_countries(self) -> List[str]:
+    def get_available_countries(self) -> list[str]:
         """Get all available countries"""
-        pass
 
     @abstractmethod
     def get_provider_name(self) -> str:
         """Get the provider's name"""
-        pass
 
     @abstractmethod
     def get_tier(self) -> int:
         """Get the provider's tier (1, 2, or 3)"""
-        pass
 
     @abstractmethod
     def is_available(self) -> bool:
         """Check if provider is currently available"""
-        pass
 
     @abstractmethod
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         """Get provider health status"""
-        pass

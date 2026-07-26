@@ -4,14 +4,14 @@ GLB-002 Asset Impact Engine - Main Engine
 
 import logging
 import time
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
+from .asset_impact_matrix import AssetImpactMatrixGenerator
 from .constants import Bias
-from .schemas import AssetImpactReport, CurrencyStrength, PairComparison
 from .currency_strength import CurrencyStrengthEngine
 from .pair_comparison import PairComparisonEngine
-from .asset_impact_matrix import AssetImpactMatrixGenerator
+from .schemas import AssetImpactReport, CurrencyStrength, PairComparison
 
 logger = logging.getLogger(__name__)
 
@@ -30,16 +30,16 @@ class AssetImpactEngine:
         self.currency_strength_engine = CurrencyStrengthEngine()
         self.pair_comparison_engine = PairComparisonEngine()
 
-        self.last_report: Optional[AssetImpactReport] = None
-        self.last_run_time: Optional[datetime] = None
-        self._latest_data: Optional[Dict[str, Any]] = None
-        self._last_impact_matrix: Optional[Any] = None
+        self.last_report: AssetImpactReport | None = None
+        self.last_run_time: datetime | None = None
+        self._latest_data: dict[str, Any] | None = None
+        self._last_impact_matrix: Any | None = None
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self._latest_data = payload
 
-    def run(self, global_factors: Optional[Dict[str, Any]] = None) -> AssetImpactReport:
+    def run(self, global_factors: dict[str, Any] | None = None) -> AssetImpactReport:
         """Run the engine analysis."""
         start_time = time.time()
 
@@ -87,11 +87,11 @@ class AssetImpactEngine:
 
         return report
 
-    def get_asset_impact_matrix(self) -> Optional[Any]:
+    def get_asset_impact_matrix(self) -> Any | None:
         """Get the last generated asset impact matrix."""
         return self._last_impact_matrix
 
-    def _get_default_factors(self) -> Dict[str, Any]:
+    def _get_default_factors(self) -> dict[str, Any]:
         """Get default global factors for testing."""
         return {
             "currencies": {
@@ -172,9 +172,9 @@ class AssetImpactEngine:
 
     def _build_summary(
         self,
-        currency_strengths: Dict[str, CurrencyStrength],
-        pair_analyses: Dict[str, PairComparison],
-    ) -> Dict[str, Any]:
+        currency_strengths: dict[str, CurrencyStrength],
+        pair_analyses: dict[str, PairComparison],
+    ) -> dict[str, Any]:
         """Build summary statistics."""
         sorted_currencies = sorted(
             currency_strengths.values(), key=lambda x: x.score, reverse=True
@@ -205,11 +205,11 @@ class AssetImpactEngine:
             else "NEUTRAL",
         }
 
-    def get_last_report(self) -> Optional[AssetImpactReport]:
+    def get_last_report(self) -> AssetImpactReport | None:
         """Get the last generated report."""
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """Check engine health."""
         return {
             "engine_id": "GLB-002",

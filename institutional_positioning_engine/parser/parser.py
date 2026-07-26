@@ -3,9 +3,8 @@
 import csv
 import logging
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +16,7 @@ class COTParser:
         self.market_registry = {}
         self.field_mappings = self._get_field_mappings()
 
-    def _get_field_mappings(self) -> Dict[str, str]:
+    def _get_field_mappings(self) -> dict[str, str]:
         """Return field name mappings for CFTC CSV."""
         return {
             # Market identification
@@ -78,7 +77,7 @@ class COTParser:
             "Nonreportable Traders": "nonreportable_traders",
         }
 
-    def parse_file(self, file_path: str) -> List[Dict[str, Any]]:
+    def parse_file(self, file_path: str) -> list[dict[str, Any]]:
         """Parse a COT CSV file and extract all markets and fields."""
         if not Path(file_path).exists():
             logger.error(f"File not found: {file_path}")
@@ -98,7 +97,7 @@ class COTParser:
             logger.error(f"Failed to parse {file_path}: {e}")
         return records
 
-    def _extract_all_fields(self, row: Dict[str, str]) -> Optional[Dict[str, Any]]:
+    def _extract_all_fields(self, row: dict[str, str]) -> dict[str, Any] | None:
         """Extract all fields from a COT row."""
         try:
             record = {}
@@ -164,7 +163,7 @@ class COTParser:
         # Use first 3 letters if no mapping found
         return market_name[:3].upper()
 
-    def _discover_market(self, record: Dict[str, Any]) -> None:
+    def _discover_market(self, record: dict[str, Any]) -> None:
         """Discover and register a market from parsed data."""
         market_code = record.get("market_code")
         if not market_code:
@@ -224,6 +223,6 @@ class COTParser:
             return "crypto"
         return "other"
 
-    def get_discovered_markets(self) -> Dict[str, Any]:
+    def get_discovered_markets(self) -> dict[str, Any]:
         """Return all discovered markets."""
         return self.market_registry

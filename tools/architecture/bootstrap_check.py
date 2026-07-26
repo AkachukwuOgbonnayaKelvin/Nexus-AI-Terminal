@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Bootstrap Check - Validates ACP can run before any compilation
 """

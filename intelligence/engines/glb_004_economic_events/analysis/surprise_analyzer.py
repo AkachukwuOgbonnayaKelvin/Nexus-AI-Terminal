@@ -3,10 +3,9 @@ GLB-004 Economic Events Intelligence Engine - Surprise Analyzer
 """
 
 import logging
-from typing import Dict, List
 
+from ..constants import EVENT_DIRECTION_MAP, EventDirection
 from ..input.schemas import EconomicEventInput
-from ..constants import EventDirection, EVENT_DIRECTION_MAP
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +18,7 @@ class SurpriseAnalyzer:
     def __init__(self):
         self._direction_map = EVENT_DIRECTION_MAP
 
-    def analyze_surprise(self, event: EconomicEventInput) -> Dict:
+    def analyze_surprise(self, event: EconomicEventInput) -> dict:
         """
         Analyze surprise for a released event.
 
@@ -63,7 +62,7 @@ class SurpriseAnalyzer:
             "implications": implications,
         }
 
-    def analyze_surprises(self, events: List[EconomicEventInput]) -> List[Dict]:
+    def analyze_surprises(self, events: list[EconomicEventInput]) -> list[dict]:
         """Analyze surprises for multiple events"""
         return [self.analyze_surprise(e) for e in events]
 
@@ -87,7 +86,7 @@ class SurpriseAnalyzer:
 
     def _get_market_implications(
         self, event: EconomicEventInput, surprise: float
-    ) -> Dict:
+    ) -> dict:
         """Get market implications of the surprise"""
         event_name = event.event_name
 

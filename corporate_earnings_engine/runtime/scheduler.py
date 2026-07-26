@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """ECO-002 Runtime Scheduler - Called by Central Scheduler"""
 
 import sys

@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 """Historical Initialization - Multi-timeframe data bootstrap for 90 days"""
 
-from typing import List, Dict, Any, Optional
-from datetime import datetime, timedelta
-from pathlib import Path
 import sys
 import time
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from providers.registry import ProviderRegistry
-from providers.base import OHLCVData
 from acquisition.incremental_loader import IncrementalLoader
+from providers.base import OHLCVData
+from providers.registry import ProviderRegistry
 from quality.validator import OHLCVValidator
 
 
@@ -124,7 +123,7 @@ class HistoricalInitializer:
 
     ALL_SYMBOLS = FX_SYMBOLS + INDICES + COMMODITIES
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.registry = ProviderRegistry(config)
         self.loader = IncrementalLoader(config)
@@ -141,20 +140,20 @@ class HistoricalInitializer:
 
     def initialize_90_days(
         self,
-        symbols: Optional[List[str]] = None,
-        timeframes: Optional[List[str]] = None,
-    ) -> Dict[str, Any]:
+        symbols: list[str] | None = None,
+        timeframes: list[str] | None = None,
+    ) -> dict[str, Any]:
         """Initialize 90 days of historical data for all symbols and timeframes."""
         target_symbols = symbols or self.ALL_SYMBOLS
         target_timeframes = timeframes or self.PRIMARY_TIMEFRAMES
 
-        print("")
+        print()
         print("=" * 70)
         print("  MKT-001 90-DAY HISTORICAL INITIALIZATION")
         print(f"  Symbols: {len(target_symbols)}")
         print(f"  Timeframes: {', '.join(target_timeframes)}")
         print("=" * 70)
-        print("")
+        print()
 
         results = {
             "total_symbols": len(target_symbols),
@@ -170,7 +169,7 @@ class HistoricalInitializer:
         attempt_count = 0
 
         for symbol in target_symbols:
-            print("")
+            print()
             print(f"Processing: {symbol}")
             symbol_results = {}
             symbol_success = 0
@@ -215,7 +214,7 @@ class HistoricalInitializer:
             (results["successful"] / total_attempts) * 100 if total_attempts > 0 else 0
         )
 
-        print("")
+        print()
         print("=" * 70)
         print("  INITIALIZATION COMPLETE")
         print("=" * 70)
@@ -226,13 +225,13 @@ class HistoricalInitializer:
         print(f"  Failed:         {results['failed']}")
         print(f"  Success Rate:   {results['success_rate']:.1f}%")
         print("=" * 70)
-        print("")
+        print()
 
         return results
 
     def _initialize_symbol_timeframe(
         self, symbol: str, timeframe: str
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Initialize a single symbol for a specific timeframe"""
 
         result = {
@@ -276,7 +275,7 @@ class HistoricalInitializer:
 
     def _load_from_provider(
         self, provider, symbol: str, timeframe: str, days: int
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """Load data from a specific provider"""
         try:
             end_date = datetime.now()
@@ -294,7 +293,7 @@ class HistoricalInitializer:
         except Exception:
             return []
 
-    def _store_bars(self, bars: List[OHLCVData]):
+    def _store_bars(self, bars: list[OHLCVData]):
         """Store bars in warehouse"""
         for bar in bars:
             self.loader._save_record(bar)

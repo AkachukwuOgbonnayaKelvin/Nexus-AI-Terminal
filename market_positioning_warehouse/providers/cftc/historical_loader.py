@@ -3,7 +3,7 @@
 import io
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 import pandas as pd
 import requests
@@ -18,7 +18,7 @@ class HistoricalLoader:
         self.base_url = "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed"
         self.years = range(1986, datetime.now().year + 1)
 
-    def load_year(self, year: int) -> List[Dict[str, Any]]:
+    def load_year(self, year: int) -> list[dict[str, Any]]:
         """Load a single year's data."""
         records = []
         logger.info(f"Loading data for {year}...")
@@ -45,7 +45,7 @@ class HistoricalLoader:
         logger.warning(f"No data found for {year}")
         return records
 
-    def _parse_csv(self, content: bytes) -> List[Dict[str, Any]]:
+    def _parse_csv(self, content: bytes) -> list[dict[str, Any]]:
         """Parse CSV content."""
         try:
             df = pd.read_csv(io.BytesIO(content))
@@ -54,7 +54,7 @@ class HistoricalLoader:
             logger.warning(f"CSV parse failed: {e}")
             return []
 
-    def _parse_excel(self, content: bytes) -> List[Dict[str, Any]]:
+    def _parse_excel(self, content: bytes) -> list[dict[str, Any]]:
         """Parse Excel content."""
         try:
             df = pd.read_excel(io.BytesIO(content), engine="openpyxl")
@@ -63,7 +63,7 @@ class HistoricalLoader:
             logger.warning(f"Excel parse failed: {e}")
             return []
 
-    def _parse_zip(self, content: bytes) -> List[Dict[str, Any]]:
+    def _parse_zip(self, content: bytes) -> list[dict[str, Any]]:
         """Parse ZIP content."""
         import zipfile
 

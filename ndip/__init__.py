@@ -15,11 +15,11 @@ NDIP does NOT perform market intelligence, analysis, scoring, or predictions.
 __version__ = "0.1.0"
 
 __all__ = [
-    "core",
-    "gateway",
-    "validation",
-    "normalization",
     "classification",
-    "warehouse",
+    "core",
     "distribution",
+    "gateway",
+    "normalization",
+    "validation",
+    "warehouse",
 ]

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """E2E Gate - End-to-End Validation"""
 
-from typing import Dict, Any
+from typing import Any
 
 
 class E2EGate:
@@ -11,7 +10,7 @@ class E2EGate:
         self.name = "E2E"
         self.description = "End-to-End Platform Validation"
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         result = {
             "name": self.name,
             "description": self.description,

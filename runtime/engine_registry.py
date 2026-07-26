@@ -1,7 +1,5 @@
 """Engine registry – registers all engine adapters."""
 
-from typing import List
-
 from runtime.base_engine import BaseRawEngine
 
 # Import adapters only if they exist
@@ -28,15 +26,15 @@ except ImportError:
 
 class EngineRegistry:
     def __init__(self):
-        self.engines: List[BaseRawEngine] = []
+        self.engines: list[BaseRawEngine] = []
 
     def register(self, engine: BaseRawEngine) -> None:
         self.engines.append(engine)
 
-    def get_all(self) -> List[BaseRawEngine]:
+    def get_all(self) -> list[BaseRawEngine]:
         return self.engines
 
-    def get_enabled(self) -> List[BaseRawEngine]:
+    def get_enabled(self) -> list[BaseRawEngine]:
         return [e for e in self.engines if e.enabled]
 
 

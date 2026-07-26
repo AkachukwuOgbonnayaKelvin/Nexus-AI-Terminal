@@ -7,10 +7,9 @@ Represents the intelligence rating for a single global entity.
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List, Optional
 
-from .normalized_signal import Direction, EntityType
 from .harmonized_result import ConflictLevel
+from .normalized_signal import Direction, EntityType
 
 
 @dataclass
@@ -21,7 +20,7 @@ class EntityDriver:
     strength: float  # 0-100
     direction: Direction
     confidence: float  # 0-100
-    source_engines: List[str] = field(default_factory=list)
+    source_engines: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -31,7 +30,7 @@ class EntityRisk:
     name: str
     severity: float  # 0-100
     confidence: float  # 0-100
-    source_engines: List[str] = field(default_factory=list)
+    source_engines: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -50,15 +49,15 @@ class GlobalEntityRating:
     confidence: float  # 0-100
 
     # OPTIONAL FIELDS (with defaults)
-    rank: Optional[int] = None
-    drivers: List[EntityDriver] = field(default_factory=list)
-    risks: List[EntityRisk] = field(default_factory=list)
-    supporting_engines: List[str] = field(default_factory=list)
-    contradicting_engines: List[str] = field(default_factory=list)
+    rank: int | None = None
+    drivers: list[EntityDriver] = field(default_factory=list)
+    risks: list[EntityRisk] = field(default_factory=list)
+    supporting_engines: list[str] = field(default_factory=list)
+    contradicting_engines: list[str] = field(default_factory=list)
     evidence_count: int = 0
     conflict_level: ConflictLevel = ConflictLevel.NONE
     regime_compatibility: float = 0.5
-    historical_bias: Optional[Direction] = None
+    historical_bias: Direction | None = None
     historical_confidence: float = 0.0
     horizon: str = "SHORT_TERM"
     timestamp: datetime = field(default_factory=datetime.utcnow)
@@ -73,12 +72,12 @@ class GlobalEntityRating:
     def is_neutral(self) -> bool:
         return self.direction == Direction.NEUTRAL
 
-    def get_top_drivers(self, n: int = 3) -> List[EntityDriver]:
+    def get_top_drivers(self, n: int = 3) -> list[EntityDriver]:
         """Get top N drivers by strength."""
         sorted_drivers = sorted(self.drivers, key=lambda d: d.strength, reverse=True)
         return sorted_drivers[:n]
 
-    def get_top_risks(self, n: int = 3) -> List[EntityRisk]:
+    def get_top_risks(self, n: int = 3) -> list[EntityRisk]:
         """Get top N risks by severity."""
         sorted_risks = sorted(self.risks, key=lambda r: r.severity, reverse=True)
         return sorted_risks[:n]

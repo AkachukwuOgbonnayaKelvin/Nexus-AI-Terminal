@@ -7,10 +7,10 @@ This is FINAL/POLISHED intelligence for the Global Intelligence Hub.
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
 
-from .entity_rating import GlobalEntityRating
 from .asset_class_rating import AssetClassRating
+from .entity_rating import GlobalEntityRating
 
 
 @dataclass
@@ -20,7 +20,7 @@ class GlobalTheme:
     name: str
     strength: float  # 0-100
     description: str
-    supporting_evidence: List[str] = field(default_factory=list)
+    supporting_evidence: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -30,7 +30,7 @@ class GlobalRisk:
     name: str
     severity: float  # 0-100
     description: str
-    affected_assets: List[str] = field(default_factory=list)
+    affected_assets: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -49,38 +49,38 @@ class GlobalIntelligenceOutput:
     global_risk_score: float
 
     # OPTIONAL FIELDS (with defaults)
-    currency_rankings: List[GlobalEntityRating] = field(default_factory=list)
-    entity_rankings: List[GlobalEntityRating] = field(default_factory=list)
-    asset_class_rankings: List[AssetClassRating] = field(default_factory=list)
-    global_drivers: List[str] = field(default_factory=list)
-    global_risks: List[GlobalRisk] = field(default_factory=list)
-    dominant_themes: List[GlobalTheme] = field(default_factory=list)
-    top_opportunities: List[Dict[str, Any]] = field(default_factory=list)
-    top_risks: List[Dict[str, Any]] = field(default_factory=list)
+    currency_rankings: list[GlobalEntityRating] = field(default_factory=list)
+    entity_rankings: list[GlobalEntityRating] = field(default_factory=list)
+    asset_class_rankings: list[AssetClassRating] = field(default_factory=list)
+    global_drivers: list[str] = field(default_factory=list)
+    global_risks: list[GlobalRisk] = field(default_factory=list)
+    dominant_themes: list[GlobalTheme] = field(default_factory=list)
+    top_opportunities: list[dict[str, Any]] = field(default_factory=list)
+    top_risks: list[dict[str, Any]] = field(default_factory=list)
     executive_summary: str = ""
-    ai_context: Dict[str, Any] = field(default_factory=dict)
+    ai_context: dict[str, Any] = field(default_factory=dict)
     timestamp: datetime = field(default_factory=datetime.utcnow)
     version: str = "1.0"
 
-    def get_strongest_currency(self) -> Optional[GlobalEntityRating]:
+    def get_strongest_currency(self) -> GlobalEntityRating | None:
         """Get the highest-ranked currency."""
         if not self.currency_rankings:
             return None
         return self.currency_rankings[0]
 
-    def get_weakest_currency(self) -> Optional[GlobalEntityRating]:
+    def get_weakest_currency(self) -> GlobalEntityRating | None:
         """Get the lowest-ranked currency."""
         if not self.currency_rankings:
             return None
         return self.currency_rankings[-1]
 
-    def get_strongest_asset_class(self) -> Optional[AssetClassRating]:
+    def get_strongest_asset_class(self) -> AssetClassRating | None:
         """Get the highest-ranked asset class."""
         if not self.asset_class_rankings:
             return None
         return self.asset_class_rankings[0]
 
-    def get_weakest_asset_class(self) -> Optional[AssetClassRating]:
+    def get_weakest_asset_class(self) -> AssetClassRating | None:
         """Get the lowest-ranked asset class."""
         if not self.asset_class_rankings:
             return None

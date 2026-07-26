@@ -4,19 +4,19 @@ GLB-001 Market Regime Engine - Main Engine Class
 
 import logging
 import time
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
-from .constants import MarketRegime, TransitionState
-from .schemas import RegimeReport, RegimeSignal
-from .input_normalizer import InputNormalizer
-from .state_extractor import StateExtractor
-from .regime_classifier import RegimeClassifier
-from .evidence_builder import EvidenceBuilder
-from .confidence_engine import ConfidenceEngine
-from .risk_engine import RiskEngine
-from .report_generator import ReportGenerator
 from .asset_impact_matrix import RegimeAssetImpactMatrix
+from .confidence_engine import ConfidenceEngine
+from .constants import MarketRegime, TransitionState
+from .evidence_builder import EvidenceBuilder
+from .input_normalizer import InputNormalizer
+from .regime_classifier import RegimeClassifier
+from .report_generator import ReportGenerator
+from .risk_engine import RiskEngine
+from .schemas import RegimeReport, RegimeSignal
+from .state_extractor import StateExtractor
 
 logger = logging.getLogger(__name__)
 
@@ -37,10 +37,10 @@ class MarketRegimeEngine:
         self.risk_engine = RiskEngine()
         self.report_generator = ReportGenerator()
 
-        self.last_report: Optional[RegimeReport] = None
-        self.last_run_time: Optional[datetime] = None
+        self.last_report: RegimeReport | None = None
+        self.last_run_time: datetime | None = None
 
-    def consume_ndip(self, topic: str, payload: Dict[str, Any]) -> None:
+    def consume_ndip(self, topic: str, payload: dict[str, Any]) -> None:
         """Consume NDIP contract."""
         self.input_normalizer.consume_ndip(topic, payload)
 
@@ -108,7 +108,7 @@ class MarketRegimeEngine:
 
         return report
 
-    def _build_signals(self, dimensions: Dict[str, Any]) -> list:
+    def _build_signals(self, dimensions: dict[str, Any]) -> list:
         signals = []
         for name, dim in dimensions.items():
             signals.append(
@@ -121,7 +121,7 @@ class MarketRegimeEngine:
             )
         return signals
 
-    def _build_drivers(self, dimensions: Dict[str, Any]) -> list:
+    def _build_drivers(self, dimensions: dict[str, Any]) -> list:
         from .schemas import RegimeDriver
 
         drivers = []
@@ -137,8 +137,8 @@ class MarketRegimeEngine:
         return drivers
 
     def _determine_secondary_regime(
-        self, probabilities: Dict[str, float]
-    ) -> Optional[MarketRegime]:
+        self, probabilities: dict[str, float]
+    ) -> MarketRegime | None:
         sorted_regimes = sorted(probabilities.items(), key=lambda x: x[1], reverse=True)
         if len(sorted_regimes) >= 2:
             return sorted_regimes[1][0]
@@ -162,10 +162,10 @@ class MarketRegimeEngine:
             metadata={"error": error_code, "status": "ERROR"},
         )
 
-    def get_last_report(self) -> Optional[RegimeReport]:
+    def get_last_report(self) -> RegimeReport | None:
         return self.last_report
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         return {
             "engine_id": "GLB-001",
             "status": "OPERATIONAL",

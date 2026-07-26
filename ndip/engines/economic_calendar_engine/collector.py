@@ -1,7 +1,7 @@
 """Economic Calendar Collector implementation."""
 
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from ndip.gateway import DataGateway
 
@@ -13,7 +13,7 @@ class EconomicCalendarCollector:
         self.gateway = gateway
         self._running: bool = False
 
-    def collect(self, event: str) -> Dict[str, Any]:
+    def collect(self, event: str) -> dict[str, Any]:
         """Collect economic event data."""
         data = {
             "event": event,

@@ -3,10 +3,10 @@ GLB-005 Central Bank Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
-from typing import Optional
+
 from pydantic import BaseModel, Field
 
-from ..constants import CentralBank, PolicyStance, BalanceSheetPolicy
+from ..constants import BalanceSheetPolicy, CentralBank, PolicyStance
 
 
 class RateExpectation(BaseModel):
@@ -50,11 +50,11 @@ class CentralBankInput(BaseModel):
     forward_guidance_score: float = Field(ge=0, le=100)
 
     # Balance sheet
-    balance_sheet: Optional[BalanceSheetData] = None
+    balance_sheet: BalanceSheetData | None = None
 
     # Next meeting
-    next_meeting: Optional[datetime] = None
-    expected_change: Optional[float] = None
+    next_meeting: datetime | None = None
+    expected_change: float | None = None
 
     # Source
     source: str

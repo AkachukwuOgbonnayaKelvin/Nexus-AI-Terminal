@@ -3,17 +3,18 @@ GLB-004 Economic Events Intelligence Engine - Asset Impact Matrix Generator
 """
 
 import logging
-from typing import Dict, List, Any
+from typing import Any
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
-from ..constants import EventDirection, EVENT_DIRECTION_MAP
+
+from ..constants import EVENT_DIRECTION_MAP, EventDirection
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ class AssetImpactMatrixGenerator:
 
     @classmethod
     def generate(
-        cls, events: List[Dict[str, Any]], confidence: float
+        cls, events: list[dict[str, Any]], confidence: float
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from events"""
         impacts = {}
@@ -62,7 +63,7 @@ class AssetImpactMatrixGenerator:
 
     @classmethod
     def _calculate_asset_impact(
-        cls, asset: str, events: List[Dict], confidence: float
+        cls, asset: str, events: list[dict], confidence: float
     ) -> AssetImpact:
         """Calculate impact for a single asset"""
         asset_type = cls._get_asset_type(asset)
@@ -111,7 +112,7 @@ class AssetImpactMatrixGenerator:
         )
 
     @classmethod
-    def _calculate_event_impact(cls, asset: str, event: Dict) -> tuple:
+    def _calculate_event_impact(cls, asset: str, event: dict) -> tuple:
         """Calculate impact of a single event on an asset"""
         event_name = event.get("event", "")
         surprise = event.get("deviation", 0)
@@ -148,7 +149,7 @@ class AssetImpactMatrixGenerator:
         return 0, None
 
     @classmethod
-    def _find_direction_map(cls, event_name: str) -> Dict:
+    def _find_direction_map(cls, event_name: str) -> dict:
         """Find direction map for an event"""
         for key, direction_map in EVENT_DIRECTION_MAP.items():
             if key.lower() in event_name.lower() or event_name.lower() in key.lower():

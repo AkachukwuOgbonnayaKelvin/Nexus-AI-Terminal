@@ -1,6 +1,6 @@
 """Master acquisition coordinator."""
 
-from typing import Any, Dict
+from typing import Any
 
 from ndip.normalization.normalizer import Normalizer
 from ndip.publication.router import PublicationRouter
@@ -19,7 +19,7 @@ class AcquisitionCollector:
     def register_provider(self, name: str, provider):
         self.providers[name] = provider
 
-    async def ingest(self, source: str, data: Any) -> Dict[str, Any]:
+    async def ingest(self, source: str, data: Any) -> dict[str, Any]:
         """Process incoming data through the NDIP pipeline."""
         try:
             # Validate

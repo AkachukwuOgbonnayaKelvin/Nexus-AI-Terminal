@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Asset Intelligence Report Schema"""
 
-from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Any
 
 
 class AssetClass(str, Enum):
@@ -31,7 +30,7 @@ class AssetDriver:
     direction: BiasDirection
     score: float
     source_engine: str
-    description: Optional[str] = None
+    description: str | None = None
 
 
 @dataclass
@@ -67,16 +66,16 @@ class AssetIntelligenceReport:
     confidence: float = 70.0
 
     # OPTIONAL with None default
-    summary: Optional[str] = None
-    outlook: Optional[str] = None
+    summary: str | None = None
+    outlook: str | None = None
 
     # FACTORY defaults
-    drivers: List[AssetDriver] = field(default_factory=list)
-    risks: List[AssetRisk] = field(default_factory=list)
-    supporting_engines: List[str] = field(default_factory=list)
+    drivers: list[AssetDriver] = field(default_factory=list)
+    risks: list[AssetRisk] = field(default_factory=list)
+    supporting_engines: list[str] = field(default_factory=list)
     timestamp: datetime = field(default_factory=datetime.now)
     version: str = "1.0.0"
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {

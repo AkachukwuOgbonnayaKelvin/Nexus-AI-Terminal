@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 """Finnhub Provider - International earnings data"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
-import sys
-from pathlib import Path
 import os
+import sys
 import time
+from datetime import datetime
+from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
@@ -18,8 +17,8 @@ except ImportError:
     REQUESTS_AVAILABLE = False
 
 from corporate_earnings_engine.providers.base import (
-    EarningsProvider,
     EarningsObservation,
+    EarningsProvider,
     FinancialStatement,
 )
 
@@ -27,7 +26,7 @@ from corporate_earnings_engine.providers.base import (
 class FinnhubProvider(EarningsProvider):
     """Finnhub provider for international earnings data"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "finnhub"
         self.api_key = self.config.get("api_key", "") or os.getenv(
@@ -47,7 +46,7 @@ class FinnhubProvider(EarningsProvider):
     def is_available(self) -> bool:
         return bool(self.api_key) and REQUESTS_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         return {
             "provider": self.name,
             "available": self.is_available(),
@@ -56,7 +55,7 @@ class FinnhubProvider(EarningsProvider):
             "status": "healthy" if self.is_available() else "unavailable",
         }
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return [
             # US
             "AAPL",
@@ -110,9 +109,9 @@ class FinnhubProvider(EarningsProvider):
     def get_earnings(
         self,
         symbol: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[EarningsObservation]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[EarningsObservation]:
         """Get earnings data from Finnhub API"""
         if not self.is_available():
             return []
@@ -184,9 +183,9 @@ class FinnhubProvider(EarningsProvider):
     def get_financial_statements(
         self,
         symbol: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[FinancialStatement]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[FinancialStatement]:
         """Get financial statements from Finnhub API"""
         if not self.is_available():
             return []

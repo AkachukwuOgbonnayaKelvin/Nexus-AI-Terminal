@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Engine Report Schema - Standard output of every intelligence engine"""
 
-from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Any
 
 from intelligence.schemas.evidence import Evidence
 from intelligence.schemas.intelligence_signal import IntelligenceSignal
@@ -40,19 +39,19 @@ class EngineReport:
     confidence: float = 70.0
 
     # OPTIONAL fields with None default
-    direction: Optional[str] = None
-    risk_level: Optional[str] = None
-    regime: Optional[str] = None
-    summary: Optional[str] = None
+    direction: str | None = None
+    risk_level: str | None = None
+    regime: str | None = None
+    summary: str | None = None
 
     # FACTORY defaults
-    scope: Dict[str, Any] = field(default_factory=dict)
-    signals: List[IntelligenceSignal] = field(default_factory=list)
-    evidence: List[Evidence] = field(default_factory=list)
-    risks: List[Risk] = field(default_factory=list)
-    top_drivers: List[Dict[str, Any]] = field(default_factory=list)
-    recommendations: List[str] = field(default_factory=list)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    scope: dict[str, Any] = field(default_factory=dict)
+    signals: list[IntelligenceSignal] = field(default_factory=list)
+    evidence: list[Evidence] = field(default_factory=list)
+    risks: list[Risk] = field(default_factory=list)
+    top_drivers: list[dict[str, Any]] = field(default_factory=list)
+    recommendations: list[str] = field(default_factory=list)
+    metadata: dict[str, Any] = field(default_factory=dict)
     timestamp: datetime = field(default_factory=datetime.now)
 
     def to_dict(self) -> dict:

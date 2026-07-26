@@ -3,7 +3,7 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Divergence Analyzer
 """
 
 import logging
-from typing import Dict, Any
+from typing import Any
 
 from ..constants import SentimentState
 
@@ -19,7 +19,7 @@ class DivergenceAnalyzer:
         sentiment_state: str,
         positioning_bias: str,
         crowding_score: float,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Analyze divergence between sentiment and positioning.
 

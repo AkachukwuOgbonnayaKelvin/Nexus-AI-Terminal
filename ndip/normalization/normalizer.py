@@ -1,13 +1,13 @@
 """NDIP Normalizer implementation."""
 
-from typing import Any, Dict
+from typing import Any
 
 
 class Normalizer:
     """Data normalizer."""
 
     def __init__(self) -> None:
-        self._standard_fields: Dict[str, str] = {
+        self._standard_fields: dict[str, str] = {
             "timestamp": "timestamp",
             "asset": "symbol",
             "value": "price",
@@ -18,16 +18,16 @@ class Normalizer:
             "close": "close",
         }
 
-    def normalize(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, data: dict[str, Any]) -> dict[str, Any]:
         """Normalize data to standard format."""
         if "records" in data:
             return {"records": [self._normalize_record(r) for r in data["records"]]}
 
         return {"record": self._normalize_record(data.get("record", {}))}
 
-    def _normalize_record(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def _normalize_record(self, record: dict[str, Any]) -> dict[str, Any]:
         """Normalize a single record."""
-        normalized: Dict[str, Any] = {}
+        normalized: dict[str, Any] = {}
 
         # Map fields to standard names
         for field, value in record.items():

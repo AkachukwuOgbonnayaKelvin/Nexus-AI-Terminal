@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 """Visualizer - Renders ACP output in human-readable format"""
 
-from typing import Dict, Any
 import json
 from datetime import datetime
+from typing import Any
 
 
 class Visualizer:
     """Visualizes compilation results"""
 
-    def __init__(self, result: Dict[str, Any]):
+    def __init__(self, result: dict[str, Any]):
         self.result = result
 
     def render(self, output_format: str = "text"):
@@ -19,7 +18,7 @@ class Visualizer:
     def _render_text(self):
         """Render text-based output"""
 
-        print("")
+        print()
         print("=" * 70)
         print("  ACP ARCHITECTURE OS v2.0.0")
         print("  Platform: Nexus AI Terminal")

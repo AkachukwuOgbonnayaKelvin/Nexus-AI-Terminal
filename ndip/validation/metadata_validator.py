@@ -1,10 +1,10 @@
 """Metadata Validator – checks required fields and raises on failure."""
 
-from typing import Any, Dict
+from typing import Any
 
 
 class MetadataValidator:
-    def validate(self, record: Dict[str, Any]) -> Dict[str, Any]:
+    def validate(self, record: dict[str, Any]) -> dict[str, Any]:
         """Validate required fields. Returns the record if valid, else raises ValueError."""
         required = ["symbol", "asset_class"]
         for field in required:

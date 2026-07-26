@@ -1,12 +1,12 @@
 import email.utils
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any
 
 from financial_news_engine.dtos import UniversalNews
 
 
 class RSSAdapter:
-    def adapt(self, raw: Dict[str, Any], provider_name: str) -> UniversalNews:
+    def adapt(self, raw: dict[str, Any], provider_name: str) -> UniversalNews:
         published_at = raw.get("published")
         if published_at:
             try:

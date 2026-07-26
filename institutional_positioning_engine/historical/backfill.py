@@ -1,7 +1,7 @@
 """Historical Backfill – imports all available historical COT data."""
 
 import logging
-from typing import Any, Dict
+from typing import Any
 
 from institutional_positioning_engine.discovery import ReportDiscovery
 from institutional_positioning_engine.downloader import ReportDownloader
@@ -20,7 +20,7 @@ class HistoricalBackfill:
         self.parser = COTParser()
         self.warehouse = COTWarehouse()
 
-    async def run(self, limit: int = None) -> Dict[str, Any]:
+    async def run(self, limit: int = None) -> dict[str, Any]:
         """Execute historical backfill."""
         logger.info("Starting historical backfill...")
         reports = self.discovery.discover_all()

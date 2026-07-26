@@ -3,9 +3,8 @@ GLB-006 Geopolitical Risk Intelligence Engine - Risk Transmission
 """
 
 import logging
-from typing import Dict, List
 
-from ..constants import TransmissionChannel, ASSET_EXPOSURE
+from ..constants import ASSET_EXPOSURE, TransmissionChannel
 from ..input.schemas import GeopoliticalEventInput
 
 logger = logging.getLogger(__name__)
@@ -36,7 +35,7 @@ class RiskTransmissionEngine:
             TransmissionChannel.DEMAND_SHOCK: 0.05,
         }
 
-    def analyze_transmission(self, event: GeopoliticalEventInput) -> Dict:
+    def analyze_transmission(self, event: GeopoliticalEventInput) -> dict:
         """
         Analyze risk transmission for a single event.
 
@@ -53,7 +52,7 @@ class RiskTransmissionEngine:
             "confidence": event.confidence,
         }
 
-    def analyze_global_transmission(self, events: List[GeopoliticalEventInput]) -> Dict:
+    def analyze_global_transmission(self, events: list[GeopoliticalEventInput]) -> dict:
         """
         Analyze global risk transmission across all events.
 
@@ -103,7 +102,7 @@ class RiskTransmissionEngine:
             else 50.0,
         }
 
-    def _determine_channels(self, event: GeopoliticalEventInput) -> Dict:
+    def _determine_channels(self, event: GeopoliticalEventInput) -> dict:
         """Determine active transmission channels for an event"""
         channels = {}
 
@@ -169,14 +168,14 @@ class RiskTransmissionEngine:
 
         return channels
 
-    def _get_primary_channel(self, channels: Dict) -> str:
+    def _get_primary_channel(self, channels: dict) -> str:
         """Get the primary transmission channel"""
         if not channels:
             return "UNKNOWN"
         return max(channels.items(), key=lambda x: x[1]["strength"])[0].value
 
     def _calculate_magnitude(
-        self, event: GeopoliticalEventInput, channels: Dict
+        self, event: GeopoliticalEventInput, channels: dict
     ) -> float:
         """Calculate risk magnitude"""
         if not channels:

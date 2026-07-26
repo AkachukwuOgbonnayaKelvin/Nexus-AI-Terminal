@@ -3,10 +3,9 @@ GLB-004 Economic Events Intelligence Engine - Macro Transmission Engine
 """
 
 import logging
-from typing import Dict
 
-from ..input.schemas import EconomicEventInput
 from ..constants import EventCategory
+from ..input.schemas import EconomicEventInput
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +59,7 @@ class MacroTransmissionEngine:
             },
         }
 
-    def analyze_transmission(self, event: EconomicEventInput, surprise: float) -> Dict:
+    def analyze_transmission(self, event: EconomicEventInput, surprise: float) -> dict:
         """
         Analyze macro transmission of an event.
 

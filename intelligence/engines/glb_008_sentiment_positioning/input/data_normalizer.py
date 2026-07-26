@@ -3,16 +3,16 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Data Normalizer
 """
 
 import logging
-from typing import Dict, Any, Optional
 from datetime import datetime
+from typing import Any
 
+from ..constants import PositioningBias
 from .schemas import (
     COTInput,
-    RetailSentimentInput,
     InstitutionalPositioningInput,
     OptionsSentimentInput,
+    RetailSentimentInput,
 )
-from ..constants import PositioningBias
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 class DataNormalizer:
     """Normalize raw NDIP data into canonical format"""
 
-    def normalize_cot(self, raw: Dict[str, Any]) -> Optional[COTInput]:
+    def normalize_cot(self, raw: dict[str, Any]) -> COTInput | None:
         """Normalize COT data"""
         try:
             return COTInput(
@@ -42,7 +42,7 @@ class DataNormalizer:
             logger.warning(f"Failed to normalize COT data: {e}")
             return None
 
-    def normalize_retail(self, raw: Dict[str, Any]) -> Optional[RetailSentimentInput]:
+    def normalize_retail(self, raw: dict[str, Any]) -> RetailSentimentInput | None:
         """Normalize retail sentiment data"""
         try:
             bullish = raw.get("bullish_percent", 50.0)
@@ -63,8 +63,8 @@ class DataNormalizer:
             return None
 
     def normalize_institutional(
-        self, raw: Dict[str, Any]
-    ) -> Optional[InstitutionalPositioningInput]:
+        self, raw: dict[str, Any]
+    ) -> InstitutionalPositioningInput | None:
         """Normalize institutional positioning data"""
         try:
             return InstitutionalPositioningInput(
@@ -84,7 +84,7 @@ class DataNormalizer:
             logger.warning(f"Failed to normalize institutional positioning: {e}")
             return None
 
-    def normalize_options(self, raw: Dict[str, Any]) -> Optional[OptionsSentimentInput]:
+    def normalize_options(self, raw: dict[str, Any]) -> OptionsSentimentInput | None:
         """Normalize options sentiment data"""
         try:
             return OptionsSentimentInput(

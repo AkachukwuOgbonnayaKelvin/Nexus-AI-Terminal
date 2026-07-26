@@ -3,7 +3,7 @@ GLB-009 Market Memory & Historical Analogy Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
-from typing import Dict, List, Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -19,16 +19,16 @@ class MarketSnapshot(BaseModel):
     sentiment_score: float = 50.0
     positioning_score: float = 50.0
     volatility_score: float = 50.0
-    asset_prices: Dict[str, float] = Field(default_factory=dict)
+    asset_prices: dict[str, float] = Field(default_factory=dict)
 
 
 class AssetPriceSeries(BaseModel):
     """Historical price series for a single asset"""
 
-    close: List[float] = Field(default_factory=list)
-    open: Optional[List[float]] = None
-    high: Optional[List[float]] = None
-    low: Optional[List[float]] = None
+    close: list[float] = Field(default_factory=list)
+    open: list[float] | None = None
+    high: list[float] | None = None
+    low: list[float] | None = None
 
 
 class ForwardReturn(BaseModel):
@@ -63,10 +63,10 @@ class HistoricalWindow(BaseModel):
     environment: EnvironmentState
 
     # Asset price series
-    asset_prices: Dict[str, AssetPriceSeries]
+    asset_prices: dict[str, AssetPriceSeries]
 
     # Forward returns by horizon
-    forward_returns: Dict[str, ForwardReturn]
+    forward_returns: dict[str, ForwardReturn]
 
     # Metadata
     symbol: str = ""

@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
 """ACP Compilers Module"""
 
-from .identity_compiler import IdentityCompiler
 from .architecture_compiler import ArchitectureCompiler
 from .dependency_compiler import DependencyCompiler
-from .runtime_compiler import RuntimeCompiler
+from .identity_compiler import IdentityCompiler
 from .platform_compiler import PlatformCompiler
+from .runtime_compiler import RuntimeCompiler
 
 __all__ = [
-    "IdentityCompiler",
     "ArchitectureCompiler",
     "DependencyCompiler",
-    "RuntimeCompiler",
+    "IdentityCompiler",
     "PlatformCompiler",
+    "RuntimeCompiler",
 ]

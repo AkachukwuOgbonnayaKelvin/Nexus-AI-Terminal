@@ -3,16 +3,16 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Asset Impact Matrix Gene
 """
 
 import logging
-from typing import Dict
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
+
 from ..constants import ASSET_FLOW_EXPOSURE
 
 logger = logging.getLogger(__name__)
@@ -43,7 +43,7 @@ class AssetImpactMatrixGenerator:
 
     @classmethod
     def generate(
-        cls, flow_analysis: Dict, liquidity_analysis: Dict, confidence: float
+        cls, flow_analysis: dict, liquidity_analysis: dict, confidence: float
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from capital flows and liquidity"""
         impacts = {}

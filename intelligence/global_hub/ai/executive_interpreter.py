@@ -5,7 +5,7 @@ Interprets the global configuration and provides narrative insights.
 """
 
 import logging
-from typing import Dict, Any, List
+from typing import Any
 
 from ..state.state import GlobalHubState
 
@@ -28,8 +28,8 @@ class AIExecutiveInterpreter:
         self.use_llm = use_llm
 
     def interpret(
-        self, state: GlobalHubState, structured_summary: Dict[str, Any]
-    ) -> Dict[str, Any]:
+        self, state: GlobalHubState, structured_summary: dict[str, Any]
+    ) -> dict[str, Any]:
         """
         Generate AI interpretation from structured summary.
 
@@ -141,7 +141,7 @@ class AIExecutiveInterpreter:
 
         return f"Key change triggers: {' or '.join(triggers[:3])}."
 
-    def _build_evidence_references(self, state: GlobalHubState) -> List[str]:
+    def _build_evidence_references(self, state: GlobalHubState) -> list[str]:
         """Build evidence references."""
         references = []
 

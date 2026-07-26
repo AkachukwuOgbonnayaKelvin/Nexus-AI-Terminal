@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """MKT-001 Runtime Scheduler - Called by Central Scheduler"""
 
 import sys

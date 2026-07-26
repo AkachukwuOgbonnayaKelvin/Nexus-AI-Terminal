@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Engine Discovery - Finds all engines in the project
 Distinguishes between: Registered Engines, Probable Engines, Libraries, Tooling
 """
 
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any
+
 import yaml
 
 
@@ -40,7 +40,7 @@ class EngineDiscovery:
             "bin",
         ]
 
-    def discover(self) -> Dict[str, List[Dict[str, Any]]]:
+    def discover(self) -> dict[str, list[dict[str, Any]]]:
         """Discover all engines and classify them"""
         result = {
             "registered_engines": [],  # Have engine.yaml

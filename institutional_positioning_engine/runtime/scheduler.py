@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Scheduler for INS-001 - Weekly COT data processing"""
 
 
@@ -16,4 +15,3 @@ class COTScheduler:
 
     def run(self):
         """Execute COT data processing"""
-        pass

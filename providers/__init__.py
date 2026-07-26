@@ -6,8 +6,8 @@ from .provider_manager import ProviderManager
 from .provider_metrics import ProviderMetrics
 
 __all__ = [
-    "ProviderManager",
-    "ProviderHealth",
     "ProviderFailover",
+    "ProviderHealth",
+    "ProviderManager",
     "ProviderMetrics",
 ]

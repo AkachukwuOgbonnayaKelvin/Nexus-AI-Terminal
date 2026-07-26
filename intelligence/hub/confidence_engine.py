@@ -3,7 +3,7 @@ Global Intelligence Hub - Confidence Engine
 """
 
 import logging
-from typing import Dict, Any, Optional
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -18,9 +18,9 @@ class ConfidenceEngine:
     """
 
     def __init__(self):
-        self.last_calculation: Optional[Dict[str, Any]] = None
+        self.last_calculation: dict[str, Any] | None = None
 
-    def calculate_confidence(self, reports: Dict[str, Any]) -> Dict[str, Any]:
+    def calculate_confidence(self, reports: dict[str, Any]) -> dict[str, Any]:
         """
         Calculate overall confidence across all reports.
 
@@ -98,7 +98,7 @@ class ConfidenceEngine:
 
         return self.last_calculation
 
-    def _extract_confidence(self, report: Any) -> Optional[float]:
+    def _extract_confidence(self, report: Any) -> float | None:
         """Extract confidence from a report."""
         if report is None:
             return None
@@ -138,11 +138,11 @@ class ConfidenceEngine:
 
         return None
 
-    def get_last_calculation(self) -> Optional[Dict[str, Any]]:
+    def get_last_calculation(self) -> dict[str, Any] | None:
         """Get the last confidence calculation."""
         return self.last_calculation
 
-    def health_check(self) -> Dict[str, Any]:
+    def health_check(self) -> dict[str, Any]:
         """Check confidence engine health."""
         return {
             "status": "OPERATIONAL",

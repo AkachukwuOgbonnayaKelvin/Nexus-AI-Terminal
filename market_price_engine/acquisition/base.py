@@ -1,31 +1,26 @@
-# -*- coding: utf-8 -*-
 """Base acquisition module"""
 
 from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional, List
+from typing import Any
 
-from domain.models import Tick, OHLCV
+from domain.models import OHLCV, Tick
 
 
 class BaseAcquirer(ABC):
     """Base class for data acquisition"""
 
     @abstractmethod
-    def acquire_tick(self, symbol: str) -> Optional[Tick]:
+    def acquire_tick(self, symbol: str) -> Tick | None:
         """Acquire current tick data"""
-        pass
 
     @abstractmethod
-    def acquire_ohlcv(self, symbol: str, timeframe: str, count: int) -> List[OHLCV]:
+    def acquire_ohlcv(self, symbol: str, timeframe: str, count: int) -> list[OHLCV]:
         """Acquire OHLCV data"""
-        pass
 
     @abstractmethod
-    def acquire_symbols(self) -> List[str]:
+    def acquire_symbols(self) -> list[str]:
         """Acquire list of available symbols"""
-        pass
 
     @abstractmethod
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         """Get acquirer health status"""
-        pass

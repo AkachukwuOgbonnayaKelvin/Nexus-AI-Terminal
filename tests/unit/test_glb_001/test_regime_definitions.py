@@ -4,8 +4,8 @@ Unit tests for GLB-001 regime definitions
 
 from intelligence.engines.glb_001_market_regime.constants import (
     MarketRegime,
-    TransitionState,
     RegimeAlignment,
+    TransitionState,
 )
 
 

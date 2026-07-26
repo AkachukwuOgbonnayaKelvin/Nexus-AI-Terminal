@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Alpha Vantage Provider - API-based market data"""
 
-from typing import Optional, List, Dict, Any
-from datetime import datetime
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -21,7 +20,7 @@ from providers.base import MarketDataProvider, OHLCVData
 class AlphaVantageProvider(MarketDataProvider):
     """Alpha Vantage API provider"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
         self.name = "alpha_vantage"
         self.api_key = self.config.get("api_key", "")
@@ -34,7 +33,7 @@ class AlphaVantageProvider(MarketDataProvider):
     def is_available(self) -> bool:
         return bool(self.api_key) and REQUESTS_AVAILABLE
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         return {
             "provider": self.name,
             "available": self.is_available(),
@@ -43,17 +42,17 @@ class AlphaVantageProvider(MarketDataProvider):
             "status": "healthy" if self.is_available() else "unavailable",
         }
 
-    def get_available_symbols(self) -> List[str]:
+    def get_available_symbols(self) -> list[str]:
         return ["EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "XAGUSD"]
 
-    def get_current_quote(self, symbol: str) -> Optional[Dict[str, Any]]:
+    def get_current_quote(self, symbol: str) -> dict[str, Any] | None:
         if not self.is_available():
             return None
         return None  # Alpha Vantage doesn't provide real-time quotes for free
 
     def get_historical_bars(
         self, symbol: str, timeframe: str, start_date: datetime, end_date: datetime
-    ) -> List[OHLCVData]:
+    ) -> list[OHLCVData]:
         """Get historical data from Alpha Vantage"""
         if not self.is_available():
             return []

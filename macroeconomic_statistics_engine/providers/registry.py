@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """Provider Registry - Manages macroeconomic data providers with hierarchy"""
 
-from typing import Dict, List, Optional, Any
+import sys
+from datetime import datetime
 from enum import IntEnum
 from pathlib import Path
-from datetime import datetime
-import sys
+from typing import Any
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -27,10 +26,10 @@ class ProviderTier(IntEnum):
 class MacroProviderRegistry:
     """Registry for macroeconomic providers with priority hierarchy"""
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+    def __init__(self, config: dict[str, Any] | None = None):
         self.config = config or {}
-        self.providers: Dict[str, MacroProvider] = {}
-        self.tiers: Dict[str, ProviderTier] = {}
+        self.providers: dict[str, MacroProvider] = {}
+        self.tiers: dict[str, ProviderTier] = {}
         self._initialize_providers()
 
     def _initialize_providers(self):
@@ -52,13 +51,13 @@ class MacroProviderRegistry:
         # self.providers["trading_economics"] = TradingEconomicsProvider(...)
         # self.tiers["trading_economics"] = ProviderTier.TIER_3_FALLBACK
 
-    def get_provider(self, name: str) -> Optional[MacroProvider]:
+    def get_provider(self, name: str) -> MacroProvider | None:
         """Get a provider by name"""
         return self.providers.get(name)
 
     def get_primary_provider(
         self, indicator: str, country: str
-    ) -> Optional[MacroProvider]:
+    ) -> MacroProvider | None:
         """Get the primary provider for an indicator/country"""
         # FRED for US data
         if country == "US":
@@ -69,7 +68,7 @@ class MacroProviderRegistry:
 
     def get_providers_for_indicator(
         self, indicator: str, country: str
-    ) -> List[MacroProvider]:
+    ) -> list[MacroProvider]:
         """Get all providers that can supply an indicator, ordered by tier"""
         providers = []
 
@@ -97,9 +96,9 @@ class MacroProviderRegistry:
         self,
         indicator: str,
         country: str,
-        start_date: Optional[datetime] = None,
-        end_date: Optional[datetime] = None,
-    ) -> List[Any]:
+        start_date: datetime | None = None,
+        end_date: datetime | None = None,
+    ) -> list[Any]:
         """Get indicator data with automatic failover"""
 
         # Try Tier 1 providers first
@@ -128,11 +127,11 @@ class MacroProviderRegistry:
 
         return []
 
-    def _get_providers_by_tier(self, tier: ProviderTier) -> List[MacroProvider]:
+    def _get_providers_by_tier(self, tier: ProviderTier) -> list[MacroProvider]:
         """Get all providers of a specific tier"""
         return [p for name, p in self.providers.items() if self.tiers.get(name) == tier]
 
-    def get_health_status(self) -> Dict[str, Any]:
+    def get_health_status(self) -> dict[str, Any]:
         """Get health status of all providers"""
         status = {}
         for name, provider in self.providers.items():

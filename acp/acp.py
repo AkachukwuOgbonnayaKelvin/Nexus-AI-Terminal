@@ -1,21 +1,20 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ACP Architecture OS v4.0
 Platform Architecture Compiler for Nexus AI Terminal
 """
 
-import sys
 import argparse
+import sys
 from pathlib import Path
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from acp.core.platform_scanner import PlatformScanner
-from acp.discovery.engine_discovery import EngineDiscovery
 from acp.analyzers.architecture_analyzer import ArchitectureAnalyzer
 from acp.analyzers.dependency_analyzer import DependencyAnalyzer
+from acp.core.platform_scanner import PlatformScanner
+from acp.discovery.engine_discovery import EngineDiscovery
 
 
 def main():
@@ -77,15 +76,15 @@ def _run_scan(project_root: Path, verbose: bool = False):
     scanner = PlatformScanner(str(project_root))
     result = scanner.scan()
 
-    print("")
+    print()
     print("=" * 70)
     print("  ACP ARCHITECTURE OS v4.0 - PLATFORM SCAN")
     print("  Nexus AI Terminal")
     print("=" * 70)
 
-    print("")
+    print()
     print(f"Project Root: {result['root_path']}")
-    print("")
+    print()
     print("Platform Summary:")
     print(f"  - Registered Engines: {result['summary']['total_engines']}")
     print(f"  - NDIP domains: {result['summary']['ndip_domains']}")
@@ -95,7 +94,7 @@ def _run_scan(project_root: Path, verbose: bool = False):
     print(f"  - Python packages: {result['summary']['total_packages']}")
 
     if result["engines"]:
-        print("")
+        print()
         print("Discovered Engines:")
         for engine in result["engines"]:
             status = "[OK]" if engine["has_engine_yaml"] else "[MISSING]"
@@ -110,7 +109,7 @@ def _run_scan(project_root: Path, verbose: bool = False):
     discovery_result = discovery.discover()
 
     if discovery_result["probable_engines"]:
-        print("")
+        print()
         print("[WARNING] Probable Unregistered Engines Found:")
         for engine in discovery_result["probable_engines"]:
             print(f"  - {engine['id']} (found at: {engine['path']})")
@@ -118,7 +117,7 @@ def _run_scan(project_root: Path, verbose: bool = False):
             print(f"    Recommendation: {engine['recommendation']}")
 
     # Analyze each engine
-    print("")
+    print()
     print("Analyzing Engines:")
     print("-" * 70)
     analyzer = ArchitectureAnalyzer()
@@ -128,7 +127,7 @@ def _run_scan(project_root: Path, verbose: bool = False):
         engine_path = Path(engine_dict["path"])
         engine_data = engine_dict.get("engine_yaml", {})
 
-        print("")
+        print()
         print(f"  Engine: {engine_dict['id']}")
 
         # Architecture analysis
@@ -161,7 +160,7 @@ def _run_scan(project_root: Path, verbose: bool = False):
                 f"        External Dependencies: {', '.join(dep_result.get('external_dependencies', []))}"
             )
 
-    print("")
+    print()
     print("=" * 70)
 
 
@@ -188,7 +187,7 @@ def _run_engine_analysis(project_root: Path, engine_id: str, verbose: bool = Fal
             print(f"  - {e['id']} ({e['name']})")
         return
 
-    print("")
+    print()
     print("=" * 70)
     print(f"  ENGINE ANALYSIS: {engine['id']}")
     print("=" * 70)
@@ -199,13 +198,13 @@ def _run_engine_analysis(project_root: Path, engine_id: str, verbose: bool = Fal
     analyzer = ArchitectureAnalyzer()
     arch_result = analyzer.analyze(engine_path, engine_data)
 
-    print("")
+    print()
     print(f"Architecture Compliance: {arch_result['compliance_score']}%")
     print(f"Architecture Maturity: {arch_result['maturity_score']}%")
     print(f"Overall Health: {arch_result['overall_score']}%")
     print(f"Status: {arch_result['status']}")
 
-    print("")
+    print()
     print("Components:")
     print(
         f"  Required Folders Present: {len(arch_result['present_folders'])}/{len(arch_result['present_folders']) + len(arch_result['missing_folders'])}"
@@ -230,14 +229,14 @@ def _run_engine_analysis(project_root: Path, engine_id: str, verbose: bool = Fal
         )
 
     if arch_result["issues"]:
-        print("")
+        print()
         print("Issues:")
         for issue in arch_result["issues"]:
             print(f"  [ERROR] {issue['message']}")
             print(f"    Fix: {issue['fix']}")
 
     if arch_result["info"]:
-        print("")
+        print()
         print("Information:")
         for info in arch_result["info"]:
             print(f"  [INFO] {info['message']}")
@@ -248,7 +247,7 @@ def _run_engine_analysis(project_root: Path, engine_id: str, verbose: bool = Fal
     dep_analyzer = DependencyAnalyzer(project_root)
     dep_result = dep_analyzer.analyze(engine_path, engine_data)
 
-    print("")
+    print()
     print(f"Dependencies: {dep_result['score']}% - {dep_result['status']}")
     if dep_result["dependencies"]:
         print(f"  All Dependencies: {', '.join(dep_result['dependencies'])}")
@@ -258,12 +257,12 @@ def _run_engine_analysis(project_root: Path, engine_id: str, verbose: bool = Fal
         print(f"  External: {', '.join(dep_result['external_dependencies'])}")
 
     if dep_result["circular_dependencies"]:
-        print("")
+        print()
         print("Circular Dependencies Detected:")
         for circ in dep_result["circular_dependencies"]:
             print(f"  - {circ}")
 
-    print("")
+    print()
     print("=" * 70)
 
 
@@ -272,7 +271,7 @@ def _run_repair_plan(project_root: Path):
     scanner = PlatformScanner(str(project_root))
     result = scanner.scan()
 
-    print("")
+    print()
     print("=" * 70)
     print("  REPAIR PLAN")
     print("=" * 70)
@@ -328,7 +327,7 @@ def _run_repair_plan(project_root: Path):
         priority_order = {"Critical": 0, "High": 1, "Info": 2}
         repair_items.sort(key=lambda x: priority_order.get(x["priority"], 3))
 
-        print("")
+        print()
         print(f"Found {len(repair_items)} repair items:")
         for i, item in enumerate(repair_items, 1):
             priority_icon = (
@@ -338,17 +337,17 @@ def _run_repair_plan(project_root: Path):
                 if item["priority"] == "High"
                 else "[INFO]"
             )
-            print("")
+            print()
             print(
                 f"{i}. {priority_icon} [{item['priority']}] {item['engine']} - {item['type']}"
             )
             print(f"   Issue: {item['message']}")
             print(f"   Fix: {item['fix']}")
     else:
-        print("")
+        print()
         print("[OK] No issues found - platform is healthy!")
 
-    print("")
+    print()
     print("=" * 70)
 
 

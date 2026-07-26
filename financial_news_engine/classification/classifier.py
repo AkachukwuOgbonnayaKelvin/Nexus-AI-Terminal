@@ -1,6 +1,3 @@
-from typing import Dict
-
-
 class NewsClassifier:
     def __init__(self):
         self.category_keywords = {
@@ -29,7 +26,7 @@ class NewsClassifier:
             "High": ["announces", "expects", "forecast", "update"],
         }
 
-    def classify(self, headline: str, summary: str = "") -> Dict[str, str]:
+    def classify(self, headline: str, summary: str = "") -> dict[str, str]:
         # Ensure summary is a string
         if summary is None:
             summary = ""

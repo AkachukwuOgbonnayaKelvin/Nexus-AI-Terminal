@@ -5,7 +5,8 @@ Request and response schemas for the API.
 """
 
 from datetime import datetime
-from typing import Dict, Any
+from typing import Any
+
 from pydantic import BaseModel
 
 
@@ -17,8 +18,8 @@ class SnapshotResponse(BaseModel):
     success: bool
     snapshot_id: str
     generated_at: datetime
-    data: Dict[str, Any]
-    health: Dict[str, Any]
+    data: dict[str, Any]
+    health: dict[str, Any]
     version: str = "1.0.0"
 
 
@@ -30,7 +31,7 @@ class HealthResponse(BaseModel):
     status: str
     service: str
     timestamp: datetime
-    details: Dict[str, Any]
+    details: dict[str, Any]
 
 
 class ErrorResponse(BaseModel):

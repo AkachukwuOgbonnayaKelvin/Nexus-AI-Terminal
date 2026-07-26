@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """ACP v3.0: Platform Architecture Compiler."""
 
-import sys
-from pathlib import Path
-import yaml
 import logging
-from typing import Dict, List
+import sys
 from dataclasses import dataclass
+from pathlib import Path
+
+import yaml
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
@@ -46,10 +45,10 @@ class ACPPlatform:
 
     def __init__(self, root_path: str = "."):
         self.root = Path(root_path).resolve()
-        self.registry: Dict[str, PlatformEngine] = {}
-        self.errors: List[Dict] = []
-        self.warnings: List[Dict] = []
-        self.suggestions: List[Dict] = []
+        self.registry: dict[str, PlatformEngine] = {}
+        self.errors: list[dict] = []
+        self.warnings: list[dict] = []
+        self.suggestions: list[dict] = []
         self.debt = ArchitectureDebt()
 
     def compile(self) -> bool:
@@ -245,7 +244,6 @@ class ACPPlatform:
     def _validate_dependencies(self) -> None:
         """Validate dependencies."""
         # This would check for forbidden dependencies between engines
-        pass
 
     def _calculate_debt(self) -> None:
         """Calculate architecture debt."""

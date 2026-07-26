@@ -2,7 +2,7 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 from institutional_positioning_engine.collectors.base import BaseCollector
 
@@ -17,7 +17,7 @@ class HistoricalCollector(BaseCollector):
         self.start_year = 2006
         self.end_year = datetime.now().year + 1
 
-    async def collect_all(self) -> List[Dict[str, Any]]:
+    async def collect_all(self) -> list[dict[str, Any]]:
         """Collect all historical reports."""
         all_reports = []
         logger.info(
@@ -33,14 +33,14 @@ class HistoricalCollector(BaseCollector):
         logger.info(f"Historical collection complete: {len(all_reports)} reports")
         return all_reports
 
-    async def collect_latest(self) -> List[Dict[str, Any]]:
+    async def collect_latest(self) -> list[dict[str, Any]]:
         """Collect the latest historical report (most recent year)."""
         latest_year = self.end_year - 1
         report = self._generate_stub_report(latest_year)
         logger.info(f"Collected latest historical report for {latest_year}")
         return [report]
 
-    def _generate_stub_report(self, year: int) -> Dict[str, Any]:
+    def _generate_stub_report(self, year: int) -> dict[str, Any]:
         """Generate a stub report for testing."""
         return {
             "report_id": f"cot_historical_{year}_01",
@@ -49,7 +49,7 @@ class HistoricalCollector(BaseCollector):
             "markets": self._generate_markets(year),
         }
 
-    def _generate_markets(self, year: int) -> List[Dict[str, Any]]:
+    def _generate_markets(self, year: int) -> list[dict[str, Any]]:
         """Generate stub market data for a given year."""
         base_oi = 100000 + (year - 2000) * 5000
         return [

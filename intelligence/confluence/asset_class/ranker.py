@@ -4,8 +4,6 @@ Phase 5: Asset-Class Intelligence - Asset-Class Ranker
 Ranks asset classes by score.
 """
 
-from typing import List, Optional
-
 from ..contracts import AssetClassRating
 
 
@@ -16,8 +14,8 @@ class AssetClassRanker:
     """
 
     def rank_asset_classes(
-        self, ratings: List[AssetClassRating]
-    ) -> List[AssetClassRating]:
+        self, ratings: list[AssetClassRating]
+    ) -> list[AssetClassRating]:
         """
         Rank all asset classes by score (descending).
 
@@ -35,30 +33,26 @@ class AssetClassRanker:
         return sorted_ratings
 
     def get_top_n(
-        self, ratings: List[AssetClassRating], n: int = 5
-    ) -> List[AssetClassRating]:
+        self, ratings: list[AssetClassRating], n: int = 5
+    ) -> list[AssetClassRating]:
         """Get top N ranked asset classes."""
         ranked = self.rank_asset_classes(ratings)
         return ranked[:n]
 
     def get_bottom_n(
-        self, ratings: List[AssetClassRating], n: int = 5
-    ) -> List[AssetClassRating]:
+        self, ratings: list[AssetClassRating], n: int = 5
+    ) -> list[AssetClassRating]:
         """Get bottom N ranked asset classes."""
         ranked = self.rank_asset_classes(ratings)
         return ranked[-n:]
 
-    def get_strongest(
-        self, ratings: List[AssetClassRating]
-    ) -> Optional[AssetClassRating]:
+    def get_strongest(self, ratings: list[AssetClassRating]) -> AssetClassRating | None:
         """Get the strongest asset class."""
         if not ratings:
             return None
         return self.rank_asset_classes(ratings)[0]
 
-    def get_weakest(
-        self, ratings: List[AssetClassRating]
-    ) -> Optional[AssetClassRating]:
+    def get_weakest(self, ratings: list[AssetClassRating]) -> AssetClassRating | None:
         """Get the weakest asset class."""
         if not ratings:
             return None

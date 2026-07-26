@@ -3,9 +3,9 @@ Global Intelligence Hub - Snapshot Builder
 """
 
 import logging
-from typing import Dict, Any
-from datetime import datetime
 import uuid
+from datetime import datetime
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -20,12 +20,12 @@ class SnapshotBuilder:
         regime_report: Any,
         asset_report: Any,
         macro_report: Any,
-        consensus: Dict[str, Any],
-        evidence_matrix: Dict[str, Any],
-        risk_matrix: Dict[str, Any],
+        consensus: dict[str, Any],
+        evidence_matrix: dict[str, Any],
+        risk_matrix: dict[str, Any],
         executive_summary: str,
-        ai_context: Dict[str, Any],
-    ) -> Dict[str, Any]:
+        ai_context: dict[str, Any],
+    ) -> dict[str, Any]:
         """
         Build the complete Global Intelligence Snapshot.
         """
@@ -79,8 +79,8 @@ class SnapshotBuilder:
         regime_report: Any,
         asset_report: Any,
         macro_report: Any,
-        consensus: Dict[str, Any],
-    ) -> Dict[str, Any]:
+        consensus: dict[str, Any],
+    ) -> dict[str, Any]:
         """Calculate confidence from available reports."""
         confidences = []
         components = {}
@@ -134,7 +134,7 @@ class SnapshotBuilder:
             "components": components,
         }
 
-    def _extract_regime(self, report: Any) -> Dict[str, Any]:
+    def _extract_regime(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"status": "NOT_AVAILABLE"}
 
@@ -157,7 +157,7 @@ class SnapshotBuilder:
             "risks": report.risks if hasattr(report, "risks") else [],
         }
 
-    def _extract_macro(self, report: Any) -> Dict[str, Any]:
+    def _extract_macro(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"status": "NOT_AVAILABLE"}
 
@@ -171,7 +171,7 @@ class SnapshotBuilder:
             "status": "OPERATIONAL",
         }
 
-    def _extract_assets(self, report: Any) -> Dict[str, Any]:
+    def _extract_assets(self, report: Any) -> dict[str, Any]:
         if not report:
             return {"status": "NOT_AVAILABLE"}
 
@@ -185,7 +185,7 @@ class SnapshotBuilder:
 
     def _build_health_status(
         self, regime_report: Any, asset_report: Any, macro_report: Any
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         statuses = {
             "GLB-001": "OPERATIONAL" if regime_report else "MISSING",
             "GLB-002": "OPERATIONAL" if asset_report else "MISSING",

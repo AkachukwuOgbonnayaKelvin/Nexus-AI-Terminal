@@ -15,19 +15,16 @@ class BaseWarehouse(ABC):
         self._table_name = None  # To be set by subclass
 
     @abstractmethod
-    async def store(self, record: Dict[str, Any], source: str) -> Dict[str, Any]:
+    async def store(self, record: dict[str, Any], source: str) -> dict[str, Any]:
         """Store a single record in the warehouse."""
-        pass
 
     @abstractmethod
-    async def query(self, symbol: str, limit: int = 100) -> List[Dict[str, Any]]:
+    async def query(self, symbol: str, limit: int = 100) -> list[dict[str, Any]]:
         """Query records by symbol."""
-        pass
 
     @abstractmethod
-    async def get_stats(self) -> Dict[str, Any]:
+    async def get_stats(self) -> dict[str, Any]:
         """Return warehouse statistics."""
-        pass
 
     async def health_check(self) -> bool:
         """Check if warehouse is operational."""

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 """RRT Gate - Resilience Validation"""
 
-from typing import Dict, Any
+from typing import Any
 
 
 class RRTGate:
@@ -11,7 +10,7 @@ class RRTGate:
         self.name = "RRT"
         self.description = "Resilience Validation"
 
-    def run(self, engine_id: str) -> Dict[str, Any]:
+    def run(self, engine_id: str) -> dict[str, Any]:
         result = {
             "name": self.name,
             "description": self.description,

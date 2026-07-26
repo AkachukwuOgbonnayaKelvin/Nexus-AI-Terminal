@@ -3,6 +3,7 @@ GLB-007 Capital Flows & Liquidity Intelligence Engine - Input Schemas
 """
 
 from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 from ..constants import CapitalFlowType, FlowDirection

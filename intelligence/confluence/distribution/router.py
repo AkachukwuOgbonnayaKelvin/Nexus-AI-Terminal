@@ -5,14 +5,14 @@ Routes outputs to their destinations.
 """
 
 import logging
-from typing import List, Optional, Dict, Any
+from typing import Any
 
-from .package import ConfluenceIntelligencePackage
-from .global_builder import GlobalOutputBuilder
 from .asset_feed_builder import AssetFeedBuilder
-from .validator import OutputValidator
 from .envelope import EnvelopeFactory, OutputEnvelope
+from .global_builder import GlobalOutputBuilder
 from .health import DistributionHealthMonitor
+from .package import ConfluenceIntelligencePackage
+from .validator import OutputValidator
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ class DistributionRouter:
 
     def route(
         self, package: ConfluenceIntelligencePackage, strict_validation: bool = True
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Route a ConfluenceIntelligencePackage to its destinations.
 
@@ -133,7 +133,7 @@ class DistributionRouter:
 
     def route_global_only(
         self, package: ConfluenceIntelligencePackage, strict_validation: bool = True
-    ) -> Optional[OutputEnvelope]:
+    ) -> OutputEnvelope | None:
         """
         Route only the global output.
 
@@ -165,9 +165,9 @@ class DistributionRouter:
     def route_asset_feeds_only(
         self,
         package: ConfluenceIntelligencePackage,
-        entities: Optional[List[str]] = None,
+        entities: list[str] | None = None,
         strict_validation: bool = True,
-    ) -> List[OutputEnvelope]:
+    ) -> list[OutputEnvelope]:
         """
         Route only asset feeds.
 
@@ -201,7 +201,7 @@ class DistributionRouter:
             logger.error(f"Failed to route asset feeds: {e}")
             return []
 
-    def get_health(self) -> Dict[str, Any]:
+    def get_health(self) -> dict[str, Any]:
         """Get distribution health status."""
         return self.health.get_status()
 

@@ -3,10 +3,9 @@ GLB-004 Economic Events Intelligence Engine - Event Importance Engine
 """
 
 import logging
-from typing import Dict, List, Optional
 
-from ..input.schemas import EconomicEventInput
 from ..constants import EventCategory
+from ..input.schemas import EconomicEventInput
 
 logger = logging.getLogger(__name__)
 
@@ -56,7 +55,7 @@ class EventImportanceEngine:
 
         return min(100, importance)
 
-    def calculate_event_risk(self, events: List[EconomicEventInput]) -> float:
+    def calculate_event_risk(self, events: list[EconomicEventInput]) -> float:
         """
         Calculate overall event risk score.
 
@@ -80,7 +79,7 @@ class EventImportanceEngine:
 
         return min(100, avg_importance * high_impact_factor)
 
-    def get_next_major_event(self, events: List[EconomicEventInput]) -> Optional[Dict]:
+    def get_next_major_event(self, events: list[EconomicEventInput]) -> dict | None:
         """Get the next major event"""
         if not events:
             return None

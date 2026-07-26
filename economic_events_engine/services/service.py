@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime
-from typing import Optional
 
 from fastapi import APIRouter, HTTPException
 
@@ -17,14 +16,12 @@ class EconomicService:
 
     def _register_routes(self):
         @self.router.get("/today")
-        async def get_today(
-            country: Optional[str] = None, importance: Optional[str] = None
-        ):
+        async def get_today(country: str | None = None, importance: str | None = None):
             events = await self.warehouse.get_today_events(country, importance)
             return {"status": "success", "count": len(events), "data": events}
 
         @self.router.get("/upcoming")
-        async def get_upcoming(hours: int = 48, country: Optional[str] = None):
+        async def get_upcoming(hours: int = 48, country: str | None = None):
             events = await self.warehouse.get_upcoming_events(hours, country)
             return {"status": "success", "count": len(events), "data": events}
 

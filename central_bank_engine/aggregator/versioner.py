@@ -2,13 +2,13 @@
 
 import logging
 from datetime import datetime
-from typing import Any, Dict, List
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
 
 class VersionManager:
-    def version(self, events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def version(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
         for event in events:
             # If event already has a version, increment
             if "version" in event:

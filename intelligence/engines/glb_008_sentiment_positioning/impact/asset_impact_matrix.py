@@ -3,16 +3,16 @@ GLB-008 Sentiment & Positioning Intelligence Engine - Asset Impact Matrix Genera
 """
 
 import logging
-from typing import Dict
 
 from intelligence.schemas.asset_impact import (
     AssetImpact,
     AssetImpactMatrix,
     AssetType,
     Direction,
-    ImpactStatus,
     ImpactDriver,
+    ImpactStatus,
 )
+
 from ..constants import ASSET_SENTIMENT_EXPOSURE
 
 logger = logging.getLogger(__name__)
@@ -44,10 +44,10 @@ class AssetImpactMatrixGenerator:
     @classmethod
     def generate(
         cls,
-        sentiment_analysis: Dict,
-        positioning_analysis: Dict,
-        crowding_analysis: Dict,
-        divergence_analysis: Dict,
+        sentiment_analysis: dict,
+        positioning_analysis: dict,
+        crowding_analysis: dict,
+        divergence_analysis: dict,
         confidence: float,
     ) -> AssetImpactMatrix:
         """Generate asset impact matrix from sentiment and positioning"""

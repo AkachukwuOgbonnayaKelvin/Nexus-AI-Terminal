@@ -3,15 +3,15 @@ GLB-009 - Historical Window Converter
 """
 
 import logging
-from typing import Dict, Any, List, Optional
-from datetime import datetime, timedelta
 import uuid
+from datetime import datetime, timedelta
+from typing import Any
 
 from .input.schemas import (
-    HistoricalWindow,
     AssetPriceSeries,
-    ForwardReturn,
     EnvironmentState,
+    ForwardReturn,
+    HistoricalWindow,
 )
 
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ class WindowConverter:
         self.converted = 0
         self.errors = 0
 
-    def convert(self, raw_window: Dict[str, Any]) -> Optional[HistoricalWindow]:
+    def convert(self, raw_window: dict[str, Any]) -> HistoricalWindow | None:
         """
         Convert a raw window dictionary to a HistoricalWindow object.
 
@@ -96,7 +96,7 @@ class WindowConverter:
             return "RISK_ON"
         return "NEUTRAL"
 
-    def convert_batch(self, raw_windows: List[Dict]) -> List[HistoricalWindow]:
+    def convert_batch(self, raw_windows: list[dict]) -> list[HistoricalWindow]:
         """Convert a batch of raw windows"""
         results = []
         for raw in raw_windows:

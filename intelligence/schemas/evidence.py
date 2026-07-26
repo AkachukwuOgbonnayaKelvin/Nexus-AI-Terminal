@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Evidence Schema - Foundation of all intelligence"""
 
-from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Any
 
 
 class EvidenceDirection(str, Enum):
@@ -44,13 +43,13 @@ class Evidence:
     strength: EvidenceStrength = EvidenceStrength.MODERATE
 
     # OPTIONAL fields with None default
-    country: Optional[str] = None
-    asset: Optional[str] = None
-    source_url: Optional[str] = None
+    country: str | None = None
+    asset: str | None = None
+    source_url: str | None = None
 
     # FACTORY defaults
     retrieved_at: datetime = field(default_factory=datetime.now)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""

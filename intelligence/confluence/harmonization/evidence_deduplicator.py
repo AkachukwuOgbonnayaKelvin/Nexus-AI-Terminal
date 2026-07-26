@@ -5,7 +5,6 @@ Removes duplicate evidence from dependent engines.
 """
 
 import logging
-from typing import Dict, List, Set
 
 from ..evidence.evidence_model import EvidenceGroup
 from ..schemas import NormalizedSignal
@@ -19,17 +18,17 @@ class EvidenceDeduplicator:
     """
 
     def __init__(self):
-        self._dependency_map: Dict[str, Set[str]] = {}
-        self._transitive_dependencies: Dict[str, Set[str]] = {}
+        self._dependency_map: dict[str, set[str]] = {}
+        self._transitive_dependencies: dict[str, set[str]] = {}
 
-    def set_dependencies(self, dependencies: Dict[str, Set[str]]) -> None:
+    def set_dependencies(self, dependencies: dict[str, set[str]]) -> None:
         """
         Set the dependency map and compute transitive dependencies.
         """
         self._dependency_map = dependencies
         self._transitive_dependencies = self._compute_transitive_dependencies()
 
-    def _compute_transitive_dependencies(self) -> Dict[str, Set[str]]:
+    def _compute_transitive_dependencies(self) -> dict[str, set[str]]:
         """
         Compute transitive dependencies (follow the chain).
 
@@ -62,7 +61,7 @@ class EvidenceDeduplicator:
 
         return transitive
 
-    def deduplicate(self, signals: List[NormalizedSignal]) -> List[NormalizedSignal]:
+    def deduplicate(self, signals: list[NormalizedSignal]) -> list[NormalizedSignal]:
         """
         Remove duplicate signals from dependent engines.
         """
@@ -86,8 +85,8 @@ class EvidenceDeduplicator:
         return result
 
     def _deduplicate_group(
-        self, signals: List[NormalizedSignal]
-    ) -> List[NormalizedSignal]:
+        self, signals: list[NormalizedSignal]
+    ) -> list[NormalizedSignal]:
         """
         Deduplicate signals within a group.
         """
@@ -158,8 +157,8 @@ class EvidenceDeduplicator:
         return False
 
     def get_independent_evidence(
-        self, groups: List[EvidenceGroup]
-    ) -> List[EvidenceGroup]:
+        self, groups: list[EvidenceGroup]
+    ) -> list[EvidenceGroup]:
         """
         Get independent evidence from groups.
         """

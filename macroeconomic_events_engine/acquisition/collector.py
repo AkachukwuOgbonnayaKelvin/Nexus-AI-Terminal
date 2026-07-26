@@ -1,5 +1,4 @@
 import logging
-from typing import List
 
 from macroeconomic_events_engine.dtos import UniversalMacroEvent
 from providers.provider_manager import ProviderManager
@@ -11,7 +10,7 @@ class MacroCollector:
     def __init__(self, provider_manager: ProviderManager):
         self.pm = provider_manager
 
-    async def collect_today(self) -> List[UniversalMacroEvent]:
+    async def collect_today(self) -> list[UniversalMacroEvent]:
         events = []
         provider_names = self.pm.get_providers(capability="macroeconomic_events")
         logger.info(f"Found providers: {provider_names}")

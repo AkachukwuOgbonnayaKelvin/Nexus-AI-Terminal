@@ -7,14 +7,14 @@ This is NOT sent to downstream systems directly.
 
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
 
 from ..contracts import (
-    GlobalEntityRating,
     AssetClassRating,
-    HarmonizedResult,
+    GlobalEntityRating,
     GlobalRisk,
     GlobalTheme,
+    HarmonizedResult,
 )
 
 
@@ -28,13 +28,13 @@ class ConfluenceIntelligencePackage:
     """
 
     # Entity Intelligence (Phase 4)
-    entity_ratings: List[GlobalEntityRating] = field(default_factory=list)
+    entity_ratings: list[GlobalEntityRating] = field(default_factory=list)
 
     # Asset-Class Intelligence (Phase 5)
-    asset_class_ratings: List[AssetClassRating] = field(default_factory=list)
+    asset_class_ratings: list[AssetClassRating] = field(default_factory=list)
 
     # Harmonized Results (Phase 3) - for evidence tracking
-    harmonized_results: List[HarmonizedResult] = field(default_factory=list)
+    harmonized_results: list[HarmonizedResult] = field(default_factory=list)
 
     # Global State
     global_regime: str = "UNKNOWN"
@@ -43,21 +43,21 @@ class ConfluenceIntelligencePackage:
     global_risk_score: float = 0.0
 
     # Drivers & Risks
-    key_drivers: List[str] = field(default_factory=list)
-    global_risks: List[GlobalRisk] = field(default_factory=list)
+    key_drivers: list[str] = field(default_factory=list)
+    global_risks: list[GlobalRisk] = field(default_factory=list)
 
     # Themes
-    global_themes: List[GlobalTheme] = field(default_factory=list)
+    global_themes: list[GlobalTheme] = field(default_factory=list)
 
     # Opportunities
-    top_opportunities: List[Dict[str, Any]] = field(default_factory=list)
+    top_opportunities: list[dict[str, Any]] = field(default_factory=list)
 
     # Metadata
     timestamp: datetime = field(default_factory=datetime.utcnow)
     version: str = "1.0"
 
     @property
-    def currency_ratings(self) -> List[GlobalEntityRating]:
+    def currency_ratings(self) -> list[GlobalEntityRating]:
         """Get only currency entity ratings."""
         from ..entity.classifier import EntityClassifier
 
@@ -66,7 +66,7 @@ class ConfluenceIntelligencePackage:
         ]
 
     @property
-    def commodity_ratings(self) -> List[GlobalEntityRating]:
+    def commodity_ratings(self) -> list[GlobalEntityRating]:
         """Get only commodity entity ratings."""
         from ..entity.classifier import EntityClassifier
 
@@ -75,42 +75,42 @@ class ConfluenceIntelligencePackage:
         ]
 
     @property
-    def index_ratings(self) -> List[GlobalEntityRating]:
+    def index_ratings(self) -> list[GlobalEntityRating]:
         """Get only index entity ratings."""
         from ..entity.classifier import EntityClassifier
 
         return [r for r in self.entity_ratings if EntityClassifier.is_index(r.entity)]
 
     @property
-    def bond_ratings(self) -> List[GlobalEntityRating]:
+    def bond_ratings(self) -> list[GlobalEntityRating]:
         """Get only bond entity ratings."""
         from ..entity.classifier import EntityClassifier
 
         return [r for r in self.entity_ratings if EntityClassifier.is_bond(r.entity)]
 
     @property
-    def strongest_currency(self) -> Optional[GlobalEntityRating]:
+    def strongest_currency(self) -> GlobalEntityRating | None:
         """Get the strongest currency by score."""
         if not self.currency_ratings:
             return None
         return max(self.currency_ratings, key=lambda r: r.score)
 
     @property
-    def weakest_currency(self) -> Optional[GlobalEntityRating]:
+    def weakest_currency(self) -> GlobalEntityRating | None:
         """Get the weakest currency by score."""
         if not self.currency_ratings:
             return None
         return min(self.currency_ratings, key=lambda r: r.score)
 
     @property
-    def strongest_asset_class(self) -> Optional[AssetClassRating]:
+    def strongest_asset_class(self) -> AssetClassRating | None:
         """Get the strongest asset class by score."""
         if not self.asset_class_ratings:
             return None
         return max(self.asset_class_ratings, key=lambda r: r.score)
 
     @property
-    def weakest_asset_class(self) -> Optional[AssetClassRating]:
+    def weakest_asset_class(self) -> AssetClassRating | None:
         """Get the weakest asset class by score."""
         if not self.asset_class_ratings:
             return None
@@ -120,7 +120,7 @@ class ConfluenceIntelligencePackage:
         """Check if an entity exists in the package."""
         return any(r.entity == entity for r in self.entity_ratings)
 
-    def get_entity_rating(self, entity: str) -> Optional[GlobalEntityRating]:
+    def get_entity_rating(self, entity: str) -> GlobalEntityRating | None:
         """Get rating for a specific entity."""
         for r in self.entity_ratings:
             if r.entity == entity:

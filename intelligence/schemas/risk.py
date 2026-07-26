@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 """Risk Assessment Schema - Identifies and evaluates risks"""
 
-from typing import Optional, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+from typing import Any
 
 
 class RiskSeverity(str, Enum):
@@ -41,14 +40,14 @@ class Risk:
     probability: RiskProbability = RiskProbability.MEDIUM
 
     # OPTIONAL fields with None default
-    mitigation: Optional[str] = None
-    source: Optional[str] = None
+    mitigation: str | None = None
+    source: str | None = None
 
     # FACTORY defaults
     score: float = 0.0
     triggered: bool = False
     timestamp: datetime = field(default_factory=datetime.now)
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         """Convert to dictionary for serialization"""
