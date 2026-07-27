@@ -253,7 +253,7 @@ class OHLCDataSyncService:
                         (str(e), datetime.now(), symbol, timeframe),
                     )
                 conn.commit()
-            except:
+            except Exception:
                 pass
             return False
 

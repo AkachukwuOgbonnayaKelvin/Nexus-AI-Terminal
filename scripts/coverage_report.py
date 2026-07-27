@@ -52,7 +52,7 @@ def get_coverage():
             # Check if coverage meets requirements
             min_date = min_t.date()
             max_date = max_t.date()
-            coverage_days = (max_date - min_date).days
+            (max_date - min_date).days
 
             if min_date <= earliest_required and max_date >= today:
                 status = "COMPLETE"

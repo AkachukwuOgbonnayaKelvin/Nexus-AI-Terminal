@@ -25,9 +25,9 @@ def main():
     logger.info("Initializing Technical Intelligence Data Stores...")
     ohlc_repo = PostgresOHLCRepository(DB_CONN)
     micro_repo = PostgresMicrostructureRepository(DB_CONN)
-    ohlc_writer = OHLCWriter(DB_CONN)
-    micro_writer = MicrostructureWriter(DB_CONN)
-    data_platform = TechnicalDataPlatform(ohlc_repo, micro_repo)
+    OHLCWriter(DB_CONN)
+    MicrostructureWriter(DB_CONN)
+    TechnicalDataPlatform(ohlc_repo, micro_repo)
     logger.info("Verifying data availability...")
     for symbol in SYMBOLS:
         for tf in TIMEFRAMES:

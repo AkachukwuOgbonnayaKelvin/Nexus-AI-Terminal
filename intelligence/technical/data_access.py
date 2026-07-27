@@ -56,7 +56,3 @@ class TechnicalDataPlatform:
     def get_last_bars(self, symbol: str, timeframe: str, limit: int) -> pd.DataFrame:
         """Convenience method to get the most recent N bars."""
         return self.ohlc.get_last_bars(symbol, timeframe, limit)
-
-    def get_last_bars(self, symbol: str, timeframe: str, limit: int) -> pd.DataFrame:
-        """Convenience method to get the most recent N bars."""
-        return self.ohlc.get_last_bars(symbol, timeframe, limit)

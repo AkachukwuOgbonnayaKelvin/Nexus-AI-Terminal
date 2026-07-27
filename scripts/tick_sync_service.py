@@ -211,7 +211,7 @@ class TickSyncService:
                         (symbol, str(e), datetime.now()),
                     )
                 conn.commit()
-            except:
+            except Exception:
                 pass
 
     def get_technical_count(self, conn, symbol):

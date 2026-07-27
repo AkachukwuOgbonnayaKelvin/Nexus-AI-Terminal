@@ -1,9 +1,6 @@
-from dataclasses import dataclass, field
-from typing import List, Optional, Set, Dict
-from enum import Enum
 import hashlib
-import json
-from datetime import datetime
+from dataclasses import dataclass, field
+from enum import Enum
 
 
 class WatchStatus(Enum):
@@ -54,56 +51,60 @@ class StructureWatch:
     market_state: MarketState
 
     pullback_expected: bool
-    pullback_zone_low: Optional[float] = None
-    pullback_zone_high: Optional[float] = None
-    atr_value: Optional[float] = None
-    expected_pullback_atr: Optional[float] = None
-    expected_duration_min: Optional[int] = None
-    expected_duration_max: Optional[int] = None
+    pullback_zone_low: float | None = None
+    pullback_zone_high: float | None = None
+    atr_value: float | None = None
+    expected_pullback_atr: float | None = None
+    expected_duration_min: int | None = None
+    expected_duration_max: int | None = None
 
-    current_price: Optional[float] = None
-    zone_status: Optional[str] = None
-    distance_to_zone: Optional[float] = None
-    distance_atr: Optional[float] = None
-    time_to_zone_min: Optional[float] = None
-    time_to_zone_max: Optional[float] = None
+    current_price: float | None = None
+    zone_status: str | None = None
+    distance_to_zone: float | None = None
+    distance_atr: float | None = None
+    time_to_zone_min: float | None = None
+    time_to_zone_max: float | None = None
 
-    conditions: List[Condition] = field(default_factory=list)
-    invalidation_level: Optional[float] = None
+    conditions: list[Condition] = field(default_factory=list)
+    invalidation_level: float | None = None
     confidence: float = 0.0
     status: WatchStatus = WatchStatus.WAITING
     interpretation: str = ""
 
-    setup_id: Optional[str] = None
+    setup_id: str | None = None
     notification_sent: bool = False
 
     projection_valid: bool = True
-    validation_errors: List[str] = field(default_factory=list)
+    validation_errors: list[str] = field(default_factory=list)
 
 
-def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float = None, atr: float = None) -> StructureWatch:
-    macro_bias = mtf_result.get('macro_bias', 'neutral')
-    context_bias = mtf_result.get('context_bias', 'neutral')
-    exec_bias = mtf_result.get('execution_bias', 'neutral')
-    alignment_state = mtf_result.get('alignment_state', 'divergent')
-    weighted_conf = mtf_result.get('weighted_confidence', 0.5)
-    pullback_info = mtf_result.get('pullback')
-    pullback_expected = pullback_info is not None and pullback_info.get('active', False)
+def generate_structure_watch(
+    symbol: str, mtf_result: dict, current_price: float = None, atr: float = None
+) -> StructureWatch:
+    macro_bias = mtf_result.get("macro_bias", "neutral")
+    context_bias = mtf_result.get("context_bias", "neutral")
+    exec_bias = mtf_result.get("execution_bias", "neutral")
+    alignment_state = mtf_result.get("alignment_state", "divergent")
+    weighted_conf = mtf_result.get("weighted_confidence", 0.5)
+    pullback_info = mtf_result.get("pullback")
+    pullback_expected = pullback_info is not None and pullback_info.get("active", False)
 
     # Use provided ATR or fallback
-    atr_val = atr if atr else mtf_result.get('fallback_atr')
+    atr_val = atr if atr else mtf_result.get("fallback_atr")
     if atr_val is None:
-        atr_val = mtf_result.get('pullback_zone', {}).get('atr_value')
+        atr_val = mtf_result.get("pullback_zone", {}).get("atr_value")
 
     # ---- Determine market state ----
-    if alignment_state == 'fully_aligned':
+    if alignment_state == "fully_aligned":
         market_state = MarketState.TREND_CONTINUATION
-    elif alignment_state == 'aligned_with_consolidation':
+    elif alignment_state == "aligned_with_consolidation":
         market_state = MarketState.CONSOLIDATION_BEFORE_CONTINUATION
-    elif alignment_state in ['bullish_pullback', 'bearish_pullback']:
+    elif alignment_state in ["bullish_pullback", "bearish_pullback"]:
         if pullback_expected and atr_val and current_price:
             # Estimate zone from swing levels or fallback to ATR
-            zone_low, zone_high = calculate_multi_factor_zone(mtf_result, current_price, atr_val, macro_bias)
+            zone_low, zone_high = calculate_multi_factor_zone(
+                mtf_result, current_price, atr_val, macro_bias
+            )
             if zone_low and zone_high:
                 if current_price < zone_low or current_price > zone_high:
                     market_state = MarketState.PULLBACK_APPROACHING
@@ -113,7 +114,7 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
                 market_state = MarketState.PULLBACK_EXPECTED
         else:
             market_state = MarketState.PULLBACK_EXPECTED
-    elif alignment_state in ['counter_trend_rally', 'counter_trend_decline']:
+    elif alignment_state in ["counter_trend_rally", "counter_trend_decline"]:
         market_state = MarketState.REVERSAL_RISK
     else:
         market_state = MarketState.NO_TRADE
@@ -121,7 +122,9 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
     # ---- Build zone from multi-factor or ATR ----
     zone_low, zone_high = None, None
     if pullback_expected and atr_val and current_price:
-        zone_low, zone_high = calculate_multi_factor_zone(mtf_result, current_price, atr_val, macro_bias)
+        zone_low, zone_high = calculate_multi_factor_zone(
+            mtf_result, current_price, atr_val, macro_bias
+        )
 
     # ---- Current price, zone status, distance ----
     zone_status = None
@@ -145,11 +148,16 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
     # ---- Time to zone ----
     time_to_zone_min = time_to_zone_max = None
     if zone_low and zone_high and current_price and atr_val and atr_val > 0:
-        from intelligence.technical.engines.market_structure.pullback_analyzer import estimate_time_to_zone
-        time_info = estimate_time_to_zone(current_price, zone_low, zone_high, atr_val, 'H1')
-        if time_info.get('hours_min') is not None:
-            time_to_zone_min = time_info['hours_min']
-            time_to_zone_max = time_info['hours_max']
+        from intelligence.technical.engines.market_structure.pullback_analyzer import (
+            estimate_time_to_zone,
+        )
+
+        time_info = estimate_time_to_zone(
+            current_price, zone_low, zone_high, atr_val, "H1"
+        )
+        if time_info.get("hours_min") is not None:
+            time_to_zone_min = time_info["hours_min"]
+            time_to_zone_max = time_info["hours_max"]
 
     # ---- Expected duration ----
     if pullback_expected and zone_low is not None and zone_high is not None:
@@ -161,85 +169,87 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
     condition_dict = {}
 
     # Structure
-    if macro_bias in ['bullish', 'bearish']:
-        condition_dict['MACRO_STRUCTURE'] = Condition(
-            code='MACRO_STRUCTURE',
+    if macro_bias in ["bullish", "bearish"]:
+        condition_dict["MACRO_STRUCTURE"] = Condition(
+            code="MACRO_STRUCTURE",
             label=f"{'Bullish' if macro_bias == 'bullish' else 'Bearish'} structure confirmed",
             met=True,
-            required=True
+            required=True,
         )
     else:
-        condition_dict['MACRO_STRUCTURE'] = Condition(
-            code='MACRO_STRUCTURE',
+        condition_dict["MACRO_STRUCTURE"] = Condition(
+            code="MACRO_STRUCTURE",
             label="Macro structure not confirmed",
             met=False,
-            required=True
+            required=True,
         )
 
     # Volatility (ATR)
     if atr_val and atr_val > 0:
-        condition_dict['ATR_AVAILABLE'] = Condition(
-            code='ATR_AVAILABLE',
+        condition_dict["ATR_AVAILABLE"] = Condition(
+            code="ATR_AVAILABLE",
             label="ATR available",
             met=True,
-            required=pullback_expected
+            required=pullback_expected,
         )
     else:
-        condition_dict['ATR_AVAILABLE'] = Condition(
-            code='ATR_AVAILABLE',
+        condition_dict["ATR_AVAILABLE"] = Condition(
+            code="ATR_AVAILABLE",
             label="ATR not available",
             met=False,
-            required=pullback_expected
+            required=pullback_expected,
         )
 
     # Location (zone)
     if pullback_expected and zone_low is not None and zone_high is not None:
         in_zone = zone_status == "inside"
-        condition_dict['PRICE_IN_ZONE'] = Condition(
-            code='PRICE_IN_ZONE',
+        condition_dict["PRICE_IN_ZONE"] = Condition(
+            code="PRICE_IN_ZONE",
             label="Price inside pullback zone",
             met=in_zone,
-            required=True
+            required=True,
         )
     else:
-        condition_dict['PRICE_IN_ZONE'] = Condition(
-            code='PRICE_IN_ZONE',
+        condition_dict["PRICE_IN_ZONE"] = Condition(
+            code="PRICE_IN_ZONE",
             label="No pullback zone active",
             met=True,
-            required=False
+            required=False,
         )
 
     # Confirmation trigger
-    if alignment_state in ['bullish_pullback', 'bearish_pullback']:
-        condition_dict['LOWER_TF_REVERSAL'] = Condition(
-            code='LOWER_TF_REVERSAL',
+    if alignment_state in ["bullish_pullback", "bearish_pullback"]:
+        condition_dict["LOWER_TF_REVERSAL"] = Condition(
+            code="LOWER_TF_REVERSAL",
             label="Lower‑timeframe reversal signal (BOS/CHoCH)",
             met=False,
-            required=True
+            required=True,
         )
-    elif alignment_state == 'aligned_with_consolidation':
-        condition_dict['CONTINUATION_CONFIRMATION'] = Condition(
-            code='CONTINUATION_CONFIRMATION',
+    elif alignment_state == "aligned_with_consolidation":
+        condition_dict["CONTINUATION_CONFIRMATION"] = Condition(
+            code="CONTINUATION_CONFIRMATION",
             label="Bullish continuation confirmation (BOS/CHoCH)",
             met=False,
-            required=True
+            required=True,
         )
     else:
-        condition_dict['CONFIRMATION_PENDING'] = Condition(
-            code='CONFIRMATION_PENDING',
+        condition_dict["CONFIRMATION_PENDING"] = Condition(
+            code="CONFIRMATION_PENDING",
             label="Confirmation pending",
             met=False,
-            required=True
+            required=True,
         )
 
     # Invalidation (optional)
-    invalidation = mtf_result.get('timeframes', {}).get('D1', {}).get('invalidation_level')
+    invalidation = (
+        mtf_result.get("timeframes", {}).get("D1", {}).get("invalidation_level")
+    )
     if invalidation:
-        condition_dict['INVALIDATION_LEVEL'] = Condition(
-            code='INVALIDATION_LEVEL',
+        condition_dict["INVALIDATION_LEVEL"] = Condition(
+            code="INVALIDATION_LEVEL",
             label=f"Invalidation level: {invalidation:.5f}",
             met=True,
-            required=False
+            required=False,
         )
 
     # Convert to list
@@ -255,7 +265,7 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
         status = WatchStatus.APPROACHING_ZONE
     elif pullback_expected and zone_status == "inside" and not required_met:
         status = WatchStatus.IN_ZONE
-    elif macro_bias != 'neutral' and alignment_state != 'divergent':
+    elif macro_bias != "neutral" and alignment_state != "divergent":
         status = WatchStatus.CONFIRMATION_PENDING
     else:
         status = WatchStatus.ANALYZING
@@ -267,7 +277,7 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
         setup_id = hashlib.md5(data.encode()).hexdigest()[:10]
 
     # ---- Interpretation ----
-    interp = mtf_result.get('interpretation', 'No interpretation available.')
+    interp = mtf_result.get("interpretation", "No interpretation available.")
 
     return StructureWatch(
         symbol=symbol,
@@ -296,35 +306,37 @@ def generate_structure_watch(symbol: str, mtf_result: dict, current_price: float
         setup_id=setup_id,
         notification_sent=False,
         projection_valid=True,
-        validation_errors=[]
+        validation_errors=[],
     )
 
 
-def calculate_multi_factor_zone(mtf_result: dict, current_price: float, atr: float, bias: str):
+def calculate_multi_factor_zone(
+    mtf_result: dict, current_price: float, atr: float, bias: str
+):
     """
     Compute pullback zone using multiple factors: structural swings, ATR, and fibonacci.
     Returns (low, high) or (None, None) if insufficient data.
     """
-    swings = mtf_result.get('swing_hierarchy', {}).get('D1', [])
+    swings = mtf_result.get("swing_hierarchy", {}).get("D1", [])
     if not swings:
         # Fallback to ATR-only zone
         depth = 1.2 * atr
-        if bias == 'bullish':
+        if bias == "bullish":
             return current_price - depth * 1.2, current_price - depth * 0.8
         else:
             return current_price + depth * 0.8, current_price + depth * 1.2
 
     # Get recent swing high/low
-    highs = [s['price'] for s in swings if s['type'] == 'high']
-    lows = [s['price'] for s in swings if s['type'] == 'low']
+    highs = [s["price"] for s in swings if s["type"] == "high"]
+    lows = [s["price"] for s in swings if s["type"] == "low"]
     if not highs or not lows:
         return None, None
 
     recent_high = max(highs[-3:])  # last 3 swing highs
-    recent_low = min(lows[-3:])    # last 3 swing lows
+    recent_low = min(lows[-3:])  # last 3 swing lows
 
     # Combine structural levels with ATR
-    if bias == 'bullish':
+    if bias == "bullish":
         # Zone for bullish pullback: retracement into demand
         # Use 38.2%–61.8% retracement from recent high to low
         range_ = recent_high - recent_low
