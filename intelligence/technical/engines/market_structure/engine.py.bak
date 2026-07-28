@@ -1,3 +1,6 @@
+from intelligence.technical.engines.market_structure.structure_watch import (
+    StructureWatch,
+)
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -5,10 +8,6 @@ import pandas as pd
 
 from intelligence.technical.contracts import EngineBias, MarketRegime, TechnicalSignal
 from intelligence.technical.data_access import TechnicalDataPlatform
-from intelligence.technical.data_quality import confidence_cap, validate_dataframe
-from intelligence.technical.engines.market_structure.mtf_state_classifier import (
-    classify_state,
-)
 from intelligence.technical.engines.market_structure.pullback_analyzer import (
     calculate_pullback_zone,
     detect_pullback,
@@ -42,19 +41,6 @@ class MarketStructureEngine:
     ) -> TechnicalSignal:
         df = self.data.get_last_bars(symbol, timeframe, lookback_bars)
 
-        # ---- Data Quality Gate ----
-        quality = validate_dataframe(df, timeframe)
-        if not quality.is_usable:
-            return self._empty_signal(
-                symbol,
-                timeframe,
-                f"Data quality: {quality.status.value} – {quality.reason}",
-            )
-
-        # Cap confidence based on data quality
-        max_conf = confidence_cap(quality.status)
-
-        # Continue analysis
         if df.empty:
             return self._empty_signal(
                 symbol, timeframe, "No data found in technical store"
@@ -75,9 +61,6 @@ class MarketStructureEngine:
         bias, confidence = self._determine_bias(structure, events)
         levels = self._get_key_levels(swings)
 
-        # Apply confidence cap
-        confidence = min(confidence, max_conf)
-
         return TechnicalSignal(
             engine="market_structure",
             symbol=symbol,
@@ -97,15 +80,14 @@ class MarketStructureEngine:
             invalidation_level=self._get_invalidation_level(swings, bias),
             invalidation_condition=self._get_invalidation_condition(bias),
             reasoning=self._build_reasoning(structure, events),
-            data_quality=quality.status.value,
-            data_quality_reason=quality.reason,
+            data_quality=self._check_data_quality(df),
             data_range_start=df["time"].iloc[0] if not df.empty else None,
             data_range_end=df["time"].iloc[-1] if not df.empty else None,
             extras={
                 "swings": swings[-20:],
                 "bars_analyzed": len(df),
                 "bars_requested": lookback_bars,
-                "data_status": quality.status.value,
+                "data_status": "OK",
             },
         )
 
@@ -341,6 +323,21 @@ class MarketStructureEngine:
 
         return reasons
 
+    def _check_data_quality(self, df):
+        if df.empty:
+            return 0.0
+        time_diff = df["time"].diff().dropna()
+        expected = time_diff.mode()
+        if not expected.empty:
+            gaps = time_diff > expected.iloc[0] * 2
+            gap_ratio = gaps.sum() / len(df)
+            quality = 1.0 - min(1.0, gap_ratio * 5)
+        else:
+            quality = 1.0
+        invalid = (df["high"] < df["low"]).sum() if "high" in df and "low" in df else 0
+        quality *= 1.0 - invalid / max(1, len(df))
+        return max(0.0, min(1.0, quality))
+
     def _empty_signal(self, symbol, timeframe, reason="Insufficient data for analysis"):
         return TechnicalSignal(
             engine="market_structure",
@@ -357,10 +354,7 @@ class MarketStructureEngine:
             invalidation_level=None,
             invalidation_condition=None,
             reasoning=[reason],
-            data_quality="missing",
-            data_quality_reason=reason,
-            data_range_start=None,
-            data_range_end=None,
+            data_quality=0.0,
             extras={"data_status": "UNAVAILABLE", "reason": reason},
         )
 
@@ -385,23 +379,11 @@ class MarketStructureEngine:
 
         # ---- 1. Regime classification per timeframe ----
         timeframe_regimes = {}
-        quality_info = {}
         for tf, signal in aggregated["signals"].items():
             df = self.data.get_last_bars(symbol, tf, lookback_bars)
             swings = signal.extras.get("swings", [])
             regime_info = classify_regime(df, swings)
             timeframe_regimes[tf] = regime_info
-            # Store data quality
-            from intelligence.technical.data_quality import validate_dataframe
-
-            quality = validate_dataframe(df, tf)
-            quality_info[tf] = {
-                "status": quality.status.value,
-                "is_usable": quality.is_usable,
-                "bars": quality.bars_available,
-                "required": quality.bars_required,
-                "reason": quality.reason,
-            }
 
         # ---- 2. Determine Macro, Context, Execution biases ----
         def get_bias(tf):
@@ -418,29 +400,50 @@ class MarketStructureEngine:
         for tf, w in weights.items():
             sig = aggregated["signals"].get(tf)
             if sig:
-                # Check if data quality is usable
-                if quality_info.get(tf, {}).get("is_usable", False):
-                    weighted_conf += sig.confidence * w
+                weighted_conf += sig.confidence * w
         weighted_conf = round(min(1.0, weighted_conf), 3)
 
-        # ---- 4. State classification ----
-        tf_biases = {
-            tf: {
-                "bias": sig.bias.value if sig else "unknown",
-                "confidence": sig.confidence if sig else 0.0,
-                "regime": sig.regime.value if sig else "unknown",
-                "phase": timeframe_regimes.get(tf, {}).get("phase", "unknown"),
-            }
-            for tf, sig in aggregated["signals"].items()
-        }
-        state_info = classify_state(tf_biases)
-        mtf_state = state_info["state"].value
-        state_interpretation = state_info["interpretation"]
-        state_confidence = state_info["confidence"]
+        # ---- 4. Alignment classification ----
+        all_biases = [get_bias(tf) for tf in timeframes if get_bias(tf)]
+        all_same = len(set(all_biases)) == 1
+
+        regime_values = []
+        for tf in timeframes:
+            if tf in timeframe_regimes:
+                r = timeframe_regimes[tf].get("regime")
+                if r:
+                    regime_values.append(r.value if hasattr(r, "value") else r)
+        trending_count = sum(
+            1 for r in regime_values if r in ["trending_up", "trending_down"]
+        )
+        ranging_count = sum(1 for r in regime_values if r == "ranging")
+
+        if all_same and trending_count == len(timeframes):
+            alignment_state = "fully_aligned"
+        elif all_same and ranging_count > 0:
+            alignment_state = "aligned_with_consolidation"
+        elif macro_bias == "bullish" and exec_bias == "bearish":
+            alignment_state = "bullish_pullback"
+        elif macro_bias == "bearish" and exec_bias == "bullish":
+            alignment_state = "bearish_pullback"
+        elif (
+            macro_bias == "bearish"
+            and context_bias == "bullish"
+            and exec_bias == "bullish"
+        ):
+            alignment_state = "counter_trend_rally"
+        elif (
+            macro_bias == "bullish"
+            and context_bias == "bearish"
+            and exec_bias == "bearish"
+        ):
+            alignment_state = "counter_trend_decline"
+        else:
+            alignment_state = "divergent"
 
         # ---- 5. Structural interpretation ----
         interpretation = self._interpret_mtf(
-            macro_bias, context_bias, exec_bias, mtf_state
+            macro_bias, context_bias, exec_bias, alignment_state
         )
 
         # ---- 6. Pullback detection ----
@@ -457,6 +460,7 @@ class MarketStructureEngine:
         if pullback:
             primary_df = self.data.get_last_bars(symbol, "D1", 100)
             if not primary_df.empty:
+                # ---- CORRECT TRUE RANGE ATR ----
                 high = primary_df["high"]
                 low = primary_df["low"]
                 close = primary_df["close"].shift(1)
@@ -484,9 +488,7 @@ class MarketStructureEngine:
             "context_bias": context_bias,
             "execution_bias": exec_bias,
             "primary_bias": aggregated["primary_bias"].value,
-            "mtf_state": mtf_state,
-            "state_interpretation": state_interpretation,
-            "state_confidence": state_confidence,
+            "alignment_state": alignment_state,
             "alignment": "aligned" if aggregated["aligned"] else "divergent",
             "weighted_confidence": weighted_conf,
             "timeframes": {
@@ -496,9 +498,6 @@ class MarketStructureEngine:
                     "regime": sig.regime.value,
                     "phase": timeframe_regimes[tf].get("phase", "unknown"),
                     "regime_confidence": timeframe_regimes[tf].get("confidence", 0.0),
-                    "data_quality": quality_info.get(tf, {}).get("status", "unknown"),
-                    "bars_available": quality_info.get(tf, {}).get("bars", 0),
-                    "bars_required": quality_info.get(tf, {}).get("required", 0),
                 }
                 for tf, sig in aggregated["signals"].items()
             },
@@ -507,79 +506,101 @@ class MarketStructureEngine:
             "pullback": pullback,
             "pullback_zone": pullback_zone,
             "interpretation": interpretation,
-            "data_quality_summary": quality_info,
         }
         return result
 
-    def _interpret_mtf(self, macro_bias, context_bias, exec_bias, mtf_state):
+    def _interpret_mtf(self, macro_bias, context_bias, exec_bias, alignment_state):
         """Generate human-readable interpretation."""
         lines = []
-        if mtf_state in ["aligned_bullish", "aligned_bearish"]:
-            bias = "bullish" if "bullish" in mtf_state else "bearish"
-            lines.append(f"Strong {bias.upper()} alignment across all timeframes.")
+        if alignment_state == "fully_aligned":
+            lines.append(
+                f"Strong {macro_bias.upper()} alignment across all timeframes."
+            )
             lines.append("All timeframes confirm the same directional bias.")
             lines.append("Continuation expected.")
-        elif mtf_state == "bullish_trend":
-            lines.append("Bullish trend across timeframes.")
-            lines.append("Higher and intermediate timeframes confirm the direction.")
-            lines.append("Continuation expected.")
-        elif mtf_state == "bearish_trend":
-            lines.append("Bearish trend across timeframes.")
-            lines.append("Higher and intermediate timeframes confirm the direction.")
-            lines.append("Continuation expected.")
-        elif mtf_state == "bullish_consolidation":
-            lines.append("Bullish structural alignment with short-term consolidation.")
+        elif alignment_state == "aligned_with_consolidation":
+            lines.append(
+                f"{macro_bias.upper()} structural alignment with short-term consolidation."
+            )
             lines.append(
                 "Higher timeframes are trending; lower timeframes are ranging."
             )
             lines.append("Expect continuation after consolidation.")
-        elif mtf_state == "bearish_consolidation":
-            lines.append("Bearish structural alignment with short-term consolidation.")
+        elif alignment_state == "bullish_pullback":
             lines.append(
-                "Higher timeframes are trending; lower timeframes are ranging."
+                f"{macro_bias.upper()} macro structure, bearish short-term pullback."
             )
-            lines.append("Expect continuation after consolidation.")
-        elif mtf_state == "bullish_macro_pullback":
-            lines.append("Bullish macro structure with bearish short-term pullback.")
             lines.append(
                 "The current decline is likely a correction within a larger uptrend."
             )
             lines.append("Look for bullish reversal signals in lower timeframes.")
-        elif mtf_state == "bearish_macro_pullback":
-            lines.append("Bearish macro structure with bullish short-term recovery.")
+        elif alignment_state == "bearish_pullback":
+            lines.append(
+                f"{macro_bias.upper()} macro structure, bullish short-term recovery."
+            )
             lines.append(
                 "The current rally is likely a correction within a larger downtrend."
             )
             lines.append("Look for bearish reversal signals in lower timeframes.")
-        elif mtf_state == "bullish_recovery":
-            lines.append("Bullish recovery within a pullback.")
-            lines.append("Price is recovering from a correction.")
-            lines.append("Watch for continuation or reversal signals.")
-        elif mtf_state == "bearish_recovery":
-            lines.append("Bearish recovery within a pullback.")
-            lines.append("Price is recovering from a correction.")
-            lines.append("Watch for continuation or reversal signals.")
-        elif mtf_state == "reversal_risk_bullish":
-            lines.append("Mixed signals; reversal risk to the downside.")
-            lines.append("The bullish structure may be weakening.")
-            lines.append("Exercise caution.")
-        elif mtf_state == "reversal_risk_bearish":
-            lines.append("Mixed signals; reversal risk to the upside.")
-            lines.append("The bearish structure may be weakening.")
-            lines.append("Exercise caution.")
-        elif mtf_state == "insufficient_data":
-            lines.append("Insufficient data to determine clear structure.")
-            lines.append("Missing timeframes or invalid data.")
-            lines.append("Consider adding more historical data.")
+        elif alignment_state == "counter_trend_rally":
+            lines.append(
+                f"{macro_bias.upper()} macro structure, bullish counter-trend rally."
+            )
+            lines.append("The H4 and lower timeframes are recovering upward.")
+            lines.append(
+                "This is a counter-trend move; macro reversal is not confirmed."
+            )
+        elif alignment_state == "counter_trend_decline":
+            lines.append(
+                f"{macro_bias.upper()} macro structure, bearish counter-trend decline."
+            )
+            lines.append(
+                "The H4 and lower timeframes are declining against the macro trend."
+            )
+            lines.append(
+                "This is a counter-trend move; macro reversal is not confirmed."
+            )
         else:
             lines.append("Mixed signals across timeframes.")
             lines.append("No clear consensus; exercise caution.")
         return "\n".join(lines)
 
-    # ---------- ATR FALLBACK ----------
+    # ---------- STRUCTURE WATCH ----------
+    def watch(
+        self, symbol: str, timeframes: list[str] = None, lookback_bars: int = 200
+    ) -> "StructureWatch":
+        """
+        Generate a structured watch object that includes conditions, status, and zones.
+        """
+        from intelligence.technical.engines.market_structure.structure_watch import (
+            generate_structure_watch,
+        )
+
+        mtf_result = self.analyze_mtf(symbol, timeframes, lookback_bars)
+        watch = generate_structure_watch(symbol, mtf_result)
+        return watch
+        try:
+            # Try D1 first, then H1
+            df = self.data.get_last_bars(symbol, "D1", 1)
+            if df.empty:
+                df = self.data.get_last_bars(symbol, "H1", 1)
+            if not df.empty:
+                current_price = df["close"].iloc[-1]
+        except Exception:
+            pass
+
+        mtf_result = self.analyze_mtf(symbol, timeframes, lookback_bars)
+        # Add current_price to mtf_result for use in watch generator
+        mtf_result["current_price"] = current_price
+        watch = generate_structure_watch(symbol, mtf_result, current_price)
+        return watch
+
     def get_atr(
         self, symbol: str, period: int = 14, fallback_timeframes: list = None
     ) -> float:
+        """
+        Get ATR by trying multiple timeframes in order.
+        """
         if fallback_timeframes is None:
             fallback_timeframes = ["M15", "H1", "H4", "D1"]
         for tf in fallback_timeframes:
@@ -599,77 +620,3 @@ class MarketStructureEngine:
             except Exception:
                 continue
         return None
-
-    # ---------- STRUCTURE WATCH ----------
-    def watch(
-        self, symbol: str, timeframes: list[str] = None, lookback_bars: int = 200
-    ) -> "StructureWatch":
-        try:
-            from intelligence.technical.engines.market_structure.structure_watch import (
-                StructureWatch,
-                WatchStatus,
-                generate_structure_watch,
-            )
-
-            current_price = None
-            try:
-                df = self.data.get_last_bars(symbol, "D1", 1)
-                if df.empty:
-                    df = self.data.get_last_bars(symbol, "H1", 1)
-                if not df.empty:
-                    current_price = df["close"].iloc[-1]
-            except Exception:
-                pass
-
-            mtf_result = self.analyze_mtf(symbol, timeframes, lookback_bars)
-
-            if not mtf_result.get("timeframes"):
-                return StructureWatch(
-                    symbol=symbol,
-                    macro_bias="unknown",
-                    context_bias="unknown",
-                    execution_bias="unknown",
-                    market_state=None,
-                    pullback_expected=False,
-                    current_price=current_price,
-                    confidence=0.0,
-                    status=WatchStatus.DATA_ERROR,
-                    interpretation="Insufficient data for analysis.",
-                    conditions=[],
-                    setup_id=None,
-                    notification_sent=False,
-                    projection_valid=False,
-                    validation_errors=["No valid timeframes"],
-                )
-
-            atr = self.get_atr(
-                symbol, period=14, fallback_timeframes=["D1", "H4", "H1", "M15"]
-            )
-            mtf_result["current_price"] = current_price
-            mtf_result["fallback_atr"] = atr
-
-            watch = generate_structure_watch(symbol, mtf_result, current_price, atr)
-            return watch
-        except Exception as e:
-            from intelligence.technical.engines.market_structure.structure_watch import (
-                StructureWatch,
-                WatchStatus,
-            )
-
-            return StructureWatch(
-                symbol=symbol,
-                macro_bias="unknown",
-                context_bias="unknown",
-                execution_bias="unknown",
-                market_state=None,
-                pullback_expected=False,
-                current_price=None,
-                confidence=0.0,
-                status=WatchStatus.DATA_ERROR,
-                interpretation=f"Error: {e!s}",
-                conditions=[],
-                setup_id=None,
-                notification_sent=False,
-                projection_valid=False,
-                validation_errors=[str(e)],
-            )

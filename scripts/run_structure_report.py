@@ -36,19 +36,20 @@ for sym in symbols:
         watch = engine.watch(
             sym, timeframes=["D1", "H4", "H1", "M15"], lookback_bars=200
         )
-        # Summary
+        # Fallback if current price is missing
+        current_price = watch.current_price if watch.current_price else None
         row = {
             "Symbol": sym,
-            "Macro": watch.macro_bias,
-            "Context": watch.context_bias,
-            "Execution": watch.execution_bias,
-            "State": watch.market_state.value,
-            "Status": watch.status.value,
+            "Macro": watch.macro_bias if watch.macro_bias else "unknown",
+            "Context": watch.context_bias if watch.context_bias else "unknown",
+            "Execution": watch.execution_bias if watch.execution_bias else "unknown",
+            "State": watch.market_state.value if watch.market_state else "unknown",
+            "Status": watch.status.value if watch.status else "unknown",
             "Pullback": watch.pullback_expected,
             "Zone Low": watch.pullback_zone_low,
             "Zone High": watch.pullback_zone_high,
             "ATR": watch.atr_value,
-            "Current Price": watch.current_price,
+            "Current Price": current_price,
             "Distance (ATR)": watch.distance_atr,
             "Time to Zone (h)": f"{watch.time_to_zone_min:.1f}-{watch.time_to_zone_max:.1f}"
             if watch.time_to_zone_min
@@ -57,14 +58,32 @@ for sym in symbols:
             "Setup ID": watch.setup_id,
         }
         report_data.append(row)
-        # Print symbol with state
         print(
-            f"{sym:12} | {watch.macro_bias:8} | {watch.context_bias:8} | {watch.execution_bias:8} | {watch.market_state.value:30} | {watch.status.value:20}"
+            f"{sym:12} | {row['Macro']:8} | {row['Context']:8} | {row['Execution']:8} | {row['State']:30} | {row['Status']:20}"
         )
     except Exception as e:
         print(f"{sym:12} | ERROR: {e}")
+        # Still add a row with error info
+        report_data.append(
+            {
+                "Symbol": sym,
+                "Macro": "ERROR",
+                "Context": "",
+                "Execution": "",
+                "State": str(e)[:30],
+                "Status": "FAILED",
+                "Pullback": False,
+                "Zone Low": None,
+                "Zone High": None,
+                "ATR": None,
+                "Current Price": None,
+                "Distance (ATR)": None,
+                "Time to Zone (h)": None,
+                "Confidence": 0.0,
+                "Setup ID": None,
+            }
+        )
 
-# Optionally save to CSV
 df = pd.DataFrame(report_data)
 df.to_csv("structure_report.csv", index=False)
 print(f"\nReport saved to structure_report.csv ({len(df)} rows)")

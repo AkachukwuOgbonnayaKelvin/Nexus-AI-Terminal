@@ -134,3 +134,6 @@ raw_schema_backup.sql
 raw_schema_backup.sql
 backups/
 backups/
+# Environment variables
+.env
+*.env
