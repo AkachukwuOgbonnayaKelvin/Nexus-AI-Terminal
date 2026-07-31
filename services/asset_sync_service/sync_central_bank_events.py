@@ -1,7 +1,7 @@
 """
 Central Bank Events Synchronizer - Copies from nexus_ai_terminal.central_bank_events to raw.central_bank_events
 """
-import time
+import json
 import logging
 from datetime import datetime
 
@@ -73,6 +73,11 @@ class CentralBankEventsSynchronizer:
         if not events:
             return 0
 
+        # Convert dict fields to JSON strings
+        for event in events:
+            if 'metadata' in event and event['metadata'] is not None:
+                event['metadata'] = json.dumps(event['metadata'])
+
         # Use event_id as conflict key
         columns = list(events[0].keys())
         placeholders = ', '.join([f'%({col})s' for col in columns])
@@ -111,6 +116,7 @@ class CentralBankEventsSynchronizer:
             return 0
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     sync = CentralBankEventsSynchronizer()
     sync.connect()
     count = sync.sync_once()

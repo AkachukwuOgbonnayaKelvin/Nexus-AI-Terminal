@@ -14,7 +14,7 @@ class SyncConfig:
 
     core_host: str = os.getenv('CORE_DB_HOST', 'localhost')
     core_port: int = int(os.getenv('CORE_DB_PORT', 5432))
-    core_dbname: str = os.getenv('CORE_DB_NAME', 'nexus_core')
+    core_dbname: str = os.getenv('CORE_DB_NAME', 'nexus_data')
     core_user: str = os.getenv('CORE_DB_USER', 'postgres')
     core_password: str = os.getenv('CORE_DB_PASSWORD', '6468')
 

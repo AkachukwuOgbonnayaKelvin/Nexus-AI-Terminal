@@ -1,7 +1,7 @@
 """
 Economic Events Synchronizer - Copies from nexus_ai_terminal.economic_events to raw.economic_events
 """
-import time
+import json
 import logging
 from datetime import datetime
 
@@ -19,12 +19,10 @@ class EconomicEventsSynchronizer:
         self.batch_size = config.batch_size
 
     def connect(self):
-        # Use core_db for source (but we need to point to nexus_ai_terminal)
-        # We'll override config for this sync
         self.core_conn = psycopg2.connect(
             host=config.core_host,
             port=config.core_port,
-            dbname='nexus_ai_terminal',  # override
+            dbname='nexus_ai_terminal',
             user=config.core_user,
             password=config.core_password
         )
@@ -75,6 +73,11 @@ class EconomicEventsSynchronizer:
         if not events:
             return 0
 
+        # Convert dict fields to JSON strings
+        for event in events:
+            if 'metadata' in event and event['metadata'] is not None:
+                event['metadata'] = json.dumps(event['metadata'])
+
         # Columns match raw.economic_events exactly
         columns = list(events[0].keys())
         placeholders = ', '.join([f'%({col})s' for col in columns])
@@ -118,6 +121,7 @@ class EconomicEventsSynchronizer:
         pass
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     sync = EconomicEventsSynchronizer()
     sync.connect()
     count = sync.sync_once()

@@ -1,7 +1,6 @@
 """
 Symbols Synchronizer - Copies from nexus_data.symbols to raw.symbols
 """
-import time
 import logging
 from datetime import datetime
 
@@ -58,6 +57,7 @@ class SymbolsSynchronizer:
             """, (last_id,))
 
     def fetch_new_symbols(self, since_id):
+        # Select all columns including id for state tracking
         query = """
             SELECT id, symbol, asset_type, description, currency, exchange, active, created_at
             FROM symbols
@@ -73,24 +73,29 @@ class SymbolsSynchronizer:
         if not symbols:
             return 0
 
+        # Transform data to match destination schema
+        transformed = []
+        for row in symbols:
+            transformed.append({
+                'symbol': row['symbol'],
+                'name': row['description'] if row.get('description') else row['symbol'],
+                'asset_type': row['asset_type'],
+                'is_active': row['active'],
+                'created_at': row['created_at']
+            })
+
         query = """
-            INSERT INTO raw.symbols (
-                id, symbol, asset_type, description, currency, exchange, active, created_at
-            ) VALUES (
-                %(id)s, %(symbol)s, %(asset_type)s, %(description)s,
-                %(currency)s, %(exchange)s, %(active)s, %(created_at)s
-            )
+            INSERT INTO raw.symbols (symbol, name, asset_type, is_active, created_at)
+            VALUES (%(symbol)s, %(name)s, %(asset_type)s, %(is_active)s, %(created_at)s)
             ON CONFLICT (symbol) DO UPDATE SET
+                name = EXCLUDED.name,
                 asset_type = EXCLUDED.asset_type,
-                description = EXCLUDED.description,
-                currency = EXCLUDED.currency,
-                exchange = EXCLUDED.exchange,
-                active = EXCLUDED.active,
+                is_active = EXCLUDED.is_active,
                 created_at = EXCLUDED.created_at
         """
         with self.asset_conn.cursor() as cur:
-            psycopg2.extras.execute_batch(cur, query, symbols)
-        return len(symbols)
+            psycopg2.extras.execute_batch(cur, query, transformed)
+        return len(transformed)
 
     def sync_once(self):
         try:
@@ -114,10 +119,11 @@ class SymbolsSynchronizer:
             return 0
 
     def run_continuous(self):
-        # same as PriceSynchronizer
+        # similar to PriceSynchronizer
         pass
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
     sync = SymbolsSynchronizer()
     sync.connect()
     count = sync.sync_once()
