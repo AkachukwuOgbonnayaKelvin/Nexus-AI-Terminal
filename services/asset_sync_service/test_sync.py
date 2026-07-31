@@ -6,7 +6,7 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from services.asset_sync_service.sync_prices import PriceSynchronizer
+from services.asset_sync_service.sync_prices import PriceSynchronizer  # noqa: E402
 
 
 def test_sync():
